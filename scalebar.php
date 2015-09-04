@@ -10,8 +10,6 @@
  */
 namespace MapFile;
 
-require_once('label.php');
-
 /**
  * MapFile Generator - Scalebar (SCALEBAR) Class.
  * [MapFile SCALEBAR clause](http://mapserver.org/mapfile/scalebar.html).

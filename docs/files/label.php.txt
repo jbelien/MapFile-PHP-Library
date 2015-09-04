@@ -159,14 +159,14 @@ class Label {
   * @return integer[]
   */
   public function getColor() {
-    return array('r' => $this->color[0], 'g' => $this->color[1], 'b' => $this->color[2]);
+    return (is_null($this->color) ? array() : array('r' => $this->color[0], 'g' => $this->color[1], 'b' => $this->color[2]));
   }
   /**
   * Get the `outlinecolor` property.
   * @return integer[]
   */
   public function getOutlineColor() {
-    return array('r' => $this->outlinecolor[0], 'g' => $this->outlinecolor[1], 'b' => $this->outlinecolor[2]);
+    return (is_null($this->outlinecolor) ? array() : array('r' => $this->outlinecolor[0], 'g' => $this->outlinecolor[1], 'b' => $this->outlinecolor[2]));
   }
 
   /**
@@ -193,8 +193,8 @@ class Label {
     if ($this->type == self::TYPE_TRUETYPE && !empty($this->font)) $label .= str_repeat(' ', $indent*2).'  FONT "'.$this->font.'"'.PHP_EOL;
     if ($this->type == self::TYPE_BITMAP) $label .= str_repeat(' ', $indent*2).'  SIZE '.self::convertSize($this->size).PHP_EOL;
     else if ($this->type == self::TYPE_TRUETYPE) $label .= str_repeat(' ', $indent*2).'  SIZE '.floatval($this->size).PHP_EOL;
-    if (!is_null($this->align) && strlen($this->align) > 0) $label .= str_repeat(' ', $indent*2).'  ALIGN '.self::convertAlign($this->align).PHP_EOL;
-    if (!is_null($this->position) && strlen($this->position) > 0) $label .= str_repeat(' ', $indent*2).'  POSITION '.self::convertPosition($this->position).PHP_EOL;
+    if (!is_null($this->align)) $label .= str_repeat(' ', $indent*2).'  ALIGN '.self::convertAlign($this->align).PHP_EOL;
+    if (!is_null($this->position)) $label .= str_repeat(' ', $indent*2).'  POSITION '.self::convertPosition($this->position).PHP_EOL;
     if (!is_null($this->minscaledenom)) $label .= '        MINSCALEDENOM '.floatval($this->minscaledenom).PHP_EOL;
     if (!is_null($this->maxscaledenom)) $label .= '        MAXSCALEDENOM '.floatval($this->maxscaledenom).PHP_EOL;
     if (!empty($this->color) && count($this->color) == 3 && array_sum($this->color) >= 0) $label .= str_repeat(' ', $indent*2).'  COLOR '.implode(' ',$this->color).PHP_EOL;
@@ -223,6 +223,7 @@ class Label {
       else if ($label && preg_match('/^SIZE ([0-9]+)$/i', $sz, $matches)) $this->size = $matches[1];
       else if ($label && preg_match('/^SIZE (.+)$/i', $sz, $matches)) $this->size = self::convertSize($matches[1]);
       else if ($label && preg_match('/^ALIGN (.+)$/i', $sz, $matches)) $this->align = self::convertAlign($matches[1]);
+      else if ($label && preg_match('/^POSITION (.+)$/i', $sz, $matches)) $this->position = self::convertPosition($matches[1]);
       else if ($label && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->color = array($matches[1], $matches[2], $matches[3]);
       else if ($label && preg_match('/^OUTLINECOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->outlinecolor = array($matches[1], $matches[2], $matches[3]);
       else if ($label && preg_match('/^MINSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->minscaledenom = $matches[1];
@@ -237,6 +238,21 @@ class Label {
   */
   private static function convertAlign($a = NULL) {
     $aligns = array(
+      self::ALIGN_LEFT   => 'LEFT',
+      self::ALIGN_CENTER => 'CENTER',
+      self::ALIGN_RIGHT  => 'RIGHT'
+    );
+
+    if (is_numeric($a)) return (isset($aligns[$a]) ? $aligns[$a] : FALSE);
+    else return array_search($a, $aligns);
+  }
+  /**
+  * Convert `position` property to the text value or to the constant matching the text value.
+  * @param string|integer $p
+  * @return integer|string
+  */
+  private static function convertPosition($p = NULL) {
+    $positions = array(
       self::POSITION_UL     => 'UL',
       self::POSITION_LR     => 'LR',
       self::POSITION_UR     => 'UR',
@@ -251,21 +267,6 @@ class Label {
       self::POSITION_AUTO2  => 'AUTO2',
       self::POSITION_FOLLOW => 'FOLLOW',
       self::POSITION_NONE   => 'NONE'
-    );
-
-    if (is_numeric($a)) return (isset($aligns[$a]) ? $aligns[$a] : FALSE);
-    else return array_search($a, $aligns);
-  }
-  /**
-  * Convert `position` property to the text value or to the constant matching the text value.
-  * @param string|integer $p
-  * @return integer|string
-  */
-  private static function convertPosition($p = NULL) {
-    $positions = array(
-      self::ALIGN_LEFT   => 'LEFT',
-      self::ALIGN_CENTER => 'CENTER',
-      self::ALIGN_RIGHT  => 'RIGHT'
     );
 
     if (is_numeric($p)) return (isset($positions[$p]) ? $positions[$p] : FALSE);

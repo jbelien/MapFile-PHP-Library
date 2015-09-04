@@ -10,7 +10,6 @@
  */
 namespace MapFile;
 
-
 /**
  * MapFile Generator - Exception Class.
  * @package MapFile

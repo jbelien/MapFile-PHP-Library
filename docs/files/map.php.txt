@@ -10,14 +10,6 @@
  */
 namespace MapFile;
 
-//require_once('class.php');
-//require_once('exception.php');
-//require_once('label.php');
-//require_once('layer.php');
-//require_once('legend.php');
-//require_once('scalebar.php');
-//require_once('style.php');
-
 /**
  * MapFile Generator - Map (MAP) Class.
  * [MapFile MAP clause](http://mapserver.org/mapfile/map.html).
@@ -235,7 +227,7 @@ class Map {
 
     fwrite($f, '  STATUS '.self::convertStatus($this->status).PHP_EOL);
     fwrite($f, '  NAME "'.$this->name.'"'.PHP_EOL);
-    if (!empty($this->extent) && array_sum($this->extent) >= 0) fwrite($f, '  EXTENT '.implode(' ',$this->extent).PHP_EOL);
+    if (!empty($this->extent)) fwrite($f, '  EXTENT '.implode(' ',$this->extent).PHP_EOL);
     if (!empty($this->fontsetfilename)) fwrite($f, '  FONTSET "'.$this->fontsetfilename.'"'.PHP_EOL);
     if (!empty($this->symbolsetfilename)) fwrite($f, '  SYMBOLSET "'.$this->symbolsetfilename.'"'.PHP_EOL);
     if (!empty($this->width) && !empty($this->height)) fwrite($f, '  SIZE '.$this->width.' '.$this->height.PHP_EOL);
@@ -297,9 +289,9 @@ class Map {
       else if ($map && $map_querymap && preg_match('/^END( # QUERYMAP)?$/i', $sz)) $map_querymap = FALSE;
       else if ($map && $map_querymap) continue;
 
-      else if ($map && preg_match('/^PROJECTION$/i', $sz)) $map_projection = TRUE;
-      else if ($map && $map_projection && preg_match('/^END( # PROJECTION)?$/i', $sz)) $map_projection = FALSE;
-      else if ($map && $map_projection && preg_match('/^"init=(.+)"$/i', $sz, $matches)) $this->projection = $matches[1];
+      else if ($map && !$map_layer && preg_match('/^PROJECTION$/i', $sz)) $map_projection = TRUE;
+      else if ($map && !$map_layer && $map_projection && preg_match('/^END( # PROJECTION)?$/i', $sz)) $map_projection = FALSE;
+      else if ($map && !$map_layer && $map_projection && preg_match('/^"init=(.+)"$/i', $sz, $matches)) $this->projection = $matches[1];
 
       else if ($map && preg_match('/^LEGEND$/i', $sz)) { $map_legend = TRUE; $legend[] = $sz; }
       else if ($map && $map_legend && preg_match('/^END( # LEGEND)?$/i', $sz)) { $legend[] = $sz; $this->legend = new Legend($legend); $map_legend = FALSE; unset($legend); }
@@ -321,7 +313,7 @@ class Map {
 
       else if ($map && preg_match('/^NAME "(.+)"$/i', $sz, $matches)) $this->name = $matches[1];
       else if ($map && preg_match('/^STATUS (.+)$/i', $sz, $matches)) $this->status = self::convertStatus($matches[1]);
-      else if ($map && preg_match('/^EXTENT ([0-9\.]+) ([0-9\.]+) ([0-9\.]+) ([0-9\.]+)$/i', $sz, $matches)) $this->extent = array($matches[1], $matches[2], $matches[3], $matches[4]);
+      else if ($map && preg_match('/^EXTENT (-?[0-9\.]+) (-?[0-9\.]+) (-?[0-9\.]+) (-?[0-9\.]+)$/i', $sz, $matches)) $this->extent = array($matches[1], $matches[2], $matches[3], $matches[4]);
       else if ($map && preg_match('/^FONTSET "(.+)"$/i', $sz, $matches)) $this->fontsetfilename = $matches[1];
       else if ($map && preg_match('/^SYMBOLSET "(.+)"$/i', $sz, $matches)) $this->symbolsetfilename = $matches[1];
       else if ($map && preg_match('/^SIZE ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->size = array($matches[1], $matches[2]);

@@ -10,8 +10,6 @@
  */
 namespace MapFile;
 
-require_once('label.php');
-
 /**
  * MapFile Generator - Legend (LEGEND) Class.
  * [MapFile LEGEND clause](http://mapserver.org/mapfile/legend.html).

@@ -10,9 +10,6 @@
  */
 namespace MapFile;
 
-require_once('class.php');
-
-
 /**
  * MapFile Generator - Layer (LAYER) Class.
  * [MapFile LAYER clause](http://mapserver.org/mapfile/layer.html).
@@ -35,6 +32,7 @@ class Layer {
 
   const STATUS_ON = 1;
   const STATUS_OFF = 0;
+  const STATUS_DEFAULT = 2;
 
   const TYPE_POINT = 0;
   const TYPE_LINE = 1;
@@ -106,7 +104,7 @@ class Layer {
   * @var integer Opacity.
   * @note 0 = transparent - 100 = opaque
   */
-  public $opacity;
+  public $opacity = 100;
   /**
   * @var string MapFile EPSG Projection.
   * @link http://epsg.io/
@@ -226,6 +224,36 @@ class Layer {
   }
 
   /**
+  * Remove the \MapFile\LayerClass matching the index sent as parameter.
+  * @param integer $i Index.
+  */
+  public function removeClass($i) {
+    if (isset($this->_classes[$i])) { unset($this->_classes[$i]); $this->_classes = array_values($this->_classes); }
+  }
+  /**
+  * Move the \MapFile\LayerClass matching the index sent as parameter up.
+  * @param integer $i Index.
+  */
+  public function moveClassUp($i) {
+    if (isset($this->_classes[$i]) && $i > 0) {
+      $tmp = $this->_classes[$i-1];
+      $this->_classes[$i-1] = $this->_classes[$i];
+      $this->_classes[$i] = $tmp;
+    }
+  }
+  /**
+  * Move the \MapFile\LayerClass matching the index sent as parameter down.
+  * @param integer $i Index.
+  */
+  public function moveClassDown($i) {
+    if (isset($this->_classes[$i]) && $i < (count($this->_classes)-1)) {
+      $tmp = $this->_classes[$i+1];
+      $this->_classes[$i+1] = $this->_classes[$i];
+      $this->_classes[$i] = $tmp;
+    }
+  }
+
+  /**
   * Write a valid MapFile LAYER clause.
   * @return string
   * @uses \MapFile\LayerClass::write()
@@ -256,7 +284,7 @@ class Layer {
     }
     if (!is_null($this->minscaledenom)) $layer .= '    MINSCALEDENOM '.floatval($this->minscaledenom).PHP_EOL;
     if (!is_null($this->maxscaledenom)) $layer .= '    MAXSCALEDENOM '.floatval($this->maxscaledenom).PHP_EOL;
-    if (!is_null($this->opacity)) $layer .= '    OPACITY '.intval($this->opacity).PHP_EOL;
+    if (!is_null($this->opacity) && $this->opacity < 100) $layer .= '    OPACITY '.intval($this->opacity).PHP_EOL;
     if (!empty($this->classitem)) $layer .= '    CLASSITEM "'.$this->classitem.'"'.PHP_EOL;
     if (!empty($this->labelitem)) $layer .= '    LABELITEM "'.$this->labelitem.'"'.PHP_EOL;
     foreach ($this->_classes as $class) $layer .= $class->write();

@@ -144,19 +144,19 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1767755195"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1854786489"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1767755195" class="accordion-body collapse in">
+            <div id="namespace-1854786489" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2133471059"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1785873899"></a>
                                 <a href="../namespaces/MapFile.html" style="margin-left: 30px; padding-left: 0">MapFile</a>
             </div>
-            <div id="namespace-2133471059" class="accordion-body collapse ">
+            <div id="namespace-1785873899" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -221,6 +221,9 @@
                                                                     <a href="../classes/MapFile.Layer.html#method_getMetadata" class="">getMetadata()</a><br />
                                                                     <a href="../classes/MapFile.Layer.html#method_removeMetadata" class="">removeMetadata()</a><br />
                                                                     <a href="../classes/MapFile.Layer.html#method_addClass" class="">addClass()</a><br />
+                                                                    <a href="../classes/MapFile.Layer.html#method_removeClass" class="">removeClass()</a><br />
+                                                                    <a href="../classes/MapFile.Layer.html#method_moveClassUp" class="">moveClassUp()</a><br />
+                                                                    <a href="../classes/MapFile.Layer.html#method_moveClassDown" class="">moveClassDown()</a><br />
                                                                     <a href="../classes/MapFile.Layer.html#method_write" class="">write()</a><br />
                                                             </section>
                             <section class="span4">
@@ -258,6 +261,7 @@
                                                                     <a href="../classes/MapFile.Layer.html#constant_CONNECTIONTYPE_WMS" class="">CONNECTIONTYPE_WMS</a><br />
                                                                     <a href="../classes/MapFile.Layer.html#constant_STATUS_ON" class="">STATUS_ON</a><br />
                                                                     <a href="../classes/MapFile.Layer.html#constant_STATUS_OFF" class="">STATUS_OFF</a><br />
+                                                                    <a href="../classes/MapFile.Layer.html#constant_STATUS_DEFAULT" class="">STATUS_DEFAULT</a><br />
                                                                     <a href="../classes/MapFile.Layer.html#constant_TYPE_POINT" class="">TYPE_POINT</a><br />
                                                                     <a href="../classes/MapFile.Layer.html#constant_TYPE_LINE" class="">TYPE_LINE</a><br />
                                                                     <a href="../classes/MapFile.Layer.html#constant_TYPE_POLYGON" class="">TYPE_POLYGON</a><br />
@@ -605,6 +609,27 @@
             <article id="constant_STATUS_OFF" class="constant">
                 <h3 class="">STATUS_OFF</h3>
                 <pre class="signature">STATUS_OFF</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_STATUS_DEFAULT" name="constant_STATUS_DEFAULT" class="anchor"></a>
+            <article id="constant_STATUS_DEFAULT" class="constant">
+                <h3 class="">STATUS_DEFAULT</h3>
+                <pre class="signature">STATUS_DEFAULT</pre>
                 <p><em></em></p>
                 
             </article>
@@ -1827,6 +1852,108 @@
 
                                     <div class="row-fluid">
         <div class="span8 content class">
+            <a id="method_removeClass" name="method_removeClass" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">removeClass()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">removeClass(integer  <span class="argument">$i</span>) </pre>
+                <p><em>Remove the \MapFile\LayerClass matching the index sent as parameter.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$i </td>
+                                <td><p>Index.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_moveClassUp" name="method_moveClassUp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">moveClassUp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">moveClassUp(integer  <span class="argument">$i</span>) </pre>
+                <p><em>Move the \MapFile\LayerClass matching the index sent as parameter up.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$i </td>
+                                <td><p>Index.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_moveClassDown" name="method_moveClassDown" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">moveClassDown()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">moveClassDown(integer  <span class="argument">$i</span>) </pre>
+                <p><em>Move the \MapFile\LayerClass matching the index sent as parameter down.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$i </td>
+                                <td><p>Index.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
             <a id="method_write" name="method_write" class="anchor"></a>
             <article class="method">
                 <h3 class="public ">write()</h3>
@@ -2096,7 +2223,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on September 3rd, 2015 at 14:38.
+                    on September 4th, 2015 at 17:05.
                 </section>
             </section>
         </section>
