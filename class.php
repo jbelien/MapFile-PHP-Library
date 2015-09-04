@@ -10,9 +10,6 @@
  */
 namespace MapFile;
 
-require_once('label.php');
-require_once('style.php');
-
 /**
  * MapFile Generator - LayerClass (CLASS) Class.
  * [MapFile CLASS clause](http://mapserver.org/mapfile/class.html).
@@ -93,6 +90,19 @@ class LayerClass {
     $count = array_push($this->_labels, $label);
     return $this->_labels[$count-1];
   }
+
+  /**
+  * Remove the \MapFile\Label matching the index sent as parameter.
+  * @param integer $i Index.
+  */
+  public function removeLabel($i) {
+    if (isset($this->_labels[$i])) { unset($this->_labels[$i]); $this->_labels = array_values($this->_labels); }
+  }
+  /**
+  * Move the \MapFile\Style matching the index sent as parameter up.
+  * @param integer $i Index.
+  */
+
   /**
   * Add a new \MapFile\Style to the Class.
   * @param \MapFile\Style $style New Style.
@@ -102,6 +112,36 @@ class LayerClass {
     if (is_null($style)) $style = new Style();
     $count = array_push($this->_styles, $style);
     return $this->_styles[$count-1];
+  }
+
+  /**
+  * Remove the \MapFile\Style matching the index sent as parameter.
+  * @param integer $i Index.
+  */
+  public function removeStyle($i) {
+    if (isset($this->_styles[$i])) { unset($this->_styles[$i]); $this->_styles = array_values($this->_styles); }
+  }
+  /**
+  * Move the \MapFile\Style matching the index sent as parameter up.
+  * @param integer $i Index.
+  */
+  public function moveStyleUp($i) {
+    if (isset($this->_styles[$i]) && $i > 0) {
+      $tmp = $this->_styles[$i-1];
+      $this->_styles[$i-1] = $this->_styles[$i];
+      $this->_styles[$i] = $tmp;
+    }
+  }
+  /**
+  * Move the \MapFile\Style matching the index sent as parameter down.
+  * @param integer $i Index.
+  */
+  public function moveStyleDown($i) {
+    if (isset($this->_styles[$i]) && $i < (count($this->_styles)-1)) {
+      $tmp = $this->_styles[$i+1];
+      $this->_styles[$i+1] = $this->_styles[$i];
+      $this->_styles[$i] = $tmp;
+    }
   }
 
   /**
