@@ -54,6 +54,8 @@ class Style {
   public $symbolname;
   /** @var float Width (in layer SIZEUNITS). */
   public $width;
+  /** @var float[] Pattern. */
+  public $pattern = array();
 
   /**
   * Constructor.
@@ -96,14 +98,14 @@ class Style {
   * @return integer[]
   */
   public function getColor() {
-    return array('r' => $this->color[0], 'g' => $this->color[1], 'b' => $this->color[2]);
+    return (is_null($this->color) ? array() : array('r' => $this->color[0], 'g' => $this->color[1], 'b' => $this->color[2]));
   }
   /**
   * Get the `outlinecolor` property.
   * @return integer[]
   */
   public function getOutlineColor() {
-    return array('r' => $this->outlinecolor[0], 'g' => $this->outlinecolor[1], 'b' => $this->outlinecolor[2]);
+    return (is_null($this->outlinecolor) ? array() : array('r' => $this->outlinecolor[0], 'g' => $this->outlinecolor[1], 'b' => $this->outlinecolor[2]));
   }
 
   /**
@@ -135,6 +137,11 @@ class Style {
     if (!is_null($this->size)) $style .= '        SIZE '.floatval($this->size).PHP_EOL;
     if (!is_null($this->width)) $style .= '        WIDTH '.floatval($this->width).PHP_EOL;
     if (!empty($this->symbolname)) $style .= '        SYMBOL "'.$this->symbolname.'"'.PHP_EOL;
+    if (!empty($this->pattern)) {
+      $style .= '        PATTERN'.PHP_EOL;
+      $style .= '          '.implode(' ', $this->pattern).PHP_EOL;
+      $style .= '        END # PATTERN'.PHP_EOL;
+    }
     $style .= '      END # STYLE'.PHP_EOL;
     return $style;
   }
@@ -145,13 +152,17 @@ class Style {
   * @todo Must read a MapFile STYLE clause without passing by an Array.
   */
   private function read($array) {
-    $style = FALSE;
+    $style = FALSE; $pattern = FALSE;
 
     foreach ($array as $_sz) {
       $sz = trim($_sz);
 
       if (preg_match('/^STYLE$/i', $sz)) $style = TRUE;
       else if ($style && preg_match('/^END( # STYLE)?$/i', $sz)) $style = FALSE;
+
+      if (preg_match('/^PATTERN$/i', $sz)) $pattern = TRUE;
+      else if ($pattern && preg_match('/^END( # PATTERN)?$/i', $sz)) $pattern = FALSE;
+      else if ($pattern && preg_match('/^(.+)$/i', $sz, $matches)) $this->pattern = array_merge($this->pattern, explode(' ', $matches[1]));
 
       else if ($style && preg_match('/^ANGLE ([0-9\.]+)$/i', $sz, $matches)) $this->angle = $matches[1];
       else if ($style && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->color = array($matches[1], $matches[2], $matches[3]);
