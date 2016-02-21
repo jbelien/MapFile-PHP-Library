@@ -338,6 +338,11 @@ class Layer {
       else if ($layer && preg_match('/^TOLERANCE ([0-9\.]+)$/i', $sz, $matches)) $this->tolerance = $matches[1];
       else if ($layer && preg_match('/^TOLERANCEUNITS (.+)$/i', $sz, $matches)) $this->toleranceunits = $matches[1];
       else if ($layer && preg_match('/^UNITS (.+)$/i', $sz, $matches)) $this->units = self::convertUnits($matches[1]);
+
+      /* Multiline DATA */
+      else if ($layer && preg_match('/^DATA "(.+)$/i', $sz, $matches)) { $layer_data = TRUE; $this->data = $matches[1]; }
+      else if ($layer && $layer_data && preg_match('/(.+)"$/i', $sz, $matches)) { $layer_data = FALSE; $this->data .= ' '.$matches[1]; }
+      else if ($layer && $layer_data && preg_match('/(.+)$/i', $sz, $matches)) { $this->data .= ' '.$matches[1]; }
     }
   }
 
