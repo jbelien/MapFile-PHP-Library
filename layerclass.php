@@ -153,7 +153,8 @@ class LayerClass {
   public function write() {
     $class  = '    CLASS'.PHP_EOL;
     if (!empty($this->name)) $class .= '      NAME "'.$this->name.'"'.PHP_EOL;
-    if (!empty($this->expression)) $class .= '      EXPRESSION "'.$this->expression.'"'.PHP_EOL;
+    if (!empty($this->expression) &&  preg_match('/^\(.+\)$/i', $this->expression)) $class .= '      EXPRESSION '.$this->expression.PHP_EOL;
+    if (!empty($this->expression) && !preg_match('/^\(.+\)$/i', $this->expression)) $class .= '      EXPRESSION "'.$this->expression.'"'.PHP_EOL;
     if (!is_null($this->minscaledenom)) $class .= '      MINSCALEDENOM '.floatval($this->minscaledenom).PHP_EOL;
     if (!is_null($this->maxscaledenom)) $class .= '      MAXSCALEDENOM '.floatval($this->maxscaledenom).PHP_EOL;
     if (!empty($this->text)) $class .= '      TEXT "'.$this->text.'"'.PHP_EOL;
@@ -188,6 +189,7 @@ class LayerClass {
       else if ($class && $class_style) { $style[] = $sz; }
 
       else if ($class && preg_match('/^EXPRESSION "(.+)"$/i', $sz, $matches)) $this->expression = $matches[1];
+      else if ($class && preg_match('/^EXPRESSION (\(.+\))$/i', $sz, $matches)) $this->expression = $matches[1];
       else if ($class && preg_match('/^MAXSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->maxscaledenom = $matches[1];
       else if ($class && preg_match('/^MINSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->minscaledenom = $matches[1];
       else if ($class && preg_match('/^NAME "(.+)"$/i', $sz, $matches)) $this->name = $matches[1];
