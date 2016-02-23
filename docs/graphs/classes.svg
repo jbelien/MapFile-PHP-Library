@@ -31,45 +31,45 @@
 <path fill="none" stroke="gray" d="M188,-28C188,-22 194,-16 200,-16"/>
 <text text-anchor="middle" x="238" y="-454.1" font-family="Times Roman,serif" font-size="11.00" fill="gray">MapFile</text>
 </g>
-<!-- \\MapFile\\LayerClass -->
-<g id="node3" class="node"><title>\\MapFile\\LayerClass</title>
-<polygon fill="none" stroke="black" points="280,-438 196,-438 196,-402 280,-402 280,-438"/>
-<text text-anchor="middle" x="238" y="-416.6" font-family="Courier,monospace" font-size="11.00">LayerClass</text>
-</g>
 <!-- \\MapFile\\Style -->
-<g id="node4" class="node"><title>\\MapFile\\Style</title>
-<polygon fill="none" stroke="black" points="265,-384 211,-384 211,-348 265,-348 265,-384"/>
-<text text-anchor="middle" x="238" y="-362.6" font-family="Courier,monospace" font-size="11.00">Style</text>
+<g id="node3" class="node"><title>\\MapFile\\Style</title>
+<polygon fill="none" stroke="black" points="265,-438 211,-438 211,-402 265,-402 265,-438"/>
+<text text-anchor="middle" x="238" y="-416.6" font-family="Courier,monospace" font-size="11.00">Style</text>
 </g>
 <!-- \\MapFile\\Label -->
-<g id="node5" class="node"><title>\\MapFile\\Label</title>
-<polygon fill="none" stroke="black" points="265,-330 211,-330 211,-294 265,-294 265,-330"/>
-<text text-anchor="middle" x="238" y="-308.6" font-family="Courier,monospace" font-size="11.00">Label</text>
+<g id="node4" class="node"><title>\\MapFile\\Label</title>
+<polygon fill="none" stroke="black" points="265,-384 211,-384 211,-348 265,-348 265,-384"/>
+<text text-anchor="middle" x="238" y="-362.6" font-family="Courier,monospace" font-size="11.00">Label</text>
 </g>
 <!-- \\MapFile\\Exception -->
-<g id="node6" class="node"><title>\\MapFile\\Exception</title>
-<polygon fill="none" stroke="black" points="276,-276 200,-276 200,-240 276,-240 276,-276"/>
-<text text-anchor="middle" x="238" y="-254.6" font-family="Courier,monospace" font-size="11.00">Exception</text>
+<g id="node5" class="node"><title>\\MapFile\\Exception</title>
+<polygon fill="none" stroke="black" points="276,-330 200,-330 200,-294 276,-294 276,-330"/>
+<text text-anchor="middle" x="238" y="-308.6" font-family="Courier,monospace" font-size="11.00">Exception</text>
 </g>
 <!-- \\Exception -->
 <g id="node12" class="node"><title>\\Exception</title>
-<ellipse fill="none" stroke="black" cx="62" cy="-258" rx="61.8445" ry="18"/>
-<text text-anchor="middle" x="62" y="-253.9" font-family="Times Roman,serif" font-size="14.00" fill="gray">\Exception</text>
+<ellipse fill="none" stroke="black" cx="62" cy="-312" rx="61.8445" ry="18"/>
+<text text-anchor="middle" x="62" y="-307.9" font-family="Times Roman,serif" font-size="14.00" fill="gray">\Exception</text>
 </g>
 <!-- \\MapFile\\Exception&#45;&gt;\\Exception -->
 <g id="edge4" class="edge"><title>\\MapFile\\Exception&#45;&gt;\\Exception</title>
-<path fill="none" stroke="black" d="M199.376,-258C180.247,-258 156.515,-258 134.187,-258"/>
-<polygon fill="none" stroke="black" points="134.049,-254.5 124.049,-258 134.049,-261.5 134.049,-254.5"/>
+<path fill="none" stroke="black" d="M199.376,-312C180.247,-312 156.515,-312 134.187,-312"/>
+<polygon fill="none" stroke="black" points="134.049,-308.5 124.049,-312 134.049,-315.5 134.049,-308.5"/>
 </g>
 <!-- \\MapFile\\Map -->
-<g id="node7" class="node"><title>\\MapFile\\Map</title>
-<polygon fill="none" stroke="black" points="265,-222 211,-222 211,-186 265,-186 265,-222"/>
-<text text-anchor="middle" x="238" y="-200.6" font-family="Courier,monospace" font-size="11.00">Map</text>
+<g id="node6" class="node"><title>\\MapFile\\Map</title>
+<polygon fill="none" stroke="black" points="265,-276 211,-276 211,-240 265,-240 265,-276"/>
+<text text-anchor="middle" x="238" y="-254.6" font-family="Courier,monospace" font-size="11.00">Map</text>
 </g>
 <!-- \\MapFile\\Legend -->
-<g id="node8" class="node"><title>\\MapFile\\Legend</title>
-<polygon fill="none" stroke="black" points="266,-168 210,-168 210,-132 266,-132 266,-168"/>
-<text text-anchor="middle" x="238" y="-146.6" font-family="Courier,monospace" font-size="11.00">Legend</text>
+<g id="node7" class="node"><title>\\MapFile\\Legend</title>
+<polygon fill="none" stroke="black" points="266,-222 210,-222 210,-186 266,-186 266,-222"/>
+<text text-anchor="middle" x="238" y="-200.6" font-family="Courier,monospace" font-size="11.00">Legend</text>
+</g>
+<!-- \\MapFile\\LayerClass -->
+<g id="node8" class="node"><title>\\MapFile\\LayerClass</title>
+<polygon fill="none" stroke="black" points="280,-168 196,-168 196,-132 280,-132 280,-168"/>
+<text text-anchor="middle" x="238" y="-146.6" font-family="Courier,monospace" font-size="11.00">LayerClass</text>
 </g>
 <!-- \\MapFile\\Layer -->
 <g id="node9" class="node"><title>\\MapFile\\Layer</title>

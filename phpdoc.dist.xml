@@ -10,5 +10,6 @@
   <files>
     <directory>.</directory>
     <ignore>docs/*</ignore>
+    <ignore>test.php</ignore>
   </files>
 </phpdoc>
