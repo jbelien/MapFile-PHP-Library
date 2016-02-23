@@ -161,6 +161,8 @@ class Layer {
   * * self::UNITS_NAUTICALMILES
   */
   public $units;
+  /** @var string[] List of VALIDATION blocks. */
+  public $validation = array();
 
   /**
   * Constructor.
@@ -282,6 +284,11 @@ class Layer {
       foreach ($this->metadata as $k => $v) $layer .= '      "'.$k.'" "'.$v.'"'.PHP_EOL;
       $layer .= '    END # METADATA'.PHP_EOL;
     }
+    if (!empty($this->validation)) {
+      $layer .= '    VALIDATION'.PHP_EOL;
+      foreach ($this->validation as $k => $v) $layer .= '      "'.$k.'" "'.$v.'"'.PHP_EOL;
+      $layer .= '    END # VALIDATION'.PHP_EOL;
+    }
     if (!is_null($this->minscaledenom)) $layer .= '    MINSCALEDENOM '.floatval($this->minscaledenom).PHP_EOL;
     if (!is_null($this->maxscaledenom)) $layer .= '    MAXSCALEDENOM '.floatval($this->maxscaledenom).PHP_EOL;
     if (!is_null($this->opacity) && $this->opacity < 100) $layer .= '    OPACITY '.intval($this->opacity).PHP_EOL;
@@ -300,7 +307,7 @@ class Layer {
   * @todo Must read a MapFile LAYER clause without passing by an Array.
   */
   private function read($array) {
-    $layer = FALSE; $layer_projection = FALSE; $layer_class = FALSE; $layer_metadata = FALSE;
+    $layer = FALSE; $layer_projection = FALSE; $layer_class = FALSE; $layer_metadata = FALSE; $layer_validation = FALSE;
 
     foreach ($array as $_sz) {
       $sz = trim($_sz);
@@ -319,6 +326,10 @@ class Layer {
       else if ($layer && preg_match('/^METADATA$/i', $sz)) { $layer_metadata = TRUE; }
       else if ($layer && $layer_metadata && preg_match('/^END( # METADATA)?$/i', $sz)) { $layer_metadata = FALSE; }
       else if ($layer && $layer_metadata && preg_match('/^"(.+)"\s"(.+)"$/i', $sz, $matches)) { $this->metadata[$matches[1]] = $matches[2]; }
+
+      else if ($layer && preg_match('/^VALIDATION$/i', $sz)) { $layer_validation = TRUE; }
+      else if ($layer && $layer_validation && preg_match('/^END( # VALIDATION)?$/i', $sz)) { $layer_validation = FALSE; }
+      else if ($layer && $layer_validation && preg_match('/^"(.+)"\s+"(.+)"$/i', $sz, $matches)) { $this->validation[$matches[1]] = $matches[2]; }
 
       else if ($layer && preg_match('/^STATUS (.+)$/i', $sz, $matches)) $this->status = self::convertStatus($matches[1]);
       else if ($layer && preg_match('/^TYPE (.+)$/i', $sz, $matches)) $this->type = self::convertType($matches[1]);
