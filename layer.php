@@ -307,7 +307,7 @@ class Layer {
   * @todo Must read a MapFile LAYER clause without passing by an Array.
   */
   private function read($array) {
-    $layer = FALSE; $layer_projection = FALSE; $layer_class = FALSE; $layer_metadata = FALSE; $layer_validation = FALSE;
+    $layer = FALSE; $layer_projection = FALSE; $layer_class = FALSE; $layer_metadata = FALSE; $layer_validation = FALSE; $layer_data = FALSE;
 
     foreach ($array as $_sz) {
       $sz = trim($_sz);
