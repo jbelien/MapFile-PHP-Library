@@ -172,28 +172,28 @@ class LayerClass {
   * @todo Must read a MapFile CLASS clause without passing by an Array.
   */
   private function read($array) {
-    $class = FALSE; $class_label = FALSE; $class_style = FALSE;
+    $class = FALSE; $reading = NULL;
 
     foreach ($array as $_sz) {
       $sz = trim($_sz);
 
       if (preg_match('/^CLASS$/i', $sz)) $class = TRUE;
-      else if ($class && preg_match('/^END( # CLASS)?$/i', $sz)) $class = FALSE;
+      else if ($class && is_null($reading) && preg_match('/^END( # CLASS)?$/i', $sz)) $class = FALSE;
 
-      else if ($class && preg_match('/^LABEL$/i', $sz)) { $class_label = TRUE; $label[] = $sz; }
-      else if ($class && $class_label && preg_match('/^END( # LABEL)?$/i', $sz)) { $label[] = $sz; $this->addLabel(new Label($label)); $class_label = FALSE; unset($label); }
-      else if ($class && $class_label) { $label[] = $sz; }
+      else if ($class && is_null($reading) && preg_match('/^LABEL$/i', $sz)) { $reading = 'LABEL'; $label[] = $sz; }
+      else if ($class && $reading == 'LABEL' && preg_match('/^END( # LABEL)?$/i', $sz)) { $label[] = $sz; $this->addLabel(new Label($label)); $reading = NULL; unset($label); }
+      else if ($class && $reading == 'LABEL') { $label[] = $sz; }
 
-      else if ($class && preg_match('/^STYLE$/i', $sz)) { $class_style = TRUE; $style[] = $sz; }
-      else if ($class && $class_style && preg_match('/^END( # STYLE)?$/i', $sz)) { $style[] = $sz; $this->addStyle(new Style($style)); $class_style = FALSE; unset($style); }
-      else if ($class && $class_style) { $style[] = $sz; }
+      else if ($class && is_null($reading) && preg_match('/^STYLE$/i', $sz)) { $reading = 'STYLE'; $style[] = $sz; }
+      else if ($class && $reading == 'STYLE' && preg_match('/^END( # STYLE)?$/i', $sz)) { $style[] = $sz; $this->addStyle(new Style($style)); $reading = NULL; unset($style); }
+      else if ($class && $reading == 'STYLE') { $style[] = $sz; }
 
-      else if ($class && preg_match('/^EXPRESSION "(.+)"$/i', $sz, $matches)) $this->expression = $matches[1];
-      else if ($class && preg_match('/^EXPRESSION (\(.+\))$/i', $sz, $matches)) $this->expression = $matches[1];
-      else if ($class && preg_match('/^MAXSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->maxscaledenom = $matches[1];
-      else if ($class && preg_match('/^MINSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->minscaledenom = $matches[1];
-      else if ($class && preg_match('/^NAME "(.+)"$/i', $sz, $matches)) $this->name = $matches[1];
-      else if ($class && preg_match('/^TEXT "(.+)"$/i', $sz, $matches)) $this->text = $matches[1];
+      else if ($class && is_null($reading) && preg_match('/^EXPRESSION "(.+)"$/i', $sz, $matches)) $this->expression = $matches[1];
+      else if ($class && is_null($reading) && preg_match('/^EXPRESSION (\(.+\))$/i', $sz, $matches)) $this->expression = $matches[1];
+      else if ($class && is_null($reading) && preg_match('/^MAXSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->maxscaledenom = $matches[1];
+      else if ($class && is_null($reading) && preg_match('/^MINSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->minscaledenom = $matches[1];
+      else if ($class && is_null($reading) && preg_match('/^NAME "(.+)"$/i', $sz, $matches)) $this->name = $matches[1];
+      else if ($class && is_null($reading) && preg_match('/^TEXT "(.+)"$/i', $sz, $matches)) $this->text = $matches[1];
     }
   }
 }

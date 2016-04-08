@@ -210,24 +210,24 @@ class Label {
   * @todo Must read a MapFile LABEL clause without passing by an Array.
   */
   private function read($array) {
-    $label = FALSE;
+    $label = FALSE; $reading = NULL;
 
     foreach ($array as $_sz) {
       $sz = trim($_sz);
 
       if (preg_match('/^LABEL$/i', $sz)) $label = TRUE;
-      else if ($label && preg_match('/^END( # LABEL)?$/i', $sz)) $label = FALSE;
+      else if ($label && is_null($reading) && preg_match('/^END( # LABEL)?$/i', $sz)) $label = FALSE;
 
-      else if ($label && preg_match('/^TYPE (.+)$/i', $sz, $matches)) $this->type = self::convertType($matches[1]);
-      else if ($label && preg_match('/^FONT "(.+)"$/i', $sz, $matches)) $this->font = $matches[1];
-      else if ($label && preg_match('/^SIZE ([0-9]+)$/i', $sz, $matches)) $this->size = $matches[1];
-      else if ($label && preg_match('/^SIZE (.+)$/i', $sz, $matches)) $this->size = self::convertSize($matches[1]);
-      else if ($label && preg_match('/^ALIGN (.+)$/i', $sz, $matches)) $this->align = self::convertAlign($matches[1]);
-      else if ($label && preg_match('/^POSITION (.+)$/i', $sz, $matches)) $this->position = self::convertPosition($matches[1]);
-      else if ($label && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->color = array($matches[1], $matches[2], $matches[3]);
-      else if ($label && preg_match('/^OUTLINECOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->outlinecolor = array($matches[1], $matches[2], $matches[3]);
-      else if ($label && preg_match('/^MINSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->minscaledenom = $matches[1];
-      else if ($label && preg_match('/^MAXSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->maxscaledenom = $matches[1];
+      else if ($label && is_null($reading) && preg_match('/^TYPE (.+)$/i', $sz, $matches)) $this->type = self::convertType(strtoupper($matches[1]));
+      else if ($label && is_null($reading) && preg_match('/^FONT "(.+)"$/i', $sz, $matches)) $this->font = $matches[1];
+      else if ($label && is_null($reading) && preg_match('/^SIZE ([0-9]+)$/i', $sz, $matches)) $this->size = $matches[1];
+      else if ($label && is_null($reading) && preg_match('/^SIZE (.+)$/i', $sz, $matches)) $this->size = self::convertSize(strtoupper($matches[1]));
+      else if ($label && is_null($reading) && preg_match('/^ALIGN (.+)$/i', $sz, $matches)) $this->align = self::convertAlign(strtoupper($matches[1]));
+      else if ($label && is_null($reading) && preg_match('/^POSITION (.+)$/i', $sz, $matches)) $this->position = self::convertPosition(strtoupper($matches[1]));
+      else if ($label && is_null($reading) && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->color = array($matches[1], $matches[2], $matches[3]);
+      else if ($label && is_null($reading) && preg_match('/^OUTLINECOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->outlinecolor = array($matches[1], $matches[2], $matches[3]);
+      else if ($label && is_null($reading) && preg_match('/^MINSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->minscaledenom = $matches[1];
+      else if ($label && is_null($reading) && preg_match('/^MAXSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->maxscaledenom = $matches[1];
     }
   }
 

@@ -66,19 +66,19 @@ class Legend {
   * @todo Must read a MapFile LEGEND clause without passing by an Array.
   */
   private function read($array) {
-    $legend = FALSE; $legend_label = FALSE;
+    $legend = FALSE; $reading = NULL;
 
     foreach ($array as $_sz) {
       $sz = trim($_sz);
 
       if (preg_match('/^LEGEND$/i', $sz)) $legend = TRUE;
-      else if ($legend && preg_match('/^END( # LEGEND)?$/i', $sz)) $legend = FALSE;
+      else if ($legend && is_null($reading) && preg_match('/^END( # LEGEND)?$/i', $sz)) $legend = FALSE;
 
-      else if ($legend && preg_match('/^LABEL$/i', $sz)) { $legend_label = TRUE; $label[] = $sz; }
-      else if ($legend && $legend_label && preg_match('/^END( # LABEL)?$/i', $sz)) { $label[] = $sz; $this->label = new Label($label); $legend_label = FALSE; unset($label); }
-      else if ($legend && $legend_label) { $label[] = $sz; }
+      else if ($legend && is_null($reading) && preg_match('/^LABEL$/i', $sz)) { $reading = 'LABEL'; $label[] = $sz; }
+      else if ($legend && $reading == 'LABEL' && preg_match('/^END( # LABEL)?$/i', $sz)) { $label[] = $sz; $this->label = new Label($label); $reading = NULL; unset($label); }
+      else if ($legend && $reading == 'LABEL') { $label[] = $sz; }
 
-      else if ($legend && preg_match('/^STATUS (.+)$/i', $sz, $matches)) $this->status = self::convertStatus($matches[1]);
+      else if ($legend && is_null($reading) && preg_match('/^STATUS (.+)$/i', $sz, $matches)) $this->status = self::convertStatus(strtoupper($matches[1]));
     }
   }
 

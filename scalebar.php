@@ -132,23 +132,23 @@ class Scalebar {
   * @todo Must read a MapFile SCALEBAR clause without passing by an Array.
   */
   private function read($array) {
-    $scalebar = FALSE; $scalebar_label = FALSE;
+    $scalebar = FALSE; $reading = NULL;
 
     foreach ($array as $_sz) {
       $sz = trim($_sz);
 
       if (preg_match('/^SCALEBAR$/i', $sz)) $scalebar = TRUE;
-      else if ($scalebar && preg_match('/^END( # SCALEBAR)?$/i', $sz)) $scalebar = FALSE;
+      else if ($scalebar && is_null($reading) && preg_match('/^END( # SCALEBAR)?$/i', $sz)) $scalebar = FALSE;
 
-      else if ($scalebar && preg_match('/^LABEL$/i', $sz)) { $scalebar_label = TRUE; $label[] = $sz; }
-      else if ($scalebar && $scalebar_label && preg_match('/^END( # LABEL)?$/i', $sz)) { $label[] = $sz; $this->label = new Label($label); $scalebar_label = FALSE; unset($label); }
-      else if ($scalebar && $scalebar_label) { $label[] = $sz; }
+      else if ($scalebar && is_null($reading) && preg_match('/^LABEL$/i', $sz)) { $reading = 'LABEL'; $label[] = $sz; }
+      else if ($scalebar && $reading == 'LABEL' && preg_match('/^END( # LABEL)?$/i', $sz)) { $label[] = $sz; $this->label = new Label($label); $reading = NULL; unset($label); }
+      else if ($scalebar && $reading == 'LABEL') { $label[] = $sz; }
 
-      else if ($scalebar && preg_match('/^STATUS (.+)$/i', $sz, $matches)) $this->status = self::convertStatus($matches[1]);
-      else if ($scalebar && preg_match('/^INTERVALS ([0-9]+)$/i', $sz, $matches)) $this->intervals = $matches[1];
-      else if ($scalebar && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->color = array($matches[1], $matches[2], $matches[3]);
-      else if ($scalebar && preg_match('/^OUTLINECOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->outlinecolor = array($matches[1], $matches[2], $matches[3]);
-      else if ($scalebar && preg_match('/^UNITS (.+)$/i', $sz, $matches)) $this->units = self::convertUnits($matches[1]);
+      else if ($scalebar && is_null($reading) && preg_match('/^STATUS (.+)$/i', $sz, $matches)) $this->status = self::convertStatus(strtoupper($matches[1]));
+      else if ($scalebar && is_null($reading) && preg_match('/^INTERVALS ([0-9]+)$/i', $sz, $matches)) $this->intervals = $matches[1];
+      else if ($scalebar && is_null($reading) && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->color = array($matches[1], $matches[2], $matches[3]);
+      else if ($scalebar && is_null($reading) && preg_match('/^OUTLINECOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->outlinecolor = array($matches[1], $matches[2], $matches[3]);
+      else if ($scalebar && is_null($reading) && preg_match('/^UNITS (.+)$/i', $sz, $matches)) $this->units = self::convertUnits(strtoupper($matches[1]));
     }
   }
 

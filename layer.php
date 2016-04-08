@@ -307,53 +307,59 @@ class Layer {
   * @todo Must read a MapFile LAYER clause without passing by an Array.
   */
   private function read($array) {
-    $layer = FALSE; $layer_projection = FALSE; $layer_class = FALSE; $layer_metadata = FALSE; $layer_validation = FALSE; $layer_data = FALSE;
+    $layer = FALSE; $reading = NULL;
 
     foreach ($array as $_sz) {
       $sz = trim($_sz);
 
       if (preg_match('/^LAYER$/i', $sz)) $layer = TRUE;
-      else if ($layer && preg_match('/^END( # LAYER)?$/i', $sz)) $layer = FALSE;
+      else if ($layer && is_null($reading) && preg_match('/^END( # LAYER)?$/i', $sz)) $layer = FALSE;
 
-      else if ($layer && preg_match('/^PROJECTION$/i', $sz)) $layer_projection = TRUE;
-      else if ($layer && $layer_projection && preg_match('/^END( # PROJECTION)?$/i', $sz)) $layer_projection = FALSE;
-      else if ($layer && $layer_projection && preg_match('/^"init=(.+)"$/i', $sz, $matches)) $this->projection = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^PROJECTION$/i', $sz)) $reading = 'PROJECTION';
+      else if ($layer && $reading == 'PROJECTION' && preg_match('/^END( # PROJECTION)?$/i', $sz)) $reading = NULL;
+      else if ($layer && $reading == 'PROJECTION' && preg_match('/^"init=(.+)"$/i', $sz, $matches)) $this->projection = $matches[1];
 
-      else if ($layer && preg_match('/^CLASS$/i', $sz)) { $layer_class = TRUE; $class[] = $sz; }
-      else if ($layer && $layer_class && preg_match('/^END( # CLASS)?$/i', $sz)) { $class[] = $sz; $this->addClass(new LayerClass($class)); $layer_class = FALSE; unset($class); }
-      else if ($layer && $layer_class) { $class[] = $sz; }
+      else if ($layer && is_null($reading) && preg_match('/^CLASS$/i', $sz)) { $reading = 'CLASS'; $class[] = $sz; }
+      else if ($layer && $reading == 'CLASS' && preg_match('/^LABEL$/i', $sz)) { $class[] = $sz; $reading = 'CLASS_LABEL'; }
+      else if ($layer && $reading == 'CLASS' && preg_match('/^STYLE$/i', $sz)) { $class[] = $sz; $reading = 'CLASS_STYLE'; }
+      else if ($layer && $reading == 'CLASS' && preg_match('/^END( # CLASS)?$/i', $sz)) { $class[] = $sz; $this->addClass(new LayerClass($class)); $reading = NULL; unset($class); }
+      else if ($layer && $reading == 'CLASS') { $class[] = $sz; }
+      else if ($layer && $reading == 'CLASS_LABEL' && preg_match('/^END( # LABEL)?$/i', $sz)) { $class[] = $sz; $reading = 'CLASS'; }
+      else if ($layer && $reading == 'CLASS_LABEL') { $class[] = $sz; }
+      else if ($layer && $reading == 'CLASS_STYLE' && preg_match('/^END( # STYLE)?$/i', $sz)) { $class[] = $sz; $reading = 'CLASS'; }
+      else if ($layer && $reading == 'CLASS_STYLE') { $class[] = $sz; }
 
-      else if ($layer && preg_match('/^METADATA$/i', $sz)) { $layer_metadata = TRUE; }
-      else if ($layer && $layer_metadata && preg_match('/^END( # METADATA)?$/i', $sz)) { $layer_metadata = FALSE; }
-      else if ($layer && $layer_metadata && preg_match('/^"(.+)"\s"(.+)"$/i', $sz, $matches)) { $this->metadata[$matches[1]] = $matches[2]; }
+      else if ($layer && is_null($reading) && preg_match('/^METADATA$/i', $sz)) { $reading = 'METADATA'; }
+      else if ($layer && $reading == 'METADATA' && preg_match('/^END( # METADATA)?$/i', $sz)) { $reading = NULL; }
+      else if ($layer && $reading == 'METADATA' && preg_match('/^"(.+)"\s"(.+)"$/i', $sz, $matches)) { $this->metadata[$matches[1]] = $matches[2]; }
 
-      else if ($layer && preg_match('/^VALIDATION$/i', $sz)) { $layer_validation = TRUE; }
-      else if ($layer && $layer_validation && preg_match('/^END( # VALIDATION)?$/i', $sz)) { $layer_validation = FALSE; }
-      else if ($layer && $layer_validation && preg_match('/^"(.+)"\s+"(.+)"$/i', $sz, $matches)) { $this->validation[$matches[1]] = $matches[2]; }
+      else if ($layer && is_null($reading) && preg_match('/^VALIDATION$/i', $sz)) { $reading = 'VALIDATION'; }
+      else if ($layer && $reading == 'VALIDATION' && preg_match('/^END( # VALIDATION)?$/i', $sz)) { $reading = NULL; }
+      else if ($layer && $reading == 'VALIDATION' && preg_match('/^"(.+)"\s+"(.+)"$/i', $sz, $matches)) { $this->validation[$matches[1]] = $matches[2]; }
 
-      else if ($layer && preg_match('/^STATUS (.+)$/i', $sz, $matches)) $this->status = self::convertStatus($matches[1]);
-      else if ($layer && preg_match('/^TYPE (.+)$/i', $sz, $matches)) $this->type = self::convertType($matches[1]);
-      else if ($layer && preg_match('/^NAME "(.+)"$/i', $sz, $matches)) $this->name = $matches[1];
-      else if ($layer && preg_match('/^CLASSITEM "(.+)"$/i', $sz, $matches)) $this->classitem = $matches[1];
-      else if ($layer && preg_match('/^CONNECTIONTYPE (.+)$/i', $sz, $matches)) $this->connectiontype = self::convertConnectiontype($matches[1]);
-      else if ($layer && preg_match('/^CONNECTION "(.+)"$/i', $sz, $matches)) $this->connection = $matches[1];
-      else if ($layer && preg_match('/^DATA "(.+)"$/i', $sz, $matches)) $this->data = $matches[1];
-      else if ($layer && preg_match('/^FILTER "(.+)"$/i', $sz, $matches)) $this->filter = $matches[1];
-      else if ($layer && preg_match('/^FILTERITEM "(.+)"$/i', $sz, $matches)) $this->filteritem = $matches[1];
-      else if ($layer && preg_match('/^GROUP "(.+)"$/i', $sz, $matches)) $this->group = $matches[1];
-      else if ($layer && preg_match('/^LABELITEM "(.+)"$/i', $sz, $matches)) $this->labelitem = $matches[1];
-      else if ($layer && preg_match('/^MAXSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->maxscaledenom = $matches[1];
-      else if ($layer && preg_match('/^MINSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->minscaledenom = $matches[1];
-      else if ($layer && preg_match('/^OPACITY ([0-9]+)$/i', $sz, $matches)) $this->opacity = $matches[1];
-      else if ($layer && preg_match('/^TILEITEM "(.+)"$/i', $sz, $matches)) $this->tileitem = $matches[1];
-      else if ($layer && preg_match('/^TOLERANCE ([0-9\.]+)$/i', $sz, $matches)) $this->tolerance = $matches[1];
-      else if ($layer && preg_match('/^TOLERANCEUNITS (.+)$/i', $sz, $matches)) $this->toleranceunits = $matches[1];
-      else if ($layer && preg_match('/^UNITS (.+)$/i', $sz, $matches)) $this->units = self::convertUnits($matches[1]);
+      else if ($layer && is_null($reading) && preg_match('/^STATUS (.+)$/i', $sz, $matches)) $this->status = self::convertStatus(strtoupper($matches[1]));
+      else if ($layer && is_null($reading) && preg_match('/^TYPE (.+)$/i', $sz, $matches)) $this->type = self::convertType(strtoupper($matches[1]));
+      else if ($layer && is_null($reading) && preg_match('/^NAME "(.+)"$/i', $sz, $matches)) $this->name = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^CLASSITEM "(.+)"$/i', $sz, $matches)) $this->classitem = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^CONNECTIONTYPE (.+)$/i', $sz, $matches)) $this->connectiontype = self::convertConnectiontype(strtoupper($matches[1]));
+      else if ($layer && is_null($reading) && preg_match('/^CONNECTION "(.+)"$/i', $sz, $matches)) $this->connection = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^DATA "(.+)"$/i', $sz, $matches)) $this->data = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^FILTER "(.+)"$/i', $sz, $matches)) $this->filter = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^FILTERITEM "(.+)"$/i', $sz, $matches)) $this->filteritem = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^GROUP "(.+)"$/i', $sz, $matches)) $this->group = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^LABELITEM "(.+)"$/i', $sz, $matches)) $this->labelitem = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^MAXSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->maxscaledenom = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^MINSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->minscaledenom = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^OPACITY ([0-9]+)$/i', $sz, $matches)) $this->opacity = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^TILEITEM "(.+)"$/i', $sz, $matches)) $this->tileitem = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^TOLERANCE ([0-9\.]+)$/i', $sz, $matches)) $this->tolerance = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^TOLERANCEUNITS (.+)$/i', $sz, $matches)) $this->toleranceunits = $matches[1];
+      else if ($layer && is_null($reading) && preg_match('/^UNITS (.+)$/i', $sz, $matches)) $this->units = self::convertUnits(strtoupper($matches[1]));
 
       /* Multiline DATA */
-      else if ($layer && preg_match('/^DATA "(.+)$/i', $sz, $matches)) { $layer_data = TRUE; $this->data = $matches[1]; }
-      else if ($layer && $layer_data && preg_match('/(.+)"$/i', $sz, $matches)) { $layer_data = FALSE; $this->data .= ' '.$matches[1]; }
-      else if ($layer && $layer_data && preg_match('/(.+)$/i', $sz, $matches)) { $this->data .= ' '.$matches[1]; }
+      else if ($layer && is_null($reading) && preg_match('/^DATA "(.+)$/i', $sz, $matches)) { $reading = 'DATA'; $this->data = $matches[1]; }
+      else if ($layer && $reading == 'DATA' && preg_match('/(.+)"$/i', $sz, $matches)) { $reading = NULL; $this->data .= ' '.$matches[1]; }
+      else if ($layer && $reading == 'DATA' && preg_match('/(.+)$/i', $sz, $matches)) { $this->data .= ' '.$matches[1]; }
     }
   }
 

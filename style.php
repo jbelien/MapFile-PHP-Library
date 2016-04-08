@@ -152,28 +152,28 @@ class Style {
   * @todo Must read a MapFile STYLE clause without passing by an Array.
   */
   private function read($array) {
-    $style = FALSE; $pattern = FALSE;
+    $style = FALSE; $reading = NULL;
 
     foreach ($array as $_sz) {
       $sz = trim($_sz);
 
       if (preg_match('/^STYLE$/i', $sz)) $style = TRUE;
-      else if ($style && preg_match('/^END( # STYLE)?$/i', $sz)) $style = FALSE;
+      else if ($style && is_null($reading) && preg_match('/^END( # STYLE)?$/i', $sz)) $style = FALSE;
 
-      if (preg_match('/^PATTERN$/i', $sz)) $pattern = TRUE;
-      else if ($pattern && preg_match('/^END( # PATTERN)?$/i', $sz)) $pattern = FALSE;
-      else if ($pattern && preg_match('/^(.+)$/i', $sz, $matches)) $this->pattern = array_merge($this->pattern, explode(' ', $matches[1]));
+      else if ($style && is_null($reading) && preg_match('/^PATTERN$/i', $sz)) $reading = 'PATTERN';
+      else if ($style && $reading == 'PATTERN' && preg_match('/^END( # PATTERN)?$/i', $sz)) $reading = NULL;
+      else if ($style && $reading == 'PATTERN' && preg_match('/^(.+)$/i', $sz, $matches)) $this->pattern = array_merge($this->pattern, explode(' ', $matches[1]));
 
-      else if ($style && preg_match('/^ANGLE ([0-9\.]+)$/i', $sz, $matches)) $this->angle = $matches[1];
-      else if ($style && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->color = array($matches[1], $matches[2], $matches[3]);
-      else if ($style && preg_match('/^MAXSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->maxscaledenom = $matches[1];
-      else if ($style && preg_match('/^MINSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->minscaledenom = $matches[1];
-      else if ($style && preg_match('/^OPACITY ([0-9]+)$/i', $sz, $matches)) $this->opacity = $matches[1];
-      else if ($style && preg_match('/^OUTLINECOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->outlinecolor = array($matches[1], $matches[2], $matches[3]);
-      else if ($style && preg_match('/^OUTLINEWIDTH ([0-9\.]+)$/i', $sz, $matches)) $this->outlinewidth = $matches[1];
-      else if ($style && preg_match('/^SIZE ([0-9\.]+)$/i', $sz, $matches)) $this->size = $matches[1];
-      else if ($style && preg_match('/^SYMBOL "(.+)"$/i', $sz, $matches)) $this->symbolname = $matches[1];
-      else if ($style && preg_match('/^WIDTH ([0-9\.]+)$/i', $sz, $matches)) $this->width = $matches[1];
+      else if ($style && is_null($reading) && preg_match('/^ANGLE ([0-9\.]+)$/i', $sz, $matches)) $this->angle = $matches[1];
+      else if ($style && is_null($reading) && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->color = array($matches[1], $matches[2], $matches[3]);
+      else if ($style && is_null($reading) && preg_match('/^MAXSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->maxscaledenom = $matches[1];
+      else if ($style && is_null($reading) && preg_match('/^MINSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->minscaledenom = $matches[1];
+      else if ($style && is_null($reading) && preg_match('/^OPACITY ([0-9]+)$/i', $sz, $matches)) $this->opacity = $matches[1];
+      else if ($style && is_null($reading) && preg_match('/^OUTLINECOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $sz, $matches)) $this->outlinecolor = array($matches[1], $matches[2], $matches[3]);
+      else if ($style && is_null($reading) && preg_match('/^OUTLINEWIDTH ([0-9\.]+)$/i', $sz, $matches)) $this->outlinewidth = $matches[1];
+      else if ($style && is_null($reading) && preg_match('/^SIZE ([0-9\.]+)$/i', $sz, $matches)) $this->size = $matches[1];
+      else if ($style && is_null($reading) && preg_match('/^SYMBOL "(.+)"$/i', $sz, $matches)) $this->symbolname = $matches[1];
+      else if ($style && is_null($reading) && preg_match('/^WIDTH ([0-9\.]+)$/i', $sz, $matches)) $this->width = $matches[1];
     }
   }
 }
