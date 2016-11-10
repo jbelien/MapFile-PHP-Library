@@ -26,14 +26,14 @@ class LayerClass {
   /** @var string Defines which class a feature belongs to. */
   public $expression;
   /**
-  * @var float Maximum scale denominator.
-  * @see http://geography.about.com/cs/maps/a/mapscale.htm
-  */
+   * @var float Maximum scale denominator.
+   * @see http://geography.about.com/cs/maps/a/mapscale.htm
+   */
   public $maxscaledenom;
   /**
-  * @var float Minimum scale denominator.
-  * @see http://geography.about.com/cs/maps/a/mapscale.htm
-  */
+   * @var float Minimum scale denominator.
+   * @see http://geography.about.com/cs/maps/a/mapscale.htm
+   */
   public $minscaledenom;
   /** @var string Name to use in legends for this class. */
   public $name;
@@ -41,90 +41,96 @@ class LayerClass {
   public $text;
 
   /**
-  * Constructor.
-  * @param string[] $class Array containing MapFile CLASS clause.
-  * @todo Must read a MapFile CLASS clause without passing by an Array.
-  */
+   * Constructor.
+   * @param string[] $class Array containing MapFile CLASS clause.
+   * @todo Must read a MapFile CLASS clause without passing by an Array.
+   */
   public function __construct($class = NULL) {
-    if (!is_null($class)) $this->read($class);
+    if (!is_null($class)) {
+      $this->read($class);
+    }
   }
 
   /**
-  * Return the list of the labels.
-  * @return \MapFile\Label[]
-  */
+   * Return the list of the labels.
+   * @return \MapFile\Label[]
+   */
   public function getLabels() {
     return $this->_labels;
   }
   /**
-  * Return the label matching the index sent as parameter.
-  * @param integer $i Label Index.
-  * @return \MapFile\Label|false false if the index is not found.
-  */
+   * Return the label matching the index sent as parameter.
+   * @param integer $i Label Index.
+   * @return \MapFile\Label|false false if the index is not found.
+   */
   public function getLabel($i) {
     return (isset($this->_labels[$i]) ? $this->_labels[$i] : FALSE);
   }
   /**
-  * Return the list of the styles.
-  * @return \MapFile\Style[]
-  */
+   * Return the list of the styles.
+   * @return \MapFile\Style[]
+   */
   public function getStyles() {
     return $this->_styles;
   }
   /**
-  * Return the style matching the index sent as parameter.
-  * @param integer $i Style Index.
-  * @return \MapFile\Style|false false if the index is not found.
-  */
+   * Return the style matching the index sent as parameter.
+   * @param integer $i Style Index.
+   * @return \MapFile\Style|false false if the index is not found.
+   */
   public function getStyle($i) {
     return (isset($this->_styles[$i]) ? $this->_styles[$i] : FALSE);
   }
 
   /**
-  * Add a new \MapFile\Label to the Class.
-  * @param \MapFile\Label $label New Label.
-  * @return \MapFile\Label New Label.
-  */
+   * Add a new \MapFile\Label to the Class.
+   * @param \MapFile\Label $label New Label.
+   * @return \MapFile\Label New Label.
+   */
   public function addLabel($label = NULL) {
-    if (is_null($label)) $label = new Label();
+    if (is_null($label)) {
+      $label = new Label();
+    }
     $count = array_push($this->_labels, $label);
     return $this->_labels[$count-1];
   }
 
   /**
-  * Remove the \MapFile\Label matching the index sent as parameter.
-  * @param integer $i Index.
-  */
+   * Remove the \MapFile\Label matching the index sent as parameter.
+   * @param integer $i Index.
+   */
   public function removeLabel($i) {
     if (isset($this->_labels[$i])) { unset($this->_labels[$i]); $this->_labels = array_values($this->_labels); }
   }
   /**
-  * Move the \MapFile\Style matching the index sent as parameter up.
-  * @param integer $i Index.
-  */
+   * Move the \MapFile\Style matching the index sent as parameter up.
+   * @param integer $i Index.
+   */
 
   /**
-  * Add a new \MapFile\Style to the Class.
-  * @param \MapFile\Style $style New Style.
-  * @return \MapFile\Style New Style.
-  */
+   * Add a new \MapFile\Style to the Class.
+   * @param \MapFile\Style $style New Style.
+   * @return \MapFile\Style New Style.
+   */
   public function addStyle($style = NULL) {
-    if (is_null($style)) $style = new Style();
+    if (is_null($style)) {
+      $style = new Style();
+    }
     $count = array_push($this->_styles, $style);
     return $this->_styles[$count-1];
   }
 
   /**
-  * Remove the \MapFile\Style matching the index sent as parameter.
-  * @param integer $i Index.
-  */
+   * Remove the \MapFile\Style matching the index sent as parameter.
+   * @param integer $i Index.
+   */
   public function removeStyle($i) {
     if (isset($this->_styles[$i])) { unset($this->_styles[$i]); $this->_styles = array_values($this->_styles); }
   }
   /**
-  * Move the \MapFile\Style matching the index sent as parameter up.
-  * @param integer $i Index.
-  */
+   * Move the \MapFile\Style matching the index sent as parameter up.
+   * @param integer $i Index.
+   */
   public function moveStyleUp($i) {
     if (isset($this->_styles[$i]) && $i > 0) {
       $tmp = $this->_styles[$i-1];
@@ -133,9 +139,9 @@ class LayerClass {
     }
   }
   /**
-  * Move the \MapFile\Style matching the index sent as parameter down.
-  * @param integer $i Index.
-  */
+   * Move the \MapFile\Style matching the index sent as parameter down.
+   * @param integer $i Index.
+   */
   public function moveStyleDown($i) {
     if (isset($this->_styles[$i]) && $i < (count($this->_styles)-1)) {
       $tmp = $this->_styles[$i+1];
@@ -145,15 +151,15 @@ class LayerClass {
   }
 
   /**
-  * Write a valid MapFile CLASS clause.
-  * @return string
-  * @uses \MapFile\Label::write()
-  * @uses \MapFile\Style::write()
-  */
+   * Write a valid MapFile CLASS clause.
+   * @return string
+   * @uses \MapFile\Label::write()
+   * @uses \MapFile\Style::write()
+   */
   public function write() {
-    $class  = '    CLASS'.PHP_EOL;
+    $class = '    CLASS'.PHP_EOL;
     if (!empty($this->name)) $class .= '      NAME "'.$this->name.'"'.PHP_EOL;
-    if (!empty($this->expression) &&  preg_match('/^\(.+\)$/i', $this->expression)) $class .= '      EXPRESSION '.$this->expression.PHP_EOL;
+    if (!empty($this->expression) && preg_match('/^\(.+\)$/i', $this->expression)) $class .= '      EXPRESSION '.$this->expression.PHP_EOL;
     if (!empty($this->expression) && !preg_match('/^\(.+\)$/i', $this->expression)) $class .= '      EXPRESSION "'.$this->expression.'"'.PHP_EOL;
     if (!is_null($this->minscaledenom)) $class .= '      MINSCALEDENOM '.floatval($this->minscaledenom).PHP_EOL;
     if (!is_null($this->maxscaledenom)) $class .= '      MAXSCALEDENOM '.floatval($this->maxscaledenom).PHP_EOL;
@@ -165,35 +171,35 @@ class LayerClass {
   }
 
   /**
-  * Read a valid MapFile CLASS clause (as array).
-  * @param string[] $array MapFile CLASS clause splitted in an array.
-  * @uses \MapFile\Label::read()
-  * @uses \MapFile\Style::read()
-  * @todo Must read a MapFile CLASS clause without passing by an Array.
-  */
+   * Read a valid MapFile CLASS clause (as array).
+   * @param string[] $array MapFile CLASS clause splitted in an array.
+   * @uses \MapFile\Label::read()
+   * @uses \MapFile\Style::read()
+   * @todo Must read a MapFile CLASS clause without passing by an Array.
+   */
   private function read($array) {
     $class = FALSE; $reading = NULL;
 
     foreach ($array as $_sz) {
       $sz = trim($_sz);
 
-      if (preg_match('/^CLASS$/i', $sz)) $class = TRUE;
-      else if ($class && is_null($reading) && preg_match('/^END( # CLASS)?$/i', $sz)) $class = FALSE;
-
-      else if ($class && is_null($reading) && preg_match('/^LABEL$/i', $sz)) { $reading = 'LABEL'; $label[] = $sz; }
-      else if ($class && $reading == 'LABEL' && preg_match('/^END( # LABEL)?$/i', $sz)) { $label[] = $sz; $this->addLabel(new Label($label)); $reading = NULL; unset($label); }
-      else if ($class && $reading == 'LABEL') { $label[] = $sz; }
-
-      else if ($class && is_null($reading) && preg_match('/^STYLE$/i', $sz)) { $reading = 'STYLE'; $style[] = $sz; }
-      else if ($class && $reading == 'STYLE' && preg_match('/^END( # STYLE)?$/i', $sz)) { $style[] = $sz; $this->addStyle(new Style($style)); $reading = NULL; unset($style); }
-      else if ($class && $reading == 'STYLE') { $style[] = $sz; }
-
-      else if ($class && is_null($reading) && preg_match('/^EXPRESSION "(.+)"$/i', $sz, $matches)) $this->expression = $matches[1];
-      else if ($class && is_null($reading) && preg_match('/^EXPRESSION (\(.+\))$/i', $sz, $matches)) $this->expression = $matches[1];
-      else if ($class && is_null($reading) && preg_match('/^MAXSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->maxscaledenom = $matches[1];
-      else if ($class && is_null($reading) && preg_match('/^MINSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) $this->minscaledenom = $matches[1];
-      else if ($class && is_null($reading) && preg_match('/^NAME "(.+)"$/i', $sz, $matches)) $this->name = $matches[1];
-      else if ($class && is_null($reading) && preg_match('/^TEXT "(.+)"$/i', $sz, $matches)) $this->text = $matches[1];
+      if (preg_match('/^CLASS$/i', $sz)) {
+        $class = TRUE;
+      } else if ($class && is_null($reading) && preg_match('/^END( # CLASS)?$/i', $sz)) {
+        $class = FALSE;
+      } else if ($class && is_null($reading) && preg_match('/^LABEL$/i', $sz)) { $reading = 'LABEL'; $label[] = $sz; } else if ($class && $reading == 'LABEL' && preg_match('/^END( # LABEL)?$/i', $sz)) { $label[] = $sz; $this->addLabel(new Label($label)); $reading = NULL; unset($label); } else if ($class && $reading == 'LABEL') { $label[] = $sz; } else if ($class && is_null($reading) && preg_match('/^STYLE$/i', $sz)) { $reading = 'STYLE'; $style[] = $sz; } else if ($class && $reading == 'STYLE' && preg_match('/^END( # STYLE)?$/i', $sz)) { $style[] = $sz; $this->addStyle(new Style($style)); $reading = NULL; unset($style); } else if ($class && $reading == 'STYLE') { $style[] = $sz; } else if ($class && is_null($reading) && preg_match('/^EXPRESSION "(.+)"$/i', $sz, $matches)) {
+        $this->expression = $matches[1];
+      } else if ($class && is_null($reading) && preg_match('/^EXPRESSION (\(.+\))$/i', $sz, $matches)) {
+        $this->expression = $matches[1];
+      } else if ($class && is_null($reading) && preg_match('/^MAXSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) {
+        $this->maxscaledenom = $matches[1];
+      } else if ($class && is_null($reading) && preg_match('/^MINSCALEDENOM ([0-9\.]+)$/i', $sz, $matches)) {
+        $this->minscaledenom = $matches[1];
+      } else if ($class && is_null($reading) && preg_match('/^NAME "(.+)"$/i', $sz, $matches)) {
+        $this->name = $matches[1];
+      } else if ($class && is_null($reading) && preg_match('/^TEXT "(.+)"$/i', $sz, $matches)) {
+        $this->text = $matches[1];
+      }
     }
   }
 }
