@@ -273,7 +273,8 @@ class Layer {
     }
     if (!empty($this->data)) $layer .= '    DATA "'.$this->data.'"'.PHP_EOL;
     if (!empty($this->filteritem)) $layer .= '    FILTERITEM "'.$this->filteritem.'"'.PHP_EOL;
-    if (!empty($this->filter)) $layer .= '    FILTER "'.$this->filter.'"'.PHP_EOL;
+    if (!empty($this->filter) &&  preg_match('/^\(.+\)$/i', $this->filter)) $layer .= '    FILTER '.$this->filter.PHP_EOL;
+    if (!empty($this->filter) && !preg_match('/^\(.+\)$/i', $this->filter)) $layer .= '    FILTER "'.$this->filter.'"'.PHP_EOL;
     if (!empty($this->projection)) {
       $layer .= '    PROJECTION'.PHP_EOL;
       $layer .= '      "init='.strtolower($this->projection).'"'.PHP_EOL;
