@@ -1,0 +1,11 @@
+{
+    "name": "jbelien/mapfile-php-library",
+    "description": "PHP Library to read/write MapServer mapfiles",
+    "type": "library",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Jonathan Beliën"
+        }
+    ]
+}
