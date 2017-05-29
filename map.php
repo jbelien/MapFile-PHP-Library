@@ -46,6 +46,11 @@ class Map {
   public $extent = array(-1, -1, -1, -1);
   /** @var integer Size Y (height) in pixels of the output image. */
   public $height = 500;
+  /**
+  * @var integer[] Map background color (RGB Format).
+  * @note Index `0` = Red [0-255], Index `1` = Green [0-255], Index `2` = Blue [0-255]
+  */
+  private $imagecolor;
   /** @var string MapFile name. */
   public $name = 'MYMAP';
   /**
@@ -140,6 +145,19 @@ class Map {
   public function setSymbolSet($filename) {
     if (file_exists($filename)) $this->symbolsetfilename = $filename; else throw new Exception('SymbolSet file does not exists.');
   }
+  /**
+  * Set the `imagecolor` property.
+  * @param integer $r Red component [0-255].
+  * @param integer $g Green component [0-255].
+  * @param integer $b Blue component [0-255].
+  * @throws \MapFile\Exception if any component is lower < 0 or > 255
+  */
+  public function setImageColor($r,$g,$b) {
+    if ($r >= 0 && $r <= 255 && $g >= 0 && $g <= 255 && $b >= 0 && $b <= 255)
+      $this->imagecolor = array($r,$g,$b);
+    else
+      throw new Exception('Invalid STYLE COLOR('.$r.' '.$g.' '.$b.').');
+  }
 
   /**
   * Return the list of the layers.
@@ -228,6 +246,7 @@ class Map {
     fwrite($f, '  STATUS '.self::convertStatus($this->status).PHP_EOL);
     fwrite($f, '  NAME "'.$this->name.'"'.PHP_EOL);
     if (!empty($this->extent)) fwrite($f, '  EXTENT '.implode(' ',$this->extent).PHP_EOL);
+    if (!empty($this->imagecolor) && count($this->imagecolor) == 3 && array_sum($this->imagecolor) >= 0) fwrite($f, '  IMAGECOLOR '.implode(' ',$this->imagecolor).PHP_EOL);
     if (!empty($this->fontsetfilename)) fwrite($f, '  FONTSET "'.$this->fontsetfilename.'"'.PHP_EOL);
     if (!empty($this->symbolsetfilename)) fwrite($f, '  SYMBOLSET "'.$this->symbolsetfilename.'"'.PHP_EOL);
     if (!empty($this->width) && !empty($this->height)) fwrite($f, '  SIZE '.$this->width.' '.$this->height.PHP_EOL);
