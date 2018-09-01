@@ -1,19 +1,22 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Model;
 
 /**
  * MapFile Generator - OutputFormat (OUTPUTFORMAT) Class.
  * [MapFile OUTPUTFORMAT clause](https://mapserver.org/mapfile/outputformat.html).
- * @package MapFile
+ *
  * @author Jonathan Beliën
+ *
  * @link https://mapserver.org/mapfile/outputformat.html
  */
 class OutputFormat
@@ -24,7 +27,7 @@ class OutputFormat
     public $extension;
     /** @var string Selects the imaging mode in which the output is generated. */
     public $imagemode;
-    /** @var string Provide the mime type to be used when returning results over the web.  */
+    /** @var string Provide the mime type to be used when returning results over the web. */
     public $mimetype;
     /** @var string The name to use in the IMAGETYPE keyword of the map file to select this output format. */
     public $name;

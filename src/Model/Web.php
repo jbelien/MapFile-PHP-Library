@@ -1,19 +1,22 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Model;
 
 /**
  * MapFile Generator - Web (WEB) Class.
  * [MapFile WEB clause](https://mapserver.org/mapfile/web.html).
- * @package MapFile
+ *
  * @author Jonathan Beliën
+ *
  * @link https://mapserver.org/mapfile/web.html
  */
 class Web
@@ -56,6 +59,7 @@ class Web
 
     /**
      * Set a `metadata` property.
+     *
      * @param string $key
      * @param string $value
      */
@@ -66,16 +70,19 @@ class Web
 
     /**
      * Return the metadata matching the key sent as parameter.
+     *
      * @param string $key Metadata Key.
+     *
      * @return string|false false if the key is not found
      */
     public function getMetadata($key)
     {
-        return (isset($this->metadata[$key]) ? $this->metadata[$key] : false);
+        return isset($this->metadata[$key]) ? $this->metadata[$key] : false;
     }
 
     /**
      * Remove the metadata matching the key sent as parameter.
+     *
      * @param string $key Metadata Key.
      */
     public function removeMetadata($key): void

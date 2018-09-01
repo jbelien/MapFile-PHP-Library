@@ -1,19 +1,22 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Model;
 
 /**
  * MapFile Generator - Cluster (CLUSTER) Class.
  * [MapFile CLUSTER clause](https://mapserver.org/mapfile/cluster.html).
- * @package MapFile
+ *
  * @author Jonathan Beliën
+ *
  * @link https://mapserver.org/mapfile/cluster.html
  */
 class Cluster

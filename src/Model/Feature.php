@@ -1,19 +1,22 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Model;
 
 /**
  * MapFile Generator - Feature (FEATURE) Class.
  * [MapFile FEATURE clause](https://mapserver.org/mapfile/feature.html).
- * @package MapFile
+ *
  * @author Jonathan Beliën
+ *
  * @link https://mapserver.org/mapfile/feature.html
  */
 class Feature

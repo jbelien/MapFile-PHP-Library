@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,7 +32,7 @@ class OutputFormat extends Parser
 
             if (preg_match('/^OUTPUTFORMAT$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'OUTPUTFORMAT';
+                $this->parsing = 'OUTPUTFORMAT';
             } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^DRIVER (.+)$/i', $line, $matches)) {
                 $outputformat->driver = $matches[1];
             } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^EXTENSION ["\'](.+)["\']$/i', $line, $matches)) {

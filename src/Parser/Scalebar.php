@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,7 +32,7 @@ class Scalebar extends Parser
 
             if (preg_match('/^SCALEBAR$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'SCALEBAR';
+                $this->parsing = 'SCALEBAR';
             } elseif ($this->parsing === 'SCALEBAR' && preg_match('/^ALIGN (LEFT|CENTER|RIGHT)$/i', $line, $matches)) {
                 $scalebar->align = strtoupper($matches[1]);
             } elseif ($this->parsing === 'SCALEBAR' && preg_match('/^BACKGROUNDCOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches)) {
@@ -61,7 +63,7 @@ class Scalebar extends Parser
                 $scalebar->intervals = intval($matches[1]);
             } elseif ($this->parsing === 'SCALEBAR' && preg_match('/^LABEL$/i', $line)) {
                 $labelParser = new Label($this->file, $this->currentLineIndex - 1);
-                $label       = $labelParser->parse();
+                $label = $labelParser->parse();
 
                 $scalebar->label = $label;
 

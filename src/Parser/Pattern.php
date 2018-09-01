@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -29,7 +31,7 @@ class Pattern extends Parser
 
             if (preg_match('/^PATTERN$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'PATTERN';
+                $this->parsing = 'PATTERN';
             } elseif ($this->parsing === 'PATTERN' && preg_match('/^([0-9]+(?:\.(?:[0-9]+))?) ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
                 $pattern[] = [
                     $matches[1],

@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,7 +32,7 @@ class Reference
 
             if (preg_match('/^REFERENCE$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'REFERENCE';
+                $this->parsing = 'REFERENCE';
             } elseif ($this->parsing === 'REFERENCE' && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches)) {
                 $reference->color = [
                     intval($matches[1]),

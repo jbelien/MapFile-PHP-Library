@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,7 +32,7 @@ class Symbol extends Parser
 
             if (preg_match('/^SYMBOL$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'SYMBOL';
+                $this->parsing = 'SYMBOL';
             } elseif ($this->parsing === 'SYMBOL' && preg_match('/^ANCHORPOINT ([0-9]+(?:\.(?:[0-9]+))?) ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
                 $symbol->anchorpoint = [
                     floatval($matches[1]),
@@ -50,7 +52,7 @@ class Symbol extends Parser
                 $symbol->name = $matches[1];
             } elseif ($this->parsing === 'SYMBOL' && preg_match('/^POINTS$/i', $line)) {
                 $pointsParser = new Points($this->file, $this->currentLineIndex - 1);
-                $points       = $pointsParser->parse();
+                $points = $pointsParser->parse();
 
                 $symbol->points = $points;
 

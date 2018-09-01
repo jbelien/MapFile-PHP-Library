@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,7 +32,7 @@ class LayerClass extends Parser
 
             if (preg_match('/^CLASS$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'CLASS';
+                $this->parsing = 'CLASS';
             } elseif ($this->parsing === 'CLASS' && preg_match('/^DEBUG (ON|OFF)$/i', $line, $matches)) {
                 $class->debug = strtoupper($matches[1]);
             } elseif ($this->parsing === 'CLASS' && preg_match('/^EXPRESSION ["\'](.+)["\']$/i', $line, $matches)) {
@@ -43,14 +45,14 @@ class LayerClass extends Parser
                 $class->keyimage = $matches[1];
             } elseif ($this->parsing === 'CLASS' && preg_match('/^LABEL$/i', $line)) {
                 $labelParser = new Label($this->file, $this->currentLineIndex - 1);
-                $label       = $labelParser->parse();
+                $label = $labelParser->parse();
 
                 $class->addLabel($label);
 
                 $this->currentLineIndex = $labelParser->lineEnd;
             } elseif ($this->parsing === 'CLASS' && preg_match('/^LEADER$/i', $line)) {
                 $leaderParser = new Leader($this->file, $this->currentLineIndex - 1);
-                $leader       = $leaderParser->parse();
+                $leader = $leaderParser->parse();
 
                 $class->leader = $leader;
 
@@ -65,7 +67,7 @@ class LayerClass extends Parser
                 $class->status = strtoupper($matches[1]);
             } elseif ($this->parsing === 'CLASS' && preg_match('/^STYLE$/i', $line)) {
                 $styleParser = new Style($this->file, $this->currentLineIndex - 1);
-                $style       = $styleParser->parse();
+                $style = $styleParser->parse();
 
                 $class->addStyle($style);
 
@@ -78,7 +80,7 @@ class LayerClass extends Parser
                 $class->text = $matches[1];
             } elseif ($this->parsing === 'CLASS' && preg_match('/^VALIDATION$/i', $line)) {
                 $validationParser = new Validation($this->file, $this->currentLineIndex - 1);
-                $validation       = $validationParser->parse();
+                $validation = $validationParser->parse();
 
                 $class->validation = $validation;
 

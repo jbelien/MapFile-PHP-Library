@@ -1,17 +1,19 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Model;
 
 /**
  * MapFile Generator - ScaleToken (SCALETOKEN) Class.
- * @package MapFile
+ *
  * @author Jonathan Beliën
  */
 class ScaleToken
@@ -24,6 +26,7 @@ class ScaleToken
 
     /**
      * Set a `values` property.
+     *
      * @param string $key
      * @param string $value
      */
@@ -34,16 +37,19 @@ class ScaleToken
 
     /**
      * Return the value matching the key sent as parameter.
+     *
      * @param string $key Value Key.
+     *
      * @return string|false false if the key is not found
      */
     public function getValue($key)
     {
-        return (isset($this->values[$key]) ? $this->values[$key] : false);
+        return isset($this->values[$key]) ? $this->values[$key] : false;
     }
 
     /**
      * Remove the value matching the key sent as parameter.
+     *
      * @param string $key Value Key.
      */
     public function removeValue($key): void

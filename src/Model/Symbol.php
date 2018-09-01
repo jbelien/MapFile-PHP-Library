@@ -1,19 +1,22 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Model;
 
 /**
  * MapFile Generator - Symbol (SYMBOL) Class.
  * [MapFile SYMBOL clause](https://mapserver.org/mapfile/symbol.html).
- * @package MapFile
+ *
  * @author Jonathan Beliën
+ *
  * @link https://mapserver.org/mapfile/symbol.html
  */
 class Symbol
@@ -34,7 +37,7 @@ class Symbol
     public $name;
     /** @var float[] Sequence of points that make up a symbol of TYPE vector or that define the x and y radius of a symbol of TYPE ellipse. */
     public $points;
-    /** @var integer Sets a transparent color for the input image for pixmap symbols, or determines whether all shade symbols should have a transparent background. */
+    /** @var int Sets a transparent color for the input image for pixmap symbols, or determines whether all shade symbols should have a transparent background. */
     public $transparent;
     /** @var string */
     public $type;

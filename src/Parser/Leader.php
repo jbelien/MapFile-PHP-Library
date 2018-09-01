@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,14 +32,14 @@ class Leader extends Parser
 
             if (preg_match('/^LEADER$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'LEADER';
+                $this->parsing = 'LEADER';
             } elseif ($this->parsing === 'LEADER' && preg_match('/^GRIDSTEP ([0-9]+)$/i', $line, $matches)) {
                 $leader->gridstep = intval($matches[1]);
             } elseif ($this->parsing === 'LEADER' && preg_match('/^MAXDISTANCE ([0-9]+)$/i', $line, $matches)) {
                 $leader->maxdistance = intval($matches[1]);
             } elseif ($this->parsing === 'LEADER' && preg_match('/^STYLE$/i', $line)) {
                 $styleParser = new Style($this->file, $this->currentLineIndex - 1);
-                $style       = $styleParser->parse();
+                $style = $styleParser->parse();
 
                 $leader->addStyle($style);
 

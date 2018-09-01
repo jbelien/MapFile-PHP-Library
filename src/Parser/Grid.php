@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,7 +32,7 @@ class Grid extends Parser
 
             if (preg_match('/^GRID$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'GRID';
+                $this->parsing = 'GRID';
             } elseif ($this->parsing === 'GRID' && preg_match('/^LABELFORMAT (DD|DDMM|DDMMSS)$/i', $line, $matches)) {
                 $grid->labelformat = strtoupper($matches[1]);
             } elseif ($this->parsing === 'GRID' && preg_match('/^LABELFORMAT ["\'](.+)["\']$/i', $line, $matches)) {

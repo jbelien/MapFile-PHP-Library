@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Model;
 
 use SplObjectStorage;
@@ -14,8 +16,9 @@ use SplObjectStorage;
 /**
  * MapFile Generator - Layer (LAYER) Class.
  * [MapFile LAYER clause](https://mapserver.org/mapfile/layer.html).
- * @package MapFile
+ *
  * @author Jonathan Beliën
+ *
  * @link https://mapserver.org/mapfile/layer.html
  */
 class Layer
@@ -42,11 +45,11 @@ class Layer
     public $connectiontype;
     /** @var string Full filename of the spatial data to process. */
     public $data;
-    /** @var integer Enables debugging of a layer in the current map. */
+    /** @var int Enables debugging of a layer in the current map. */
     public $debug;
     /** @var string The encoding used for text in the layer data source. */
     public $encoding;
-    /** @var float[] Spatial extent.*/
+    /** @var float[] Spatial extent. */
     public $extent;
     /** @var string Data specific attribute filtering. */
     public $filter;
@@ -66,11 +69,13 @@ class Layer
     public $labelitem;
     /**
      * @var float Minimum scale at which this LAYER is labeled.
+     *
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $labelmaxscaledenom;
     /**
      * @var float Maximum scale at which this LAYER is labeled.
+     *
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $labelminscaledenom;
@@ -78,12 +83,13 @@ class Layer
     public $labelrequires;
     /** @var string The data from the current layer will only be rendered where it intersects features from the [layername] layer. */
     public $mask;
-    /** @var integer Specifies the number of features that should be drawn for this layer in the CURRENT window. */
+    /** @var int Specifies the number of features that should be drawn for this layer in the CURRENT window. */
     public $maxfeatures;
     /** @var float Maximum width, in the map’s geographic units, at which this LAYER is drawn. */
     public $maxgeowidth;
     /**
      * @var float Minimum scale denominator.
+     *
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $maxscaledenom;
@@ -91,14 +97,15 @@ class Layer
     public $mingeowidth;
     /**
      * @var float Maximum scale denominator.
+     *
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $minscaledenom;
     /** @var string Short name for this layer. */
     public $name;
-    /** @var integer[] Sets the color index to treat as transparent for raster layers. */
+    /** @var int[] Sets the color index to treat as transparent for raster layers. */
     public $offsite;
-    /** @var integer Opacity. */
+    /** @var int Opacity. */
     public $opacity;
     /** @var string Additional library to load by MapServer, for this layer. */
     public $plugin;
@@ -106,6 +113,7 @@ class Layer
     public $postlabelcache;
     /**
      * @var string MapFile EPSG Projection.
+     *
      * @link http://epsg.io/
      * @link http://spatialreference.org/ref/epsg/
      */
@@ -124,11 +132,13 @@ class Layer
     public $symbolscaledenom;
     /**
      * @var string Used as a global alternative to CLASS TEMPLATE.
+     *
      * @see https://mapserver.org/mapfile/template.html#template
      */
     public $template;
     /**
      * @var string Name of the tileindex file or layer.
+     *
      * @see https://mapserver.org/optimization/tileindex.html#tileindex
      */
     public $tileindex;
@@ -158,17 +168,18 @@ class Layer
      */
     public function __construct()
     {
-        $this->_classes = new SplObjectStorage;
-        $this->_features = new SplObjectStorage;
+        $this->_classes = new SplObjectStorage();
+        $this->_features = new SplObjectStorage();
 
-        $this->composite = new SplObjectStorage;
-        $this->join = new SplObjectStorage;
+        $this->composite = new SplObjectStorage();
+        $this->join = new SplObjectStorage();
 
         $this->scaletoken = new ScaleToken();
     }
 
     /**
      * Set a `metadata` property.
+     *
      * @param string $key
      * @param string $value
      */
@@ -176,17 +187,22 @@ class Layer
     {
         $this->metadata[$key] = $value;
     }
+
     /**
      * Return the metadata matching the key sent as parameter.
+     *
      * @param string $key Metadata Key.
+     *
      * @return string|false false if the key is not found
      */
     public function getMetadata($key)
     {
-        return (isset($this->metadata[$key]) ? $this->metadata[$key] : false);
+        return isset($this->metadata[$key]) ? $this->metadata[$key] : false;
     }
+
     /**
      * Remove the metadata matching the key sent as parameter.
+     *
      * @param string $key Metadata Key.
      */
     public function removeMetadata($key)

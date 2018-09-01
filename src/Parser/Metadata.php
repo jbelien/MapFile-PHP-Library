@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -29,7 +31,7 @@ class Metadata extends Parser
 
             if (preg_match('/^METADATA$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'METADATA';
+                $this->parsing = 'METADATA';
             } elseif ($this->parsing === 'METADATA' && preg_match('/^["\'](.+)["\']\s["\'](.+)["\']$/i', $line, $matches)) {
                 $values[$matches[1]] = $matches[2];
             } elseif ($this->parsing === 'METADATA' && preg_match('/^END( # METADATA)?$/i', $line)) {

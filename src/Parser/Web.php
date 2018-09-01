@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,7 +32,7 @@ class Web extends Parser
 
             if (preg_match('/^WEB$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'WEB';
+                $this->parsing = 'WEB';
             } elseif ($this->parsing === 'WEB' && preg_match('/^BROWSEFORMAT ["\'](.+)["\']$/i', $line, $matches)) {
                 $web->browseformat = $matches[1];
             } elseif ($this->parsing === 'WEB' && preg_match('/^EMPTY ["\'](.+)["\']$/i', $line, $matches)) {
@@ -53,7 +55,7 @@ class Web extends Parser
                 $web->maxtemplate = $matches[1];
             } elseif ($this->parsing === 'WEB' && preg_match('/^METADATA$/i', $line)) {
                 $metadataParser = new Metadata($this->file, $this->currentLineIndex - 1);
-                $metadata       = $metadataParser->parse();
+                $metadata = $metadataParser->parse();
 
                 foreach ($metadata as $key => $value) {
                     $web->setMetadata($key, $value);
@@ -72,7 +74,7 @@ class Web extends Parser
                 $web->temppath = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^VALIDATION$/i', $line)) {
                 $validationParser = new Validation($this->file, $this->currentLineIndex - 1);
-                $validation       = $validationParser->parse();
+                $validation = $validationParser->parse();
 
                 $web->validation = $validation;
 

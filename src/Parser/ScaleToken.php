@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,12 +32,12 @@ class ScaleToken extends Parser
 
             if (preg_match('/^SCALETOKEN$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'SCALETOKEN';
+                $this->parsing = 'SCALETOKEN';
             } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^NAME ["\'](.+)["\']$/i', $line, $matches)) {
                 $scaletoken->name = $matches[1];
             } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^VALUES$/i', $line, $matches)) {
                 $scaletokenValuesParser = new ScaleTokenValues($this->file, $this->currentLineIndex - 1);
-                $scaletokenValues       = $scaletokenValuesParser->parse();
+                $scaletokenValues = $scaletokenValuesParser->parse();
 
                 foreach ($scaletokenValues as $key => $value) {
                     $scaletoken->setValue($key, $value);

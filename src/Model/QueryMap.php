@@ -1,26 +1,29 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Model;
 
 /**
  * MapFile Generator - QueryMap (QUERYMAP) Class.
  * [MapFile QUERYMAP clause](https://mapserver.org/mapfile/querymap.html).
- * @package MapFile
+ *
  * @author Jonathan Beliën
+ *
  * @link https://mapserver.org/mapfile/querymap.html
  */
 class QueryMap
 {
-    /** @var integer[]|string Color in which features are highlighted. */
+    /** @var int[]|string Color in which features are highlighted. */
     public $color;
-    /** @var integer[] Size of the map in pixels. */
+    /** @var int[] Size of the map in pixels. */
     public $size;
     /** @var string Is the query map to be drawn? */
     public $status;

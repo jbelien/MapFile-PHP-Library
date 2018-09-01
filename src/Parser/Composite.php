@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,7 +32,7 @@ class Composite extends Parser
 
             if (preg_match('/^COMPOSITE$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'COMPOSITE';
+                $this->parsing = 'COMPOSITE';
             } elseif ($this->parsing === 'COMPOSITE' && preg_match('/^OPACITY ([0-9]+)$/i', $line, $matches)) {
                 $composite->opacity = intval($matches[1]);
             } elseif ($this->parsing === 'COMPOSITE' && preg_match('/^COMPOP ["\'](.+)["\']$/i', $line, $matches)) {

@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -29,7 +31,7 @@ class Projection extends Parser
 
             if (preg_match('/^PROJECTION$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'PROJECTION';
+                $this->parsing = 'PROJECTION';
             } elseif ($this->parsing === 'PROJECTION' && preg_match('/^AUTO$/i', $line, $matches)) {
                 $projection = $matches[1];
             } elseif ($this->parsing === 'PROJECTION' && preg_match('/^"init=(.+)"$/i', $line, $matches)) {

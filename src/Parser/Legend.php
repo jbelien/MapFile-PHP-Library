@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,7 +32,7 @@ class Legend extends Parser
 
             if (preg_match('/^LEGEND$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'LEGEND';
+                $this->parsing = 'LEGEND';
             } elseif ($this->parsing === 'LEGEND' && preg_match('/^IMAGECOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches)) {
                 $legend->imagecolor = [
                     intval($matches[1]),
@@ -51,7 +53,7 @@ class Legend extends Parser
                 ];
             } elseif ($this->parsing === 'LEGEND' && preg_match('/^LABEL$/i', $line)) {
                 $labelParser = new Label($this->file, $this->currentLineIndex - 1);
-                $label       = $labelParser->parse();
+                $label = $labelParser->parse();
 
                 $legend->label = $label;
 

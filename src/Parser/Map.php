@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,7 +32,7 @@ class Map extends Parser
 
             if (preg_match('/^MAP$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'MAP';
+                $this->parsing = 'MAP';
             } elseif ($this->parsing === 'MAP' && preg_match('/^ANGLE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
                 $map->angle = floatval($matches[1]);
             } elseif ($this->parsing === 'MAP' && preg_match('/^DEBUG ([0-5]|ON|OFF)$/i', $line, $matches)) {
@@ -64,14 +66,14 @@ class Map extends Parser
                 $map->imagetype = $matches[1];
             } elseif ($this->parsing === 'MAP' && preg_match('/^LAYER$/i', $line)) {
                 $layerParser = new Layer($this->file, $this->currentLineIndex - 1);
-                $layer       = $layerParser->parse($this->content);
+                $layer = $layerParser->parse($this->content);
 
                 $map->_layers->attach($layer);
 
                 $this->currentLineIndex = $layerParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^LEGEND$/i', $line)) {
                 $legendParser = new Legend($this->file, $this->currentLineIndex - 1);
-                $legend       = $legendParser->parse($this->content);
+                $legend = $legendParser->parse($this->content);
 
                 $map->legend = $legend;
 
@@ -82,28 +84,28 @@ class Map extends Parser
                 $map->name = $matches[1];
             } elseif ($this->parsing === 'MAP' && preg_match('/^OUTPUTFORMAT$/i', $line)) {
                 $outputformatParser = new OutputFormat($this->file, $this->currentLineIndex - 1);
-                $outputformat       = $outputformatParser->parse($this->content);
+                $outputformat = $outputformatParser->parse($this->content);
 
                 $map->outputformat = $outputformat;
 
                 $this->currentLineIndex = $outputformatParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^PROJECTION$/i', $line)) {
                 $projectionParser = new Projection($this->file, $this->currentLineIndex - 1);
-                $projection       = $projectionParser->parse($this->content);
+                $projection = $projectionParser->parse($this->content);
 
                 $map->projection = $projection;
 
                 $this->currentLineIndex = $projectionParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^QUERYMAP$/i', $line)) {
                 $querymapParser = new QueryMap($this->file, $this->currentLineIndex - 1);
-                $querymap       = $querymapParser->parse($this->content);
+                $querymap = $querymapParser->parse($this->content);
 
                 $map->querymap = $querymap;
 
                 $this->currentLineIndex = $querymapParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^REFERENCE$/i', $line)) {
                 $referenceParser = new Reference($this->file, $this->currentLineIndex - 1);
-                $reference       = $referenceParser->parse($this->content);
+                $reference = $referenceParser->parse($this->content);
 
                 $map->reference = $reference;
 
@@ -112,7 +114,7 @@ class Map extends Parser
                 $map->resolution = intval($matches[1]);
             } elseif ($this->parsing === 'MAP' && preg_match('/^SCALEBAR$/i', $line)) {
                 $scalebarParser = new Scalebar($this->file, $this->currentLineIndex - 1);
-                $scalebar       = $scalebarParser->parse($this->content);
+                $scalebar = $scalebarParser->parse($this->content);
 
                 $map->scalebar = $scalebar;
 
@@ -130,7 +132,7 @@ class Map extends Parser
                 $map->status = strtoupper($matches[1]);
             } elseif ($this->parsing === 'MAP' && preg_match('/^SYMBOL$/i', $line)) {
                 $symbolParser = new Symbol($this->file, $this->currentLineIndex - 1);
-                $symbol       = $symbolParser->parse($this->content);
+                $symbol = $symbolParser->parse($this->content);
 
                 $map->_symbols->attach($symbol);
 
@@ -141,7 +143,7 @@ class Map extends Parser
                 $map->units = strtoupper($matches[1]);
             } elseif ($this->parsing === 'MAP' && preg_match('/^WEB$/i', $line)) {
                 $webParser = new Web($this->file, $this->currentLineIndex - 1);
-                $web       = $webParser->parse($this->content);
+                $web = $webParser->parse($this->content);
 
                 $map->web = $web;
 

@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,7 +32,7 @@ class Label extends Parser
 
             if (preg_match('/^LABEL$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'LABEL';
+                $this->parsing = 'LABEL';
             } elseif ($this->parsing === 'LABEL' && preg_match('/^ALIGN (LEFT|CENTER|RIGHT)$/i', $line, $matches)) {
                 $label->align = strtoupper($matches[1]);
             } elseif ($this->parsing === 'LABEL' && preg_match('/^ANGLE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
@@ -129,7 +131,7 @@ class Label extends Parser
                 $label->size = $matches[1];
             } elseif ($this->parsing === 'LABEL' && preg_match('/^STYLE$/i', $line)) {
                 $styleParser = new Style($this->file, $this->currentLineIndex - 1);
-                $style       = $styleParser->parse();
+                $style = $styleParser->parse();
 
                 $label->style = $style;
 

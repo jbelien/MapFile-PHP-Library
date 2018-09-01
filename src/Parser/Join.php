@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,7 +32,7 @@ class Join extends Parser
 
             if (preg_match('/^JOIN$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'JOIN';
+                $this->parsing = 'JOIN';
             } elseif ($this->parsing === 'JOIN' && preg_match('/^CONNECTION ["\'](.+)["\']$/i', $line, $matches)) {
                 $join->connection = $matches[1];
             } elseif ($this->parsing === 'JOIN' && preg_match('/^CONNECTIONTYPE (CSV|MYSQL|POSTGRESQL)$/i', $line, $matches)) {

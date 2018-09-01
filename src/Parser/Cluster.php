@@ -1,12 +1,14 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
+ *
  * @author Jonathan Beliën
  * @license GNU General Public License, version 2
  */
+
 namespace MapFile\Parser;
 
 use MapFile\Exception\UnsupportedException;
@@ -30,7 +32,7 @@ class Cluster extends Parser
 
             if (preg_match('/^CLUSTER$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
-                $this->parsing   = 'CLUSTER';
+                $this->parsing = 'CLUSTER';
             } elseif ($this->parsing === 'CLUSTER' && preg_match('/^BUFFER ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
                 $cluster->buffer = floatval($matches[1]);
             } elseif ($this->parsing === 'CLUSTER' && preg_match('/^FILTER ["\'](.+)["\']$/i', $line, $matches)) {
