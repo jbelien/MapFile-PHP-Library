@@ -164,6 +164,8 @@ class Layer extends Parser
                     intval($matches[2]),
                     intval($matches[3]),
                 ];
+            } elseif ($this->parsing === 'LAYER' && preg_match('/^OFFSITE ["\'](#.+)["\']$/i', $line, $matches)) {
+                $layer->offsite = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^OPACITY ([0-9]+)$/i', $line, $matches)) {
                 $layer->opacity = intval($matches[1]);
             } elseif ($this->parsing === 'LAYER' && preg_match('/^PLUGIN ["\'](.+)["\']$/i', $line, $matches)) {

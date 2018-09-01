@@ -103,7 +103,7 @@ class Layer
     public $minscaledenom;
     /** @var string Short name for this layer. */
     public $name;
-    /** @var int[] Sets the color index to treat as transparent for raster layers. */
+    /** @var int[]|string Sets the color index to treat as transparent for raster layers. */
     public $offsite;
     /** @var int Opacity. */
     public $opacity;
