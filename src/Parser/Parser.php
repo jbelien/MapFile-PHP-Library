@@ -27,12 +27,12 @@ abstract class Parser implements ParserInterface
     public function __construct(string $file, int $lineNumber = 0)
     {
         if (!file_exists($file)) {
-            throw FileException(
+            throw new FileException(
                 sprintf('File "%s" does not exist.', $file)
             );
         }
         if (!is_readable($file)) {
-            throw FileException(
+            throw new FileException(
                 sprintf('File "%s" is not readable.', $file)
             );
         }
