@@ -95,19 +95,6 @@ class Map
     }
 
     /**
-     * Set the `extent` property.
-     *
-     * @param float $minx
-     * @param float $miny
-     * @param float $maxx
-     * @param float $maxy
-     */
-    public function setExtent($minx, $miny, $maxx, $maxy)
-    {
-        $this->extent = [$minx, $miny, $maxx, $maxy];
-    }
-
-    /**
      * Set a `metadata` property.
      *
      * @param string $key
