@@ -32,7 +32,7 @@ class Metadata extends Parser
             if (preg_match('/^METADATA$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'METADATA';
-            } elseif ($this->parsing === 'METADATA' && preg_match('/^["\'](.+)["\']\s["\'](.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'METADATA' && preg_match('/^["\'](.+)["\']\s["\'](.*)["\']$/i', $line, $matches)) {
                 $values[$matches[1]] = $matches[2];
             } elseif ($this->parsing === 'METADATA' && preg_match('/^END( # METADATA)?$/i', $line)) {
                 $this->lineEnd = $this->currentLineIndex;
