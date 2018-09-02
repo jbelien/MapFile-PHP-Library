@@ -31,7 +31,7 @@ class Scalebar
     public $imagecolor;
     /** @var int $intervals Number of intervals to break the scalebar into. */
     public $intervals;
-    /** @var \MapFile\Model\Label Scalebar Label object. */
+    /** @var \MapFile\Model\Label */
     public $label;
     /** @var int[] OFFSET moves the scalebar closer to the center of the map. */
     public $offset;

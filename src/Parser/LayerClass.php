@@ -47,7 +47,7 @@ class LayerClass extends Parser
                 $labelParser = new Label($this->file, $this->currentLineIndex - 1);
                 $label = $labelParser->parse();
 
-                $class->addLabel($label);
+                $class->label->add($label);
 
                 $this->currentLineIndex = $labelParser->lineEnd;
             } elseif ($this->parsing === 'CLASS' && preg_match('/^LEADER$/i', $line)) {
@@ -69,7 +69,7 @@ class LayerClass extends Parser
                 $styleParser = new Style($this->file, $this->currentLineIndex - 1);
                 $style = $styleParser->parse();
 
-                $class->addStyle($style);
+                $class->style->add($style);
 
                 $this->currentLineIndex = $styleParser->lineEnd;
             } elseif ($this->parsing === 'CLASS' && preg_match('/^TEMPLATE ["\'](.+)["\']$/i', $line, $matches)) {

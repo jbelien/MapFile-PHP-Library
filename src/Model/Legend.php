@@ -27,7 +27,7 @@ class Legend
     public $keysize;
     /** @var int[] Spacing between symbol key boxes ([y]) and labels ([x]) in pixels. */
     public $keyspacing;
-    /** @var \MapFile\Model\Label Legend Label object. */
+    /** @var \MapFile\Model\Label */
     public $label;
     /** @var int[]|string Color to use for outlining symbol key boxes. */
     public $outlinecolor;

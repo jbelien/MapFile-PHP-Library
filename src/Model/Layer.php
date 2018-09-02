@@ -23,16 +23,13 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Layer
 {
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
-    public $_classes;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
-    public $_features;
-
     /** @var string[] List of metadata's. */
     private $metadata = [];
 
     /** @var string Specify the class’s group that would be considered at rendering time. */
     public $classgroup;
+    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    public $class;
     /** @var string Item name in attribute table to use for class lookups. */
     public $classitem;
     /** @var \MapFile\Model\Cluster */
@@ -51,6 +48,8 @@ class Layer
     public $encoding;
     /** @var float[] Spatial extent. */
     public $extent;
+    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    public $feature;
     /** @var string Data specific attribute filtering. */
     public $filter;
     /** @var string Item to use with simple FILTER expressions. */
@@ -168,10 +167,9 @@ class Layer
      */
     public function __construct()
     {
-        $this->_classes = new ArrayCollection();
-        $this->_features = new ArrayCollection();
-
+        $this->class = new ArrayCollection();
         $this->composite = new ArrayCollection();
+        $this->feature = new ArrayCollection();
         $this->join = new ArrayCollection();
 
         $this->scaletoken = new ScaleToken();

@@ -26,11 +26,6 @@ class Map
     /** @var string[] List of metadata's. */
     private $metadata = [];
 
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
-    public $_layers;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
-    public $_symbols;
-
     /** @var float Angle, given in degrees, to rotate the map. */
     public $angle;
     /** @var int Enables debugging of a layer in the current map. */
@@ -43,13 +38,15 @@ class Map
     public $fontset;
     /** @var int[]|string Map background color (RGB Format). */
     public $imagecolor;
-    /** @var \MapFile\Model\Legend Map Legend object. */
+    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    public $layer;
+    /** @var \MapFile\Model\Legend */
     public $legend;
     /** @var int Sets the maximum size of the map image. */
     public $maxsize;
     /** @var string MapFile name. */
-    public $name = 'MYMAP';
-    /** @var \MapFile\Model\OutputFormat Map OutputFormat object. */
+    public $name;
+    /** @var \MapFile\Model\OutputFormat */
     public $outputformat;
     /**
      * @var string MapFile EPSG Projection.
@@ -58,13 +55,13 @@ class Map
      * @link http://spatialreference.org/ref/epsg/
      */
     public $projection;
-    /** @var \MapFile\Model\QueryMap Map QueryMap object. */
+    /** @var \MapFile\Model\QueryMap */
     public $querymap;
-    /** @var \MapFile\Model\Reference Map Reference object. */
+    /** @var \MapFile\Model\Reference */
     public $reference;
     /** @var int Sets the pixels per inch for output. */
     public $resolution;
-    /** @var \MapFile\Model\Scalebar Map Scalebar object. */
+    /** @var \MapFile\Model\Scalebar */
     public $scalebar;
     /** @var float Computed scale of the map. */
     public $scaledenom;
@@ -74,6 +71,8 @@ class Map
     public $size;
     /** @var string MapFile Status (Is the map active ?). */
     public $status;
+    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    public $symbol;
     /** @var string Filename of the symbolset to use. */
     public $symbolset;
     /** @var string Units of the map coordinates. */
@@ -84,8 +83,8 @@ class Map
      */
     public function __construct()
     {
-        $this->_layers = new ArrayCollection();
-        $this->_symbols = new ArrayCollection();
+        $this->layer = new ArrayCollection();
+        $this->symbol = new ArrayCollection();
 
         $this->legend = new Legend();
         $this->outputformat = new OutputFormat();

@@ -37,7 +37,7 @@ class Layer extends Parser
                 $classParser = new LayerClass($this->file, $this->currentLineIndex - 1);
                 $class = $classParser->parse();
 
-                $layer->_classes->add($class);
+                $layer->class->add($class);
 
                 $this->currentLineIndex = $classParser->lineEnd;
             } elseif ($this->parsing === 'LAYER' && preg_match('/^CLASSGROUP ["\'](.+)["\']$/i', $line, $matches)) {
@@ -98,7 +98,7 @@ class Layer extends Parser
                 $featureParser = new Feature($this->file, $this->currentLineIndex - 1);
                 $feature = $featureParser->parse();
 
-                $layer->_features->add($feature);
+                $layer->feature->add($feature);
 
                 $this->currentLineIndex = $featureParser->lineEnd;
             } elseif ($this->parsing === 'LAYER' && preg_match('/^FILTER ["\'](.+)["\']$/i', $line, $matches)) {

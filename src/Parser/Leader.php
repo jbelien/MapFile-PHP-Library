@@ -41,7 +41,7 @@ class Leader extends Parser
                 $styleParser = new Style($this->file, $this->currentLineIndex - 1);
                 $style = $styleParser->parse();
 
-                $leader->addStyle($style);
+                $leader->style->add($style);
 
                 $this->currentLineIndex = $styleParser->lineEnd;
             } elseif ($this->parsing === 'LEADER' && preg_match('/^END( # LEADER)?$/i', $line)) {

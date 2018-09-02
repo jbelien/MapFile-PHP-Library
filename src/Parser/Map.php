@@ -68,7 +68,7 @@ class Map extends Parser
                 $layerParser = new Layer($this->file, $this->currentLineIndex - 1);
                 $layer = $layerParser->parse($this->content);
 
-                $map->_layers->add($layer);
+                $map->layer->add($layer);
 
                 $this->currentLineIndex = $layerParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^LEGEND$/i', $line)) {
@@ -134,7 +134,7 @@ class Map extends Parser
                 $symbolParser = new Symbol($this->file, $this->currentLineIndex - 1);
                 $symbol = $symbolParser->parse($this->content);
 
-                $map->_symbols->add($symbol);
+                $map->symbol->add($symbol);
 
                 $this->currentLineIndex = $symbolParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^SYMBOLSET ["\'](.+)["\']$/i', $line, $matches)) {
