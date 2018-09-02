@@ -21,10 +21,10 @@ namespace MapFile\Model;
  */
 class LayerClass
 {
-    /** @var \MapFile\Model\Label[] List of labels. */
-    private $_labels = [];
-    /** @var \MapFile\Model\Style[] List of styles. */
-    private $_styles = [];
+    /** @var \MapFile\Model\Label[] */
+    public $_labels = [];
+    /** @var \MapFile\Model\Style[] */
+    public $_styles = [];
 
     /** @var string Enables debugging of the class object. */
     public $debug;
