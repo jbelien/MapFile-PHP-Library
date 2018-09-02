@@ -37,7 +37,7 @@ class Layer extends Parser
                 $classParser = new LayerClass($this->file, $this->currentLineIndex - 1);
                 $class = $classParser->parse();
 
-                $layer->_classes->attach($class);
+                $layer->_classes->add($class);
 
                 $this->currentLineIndex = $classParser->lineEnd;
             } elseif ($this->parsing === 'LAYER' && preg_match('/^CLASSGROUP ["\'](.+)["\']$/i', $line, $matches)) {
@@ -55,7 +55,7 @@ class Layer extends Parser
                 $compositeParser = new Composite($this->file, $this->currentLineIndex - 1);
                 $composite = $compositeParser->parse();
 
-                $layer->composite->attach($composite);
+                $layer->composite->add($composite);
 
                 $this->currentLineIndex = $compositeParser->lineEnd;
             } elseif ($this->parsing === 'LAYER' && preg_match('/^CONNECTION ["\'](.+)["\']$/i', $line, $matches)) {
@@ -98,7 +98,7 @@ class Layer extends Parser
                 $featureParser = new Feature($this->file, $this->currentLineIndex - 1);
                 $feature = $featureParser->parse();
 
-                $layer->_features->attach($feature);
+                $layer->_features->add($feature);
 
                 $this->currentLineIndex = $featureParser->lineEnd;
             } elseif ($this->parsing === 'LAYER' && preg_match('/^FILTER ["\'](.+)["\']$/i', $line, $matches)) {
@@ -122,7 +122,7 @@ class Layer extends Parser
                 $joinParser = new Join($this->file, $this->currentLineIndex - 1);
                 $join = $joinParser->parse();
 
-                $layer->join->attach($join);
+                $layer->join->add($join);
 
                 $this->currentLineIndex = $joinParser->lineEnd;
             } elseif ($this->parsing === 'LAYER' && preg_match('/^LABELCACHE (ON|OFF)$/i', $line, $matches)) {

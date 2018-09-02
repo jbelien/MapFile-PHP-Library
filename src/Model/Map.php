@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace MapFile\Model;
 
-use SplObjectStorage;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * MapFile Generator - Map (MAP) Class.
@@ -26,9 +26,9 @@ class Map
     /** @var string[] List of metadata's. */
     private $metadata = [];
 
-    /** @var \SplObjectStorage */
+    /** @var \Doctrine\Common\Collections\ArrayCollection */
     public $_layers;
-    /** @var \SplObjectStorage */
+    /** @var \Doctrine\Common\Collections\ArrayCollection */
     public $_symbols;
 
     /** @var float Angle, given in degrees, to rotate the map. */
@@ -84,8 +84,8 @@ class Map
      */
     public function __construct()
     {
-        $this->_layers = new SplObjectStorage();
-        $this->_symbols = new SplObjectStorage();
+        $this->_layers = new ArrayCollection();
+        $this->_symbols = new ArrayCollection();
 
         $this->legend = new Legend();
         $this->outputformat = new OutputFormat();

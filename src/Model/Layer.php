@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace MapFile\Model;
 
-use SplObjectStorage;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * MapFile Generator - Layer (LAYER) Class.
@@ -23,9 +23,9 @@ use SplObjectStorage;
  */
 class Layer
 {
-    /** @var \SplObjectStorage */
+    /** @var \Doctrine\Common\Collections\ArrayCollection */
     public $_classes;
-    /** @var \SplObjectStorage */
+    /** @var \Doctrine\Common\Collections\ArrayCollection */
     public $_features;
 
     /** @var string[] List of metadata's. */
@@ -37,7 +37,7 @@ class Layer
     public $classitem;
     /** @var \MapFile\Model\Cluster */
     public $cluster;
-    /** @var \SplObjectStorage */
+    /** @var \Doctrine\Common\Collections\ArrayCollection */
     public $composite;
     /** @var string Database connection string to retrieve remote data. */
     public $connection;
@@ -61,7 +61,7 @@ class Layer
     public $group;
     /** @var string Template to use before a layer’s set of results have been sent. */
     public $header;
-    /** @var \SplObjectStorage */
+    /** @var \Doctrine\Common\Collections\ArrayCollection */
     public $join;
     /** @var string Specifies whether labels should be drawn as the features for this layer are drawn, or whether they should be cached and drawn after all layers have been drawn. */
     public $labelcache;
@@ -168,11 +168,11 @@ class Layer
      */
     public function __construct()
     {
-        $this->_classes = new SplObjectStorage();
-        $this->_features = new SplObjectStorage();
+        $this->_classes = new ArrayCollection();
+        $this->_features = new ArrayCollection();
 
-        $this->composite = new SplObjectStorage();
-        $this->join = new SplObjectStorage();
+        $this->composite = new ArrayCollection();
+        $this->join = new ArrayCollection();
 
         $this->scaletoken = new ScaleToken();
     }
