@@ -21,8 +21,8 @@ namespace MapFile\Model;
  */
 class Leader
 {
-    /** @var \MapFile\Model\Style[] List of styles. */
-    private $_styles = [];
+    /** @var \MapFile\Model\Style[] */
+    public $_styles = [];
 
     /** @var int Specifies the number of pixels between positions that are tested for a label line. */
     public $gridstep;
