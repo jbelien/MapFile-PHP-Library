@@ -89,12 +89,4 @@ class Label
     public $type;
     /** @var string Character that represents an end-of-line condition in label text, thus resulting in a multi-line label. */
     public $wrap;
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        $this->style = new Style();
-    }
 }

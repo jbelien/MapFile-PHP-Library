@@ -148,7 +148,7 @@ class Layer
     /** @var float Sensitivity for point based queries (given in TOLERANCEUNITS). */
     public $tolerance;
     /** @var string Units of the TOLERANCE value. */
-    public $tolereanceunits;
+    public $toleranceunits;
     /** @var bool|string Tells MapServer whether or not a particular layer needs to be transformed from some coordinate system to image coordinates. */
     public $transform;
     /** @var string Specifies how the data should be drawn. */

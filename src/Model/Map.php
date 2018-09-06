@@ -38,6 +38,8 @@ class Map
     public $fontset;
     /** @var int[]|string Map background color (RGB Format). */
     public $imagecolor;
+    /** @var string Output format (raster or vector) to generate. */
+    public $imagetype;
     /** @var \Doctrine\Common\Collections\ArrayCollection */
     public $layer;
     /** @var \MapFile\Model\Legend */

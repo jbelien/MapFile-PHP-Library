@@ -76,7 +76,7 @@ class LayerClass extends Parser
                 $class->template = $matches[1];
             } elseif ($this->parsing === 'CLASS' && preg_match('/^TEXT ["\'](.+)["\']$/i', $line, $matches)) {
                 $class->text = $matches[1];
-            } elseif ($this->parsing === 'CLASS' && preg_match('/^TEMPLATE (\(.+\))$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'CLASS' && preg_match('/^TEXT (\(.+\))$/i', $line, $matches)) {
                 $class->text = $matches[1];
             } elseif ($this->parsing === 'CLASS' && preg_match('/^VALIDATION$/i', $line)) {
                 $validationParser = new Validation($this->file, $this->currentLineIndex - 1);
