@@ -94,39 +94,4 @@ class Map
         $this->reference = new Reference();
         $this->scalebar = new Scalebar();
     }
-
-    /**
-     * Set a `metadata` property.
-     *
-     * @param string $key
-     * @param string $value
-     */
-    public function setMetadata($key, $value)
-    {
-        $this->metadata[$key] = $value;
-    }
-
-    /**
-     * Return the metadata matching the key sent as parameter.
-     *
-     * @param string $key Metadata Key.
-     *
-     * @return string|false false if the key is not found
-     */
-    public function getMetadata($key)
-    {
-        return isset($this->metadata[$key]) ? $this->metadata[$key] : false;
-    }
-
-    /**
-     * Remove the metadata matching the key sent as parameter.
-     *
-     * @param string $key Metadata Key.
-     */
-    public function removeMetadata($key)
-    {
-        if (isset($this->metadata[$key])) {
-            unset($this->metadata[$key]);
-        }
-    }
 }

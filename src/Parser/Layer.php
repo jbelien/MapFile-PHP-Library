@@ -147,9 +147,7 @@ class Layer extends Parser
                 $metadataParser = new Metadata($this->file, $this->currentLineIndex - 1);
                 $metadata = $metadataParser->parse();
 
-                foreach ($metadata as $key => $value) {
-                    $layer->setMetadata($key, $value);
-                }
+                $layer->metadata = $metadata;
 
                 $this->currentLineIndex = $metadataParser->lineEnd;
             } elseif ($this->parsing === 'LAYER' && preg_match('/^MINGEOWIDTH ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {

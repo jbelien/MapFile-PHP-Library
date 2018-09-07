@@ -21,9 +21,6 @@ namespace MapFile\Model;
  */
 class Web
 {
-    /** @var string[] This keyword allows for arbitrary data to be stored as name value pairs. */
-    private $metadata = [];
-
     /** @var string Format of the interface output, using MapServer CGI. */
     public $browseformat;
     /** @var string URL to forward users to if a query fails. */
@@ -44,6 +41,8 @@ class Web
     public $maxscaledenom;
     /** @var string Template to be used if below the minimum scale for the app. */
     public $maxtemplate;
+    /** @var string[] This keyword allows for arbitrary data to be stored as name value pairs. */
+    public $metadata = [];
     /** @var float Maximum scale at which this interface is valid. */
     public $minscaledenom;
     /** @var string Template to be used if above the maximum scale for the app. */
@@ -56,39 +55,4 @@ class Web
     public $temppath;
     /** @var string[] */
     public $validation;
-
-    /**
-     * Set a `metadata` property.
-     *
-     * @param string $key
-     * @param string $value
-     */
-    public function setMetadata($key, $value): void
-    {
-        $this->metadata[$key] = $value;
-    }
-
-    /**
-     * Return the metadata matching the key sent as parameter.
-     *
-     * @param string $key Metadata Key.
-     *
-     * @return string|false false if the key is not found
-     */
-    public function getMetadata($key)
-    {
-        return isset($this->metadata[$key]) ? $this->metadata[$key] : false;
-    }
-
-    /**
-     * Remove the metadata matching the key sent as parameter.
-     *
-     * @param string $key Metadata Key.
-     */
-    public function removeMetadata($key): void
-    {
-        if (isset($this->metadata[$key])) {
-            unset($this->metadata[$key]);
-        }
-    }
 }

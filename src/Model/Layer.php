@@ -23,9 +23,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Layer
 {
-    /** @var string[] List of metadata's. */
-    private $metadata = [];
-
     /** @var string Specify the class’s group that would be considered at rendering time. */
     public $classgroup;
     /** @var \Doctrine\Common\Collections\ArrayCollection */
@@ -94,6 +91,8 @@ class Layer
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $maxscaledenom;
+    /** @var string[] List of metadata's. */
+    public $metadata = [];
     /** @var float Minimum width, in the map’s geographic units, at which this LAYER is drawn. */
     public $mingeowidth;
     /**
@@ -175,40 +174,5 @@ class Layer
         $this->join = new ArrayCollection();
 
         $this->scaletoken = new ScaleToken();
-    }
-
-    /**
-     * Set a `metadata` property.
-     *
-     * @param string $key
-     * @param string $value
-     */
-    public function setMetadata($key, $value)
-    {
-        $this->metadata[$key] = $value;
-    }
-
-    /**
-     * Return the metadata matching the key sent as parameter.
-     *
-     * @param string $key Metadata Key.
-     *
-     * @return string|false false if the key is not found
-     */
-    public function getMetadata($key)
-    {
-        return isset($this->metadata[$key]) ? $this->metadata[$key] : false;
-    }
-
-    /**
-     * Remove the metadata matching the key sent as parameter.
-     *
-     * @param string $key Metadata Key.
-     */
-    public function removeMetadata($key)
-    {
-        if (isset($this->metadata[$key])) {
-            unset($this->metadata[$key]);
-        }
     }
 }
