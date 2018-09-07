@@ -49,12 +49,4 @@ class Scalebar
     public $style;
     /** @var string Output scalebar units. */
     public $units;
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        $this->label = new Label();
-    }
 }

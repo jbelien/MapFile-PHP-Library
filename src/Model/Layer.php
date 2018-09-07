@@ -172,7 +172,5 @@ class Layer
         $this->composite = new ArrayCollection();
         $this->feature = new ArrayCollection();
         $this->join = new ArrayCollection();
-
-        $this->scaletoken = new ScaleToken();
     }
 }

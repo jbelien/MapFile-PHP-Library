@@ -87,11 +87,5 @@ class Map
     {
         $this->layer = new ArrayCollection();
         $this->symbol = new ArrayCollection();
-
-        $this->legend = new Legend();
-        $this->outputformat = new OutputFormat();
-        $this->querymap = new QueryMap();
-        $this->reference = new Reference();
-        $this->scalebar = new Scalebar();
     }
 }
