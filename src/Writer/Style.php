@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
@@ -16,7 +16,7 @@ class Style extends Writer
     public function write($style, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $this->text = str_repeat($indent, $indentSize);
-        $this->text .= 'STYLE' . PHP_EOL;
+        $this->text .= 'STYLE'.PHP_EOL;
 
         $this->text .= self::getText('ANGLE', $style->angle, $indentSize + 1, $indent);
         $this->text .= self::getTextBoolean('ANTIALIAS', $style->antialias, $indentSize + 1, $indent);
@@ -46,7 +46,7 @@ class Style extends Writer
         $this->text .= self::getText('WIDTH', $style->width, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);
-        $this->text .= 'END # STYLE' . PHP_EOL;
+        $this->text .= 'END # STYLE'.PHP_EOL;
 
         return $this->text;
     }

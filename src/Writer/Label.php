@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
@@ -16,7 +16,7 @@ class Label extends Writer
     public function write($label, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $this->text = str_repeat($indent, $indentSize);
-        $this->text .= 'LABEL' . PHP_EOL;
+        $this->text .= 'LABEL'.PHP_EOL;
 
         $this->text .= self::getText('ALIGN', $label->align, $indentSize + 1, $indent);
         $this->text .= self::getText('ANGLE', $label->angle, $indentSize + 1, $indent);
@@ -54,7 +54,7 @@ class Label extends Writer
         $this->text .= self::getTextString('WRAP', $label->wrap, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);
-        $this->text .= 'END # LABEL' . PHP_EOL;
+        $this->text .= 'END # LABEL'.PHP_EOL;
 
         return $this->text;
     }

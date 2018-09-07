@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
@@ -16,7 +16,7 @@ class Join extends Writer
     public function write($join, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $this->text = str_repeat($indent, $indentSize);
-        $this->text .= 'JOIN' . PHP_EOL;
+        $this->text .= 'JOIN'.PHP_EOL;
 
         $this->text .= self::getTextString('CONNECTION', $join->connection, $indentSize + 1, $indent);
         $this->text .= self::getText('CONNECTIONTYPE', $join->connectiontype, $indentSize + 1, $indent);
@@ -30,7 +30,7 @@ class Join extends Writer
         $this->text .= self::getText('TYPE', $join->type, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);
-        $this->text .= 'END # JOIN' . PHP_EOL;
+        $this->text .= 'END # JOIN'.PHP_EOL;
 
         return $this->text;
     }

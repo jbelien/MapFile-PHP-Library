@@ -15,5 +15,5 @@ interface WriterInterface
 {
     public function save(): bool;
 
-    function write($object, int $indentSize = 0, string $indent = self::WRITER_INDENT);
+    public function write($object, int $indentSize = 0, string $indent = self::WRITER_INDENT);
 }

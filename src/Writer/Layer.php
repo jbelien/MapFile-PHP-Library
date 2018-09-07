@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
@@ -16,7 +16,7 @@ class Layer extends Writer
     public function write($layer, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $this->text = str_repeat($indent, $indentSize);
-        $this->text .= 'LAYER' . PHP_EOL;
+        $this->text .= 'LAYER'.PHP_EOL;
 
         $this->text .= self::getTextString('CLASSGROUP', $layer->classgroup, $indentSize + 1, $indent);
         $this->text .= self::getTextString('CLASSITEM', $layer->classitem, $indentSize + 1, $indent);
@@ -114,7 +114,7 @@ class Layer extends Writer
         }
 
         $this->text .= str_repeat($indent, $indentSize);
-        $this->text .= 'END # LAYER' . PHP_EOL;
+        $this->text .= 'END # LAYER'.PHP_EOL;
 
         return $this->text;
     }

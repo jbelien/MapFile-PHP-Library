@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
@@ -16,7 +16,7 @@ class Leader extends Writer
     public function write($leader, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $this->text = str_repeat($indent, $indentSize);
-        $this->text .= 'LEADER' . PHP_EOL;
+        $this->text .= 'LEADER'.PHP_EOL;
 
         $this->text .= self::getText('GRIDSTEP', $leader->gridstep, $indentSize + 1, $indent);
         $this->text .= self::getText('MAXDISTANCE', $leader->maxdistance, $indentSize + 1, $indent);
@@ -26,7 +26,7 @@ class Leader extends Writer
         }
 
         $this->text .= str_repeat($indent, $indentSize);
-        $this->text .= 'END # LEADER' . PHP_EOL;
+        $this->text .= 'END # LEADER'.PHP_EOL;
 
         return $this->text;
     }

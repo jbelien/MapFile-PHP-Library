@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
@@ -16,7 +16,7 @@ class Validation extends Writer
     public function write($validation, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $this->text = str_repeat($indent, $indentSize);
-        $this->text .= 'VALIDATION' . PHP_EOL;
+        $this->text .= 'VALIDATION'.PHP_EOL;
 
         foreach ($validation as $key => $value) {
             $this->text .= str_repeat($indent, $indentSize + 1);
@@ -25,7 +25,7 @@ class Validation extends Writer
         }
 
         $this->text .= str_repeat($indent, $indentSize);
-        $this->text .= 'END # VALIDATION' . PHP_EOL;
+        $this->text .= 'END # VALIDATION'.PHP_EOL;
 
         return $this->text;
     }

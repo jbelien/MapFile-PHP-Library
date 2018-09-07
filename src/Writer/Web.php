@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
@@ -16,7 +16,7 @@ class Web extends Writer
     public function write($web, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $this->text = str_repeat($indent, $indentSize);
-        $this->text .= 'WEB' . PHP_EOL;
+        $this->text .= 'WEB'.PHP_EOL;
 
         $this->text .= self::getTextString('BROWSEFORMAT', $web->browseformat, $indentSize + 1, $indent);
         $this->text .= self::getTextString('EMPTY', $web->empty, $indentSize + 1, $indent);
@@ -43,7 +43,7 @@ class Web extends Writer
         }
 
         $this->text .= str_repeat($indent, $indentSize);
-        $this->text .= 'END # WEB' . PHP_EOL;
+        $this->text .= 'END # WEB'.PHP_EOL;
 
         return $this->text;
     }

@@ -99,7 +99,7 @@ abstract class Writer implements WriterInterface
         }
 
         if (!empty($value)) {
-            return self::getText($key, '"' . $value . '"', $indentSize, $indent);
+            return self::getText($key, '"'.$value.'"', $indentSize, $indent);
         }
 
         return '';

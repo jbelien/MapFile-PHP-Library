@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
@@ -16,7 +16,7 @@ class Points extends Writer
     public function write($points, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $this->text = str_repeat($indent, $indentSize);
-        $this->text .= 'POINTS' . PHP_EOL;
+        $this->text .= 'POINTS'.PHP_EOL;
 
         foreach ($points as $point) {
             $this->text .= str_repeat($indent, $indentSize + 1);
@@ -25,7 +25,7 @@ class Points extends Writer
         }
 
         $this->text .= str_repeat($indent, $indentSize);
-        $this->text .= 'END # POINTS' . PHP_EOL;
+        $this->text .= 'END # POINTS'.PHP_EOL;
 
         return $this->text;
     }

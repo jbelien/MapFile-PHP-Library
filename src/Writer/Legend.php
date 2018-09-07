@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
@@ -16,7 +16,7 @@ class Legend extends Writer
     public function write($legend, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $this->text = str_repeat($indent, $indentSize);
-        $this->text .= 'LEGEND' . PHP_EOL;
+        $this->text .= 'LEGEND'.PHP_EOL;
 
         $this->text .= is_array($legend->imagecolor) ? self::getTextArray('IMAGECOLOR', $legend->imagecolor, $indentSize + 1, $indent) : self::getTextString('IMAGECOLOR', $legend->imagecolor, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('KEYSIZE', $legend->keysize, $indentSize + 1, $indent);
@@ -33,7 +33,7 @@ class Legend extends Writer
         $this->text .= self::getTextString('TEMPLATE', $legend->template, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);
-        $this->text .= 'END # LEGEND' . PHP_EOL;
+        $this->text .= 'END # LEGEND'.PHP_EOL;
 
         return $this->text;
     }

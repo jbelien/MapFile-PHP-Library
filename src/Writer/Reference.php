@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
@@ -16,7 +16,7 @@ class Reference extends Writer
     public function write($reference, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $this->text = str_repeat($indent, $indentSize);
-        $this->text .= 'REFERENCE' . PHP_EOL;
+        $this->text .= 'REFERENCE'.PHP_EOL;
 
         $this->text .= is_array($reference->color) ? self::getTextArray('COLOR', $reference->color, $indentSize + 1, $indent) : self::getTextString('COLOR', $reference->color, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('EXTENT', $reference->extent, $indentSize + 1, $indent);
@@ -30,7 +30,7 @@ class Reference extends Writer
         $this->text .= self::getText('STATUS', $reference->status, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);
-        $this->text .= 'END # REFERENCE' . PHP_EOL;
+        $this->text .= 'END # REFERENCE'.PHP_EOL;
 
         return $this->text;
     }

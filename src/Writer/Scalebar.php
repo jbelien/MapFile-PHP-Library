@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
@@ -16,7 +16,7 @@ class Scalebar extends Writer
     public function write($scalebar, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $this->text = str_repeat($indent, $indentSize);
-        $this->text .= 'SCALEBAR' . PHP_EOL;
+        $this->text .= 'SCALEBAR'.PHP_EOL;
 
         $this->text .= self::getText('ALIGN', $scalebar->align, $indentSize + 1, $indent);
         $this->text .= is_array($scalebar->backgroundcolor) ? self::getTextArray('BACKGROUNDCOLOR', $scalebar->backgroundcolor, $indentSize + 1, $indent) : self::getTextString('BACKGROUNDCOLOR', $scalebar->backgroundcolor, $indentSize + 1, $indent);
@@ -37,7 +37,7 @@ class Scalebar extends Writer
         $this->text .= self::getText('UNITS', $scalebar->units, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);
-        $this->text .= 'END # SCALEBAR' . PHP_EOL;
+        $this->text .= 'END # SCALEBAR'.PHP_EOL;
 
         return $this->text;
     }

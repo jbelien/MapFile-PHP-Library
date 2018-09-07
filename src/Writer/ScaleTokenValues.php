@@ -1,6 +1,6 @@
 <?php
 
-declare (strict_types = 1);
+declare(strict_types=1);
 
 /**
  * MapFile Generator - MapServer .MAP Generator (Read, Write & Preview).
@@ -16,7 +16,7 @@ class ScaleTokenValues extends Writer
     public function write($values, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $this->text = str_repeat($indent, $indentSize);
-        $this->text .= 'VALUES' . PHP_EOL;
+        $this->text .= 'VALUES'.PHP_EOL;
 
         foreach ($values as $key => $value) {
             $this->text .= str_repeat($indent, $indentSize + 1);
@@ -25,7 +25,7 @@ class ScaleTokenValues extends Writer
         }
 
         $this->text .= str_repeat($indent, $indentSize);
-        $this->text .= 'END # VALUES' . PHP_EOL;
+        $this->text .= 'END # VALUES'.PHP_EOL;
 
         return $this->text;
     }
