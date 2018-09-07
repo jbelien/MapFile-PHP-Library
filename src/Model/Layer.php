@@ -56,6 +56,8 @@ class Layer
     public $filteritem;
     /** @var string Template to use after a layer’s set of results have been sent. */
     public $footer;
+    /** @var \MapFile\Model\Grid */
+    public $grid;
     /** @var string Name of a group that this layer belongs to. */
     public $group;
     /** @var string Template to use before a layer’s set of results have been sent. */

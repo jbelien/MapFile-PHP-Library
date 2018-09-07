@@ -71,7 +71,7 @@ class Legend extends Parser
             } elseif ($this->parsing === 'LEGEND' && preg_match('/^POSTLABELCACHE (TRUE|FALSE)$/i', $line, $matches)) {
                 $legend->postlabelcache = (strtoupper($matches[1]) === 'TRUE');
             } elseif ($this->parsing === 'LEGEND' && preg_match('/^STATUS (ON|OFF|EMBED)$/i', $line, $matches)) {
-                $legend->position = strtoupper($matches[1]);
+                $legend->status = strtoupper($matches[1]);
             } elseif ($this->parsing === 'LEGEND' && preg_match('/^TEMPLATE ["\'](.+)["\']$/i', $line, $matches)) {
                 $legend->template = $matches[1];
             } elseif ($this->parsing === 'LEGEND' && preg_match('/^END( # LEGEND)?$/i', $line)) {
