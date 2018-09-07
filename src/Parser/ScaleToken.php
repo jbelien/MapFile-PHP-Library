@@ -39,9 +39,7 @@ class ScaleToken extends Parser
                 $scaletokenValuesParser = new ScaleTokenValues($this->file, $this->currentLineIndex - 1);
                 $scaletokenValues = $scaletokenValuesParser->parse();
 
-                foreach ($scaletokenValues as $key => $value) {
-                    $scaletoken->setValue($key, $value);
-                }
+                $scaletoken->values = $scaletokenValues;
 
                 $this->currentLineIndex = $scaletokenValuesParser->lineEnd;
             } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^END( # SCALETOKEN)?$/i', $line)) {
