@@ -79,6 +79,8 @@ class Map
     public $symbolset;
     /** @var string Units of the map coordinates. */
     public $units;
+    /** @var \MapFile\Model\Web */
+    public $web;
 
     /**
      * Constructor.
