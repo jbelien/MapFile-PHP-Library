@@ -53,7 +53,11 @@ class Layer
     public $filteritem;
     /** @var string Template to use after a layer’s set of results have been sent. */
     public $footer;
-    /** @var string Used to indicate that the current feature will be transformed. */
+    /**
+     * @var string Used to indicate that the current feature will be transformed.
+     *
+     * @see https://mapserver.org/mapfile/geomtransform.html
+     */
     public $geomtransform;
     /** @var \MapFile\Model\Grid */
     public $grid;
