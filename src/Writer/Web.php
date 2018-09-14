@@ -28,8 +28,8 @@ class Web extends Writer
         $this->text .= self::getText('MAXSCALEDENOM', $web->maxscaledenom, $indentSize + 1, $indent);
         $this->text .= self::getTextString('MAXTEMPLATE', $web->maxtemplate, $indentSize + 1, $indent);
 
-        if (!empty($layer->metadata)) {
-            $this->text .= (new Metadata())->write($layer->metadata, $indentSize + 1, $indent);
+        if (!empty($web->metadata)) {
+            $this->text .= (new Metadata())->write($web->metadata, $indentSize + 1, $indent);
         }
 
         $this->text .= self::getText('MINSCALEDENOM', $web->minscaledenom, $indentSize + 1, $indent);
