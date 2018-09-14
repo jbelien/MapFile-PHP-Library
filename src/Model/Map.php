@@ -23,9 +23,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Map
 {
-    /** @var string[] List of metadata's. */
-    private $metadata = [];
-
     /** @var float Angle, given in degrees, to rotate the map. */
     public $angle;
     /** @var int Enables debugging of a layer in the current map. */
