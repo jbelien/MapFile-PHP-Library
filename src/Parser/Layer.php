@@ -107,6 +107,10 @@ class Layer extends Parser
                 $layer->filteritem = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^FOOTER ["\'](.+)["\']$/i', $line, $matches)) {
                 $layer->footer = $matches[1];
+            } elseif ($this->parsing === 'LAYER' && preg_match('/^GEOMTRANSFORM ["\'](.+)["\']$/i', $line, $matches)) {
+                $layer->geomtransform = $matches[1];
+            } elseif ($this->parsing === 'LAYER' && preg_match('/^GEOMTRANSFORM (\(.+\))$/i', $line, $matches)) {
+                $layer->geomtransform = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^GRID$/i', $line)) {
                 $gridParser = new Grid($this->file, $this->currentLineIndex - 1);
                 $grid = $gridParser->parse();
@@ -170,6 +174,8 @@ class Layer extends Parser
                 $layer->plugin = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^POSTLABELCACHE (TRUE|FALSE)$/i', $line, $matches)) {
                 $layer->postlabelcache = (strtoupper($matches[1]) === 'TRUE');
+            } elseif ($this->parsing === 'LAYER' && preg_match('/^PROCESSING ["\'](.+)["\']$/i', $line, $matches)) {
+                $layer->processing[] = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^PROJECTION$/i', $line)) {
                 $projectionParser = new Projection($this->file, $this->currentLineIndex - 1);
                 $projection = $projectionParser->parse();

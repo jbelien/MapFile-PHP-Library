@@ -34,6 +34,7 @@ class Layer extends Writer
         $this->text .= self::getTextString('FILTER', $layer->filter, $indentSize + 1, $indent);
         $this->text .= self::getTextString('FILTERITEM', $layer->filteritem, $indentSize + 1, $indent);
         $this->text .= self::getTextString('FOOTER', $layer->footer, $indentSize + 1, $indent);
+        $this->text .= self::getTextString('GEOMTRANSFORM', $layer->geomtransform, $indentSize + 1, $indent);
 
         if (!is_null($layer->grid)) {
             $this->text .= (new Grid())->write($layer->grid, $indentSize + 1, $indent);
@@ -62,6 +63,10 @@ class Layer extends Writer
         $this->text .= self::getText('OPACITY', $layer->opacity, $indentSize + 1, $indent);
         $this->text .= self::getTextString('PLUGIN', $layer->plugin, $indentSize + 1, $indent);
         $this->text .= self::getTextBoolean('POSTLABELCACHE', $layer->postlabelcache, $indentSize + 1, $indent);
+
+        foreach ($layer->processing as $processing) {
+            $this->text .= self::getTextString('PROCESSING', $processing, $indentSize + 1, $indent);
+        }
 
         if (!is_null($layer->projection)) {
             $this->text .= (new Projection())->write($layer->projection, $indentSize + 1, $indent);

@@ -53,6 +53,8 @@ class Layer
     public $filteritem;
     /** @var string Template to use after a layer’s set of results have been sent. */
     public $footer;
+    /** @var string Used to indicate that the current feature will be transformed. */
+    public $geomtransform;
     /** @var \MapFile\Model\Grid */
     public $grid;
     /** @var string Name of a group that this layer belongs to. */
@@ -111,6 +113,8 @@ class Layer
     public $plugin;
     /** @var bool Tells MapServer to render this layer after all labels in the cache have been drawn. */
     public $postlabelcache;
+    /** @var string[] Passes a processing directive to be used with this layer. */
+    public $processing = [];
     /**
      * @var string MapFile EPSG Projection.
      *
