@@ -72,6 +72,10 @@ class Style extends Parser
                 ];
             } elseif ($this->parsing === 'STYLE' && preg_match('/^GAP ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
                 $style->gap = floatval($matches[1]);
+            } elseif ($this->parsing === 'STYLE' && preg_match('/^GEOMTRANSFORM ["\'](bbox|centroid|end|labelpnt|labelpoly|start|vertices)["\']$/i', $line, $matches)) {
+                $style->geomtransform = $matches[1];
+            } elseif ($this->parsing === 'STYLE' && preg_match('/^GEOMTRANSFORM (\(.+\))$/i', $line, $matches)) {
+                $style->geomtransform = $matches[1];
             } elseif ($this->parsing === 'STYLE' && preg_match('/^INITIALGAP ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
                 $style->initialgap = floatval($matches[1]);
             } elseif ($this->parsing === 'STYLE' && preg_match('/^LINECAP (BUTT|ROUND|SQUARE)$/i', $line, $matches)) {

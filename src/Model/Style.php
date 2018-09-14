@@ -33,6 +33,12 @@ class Style
     public $datarange;
     /** @var float GAP specifies the distance between SYMBOLs (center to center) for decorated lines and polygon fills in layer SIZEUNITS. */
     public $gap;
+    /**
+     * @var string Used to indicate that the current feature will be transformed before the actual style is applied.
+     *
+     * @see https://mapserver.org/mapfile/geomtransform.html
+     */
+    public $geomtransform;
     /** @var float INITIALGAP is useful for styling dashed lines. */
     public $initialgap;
     /** @var string Sets the line cap type for lines. */

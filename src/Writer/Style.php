@@ -24,6 +24,7 @@ class Style extends Writer
         $this->text .= self::getTextArray('COLORRANGE', $style->colorrange, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('DATARANGE', $style->datarange, $indentSize + 1, $indent);
         $this->text .= self::getText('GAP', $style->gap, $indentSize + 1, $indent);
+        $this->text .= self::getTextString('GEOMTRANSFORM', $style->geomtransform, $indentSize + 1, $indent);
         $this->text .= self::getText('INITIALGAP', $style->initialgap, $indentSize + 1, $indent);
         $this->text .= self::getText('LINECAP', $style->linecap, $indentSize + 1, $indent);
         $this->text .= self::getText('LINEJOIN', $style->linejoin, $indentSize + 1, $indent);
