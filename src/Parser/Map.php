@@ -35,6 +35,10 @@ class Map extends Parser
                 $this->parsing = 'MAP';
             } elseif ($this->parsing === 'MAP' && preg_match('/^ANGLE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
                 $map->angle = floatval($matches[1]);
+            } elseif ($this->parsing === 'MAP' && preg_match('/^CONFIG ["\'](.+)["\'] ["\'](.+)["\']$/i', $line, $matches)) {
+                $map->config[$matches[1]] = $matches[2];
+            } elseif ($this->parsing === 'MAP' && preg_match('/^DATAPATTERN (\/.+\/.*)$/i', $line, $matches)) {
+                $map->datapattern = $matches[1];
             } elseif ($this->parsing === 'MAP' && preg_match('/^DEBUG ([0-5]|ON|OFF)$/i', $line, $matches)) {
                 if (strtoupper($matches[1]) === 'OFF') {
                     $map->debug = 0;
@@ -64,6 +68,8 @@ class Map extends Parser
                 $map->imagecolor = $matches[1];
             } elseif ($this->parsing === 'MAP' && preg_match('/^IMAGETYPE (.+)$/i', $line, $matches)) {
                 $map->imagetype = $matches[1];
+            } elseif ($this->parsing === 'MAP' && preg_match('/^INCLUDE ["\'](.+)["\']$/i', $line, $matches)) {
+                $map->include[] = $matches[1];
             } elseif ($this->parsing === 'MAP' && preg_match('/^LAYER$/i', $line)) {
                 $layerParser = new Layer($this->file, $this->currentLineIndex - 1);
                 $layer = $layerParser->parse($this->content);
@@ -139,6 +145,8 @@ class Map extends Parser
                 $this->currentLineIndex = $symbolParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^SYMBOLSET ["\'](.+)["\']$/i', $line, $matches)) {
                 $map->symbolset = $matches[1];
+            } elseif ($this->parsing === 'MAP' && preg_match('/^TEMPLATEPATTERN (\/.+\/.*)$/i', $line, $matches)) {
+                $map->templatepattern = $matches[1];
             } elseif ($this->parsing === 'MAP' && preg_match('/^UNITS (DD|FEET|INCHES|KILOMETERS|METERS|MILES|NAUTICALMILE)$/i', $line, $matches)) {
                 $map->units = strtoupper($matches[1]);
             } elseif ($this->parsing === 'MAP' && preg_match('/^WEB$/i', $line)) {

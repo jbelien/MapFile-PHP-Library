@@ -19,6 +19,14 @@ class Map extends Writer
         $this->text .= 'MAP'.PHP_EOL;
 
         $this->text .= self::getText('ANGLE', $map->angle, $indentSize + 1, $indent);
+
+        foreach ($map->config as $key => $value) {
+            $this->text .= str_repeat($indent, $indentSize + 1);
+            $this->text .= 'CONFIG "'.$key.'" "'.$value.'"';
+            $this->text .= PHP_EOL;
+        }
+
+        $this->text .= self::getText('DATAPATTERN', $map->datapattern, $indentSize + 1, $indent);
         $this->text .= self::getText('DEBUG', $map->debug, $indentSize + 1, $indent);
         $this->text .= self::getText('DEFRESOLUTION', $map->defresolution, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('EXTENT', $map->extent, $indentSize + 1, $indent);
@@ -32,6 +40,7 @@ class Map extends Writer
         $this->text .= self::getTextArray('SIZE', $map->size, $indentSize + 1, $indent);
         $this->text .= self::getText('STATUS', $map->status, $indentSize + 1, $indent);
         $this->text .= self::getTextString('SYMBOLSET', $map->symbolset, $indentSize + 1, $indent);
+        $this->text .= self::getText('TEMPLATEPATTERN', $map->templatepattern, $indentSize + 1, $indent);
         $this->text .= self::getText('UNITS', $map->units, $indentSize + 1, $indent);
 
         if (!is_null($map->legend)) {
@@ -77,6 +86,11 @@ class Map extends Writer
         foreach ($map->layer as $layer) {
             $this->text .= PHP_EOL;
             $this->text .= (new Layer())->write($layer, $indentSize + 1, $indent);
+        }
+
+        $this->text .= PHP_EOL;
+        foreach ($map->include as $include) {
+            $this->text .= self::getTextString('INCLUDE', $include, $indentSize + 1, $indent);
         }
 
         $this->text .= str_repeat($indent, $indentSize);

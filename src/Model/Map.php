@@ -25,6 +25,10 @@ class Map
 {
     /** @var float Angle, given in degrees, to rotate the map. */
     public $angle;
+    /** @var string[] This can be used to specify several values at run-time, for both MapServer and GDAL/OGR libraries. */
+    public $config = [];
+    /** @var string This defines a regular expression to be applied to requests to change DATA parameters via URL requests (i.e. map.layer[layername]=DATA+…). */
+    public $datapattern;
     /** @var int Enables debugging of a layer in the current map. */
     public $debug;
     /** @var int Sets the reference resolution (pixels per inch) used for symbology. */
@@ -37,6 +41,8 @@ class Map
     public $imagecolor;
     /** @var string Output format (raster or vector) to generate. */
     public $imagetype;
+    /** @var string[] */
+    public $include = [];
     /** @var \Doctrine\Common\Collections\ArrayCollection */
     public $layer;
     /** @var \MapFile\Model\Legend */
@@ -74,6 +80,8 @@ class Map
     public $symbol;
     /** @var string Filename of the symbolset to use. */
     public $symbolset;
+    /** @var string This defines a regular expression to be applied to requests to change the TEMPLATE parameters via URL requests (i.e. map.layer[layername].template=…). */
+    public $templatepattern;
     /** @var string Units of the map coordinates. */
     public $units;
     /** @var \MapFile\Model\Web */
