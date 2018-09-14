@@ -37,6 +37,8 @@ class OutputFormat extends Parser
                 $outputformat->driver = $matches[1];
             } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^EXTENSION ["\'](.+)["\']$/i', $line, $matches)) {
                 $outputformat->extension = $matches[1];
+            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^FORMATOPTION ["\'](.+)["\']$/i', $line, $matches)) {
+                $outputformat->formatoption[] = $matches[1];
             } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^IMAGEMODE (PC256|RGB|RGBA|INT16|FLOAT32|FEATURE)$/i', $line, $matches)) {
                 $outputformat->imagemode = strtoupper($matches[1]);
             } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^MIMETYPE ["\'](.+)["\']$/i', $line, $matches)) {

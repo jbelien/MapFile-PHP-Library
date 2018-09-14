@@ -25,6 +25,8 @@ class OutputFormat
     public $driver;
     /** @var string Provide the extension to use when creating files of this type. */
     public $extension;
+    /** @var string[] Provides a driver or format specific option. */
+    public $formatoption = [];
     /** @var string Selects the imaging mode in which the output is generated. */
     public $imagemode;
     /** @var string Provide the mime type to be used when returning results over the web. */

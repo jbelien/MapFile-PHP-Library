@@ -20,6 +20,11 @@ class OutputFormat extends Writer
 
         $this->text .= self::getText('DRIVER', $outputformat->driver, $indentSize + 1, $indent);
         $this->text .= self::getTextString('EXTENSION', $outputformat->extension, $indentSize + 1, $indent);
+
+        foreach ($outputformat->formatoption as $formatoption) {
+            $this->text .= self::getTextString('FORMATOPTION', $formatoption, $indentSize + 1, $indent);
+        }
+
         $this->text .= self::getText('IMAGEMODE', $outputformat->imagemode, $indentSize + 1, $indent);
         $this->text .= self::getTextString('MIMETYPE', $outputformat->mimetype, $indentSize + 1, $indent);
         $this->text .= self::getTextString('NAME', $outputformat->name, $indentSize + 1, $indent);
