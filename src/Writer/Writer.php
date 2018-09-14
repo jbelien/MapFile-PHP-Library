@@ -40,7 +40,7 @@ abstract class Writer implements WriterInterface
     {
         $text = '';
 
-        if (!empty($value)) {
+        if (!is_null($value)) {
             $text = str_repeat($indent, $indentSize);
             $text .= strtoupper($key);
             $text .= ' ';
@@ -62,7 +62,7 @@ abstract class Writer implements WriterInterface
             );
         }
 
-        if (!empty($value)) {
+        if (!is_null($value)) {
             return self::getText($key, implode(' ', $value), $indentSize, $indent);
         }
 
@@ -80,7 +80,7 @@ abstract class Writer implements WriterInterface
             );
         }
 
-        if (!empty($value)) {
+        if (!is_null($value)) {
             return self::getText($key, $value ? 'TRUE' : 'FALSE', $indentSize, $indent);
         }
 
@@ -98,7 +98,7 @@ abstract class Writer implements WriterInterface
             );
         }
 
-        if (!empty($value)) {
+        if (!is_null($value)) {
             return self::getText($key, '"'.$value.'"', $indentSize, $indent);
         }
 
