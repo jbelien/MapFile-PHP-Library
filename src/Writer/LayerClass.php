@@ -19,7 +19,7 @@ class LayerClass extends Writer
         $this->text .= 'CLASS'.PHP_EOL;
 
         $this->text .= self::getText('DEBUG', $class->debug, $indentSize + 1, $indent);
-        $this->text .= !is_null($class->expression) && preg_match('/^\(.+\)$/', $class->expression) === 1 ? self::getText('EXPRESSION', $class->expression, $indentSize + 1, $indent) : self::getTextString('EXPRESSION', $class->expression, $indentSize + 1, $indent);
+        $this->text .= self::getText('EXPRESSION', $class->expression, $indentSize + 1, $indent);
         $this->text .= self::getTextString('GROUP', $class->group, $indentSize + 1, $indent);
         $this->text .= self::getTextString('KEYIMAGE', $class->keyimage, $indentSize + 1, $indent);
 
