@@ -37,7 +37,7 @@ class Map extends Parser
                 $map->angle = floatval($matches[1]);
             } elseif ($this->parsing === 'MAP' && preg_match('/^CONFIG ["\'](.+)["\'] ["\'](.+)["\']$/i', $line, $matches)) {
                 $map->config[$matches[1]] = $matches[2];
-            } elseif ($this->parsing === 'MAP' && preg_match('/^DATAPATTERN (\/.+\/.*)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'MAP' && preg_match('/^DATAPATTERN (\/.+\/[a-z]*)$/i', $line, $matches)) {
                 $map->datapattern = $matches[1];
             } elseif ($this->parsing === 'MAP' && preg_match('/^DEBUG ([0-5]|ON|OFF)$/i', $line, $matches)) {
                 if (strtoupper($matches[1]) === 'OFF') {
@@ -145,7 +145,7 @@ class Map extends Parser
                 $this->currentLineIndex = $symbolParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^SYMBOLSET ["\'](.+)["\']$/i', $line, $matches)) {
                 $map->symbolset = $matches[1];
-            } elseif ($this->parsing === 'MAP' && preg_match('/^TEMPLATEPATTERN (\/.+\/.*)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'MAP' && preg_match('/^TEMPLATEPATTERN (\/.+\/[a-z]*)$/i', $line, $matches)) {
                 $map->templatepattern = $matches[1];
             } elseif ($this->parsing === 'MAP' && preg_match('/^UNITS (DD|FEET|INCHES|KILOMETERS|METERS|MILES|NAUTICALMILE)$/i', $line, $matches)) {
                 $map->units = strtoupper($matches[1]);

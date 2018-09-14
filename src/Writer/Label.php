@@ -23,7 +23,7 @@ class Label extends Writer
         $this->text .= self::getTextBoolean('ANTIALIAS', $label->antialias, $indentSize + 1, $indent);
         $this->text .= self::getText('BUFFER', $label->buffer, $indentSize + 1, $indent);
         $this->text .= is_array($label->color) ? self::getTextArray('COLOR', $label->color, $indentSize + 1, $indent) : self::getTextString('COLOR', $label->color, $indentSize + 1, $indent);
-        $this->text .= self::getText('EXPRESSION', $label->expression, $indentSize + 1, $indent);
+        $this->text .= self::getTextString('EXPRESSION', $label->expression, $indentSize + 1, $indent);
         $this->text .= self::getTextString('FONT', $label->font, $indentSize + 1, $indent);
         $this->text .= self::getTextBoolean('FORCE', $label->force, $indentSize + 1, $indent);
         $this->text .= self::getText('MAXLENGTH', $label->maxlength, $indentSize + 1, $indent);
@@ -49,7 +49,7 @@ class Label extends Writer
             $this->text .= (new Style())->write($label->style, $indentSize + 1, $indent);
         }
 
-        $this->text .= !is_null($label->text) && preg_match('/^\(.+\)$/', $label->text) === 1 ? self::getText('TEXT', $label->text, $indentSize + 1, $indent) : self::getTextString('TEXT', $label->text, $indentSize + 1, $indent);
+        $this->text .= self::getTextString('TEXT', $label->text, $indentSize + 1, $indent);
         $this->text .= self::getText('TYPE', $label->type, $indentSize + 1, $indent);
         $this->text .= self::getTextString('WRAP', $label->wrap, $indentSize + 1, $indent);
 

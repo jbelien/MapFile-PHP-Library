@@ -39,7 +39,7 @@ class LayerClass extends Parser
                 $class->expression = $matches[1];
             } elseif ($this->parsing === 'CLASS' && preg_match('/^EXPRESSION (\(.+\))$/i', $line, $matches)) {
                 $class->expression = $matches[1];
-            } elseif ($this->parsing === 'CLASS' && preg_match('/^EXPRESSION (\/.+\/.*)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'CLASS' && preg_match('/^EXPRESSION (\/.+\/[a-z]*)$/i', $line, $matches)) {
                 $class->expression = $matches[1];
             } elseif ($this->parsing === 'CLASS' && preg_match('/^GROUP ["\'](.+)["\']$/i', $line, $matches)) {
                 $class->group = $matches[1];

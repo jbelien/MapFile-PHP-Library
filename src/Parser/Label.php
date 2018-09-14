@@ -57,7 +57,7 @@ class Label extends Parser
                 $label->color = $matches[1];
             } elseif ($this->parsing === 'LABEL' && preg_match('/^EXPRESSION (\(.+\))$/i', $line, $matches)) {
                 $label->expression = $matches[1];
-            } elseif ($this->parsing === 'LABEL' && preg_match('/^EXPRESSION (\/.+\/.*)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'LABEL' && preg_match('/^EXPRESSION (\/.+\/[a-z]*)$/i', $line, $matches)) {
                 $label->expression = $matches[1];
             } elseif ($this->parsing === 'LABEL' && preg_match('/^FONT ["\'](.+)["\']$/i', $line, $matches)) {
                 $label->font = $matches[1];
