@@ -57,7 +57,7 @@ abstract class Parser implements ParserInterface
         $line = trim($line);
 
         $line = preg_replace('/^#(.+)$/', '', $line);
-        $line = preg_replace('/\s*#(.+)$/', '', $line);
+        $line = preg_replace('/\s*[^"\']#(.+)[^"\']$/', '', $line);
 
         $line = trim($line);
 
