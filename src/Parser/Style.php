@@ -37,7 +37,7 @@ class Style extends Parser
                 $style->angle = floatval($matches[1]);
             } elseif ($this->parsing === 'STYLE' && preg_match('/^ANGLE (\[.+\])$/i', $line, $matches)) {
                 $style->angle = $matches[1];
-            } elseif ($this->parsing === 'STYLE' && preg_match('/^ANGLE AUTO$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'STYLE' && preg_match('/^ANGLE (AUTO)$/i', $line, $matches)) {
                 $style->angle = strtoupper($matches[1]);
             } elseif ($this->parsing === 'STYLE' && preg_match('/^ANTIALIAS (TRUE|FALSE)$/i', $line, $matches)) {
                 $style->antialias = (strtoupper($matches[1]) === true);

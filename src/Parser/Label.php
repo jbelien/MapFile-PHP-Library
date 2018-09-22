@@ -81,7 +81,7 @@ class Label extends Parser
                 $label->mindistance = intval($matches[1]);
             } elseif ($this->parsing === 'LABEL' && preg_match('/^MINFEATURESIZE ([0-9]+)$/i', $line, $matches)) {
                 $label->minfeaturesize = intval($matches[1]);
-            } elseif ($this->parsing === 'LABEL' && preg_match('/^MINFEATURESIZE AUTO$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'LABEL' && preg_match('/^MINFEATURESIZE (AUTO)$/i', $line, $matches)) {
                 $label->minfeaturesize = strtoupper($matches[1]);
             } elseif ($this->parsing === 'LABEL' && preg_match('/^MINSCALEDENOM ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
                 $label->minscaledenom = floatval($matches[1]);

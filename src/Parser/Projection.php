@@ -32,7 +32,7 @@ class Projection extends Parser
             if (preg_match('/^PROJECTION$/i', $line)) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'PROJECTION';
-            } elseif ($this->parsing === 'PROJECTION' && preg_match('/^AUTO$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'PROJECTION' && preg_match('/^(AUTO)$/i', $line, $matches)) {
                 $projection = $matches[1];
             } elseif ($this->parsing === 'PROJECTION' && preg_match('/^"init=(.+)"$/i', $line, $matches)) {
                 $projection = $matches[1];
