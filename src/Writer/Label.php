@@ -49,7 +49,7 @@ class Label extends Writer
             $this->text .= (new Style())->write($label->style, $indentSize + 1, $indent);
         }
 
-        $this->text .= self::getText('TEXT', $label->text, $indentSize + 1, $indent);
+        $this->text .= preg_match('/^\(.+\)$/', $label->text) === 1 ? self::getTextRaw('TEXT', $label->text, $indentSize + 1, $indent) : self::getTextString('TEXT', $label->text, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('TYPE', $label->type, $indentSize + 1, $indent);
         $this->text .= self::getTextString('WRAP', $label->wrap, $indentSize + 1, $indent);
 
