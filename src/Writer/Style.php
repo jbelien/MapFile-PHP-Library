@@ -34,6 +34,7 @@ class Style extends Writer
         $this->text .= self::getText('MINSCALEDENOM', $style->minscaledenom, $indentSize + 1, $indent);
         $this->text .= self::getText('MINSIZE', $style->minsize, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('OFFSET', $style->offset, $indentSize + 1, $indent);
+        $this->text .= self::getText('OPACITY', $style->opacity, $indentSize + 1, $indent);
         $this->text .= is_array($style->outlinecolor) ? self::getTextArray('OUTLINECOLOR', $style->outlinecolor, $indentSize + 1, $indent) : self::getTextString('OUTLINECOLOR', $style->outlinecolor, $indentSize + 1, $indent);
         $this->text .= self::getText('OUTLINEWIDTH', $style->outlinewidth, $indentSize + 1, $indent);
 

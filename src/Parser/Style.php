@@ -97,6 +97,10 @@ class Style extends Parser
                     intval($matches[1]),
                     intval($matches[2]),
                 ];
+            } elseif ($this->parsing === 'STYLE' && preg_match('/^OPACITY ([0-9]+)$/i', $line, $matches)) {
+                $style->opacity = intval($matches[1]);
+            } elseif ($this->parsing === 'STYLE' && preg_match('/^OPACITY (\[.+\])$/i', $line, $matches)) {
+                $style->opacity = $matches[1];
             } elseif ($this->parsing === 'STYLE' && preg_match('/^OUTLINECOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches)) {
                 $style->outlinecolor = [
                     intval($matches[1]),
