@@ -103,7 +103,7 @@ abstract class Writer implements WriterInterface
                 return self::getText($key, $value, $indentSize, $indent);
             } elseif (preg_match('/^\{.+\}$/', $value) === 1) {
                 return self::getText($key, $value, $indentSize, $indent);
-            } elseif (preg_match('/^\/.+\/[a-z]*$/', $value) === 1) {
+            } elseif (preg_match('/^\/.+\/[imsxeADSUXJu]*$/', $value) === 1) {
                 return self::getText($key, $value, $indentSize, $indent);
             } else {
                 return self::getText($key, '"'.$value.'"', $indentSize, $indent);
