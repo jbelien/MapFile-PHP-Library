@@ -44,7 +44,7 @@ class Style extends Writer
 
         $this->text .= self::getTextRaw('RANGEITEM', $style->rangeitem, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('SIZE', $style->size, $indentSize + 1, $indent);
-        $this->text .= is_int($style->symbol) ?  self::getTextRaw('SYMBOL', $style->symbol, $indentSize + 1, $indent) : self::getText('SYMBOL', $style->symbol, $indentSize + 1, $indent);
+        $this->text .= is_int($style->symbol) ? self::getTextRaw('SYMBOL', $style->symbol, $indentSize + 1, $indent) : self::getText('SYMBOL', $style->symbol, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('WIDTH', $style->width, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);
