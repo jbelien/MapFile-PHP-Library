@@ -30,8 +30,8 @@ class Symbol extends Writer
             $this->text .= (new Points())->write($symbol->points, $indentSize + 1, $indent);
         }
 
-        $this->text .= self::getText('TRANSPARENT', $symbol->transparent, $indentSize + 1, $indent);
-        $this->text .= self::getText('TYPE', $symbol->type, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('TRANSPARENT', $symbol->transparent, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('TYPE', $symbol->type, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # SYMBOL'.PHP_EOL;

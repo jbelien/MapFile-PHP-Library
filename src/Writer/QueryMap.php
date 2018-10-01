@@ -20,8 +20,8 @@ class QueryMap extends Writer
 
         $this->text .= is_array($querymap->color) ? self::getTextArray('COLOR', $querymap->color, $indentSize + 1, $indent) : self::getTextString('COLOR', $querymap->color, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('SIZE', $querymap->size, $indentSize + 1, $indent);
-        $this->text .= self::getText('STATUS', $querymap->status, $indentSize + 1, $indent);
-        $this->text .= self::getText('STYLE', $querymap->style, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('STATUS', $querymap->status, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('STYLE', $querymap->style, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # QUERYMAP'.PHP_EOL;

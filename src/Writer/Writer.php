@@ -36,7 +36,7 @@ abstract class Writer implements WriterInterface
         return false;
     }
 
-    protected static function getText(string $key, $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    protected static function getTextRaw(string $key, $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $text = '';
 
@@ -62,11 +62,7 @@ abstract class Writer implements WriterInterface
             );
         }
 
-        if (!is_null($value)) {
-            return self::getText($key, implode(' ', $value), $indentSize, $indent);
-        }
-
-        return '';
+        return is_null($value) ? '' : self::getTextRaw($key, implode(' ', $value), $indentSize, $indent);
     }
 
     protected static function getTextBoolean(string $key, $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
@@ -80,11 +76,7 @@ abstract class Writer implements WriterInterface
             );
         }
 
-        if (!is_null($value)) {
-            return self::getText($key, $value ? 'TRUE' : 'FALSE', $indentSize, $indent);
-        }
-
-        return '';
+        return is_null($value) ? '' : self::getTextRaw($key, $value ? 'TRUE' : 'FALSE', $indentSize, $indent);
     }
 
     protected static function getTextString(string $key, $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
@@ -98,19 +90,28 @@ abstract class Writer implements WriterInterface
             );
         }
 
-        if (!is_null($value)) {
-            if (preg_match('/^\(.+\)$/', $value) === 1) {
-                return self::getText($key, $value, $indentSize, $indent);
-            } elseif (preg_match('/^\{.+\}$/', $value) === 1) {
-                return self::getText($key, $value, $indentSize, $indent);
-            } elseif (preg_match('/^\/.+\/[imsxeADSUXJu]*$/', $value) === 1) {
-                return self::getText($key, $value, $indentSize, $indent);
-            } else {
-                return self::getText($key, '"'.$value.'"', $indentSize, $indent);
-            }
+        return is_null($value) ? '' : self::getTextRaw($key, '"'.$value.'"', $indentSize, $indent);
+    }
+
+    protected static function getText(string $key, $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    {
+        if (is_null($value)) {
+            return '';
         }
 
-        return '';
+        $value = (string) $value;
+
+        if (preg_match('/^\(.+\)$/', $value) === 1) {
+            return self::getTextRaw($key, $value, $indentSize, $indent);
+        } elseif (preg_match('/^\{.+\}$/', $value) === 1) {
+            return self::getTextRaw($key, $value, $indentSize, $indent);
+        } elseif (preg_match('/^\[.+\]$/', $value) === 1) {
+            return self::getTextRaw($key, $value, $indentSize, $indent);
+        } elseif (preg_match('/^\/.+\/[imsxeADSUXJu]*$/', $value) === 1) {
+            return self::getTextRaw($key, $value, $indentSize, $indent);
+        } else {
+            return self::getTextString($key, $value, $indentSize, $indent);
+        }
     }
 
     abstract public function write($object, int $indentSize = 0, string $indent = self::WRITER_INDENT);

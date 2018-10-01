@@ -19,7 +19,7 @@ class Join extends Writer
         $this->text .= 'JOIN'.PHP_EOL;
 
         $this->text .= self::getTextString('CONNECTION', $join->connection, $indentSize + 1, $indent);
-        $this->text .= self::getText('CONNECTIONTYPE', $join->connectiontype, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('CONNECTIONTYPE', $join->connectiontype, $indentSize + 1, $indent);
         $this->text .= self::getTextString('FOOTER', $join->footer, $indentSize + 1, $indent);
         $this->text .= self::getTextString('FROM', $join->from, $indentSize + 1, $indent);
         $this->text .= self::getTextString('HEADER', $join->header, $indentSize + 1, $indent);
@@ -27,7 +27,7 @@ class Join extends Writer
         $this->text .= self::getTextString('TABLE', $join->table, $indentSize + 1, $indent);
         $this->text .= self::getTextString('TEMPLATE', $join->template, $indentSize + 1, $indent);
         $this->text .= self::getTextString('TO', $join->to, $indentSize + 1, $indent);
-        $this->text .= self::getText('TYPE', $join->type, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('TYPE', $join->type, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # JOIN'.PHP_EOL;

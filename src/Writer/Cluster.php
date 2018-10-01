@@ -18,10 +18,10 @@ class Cluster extends Writer
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'CLUSTER'.PHP_EOL;
 
-        $this->text .= self::getText('BUFFER', $cluster->buffer, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('BUFFER', $cluster->buffer, $indentSize + 1, $indent);
         $this->text .= self::getTextString('FILTER', $cluster->filter, $indentSize + 1, $indent);
         $this->text .= self::getTextString('GROUP', $cluster->group, $indentSize + 1, $indent);
-        $this->text .= self::getText('MAXDISTANCE', $cluster->maxdistance, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MAXDISTANCE', $cluster->maxdistance, $indentSize + 1, $indent);
         $this->text .= self::getTextString('REGION', $cluster->region, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);

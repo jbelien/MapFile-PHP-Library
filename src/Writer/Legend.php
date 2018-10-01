@@ -27,9 +27,9 @@ class Legend extends Writer
         }
 
         $this->text .= is_array($legend->outlinecolor) ? self::getTextArray('OUTLINECOLOR', $legend->outlinecolor, $indentSize + 1, $indent) : self::getTextString('OUTLINECOLOR', $legend->outlinecolor, $indentSize + 1, $indent);
-        $this->text .= self::getText('POSITION', $legend->position, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('POSITION', $legend->position, $indentSize + 1, $indent);
         $this->text .= self::getTextBoolean('POSTLABELCACHE', $legend->postlabelcache, $indentSize + 1, $indent);
-        $this->text .= self::getText('STATUS', $legend->status, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('STATUS', $legend->status, $indentSize + 1, $indent);
         $this->text .= self::getTextString('TEMPLATE', $legend->template, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);

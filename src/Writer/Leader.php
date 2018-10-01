@@ -18,8 +18,8 @@ class Leader extends Writer
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'LEADER'.PHP_EOL;
 
-        $this->text .= self::getText('GRIDSTEP', $leader->gridstep, $indentSize + 1, $indent);
-        $this->text .= self::getText('MAXDISTANCE', $leader->maxdistance, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('GRIDSTEP', $leader->gridstep, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MAXDISTANCE', $leader->maxdistance, $indentSize + 1, $indent);
 
         foreach ($leader->style as $style) {
             $this->text .= (new Style())->write($style, $indentSize + 1, $indent);

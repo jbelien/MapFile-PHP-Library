@@ -26,15 +26,15 @@ class Layer extends Writer
         }
 
         $this->text .= self::getTextString('CONNECTION', $layer->connection, $indentSize + 1, $indent);
-        $this->text .= self::getText('CONNECTIONTYPE', $layer->connectiontype, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('CONNECTIONTYPE', $layer->connectiontype, $indentSize + 1, $indent);
         $this->text .= self::getTextString('DATA', $layer->data, $indentSize + 1, $indent);
-        $this->text .= self::getText('DEBUG', $layer->debug, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('DEBUG', $layer->debug, $indentSize + 1, $indent);
         $this->text .= self::getTextString('ENCODING', $layer->encoding, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('EXTENT', $layer->extent, $indentSize + 1, $indent);
         $this->text .= self::getTextString('FILTER', $layer->filter, $indentSize + 1, $indent);
         $this->text .= self::getTextString('FILTERITEM', $layer->filteritem, $indentSize + 1, $indent);
         $this->text .= self::getTextString('FOOTER', $layer->footer, $indentSize + 1, $indent);
-        $this->text .= self::getTextString('GEOMTRANSFORM', $layer->geomtransform, $indentSize + 1, $indent);
+        $this->text .= self::getText('GEOMTRANSFORM', $layer->geomtransform, $indentSize + 1, $indent);
 
         if (!is_null($layer->grid)) {
             $this->text .= (new Grid())->write($layer->grid, $indentSize + 1, $indent);
@@ -42,22 +42,22 @@ class Layer extends Writer
 
         $this->text .= self::getTextString('GROUP', $layer->group, $indentSize + 1, $indent);
         $this->text .= self::getTextString('HEADER', $layer->header, $indentSize + 1, $indent);
-        $this->text .= self::getText('LABELCACHE', $layer->labelcache, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('LABELCACHE', $layer->labelcache, $indentSize + 1, $indent);
         $this->text .= self::getTextString('LABELITEM', $layer->labelitem, $indentSize + 1, $indent);
-        $this->text .= self::getText('LABELMAXSCALEDENOM', $layer->labelmaxscaledenom, $indentSize + 1, $indent);
-        $this->text .= self::getText('LABELMINSCALEDENOM', $layer->labelminscaledenom, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('LABELMAXSCALEDENOM', $layer->labelmaxscaledenom, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('LABELMINSCALEDENOM', $layer->labelminscaledenom, $indentSize + 1, $indent);
         $this->text .= self::getTextString('LABELREQUIRES', $layer->labelrequires, $indentSize + 1, $indent);
         $this->text .= self::getTextString('MASK', $layer->mask, $indentSize + 1, $indent);
-        $this->text .= self::getText('MAXFEATURES', $layer->maxfeatures, $indentSize + 1, $indent);
-        $this->text .= self::getText('MAXGEOWIDTH', $layer->maxgeowidth, $indentSize + 1, $indent);
-        $this->text .= self::getText('MAXSCALEDENOM', $layer->maxscaledenom, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MAXFEATURES', $layer->maxfeatures, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MAXGEOWIDTH', $layer->maxgeowidth, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MAXSCALEDENOM', $layer->maxscaledenom, $indentSize + 1, $indent);
 
         if (!empty($layer->metadata)) {
             $this->text .= (new Metadata())->write($layer->metadata, $indentSize + 1, $indent);
         }
 
-        $this->text .= self::getText('MINGEOWIDTH', $layer->mingeowidth, $indentSize + 1, $indent);
-        $this->text .= self::getText('MINSCALEDENOM', $layer->minscaledenom, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MINGEOWIDTH', $layer->mingeowidth, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MINSCALEDENOM', $layer->minscaledenom, $indentSize + 1, $indent);
         $this->text .= self::getTextString('NAME', $layer->name, $indentSize + 1, $indent);
         $this->text .= is_array($layer->offsite) ? self::getTextArray('OFFSITE', $layer->offsite, $indentSize + 1, $indent) : self::getTextString('OFFSITE', $layer->offsite, $indentSize + 1, $indent);
         $this->text .= self::getText('OPACITY', $layer->opacity, $indentSize + 1, $indent);
@@ -78,19 +78,19 @@ class Layer extends Writer
             $this->text .= (new ScaleToken())->write($layer->scaletoken, $indentSize + 1, $indent);
         }
 
-        $this->text .= self::getText('SIZEUNITS', $layer->sizeunits, $indentSize + 1, $indent);
-        $this->text .= self::getText('STATUS', $layer->status, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('SIZEUNITS', $layer->sizeunits, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('STATUS', $layer->status, $indentSize + 1, $indent);
         $this->text .= self::getTextString('STYLEITEM', $layer->styleitem, $indentSize + 1, $indent);
-        $this->text .= self::getText('SYMBOLSCALEDENOM', $layer->symbolscaledenom, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('SYMBOLSCALEDENOM', $layer->symbolscaledenom, $indentSize + 1, $indent);
         $this->text .= self::getTextString('TEMPLATE', $layer->template, $indentSize + 1, $indent);
         $this->text .= self::getTextString('TILEINDEX', $layer->tileindex, $indentSize + 1, $indent);
         $this->text .= self::getTextString('TILEITEM', $layer->tileitem, $indentSize + 1, $indent);
         $this->text .= self::getTextString('TILESRS', $layer->tilesrs, $indentSize + 1, $indent);
-        $this->text .= self::getText('TOLERANCE', $layer->tolerance, $indentSize + 1, $indent);
-        $this->text .= self::getText('TOLERANCEUNITS', $layer->toleranceunits, $indentSize + 1, $indent);
-        $this->text .= is_bool($layer->transform) ? self::getTextBoolean('TRANSFORM', $layer->transform, $indentSize + 1, $indent) : self::getText('TRANSFORM', $layer->transform, $indentSize + 1, $indent);
-        $this->text .= self::getText('TYPE', $layer->type, $indentSize + 1, $indent);
-        $this->text .= self::getText('UNITS', $layer->units, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('TOLERANCE', $layer->tolerance, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('TOLERANCEUNITS', $layer->toleranceunits, $indentSize + 1, $indent);
+        $this->text .= is_bool($layer->transform) ? self::getTextBoolean('TRANSFORM', $layer->transform, $indentSize + 1, $indent) : self::getTextRaw('TRANSFORM', $layer->transform, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('TYPE', $layer->type, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('UNITS', $layer->units, $indentSize + 1, $indent);
         $this->text .= self::getTextString('UTFDATA', $layer->utfdata, $indentSize + 1, $indent);
         $this->text .= self::getTextString('UTFITEM', $layer->utfitem, $indentSize + 1, $indent);
 

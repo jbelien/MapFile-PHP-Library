@@ -18,7 +18,7 @@ class Map extends Writer
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'MAP'.PHP_EOL;
 
-        $this->text .= self::getText('ANGLE', $map->angle, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('ANGLE', $map->angle, $indentSize + 1, $indent);
 
         foreach ($map->config as $key => $value) {
             $this->text .= str_repeat($indent, $indentSize + 1);
@@ -26,23 +26,23 @@ class Map extends Writer
             $this->text .= PHP_EOL;
         }
 
-        $this->text .= self::getText('DATAPATTERN', $map->datapattern, $indentSize + 1, $indent);
-        $this->text .= self::getText('DEBUG', $map->debug, $indentSize + 1, $indent);
-        $this->text .= self::getText('DEFRESOLUTION', $map->defresolution, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('DATAPATTERN', $map->datapattern, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('DEBUG', $map->debug, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('DEFRESOLUTION', $map->defresolution, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('EXTENT', $map->extent, $indentSize + 1, $indent);
         $this->text .= self::getTextString('FONTSET', $map->fontset, $indentSize + 1, $indent);
         $this->text .= is_array($map->imagecolor) ? self::getTextArray('IMAGECOLOR', $map->imagecolor, 1) : self::getTextString('IMAGECOLOR', $map->imagecolor, $indentSize + 1, $indent);
-        $this->text .= self::getText('IMAGETYPE', $map->imagetype, $indentSize + 1, $indent);
-        $this->text .= self::getText('MAXSIZE', $map->maxsize, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('IMAGETYPE', $map->imagetype, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MAXSIZE', $map->maxsize, $indentSize + 1, $indent);
         $this->text .= self::getTextString('NAME', $map->name, $indentSize + 1, $indent);
-        $this->text .= self::getText('RESOLUTION', $map->resolution, $indentSize + 1, $indent);
-        $this->text .= self::getText('SCALEDENOM', $map->scaledenom, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('RESOLUTION', $map->resolution, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('SCALEDENOM', $map->scaledenom, $indentSize + 1, $indent);
         $this->text .= self::getTextString('SHAPEPATH', $map->shapepath, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('SIZE', $map->size, $indentSize + 1, $indent);
-        $this->text .= self::getText('STATUS', $map->status, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('STATUS', $map->status, $indentSize + 1, $indent);
         $this->text .= self::getTextString('SYMBOLSET', $map->symbolset, $indentSize + 1, $indent);
-        $this->text .= self::getText('TEMPLATEPATTERN', $map->templatepattern, $indentSize + 1, $indent);
-        $this->text .= self::getText('UNITS', $map->units, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('TEMPLATEPATTERN', $map->templatepattern, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('UNITS', $map->units, $indentSize + 1, $indent);
 
         if (!is_null($map->legend)) {
             $this->text .= PHP_EOL;

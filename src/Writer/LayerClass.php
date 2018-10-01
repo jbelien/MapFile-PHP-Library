@@ -18,8 +18,8 @@ class LayerClass extends Writer
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'CLASS'.PHP_EOL;
 
-        $this->text .= self::getText('DEBUG', $class->debug, $indentSize + 1, $indent);
-        $this->text .= self::getTextString('EXPRESSION', $class->expression, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('DEBUG', $class->debug, $indentSize + 1, $indent);
+        $this->text .= self::getText('EXPRESSION', $class->expression, $indentSize + 1, $indent);
         $this->text .= self::getTextString('GROUP', $class->group, $indentSize + 1, $indent);
         $this->text .= self::getTextString('KEYIMAGE', $class->keyimage, $indentSize + 1, $indent);
 
@@ -27,12 +27,12 @@ class LayerClass extends Writer
             $this->text .= (new Leader())->write($class->leader, $indentSize + 1, $indent);
         }
 
-        $this->text .= self::getText('MAXSCALEDENOM', $class->maxscaledenom, $indentSize + 1, $indent);
-        $this->text .= self::getText('MINSCALEDENOM', $class->minscaledenom, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MAXSCALEDENOM', $class->maxscaledenom, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MINSCALEDENOM', $class->minscaledenom, $indentSize + 1, $indent);
         $this->text .= self::getTextString('NAME', $class->name, $indentSize + 1, $indent);
-        $this->text .= self::getText('STATUS', $class->status, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('STATUS', $class->status, $indentSize + 1, $indent);
         $this->text .= self::getTextString('TEMPLATE', $class->template, $indentSize + 1, $indent);
-        $this->text .= self::getTextString('TEXT', $class->text, $indentSize + 1, $indent);
+        $this->text .= self::getText('TEXT', $class->text, $indentSize + 1, $indent);
 
         if (!is_null($class->validation)) {
             $this->text .= (new Validation())->write($layer->validation, $indentSize + 1, $indent);

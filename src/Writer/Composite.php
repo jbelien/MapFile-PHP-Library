@@ -18,7 +18,7 @@ class Composite extends Writer
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'COMPOSITE'.PHP_EOL;
 
-        $this->text .= self::getText('OPACITY', $composite->opacity, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('OPACITY', $composite->opacity, $indentSize + 1, $indent);
         $this->text .= self::getTextString('COMPOP', $composite->compop, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);

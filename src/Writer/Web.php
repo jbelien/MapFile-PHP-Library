@@ -25,14 +25,14 @@ class Web extends Writer
         $this->text .= self::getTextString('HEADER', $web->header, $indentSize + 1, $indent);
         $this->text .= self::getTextString('IMAGEPATH', $web->imagepath, $indentSize + 1, $indent);
         $this->text .= self::getTextString('LEGENDFORMAT', $web->legendformat, $indentSize + 1, $indent);
-        $this->text .= self::getText('MAXSCALEDENOM', $web->maxscaledenom, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MAXSCALEDENOM', $web->maxscaledenom, $indentSize + 1, $indent);
         $this->text .= self::getTextString('MAXTEMPLATE', $web->maxtemplate, $indentSize + 1, $indent);
 
         if (!empty($web->metadata)) {
             $this->text .= (new Metadata())->write($web->metadata, $indentSize + 1, $indent);
         }
 
-        $this->text .= self::getText('MINSCALEDENOM', $web->minscaledenom, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MINSCALEDENOM', $web->minscaledenom, $indentSize + 1, $indent);
         $this->text .= self::getTextString('MINTEMPLATE', $web->mintemplate, $indentSize + 1, $indent);
         $this->text .= self::getTextString('QUERYFORMAT', $web->queryformat, $indentSize + 1, $indent);
         $this->text .= self::getTextString('TEMPLATE', $web->template, $indentSize + 1, $indent);

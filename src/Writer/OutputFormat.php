@@ -18,17 +18,17 @@ class OutputFormat extends Writer
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'OUTPUTFORMAT'.PHP_EOL;
 
-        $this->text .= self::getText('DRIVER', $outputformat->driver, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('DRIVER', $outputformat->driver, $indentSize + 1, $indent);
         $this->text .= self::getTextString('EXTENSION', $outputformat->extension, $indentSize + 1, $indent);
 
         foreach ($outputformat->formatoption as $formatoption) {
             $this->text .= self::getTextString('FORMATOPTION', $formatoption, $indentSize + 1, $indent);
         }
 
-        $this->text .= self::getText('IMAGEMODE', $outputformat->imagemode, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('IMAGEMODE', $outputformat->imagemode, $indentSize + 1, $indent);
         $this->text .= self::getTextString('MIMETYPE', $outputformat->mimetype, $indentSize + 1, $indent);
         $this->text .= self::getTextString('NAME', $outputformat->name, $indentSize + 1, $indent);
-        $this->text .= self::getText('TRANSPARENT', $outputformat->transparent, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('TRANSPARENT', $outputformat->transparent, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # OUTPUTFORMAT'.PHP_EOL;

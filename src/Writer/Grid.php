@@ -19,12 +19,12 @@ class Grid extends Writer
         $this->text .= 'GRID'.PHP_EOL;
 
         $this->text .= self::getTextString('LABELFORMAT', $grid->labelformat, $indentSize + 1, $indent);
-        $this->text .= self::getText('MINARCS', $grid->minarcs, $indentSize + 1, $indent);
-        $this->text .= self::getText('MAXARCS', $grid->maxarcs, $indentSize + 1, $indent);
-        $this->text .= self::getText('MININTERVAL', $grid->mininterval, $indentSize + 1, $indent);
-        $this->text .= self::getText('MAXINTERVAL', $grid->maxinterval, $indentSize + 1, $indent);
-        $this->text .= self::getText('MINSUBDIVIDE', $grid->minsubdivide, $indentSize + 1, $indent);
-        $this->text .= self::getText('MAXSUBDIVIDE', $grid->maxsubdivide, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MINARCS', $grid->minarcs, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MAXARCS', $grid->maxarcs, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MININTERVAL', $grid->mininterval, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MAXINTERVAL', $grid->maxinterval, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MINSUBDIVIDE', $grid->minsubdivide, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MAXSUBDIVIDE', $grid->maxsubdivide, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # GRID'.PHP_EOL;
