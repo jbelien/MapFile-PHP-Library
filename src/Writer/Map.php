@@ -37,6 +37,7 @@ class Map extends Writer
         $this->text .= self::getTextString('NAME', $map->name, $indentSize + 1, $indent);
         $this->text .= self::getText('RESOLUTION', $map->resolution, $indentSize + 1, $indent);
         $this->text .= self::getText('SCALEDENOM', $map->scaledenom, $indentSize + 1, $indent);
+        $this->text .= self::getTextString('SHAPEPATH', $map->shapepath, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('SIZE', $map->size, $indentSize + 1, $indent);
         $this->text .= self::getText('STATUS', $map->status, $indentSize + 1, $indent);
         $this->text .= self::getTextString('SYMBOLSET', $map->symbolset, $indentSize + 1, $indent);
