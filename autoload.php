@@ -19,7 +19,7 @@
 function MapFileAutoload($classname)
 {
     list($namespace, $class) = explode('\\', $classname);
-    $filename = __DIR__.'/'.strtolower($class).'.php';
+    $filename = __DIR__.'/src/'.strtolower($class).'.php';
     if (is_readable($filename)) {
         require $filename;
     }
