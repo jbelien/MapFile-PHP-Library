@@ -101,6 +101,8 @@ class Layer extends Parser
                 $layer->feature->add($feature);
 
                 $this->currentLineIndex = $featureParser->lineEnd;
+            } elseif ($this->parsing === 'LAYER' && preg_match('/^FILTER (\(.+\))$/i', $line, $matches)) {
+                $layer->filer = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^FILTER ["\'](.+)["\']$/i', $line, $matches)) {
                 $layer->filer = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^FILTERITEM ["\'](.+)["\']$/i', $line, $matches)) {

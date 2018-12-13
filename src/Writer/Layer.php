@@ -31,7 +31,7 @@ class Layer extends Writer
         $this->text .= self::getTextRaw('DEBUG', $layer->debug, $indentSize + 1, $indent);
         $this->text .= self::getTextString('ENCODING', $layer->encoding, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('EXTENT', $layer->extent, $indentSize + 1, $indent);
-        $this->text .= self::getTextString('FILTER', $layer->filter, $indentSize + 1, $indent);
+        $this->text .= self::getText('FILTER', $layer->filter, $indentSize + 1, $indent);
         $this->text .= self::getTextString('FILTERITEM', $layer->filteritem, $indentSize + 1, $indent);
         $this->text .= self::getTextString('FOOTER', $layer->footer, $indentSize + 1, $indent);
         $this->text .= self::getText('GEOMTRANSFORM', $layer->geomtransform, $indentSize + 1, $indent);
