@@ -12,5 +12,56 @@ This library is based on [MapServer 7.2.0 documentation](https://mapserver.org/m
 ## Installation
 
 ```
-composer require jbelien/mapfile-php-library 
+composer require jbelien/mapfile-php-library
+```
+
+## Usage
+
+### Write MapFile (example)
+
+```php
+$map = new \MapFile\Model\Map();
+
+$map->name = 'my-mapfile';
+$map->projection = 'EPSG:4326';
+
+$map->scalebar = new \MapFile\Model\Scalebar();
+$map->scalebar->units = 'kilometers';
+
+$layer = new \MapFile\Model\Layer();
+$layer->name = 'my-layer';
+$layer->type = 'POLYGON';
+$layer->status = 'ON';
+$layer->data = 'my-shapefile';
+$layer->projection = 'EPSG:4326';
+
+$class = new \MapFile\Model\LayerClass();
+
+$style = new \MapFile\Model\Style();
+$style->color = [0, 0, 0];
+$class->style->add($style);
+
+$label = new \MapFile\Model\Label();
+$label->text = '[label]';
+$label->color = [0, 0, 0];
+$label->size = 12;
+$class->label->add($label);
+
+$layer->class->add($class);
+
+$map->layer->add($layer);
+
+$mapfile = (new \MapFile\Writer\Map())->write($map);
+```
+
+Have a look at the [source code](https://github.com/jbelien/MapFile-PHP-Library/tree/master/src/Model) to see all the available options.
+
+### Parse MapFile (example)
+
+```php
+$map = (new \MapFile\Parser\Map())->parse('my-mapfile.map');
+
+foreach ($map->layer as $layer) {
+    echo $layer->name;
+}
 ```
