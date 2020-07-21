@@ -12,7 +12,7 @@ This library is based on [MapServer 7.2.0 documentation](https://mapserver.org/m
 ## Installation
 
 ```
-composer require jbelien/mapfile-php-library
+composer require jbelien/mapfile-php-library:2.x-dev
 ```
 
 ## Usage
