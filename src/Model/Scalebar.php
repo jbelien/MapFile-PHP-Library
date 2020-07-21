@@ -29,7 +29,7 @@ class Scalebar
     public $color;
     /** @var int[]|string Color to initialize the scalebar with (i.e. background). */
     public $imagecolor;
-    /** @var int $intervals Number of intervals to break the scalebar into. */
+    /** @var int Number of intervals to break the scalebar into. */
     public $intervals;
     /** @var \MapFile\Model\Label */
     public $label;
