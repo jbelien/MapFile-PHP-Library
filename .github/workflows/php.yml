@@ -1,4 +1,4 @@
-name: PHP Composer
+name: PHP CI
 
 on:
   push:
@@ -7,15 +7,22 @@ on:
     branches: [master]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
 
+  build:
+    name: PHP ${{ matrix.php-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ['7.4', '8.0', '8.1'] # https://www.php.net/supported-versions.php
     steps:
       - uses: actions/checkout@v2
-
+      - name: Use PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
       - name: Validate composer.json and composer.lock
         run: composer validate
-
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v2
@@ -24,12 +31,16 @@ jobs:
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-php-
-
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress --no-suggest
 
-      - name: Configure PHP_CodeSniffer
+  phpcs:
+    name: PHP_CodeSniffer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: composer install --prefer-dist --no-progress
+      - name: Configure PHPCS
         run: ./vendor/squizlabs/php_codesniffer/bin/phpcs --config-set ignore_warnings_on_exit 1
-      - name: Run PHP_CodeSniffer
-        run: composer run-script cs-check
+      - run: composer run-script cs-check
