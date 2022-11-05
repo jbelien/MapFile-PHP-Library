@@ -52,6 +52,12 @@ $layer->class->add($class);
 $map->layer->add($layer);
 
 $mapfile = (new \MapFile\Writer\Map())->write($map);
+
+// or
+
+$writer = new \MapFile\Writer\Map('my-mapfile.map');
+$writer->write($map);
+$writer->save();
 ```
 
 Have a look at the [source code](https://github.com/jbelien/MapFile-PHP-Library/tree/master/src/Model) to see all the available options.
@@ -59,7 +65,7 @@ Have a look at the [source code](https://github.com/jbelien/MapFile-PHP-Library/
 ### Parse MapFile (example)
 
 ```php
-$map = (new \MapFile\Parser\Map())->parse('my-mapfile.map');
+$map = (new \MapFile\Parser\Map('my-mapfile.map'))->parse();
 
 foreach ($map->layer as $layer) {
     echo $layer->name;

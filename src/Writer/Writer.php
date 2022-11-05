@@ -27,8 +27,8 @@ abstract class Writer implements WriterInterface
 
     public function save(): bool
     {
-        if (!is_null($this->file) && file_exists($this->file) && is_writable($this->file)) {
-            $result = file_put_contents($this->file, $this->text);
+        if (!is_null($this->file)) {
+            $result = @file_put_contents($this->file, $this->text);
 
             return false !== $result;
         }
