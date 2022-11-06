@@ -126,7 +126,7 @@ class Map extends Parser
 
                 $this->currentLineIndex = $scalebarParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^SCALEDENOM ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
-                $layer->scaledenom = floatval($matches[1]);
+                $map->scaledenom = floatval($matches[1]);
             } elseif ($this->parsing === 'MAP' && preg_match('/^SHAPEPATH ["\'](.+)["\']$/i', $line, $matches)) {
                 $map->shapepath = $matches[1];
             } elseif ($this->parsing === 'MAP' && preg_match('/^SIZE ([0-9]+) ([0-9]+)$/i', $line, $matches)) {
