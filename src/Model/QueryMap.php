@@ -21,12 +21,12 @@ namespace MapFile\Model;
  */
 class QueryMap extends MapFileObject
 {
-    /** @var int[]|string Color in which features are highlighted. */
+    /** @var null|int[]|string Color in which features are highlighted. */
     public $color;
-    /** @var int[] Size of the map in pixels. */
+    /** @var null|int[] Size of the map in pixels. */
     public $size;
-    /** @var string Is the query map to be drawn? */
+    /** @var null|string Is the query map to be drawn? */
     public $status;
-    /** @var string Sets how selected features are to be handled. */
+    /** @var null|string Sets how selected features are to be handled. */
     public $style;
 }

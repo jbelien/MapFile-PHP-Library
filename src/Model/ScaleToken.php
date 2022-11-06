@@ -18,7 +18,7 @@ namespace MapFile\Model;
  */
 class ScaleToken extends MapFileObject
 {
-    /** @var string */
+    /** @var null|string */
     public $name;
     /** @var array<string,string> */
     public $values = [];

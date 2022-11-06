@@ -21,24 +21,24 @@ namespace MapFile\Model;
  */
 class Symbol extends MapFileObject
 {
-    /** @var float[] Used to specify the location (within the symbol) that is to be used as an anchorpoint when rotating the symbol and placing the symbol on a map. */
+    /** @var null|float[] Used to specify the location (within the symbol) that is to be used as an anchorpoint when rotating the symbol and placing the symbol on a map. */
     public $anchorpoint;
-    /** @var bool Should TrueType fonts be antialiased. */
+    /** @var null|bool Should TrueType fonts be antialiased. */
     public $antialias;
-    /** @var string Character used to reference a particular TrueType font character. */
+    /** @var null|string Character used to reference a particular TrueType font character. */
     public $character;
-    /** @var bool If true, the symbol will be filled with a user defined color. */
+    /** @var null|bool If true, the symbol will be filled with a user defined color. */
     public $filled;
-    /** @var string Name of TrueType font to use as defined in the FONTSET. */
+    /** @var null|string Name of TrueType font to use as defined in the FONTSET. */
     public $font;
-    /** @var string Image (GIF or PNG) to use as a marker or brush for type pixmap symbols. */
+    /** @var null|string Image (GIF or PNG) to use as a marker or brush for type pixmap symbols. */
     public $image;
-    /** @var string Alias for the symbol. */
+    /** @var null|string Alias for the symbol. */
     public $name;
-    /** @var array<array<float>> Sequence of points that make up a symbol of TYPE vector or that define the x and y radius of a symbol of TYPE ellipse. */
+    /** @var null|array<array<float>> Sequence of points that make up a symbol of TYPE vector or that define the x and y radius of a symbol of TYPE ellipse. */
     public $points;
-    /** @var int Sets a transparent color for the input image for pixmap symbols, or determines whether all shade symbols should have a transparent background. */
+    /** @var null|int Sets a transparent color for the input image for pixmap symbols, or determines whether all shade symbols should have a transparent background. */
     public $transparent;
-    /** @var string */
+    /** @var null|string */
     public $type;
 }
