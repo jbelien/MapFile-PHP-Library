@@ -55,7 +55,7 @@ class Label extends Writer
         $this->text .= self::getTextRaw('REPEATDISTANCE', $label->repeatdistance, $indentSize + 1, $indent);
         $this->text .= is_array($label->shadowcolor) ? self::getTextArray('SHADOWCOLOR', $label->shadowcolor, $indentSize + 1, $indent) : self::getText('SHADOWCOLOR', $label->shadowcolor, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('SHADOWSIZE', $label->shadowsize, $indentSize + 1, $indent);
-        $this->text .= is_array($label->size) ? self::getTextArray('SIZE', $label->size, $indentSize + 1, $indent) : self::getTextRaw('SIZE', $label->size, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('SIZE', $label->size, $indentSize + 1, $indent);
 
         if (!is_null($label->style)) {
             $this->text .= (new Style())->write($label->style, $indentSize + 1, $indent);
