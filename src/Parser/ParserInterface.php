@@ -17,6 +17,7 @@ interface ParserInterface
 
     /**
      * @param null|string[] $content
+     *
      * @return mixed
      */
     public function parse(?array $content = null);

@@ -11,8 +11,6 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
-
 abstract class Writer implements WriterInterface
 {
     /** @var null|string */
