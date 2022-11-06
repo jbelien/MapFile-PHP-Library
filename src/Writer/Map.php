@@ -73,7 +73,7 @@ class Map extends Writer
             $this->text .= PHP_EOL;
             $this->text .= (new Web())->write($map->web, $indentSize + 1, $indent);
         }
-        
+
         foreach ($map->outputformat as $outputformat) {
             $this->text .= PHP_EOL;
             $this->text .= (new OutputFormat())->write($outputformat, $indentSize + 1, $indent);
