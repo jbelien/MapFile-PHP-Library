@@ -43,8 +43,8 @@ class QueryMap extends Parser
                 $querymap->color = $matches[1];
             } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^SIZE ([0-9+]) ([0-9+])$/i', $line, $matches) !== false) {
                 $querymap->size = [
-                    $matches[1],
-                    $matches[2],
+                    intval($matches[1]),
+                    intval($matches[2]),
                 ];
             } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^STATUS (ON|OFF)$/i', $line, $matches) !== false) {
                 $querymap->status = strtoupper($matches[1]);
