@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Label as LabelObject;
+
 class Label extends Writer
 {
     public function write($label, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$label instanceof LabelObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Label", instance of "%s" given.',
+                    gettype($label) === 'object' ? get_class($label) : gettype($label)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'LABEL'.PHP_EOL;
 

@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Symbol as SymbolObject;
+
 class Symbol extends Writer
 {
     public function write($symbol, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$symbol instanceof SymbolObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Symbol", instance of "%s" given.',
+                    gettype($symbol) === 'object' ? get_class($symbol) : gettype($symbol)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'SYMBOL'.PHP_EOL;
 

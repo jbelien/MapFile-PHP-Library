@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use MapFile\Model\MapFileObject;
+
 abstract class Writer implements WriterInterface
 {
     /** @var null|string */
@@ -34,7 +36,7 @@ abstract class Writer implements WriterInterface
         return false;
     }
 
-    protected static function getTextRaw(string $key, ?string $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    protected static function getTextRaw(string $key, mixed $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $text = '';
 
@@ -42,7 +44,7 @@ abstract class Writer implements WriterInterface
             $text = str_repeat($indent, $indentSize);
             $text .= strtoupper($key);
             $text .= ' ';
-            $text .= $value;
+            $text .= (string) $value;
             $text .= PHP_EOL;
         }
 
@@ -85,5 +87,5 @@ abstract class Writer implements WriterInterface
         }
     }
 
-    abstract public function write($object, int $indentSize = 0, string $indent = self::WRITER_INDENT);
+    abstract public function write($object, int $indentSize = 0, string $indent = self::WRITER_INDENT): string;
 }

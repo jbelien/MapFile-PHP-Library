@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Feature as FeatureObject;
+
 class Feature extends Writer
 {
     public function write($feature, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$feature instanceof FeatureObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Feature", instance of "%s" given.',
+                    gettype($feature) === 'object' ? get_class($feature) : gettype($feature)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'FEATURE'.PHP_EOL;
 

@@ -11,10 +11,21 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+
 class ScaleTokenValues extends Writer
 {
     public function write($values, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!is_array($values)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an array, "%s" given.',
+                    gettype($values)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'VALUES'.PHP_EOL;
 

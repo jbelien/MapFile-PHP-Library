@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Map as MapObject;
+
 class Map extends Writer
 {
     public function write($map, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$map instanceof MapObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Map", instance of "%s" given.',
+                    gettype($map) === 'object' ? get_class($map) : gettype($map)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'MAP'.PHP_EOL;
 

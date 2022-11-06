@@ -11,10 +11,21 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+
 class Metadata extends Writer
 {
     public function write($metadata, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!is_array($metadata)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an array, "%s" given.',
+                    gettype($metadata)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'METADATA'.PHP_EOL;
 

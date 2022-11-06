@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Layer as LayerObject;
+
 class Layer extends Writer
 {
     public function write($layer, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$layer instanceof LayerObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Layer", instance of "%s" given.',
+                    gettype($layer) === 'object' ? get_class($layer) : gettype($layer)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'LAYER'.PHP_EOL;
 

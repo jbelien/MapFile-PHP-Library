@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\ScaleToken as ScaleTokenObject;
+
 class ScaleToken extends Writer
 {
     public function write($scaletoken, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$scaletoken instanceof ScaleTokenObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "ScaleToken", instance of "%s" given.',
+                    gettype($scaletoken) === 'object' ? get_class($scaletoken) : gettype($scaletoken)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'SCALETOKEN'.PHP_EOL;
 

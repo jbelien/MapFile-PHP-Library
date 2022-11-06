@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Reference as ReferenceObject;
+
 class Reference extends Writer
 {
     public function write($reference, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$reference instanceof ReferenceObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Reference", instance of "%s" given.',
+                    gettype($reference) === 'object' ? get_class($reference) : gettype($reference)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'REFERENCE'.PHP_EOL;
 

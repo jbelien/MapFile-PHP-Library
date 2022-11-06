@@ -11,11 +11,19 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use MapFile\Model\MapFileObject;
+
 interface WriterInterface
 {
     const WRITER_INDENT = '  ';
 
     public function save(): bool;
 
-    public function write($object, int $indentSize = 0, string $indent = self::WRITER_INDENT);
+    /**
+     * @param MapFileObject|string|array<string,string>|array<array<float>> $object
+     * @param int $indentSize
+     * @param string $indent
+     * @return string
+     */
+    public function write($object, int $indentSize = 0, string $indent = self::WRITER_INDENT): string;
 }

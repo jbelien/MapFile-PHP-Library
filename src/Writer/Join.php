@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Join as JoinObject;
+
 class Join extends Writer
 {
     public function write($join, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$join instanceof JoinObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Join", instance of "%s" given.',
+                    gettype($join) === 'object' ? get_class($join) : gettype($join)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'JOIN'.PHP_EOL;
 

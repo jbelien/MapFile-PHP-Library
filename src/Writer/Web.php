@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Web as WebObject;
+
 class Web extends Writer
 {
     public function write($web, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$web instanceof WebObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Web", instance of "%s" given.',
+                    gettype($web) === 'object' ? get_class($web) : gettype($web)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'WEB'.PHP_EOL;
 
