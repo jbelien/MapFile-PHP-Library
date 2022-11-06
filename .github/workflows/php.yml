@@ -44,3 +44,11 @@ jobs:
       - name: Configure PHPCS
         run: ./vendor/squizlabs/php_codesniffer/bin/phpcs --config-set ignore_warnings_on_exit 1
       - run: composer run-script cs-check
+
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: composer install --prefer-dist --no-progress
+      - run: composer run-script analyze
