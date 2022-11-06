@@ -16,7 +16,7 @@ namespace MapFile\Model;
  *
  * @author Jonathan Beliën
  */
-class ScaleToken
+class ScaleToken extends MapFileObject
 {
     /** @var string */
     public $name;

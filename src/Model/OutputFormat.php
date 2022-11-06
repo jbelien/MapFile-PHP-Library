@@ -19,7 +19,7 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/outputformat.html
  */
-class OutputFormat
+class OutputFormat extends MapFileObject
 {
     /** @var string The name of the driver to use to generate this output format. */
     public $driver;

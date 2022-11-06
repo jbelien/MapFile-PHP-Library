@@ -21,7 +21,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @link https://mapserver.org/mapfile/map.html
  */
-class Map
+class Map extends MapFileObject
 {
     /** @var float Angle, given in degrees, to rotate the map. */
     public $angle;

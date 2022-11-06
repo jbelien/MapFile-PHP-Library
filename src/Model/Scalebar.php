@@ -19,7 +19,7 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/scalebar.html
  */
-class Scalebar
+class Scalebar extends MapFileObject
 {
     /** @var string Defines how the scalebar is aligned within the scalebar image. */
     public $align;

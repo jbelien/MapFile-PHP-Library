@@ -19,7 +19,7 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/legend.html
  */
-class Legend
+class Legend extends MapFileObject
 {
     /** @var int[]|string Color to initialize the legend with (i.e. the background). */
     public $imagecolor;

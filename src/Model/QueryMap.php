@@ -19,7 +19,7 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/querymap.html
  */
-class QueryMap
+class QueryMap extends MapFileObject
 {
     /** @var int[]|string Color in which features are highlighted. */
     public $color;

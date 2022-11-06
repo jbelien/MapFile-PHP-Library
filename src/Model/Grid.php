@@ -19,7 +19,7 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/grid.html
  */
-class Grid
+class Grid extends MapFileObject
 {
     /** @var string Format of the label. “DD” for degrees, “DDMM” for degrees minutes, and “DDMMSS” for degrees, minutes, seconds. */
     public $labelformat;

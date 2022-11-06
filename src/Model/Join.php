@@ -19,7 +19,7 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/join.html
  */
-class Join
+class Join extends MapFileObject
 {
     /** @var string Parameters required for the join table’s database connection (not required for DBF or CSV joins). */
     public $connection;

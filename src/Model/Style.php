@@ -19,7 +19,7 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/style.html
  */
-class Style
+class Style extends MapFileObject
 {
     /** @var float|string Angle, given in degrees, to rotate the symbol (counter clockwise). */
     public $angle;

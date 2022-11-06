@@ -21,7 +21,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @link https://mapserver.org/mapfile/leader.html
  */
-class Leader
+class Leader extends MapFileObject
 {
     /** @var int Specifies the number of pixels between positions that are tested for a label line. */
     public $gridstep;

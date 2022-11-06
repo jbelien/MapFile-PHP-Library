@@ -21,7 +21,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @link https://mapserver.org/mapfile/class.html
  */
-class LayerClass
+class LayerClass extends MapFileObject
 {
     /** @var string Enables debugging of the class object. */
     public $debug;

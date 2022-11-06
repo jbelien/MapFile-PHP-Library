@@ -19,7 +19,7 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/reference.html
  */
-class Reference
+class Reference extends MapFileObject
 {
     /** @var int[]|string Color in which the reference box is drawn. */
     public $color;

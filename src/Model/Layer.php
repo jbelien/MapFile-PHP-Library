@@ -21,7 +21,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @link https://mapserver.org/mapfile/layer.html
  */
-class Layer
+class Layer extends MapFileObject
 {
     /** @var string Specify the class’s group that would be considered at rendering time. */
     public $classgroup;

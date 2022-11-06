@@ -19,7 +19,7 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/web.html
  */
-class Web
+class Web extends MapFileObject
 {
     /** @var string Format of the interface output, using MapServer CGI. */
     public $browseformat;

@@ -19,7 +19,7 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/label.html
  */
-class Label
+class Label extends MapFileObject
 {
     /** @var string Text alignment for multiline labels. */
     public $align;

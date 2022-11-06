@@ -19,7 +19,7 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/composite.html
  */
-class Composite
+class Composite extends MapFileObject
 {
     /** @var int Sets the opacity level (or the inability to see through the layer) of all classed pixels for a given layer. */
     public $opacity;

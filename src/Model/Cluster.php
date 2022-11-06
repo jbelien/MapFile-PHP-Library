@@ -19,7 +19,7 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/cluster.html
  */
-class Cluster
+class Cluster extends MapFileObject
 {
     /** @var float Specifies the distance of the search region (rectangle or ellipse) in pixel positions. */
     public $maxdistance;

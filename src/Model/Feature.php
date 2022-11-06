@@ -19,7 +19,7 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/feature.html
  */
-class Feature
+class Feature extends MapFileObject
 {
     /** @var array A set of xy pairs. */
     public $points = [];

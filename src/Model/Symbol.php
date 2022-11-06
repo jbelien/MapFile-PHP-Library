@@ -19,7 +19,7 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/symbol.html
  */
-class Symbol
+class Symbol extends MapFileObject
 {
     /** @var float[] Used to specify the location (within the symbol) that is to be used as an anchorpoint when rotating the symbol and placing the symbol on a map. */
     public $anchorpoint;
