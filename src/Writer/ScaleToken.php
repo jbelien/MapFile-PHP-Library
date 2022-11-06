@@ -32,7 +32,7 @@ class ScaleToken extends Writer
 
         $this->text .= self::getTextString('NAME', $scaletoken->name, $indentSize + 1, $indent);
 
-        if (!is_null($scaletoken->values)) {
+        if (count($scaletoken->values) > 0) {
             $this->text .= (new ScaleTokenValues())->write($scaletoken->values, $indentSize + 1, $indent);
         }
 
