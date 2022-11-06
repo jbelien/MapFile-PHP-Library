@@ -30,27 +30,27 @@ class QueryMap extends Parser
                 continue;
             }
 
-            if (preg_match('/^QUERYMAP$/i', $line) !== false) {
+            if (preg_match('/^QUERYMAP$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'QUERYMAP';
-            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches) === 1) {
                 $querymap->color = [
                     intval($matches[1]),
                     intval($matches[2]),
                     intval($matches[3]),
                 ];
-            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^COLOR ["\'](#.+)["\']$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^COLOR ["\'](#.+)["\']$/i', $line, $matches) === 1) {
                 $querymap->color = $matches[1];
-            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^SIZE ([0-9+]) ([0-9+])$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^SIZE ([0-9+]) ([0-9+])$/i', $line, $matches) === 1) {
                 $querymap->size = [
                     intval($matches[1]),
                     intval($matches[2]),
                 ];
-            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^STATUS (ON|OFF)$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^STATUS (ON|OFF)$/i', $line, $matches) === 1) {
                 $querymap->status = strtoupper($matches[1]);
-            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^STYLE (NORMAL|HILITE|SELECTED)$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^STYLE (NORMAL|HILITE|SELECTED)$/i', $line, $matches) === 1) {
                 $querymap->style = strtoupper($matches[1]);
-            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^END( # QUERYMAP)?$/i', $line) !== false) {
+            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^END( # QUERYMAP)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

@@ -30,19 +30,19 @@ class ScaleToken extends Parser
                 continue;
             }
 
-            if (preg_match('/^SCALETOKEN$/i', $line) !== false) {
+            if (preg_match('/^SCALETOKEN$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'SCALETOKEN';
-            } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^NAME ["\'](.+)["\']$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^NAME ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $scaletoken->name = $matches[1];
-            } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^VALUES$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^VALUES$/i', $line, $matches) === 1) {
                 $scaletokenValuesParser = new ScaleTokenValues($this->file, $this->currentLineIndex - 1);
                 $scaletokenValues = $scaletokenValuesParser->parse();
 
                 $scaletoken->values = $scaletokenValues;
 
                 $this->currentLineIndex = $scaletokenValuesParser->lineEnd;
-            } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^END( # SCALETOKEN)?$/i', $line) !== false) {
+            } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^END( # SCALETOKEN)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

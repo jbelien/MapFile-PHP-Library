@@ -30,24 +30,24 @@ class Cluster extends Parser
                 continue;
             }
 
-            if (preg_match('/^CLUSTER$/i', $line) !== false) {
+            if (preg_match('/^CLUSTER$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'CLUSTER';
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^BUFFER ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^BUFFER ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
                 $cluster->buffer = floatval($matches[1]);
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^FILTER ["\'](.+)["\']$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^FILTER ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $cluster->filter = $matches[1];
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^FILTER (\(.+\))$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^FILTER (\(.+\))$/i', $line, $matches) === 1) {
                 $cluster->filter = $matches[1];
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^GROUP ["\'](.+)["\']$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^GROUP ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $cluster->group = $matches[1];
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^GROUP (\(.+\))$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^GROUP (\(.+\))$/i', $line, $matches) === 1) {
                 $cluster->group = $matches[1];
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^MAXDISTANCE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^MAXDISTANCE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
                 $cluster->maxdistance = floatval($matches[1]);
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^REGION ["\'](.+)["\']$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^REGION ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $cluster->region = $matches[1];
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^END( # CLUSTER)?$/i', $line) !== false) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^END( # CLUSTER)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

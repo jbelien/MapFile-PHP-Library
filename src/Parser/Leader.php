@@ -30,21 +30,21 @@ class Leader extends Parser
                 continue;
             }
 
-            if (preg_match('/^LEADER$/i', $line) !== false) {
+            if (preg_match('/^LEADER$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'LEADER';
-            } elseif ($this->parsing === 'LEADER' && preg_match('/^GRIDSTEP ([0-9]+)$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'LEADER' && preg_match('/^GRIDSTEP ([0-9]+)$/i', $line, $matches) === 1) {
                 $leader->gridstep = intval($matches[1]);
-            } elseif ($this->parsing === 'LEADER' && preg_match('/^MAXDISTANCE ([0-9]+)$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'LEADER' && preg_match('/^MAXDISTANCE ([0-9]+)$/i', $line, $matches) === 1) {
                 $leader->maxdistance = intval($matches[1]);
-            } elseif ($this->parsing === 'LEADER' && preg_match('/^STYLE$/i', $line) !== false) {
+            } elseif ($this->parsing === 'LEADER' && preg_match('/^STYLE$/i', $line) === 1) {
                 $styleParser = new Style($this->file, $this->currentLineIndex - 1);
                 $style = $styleParser->parse();
 
                 $leader->style->add($style);
 
                 $this->currentLineIndex = $styleParser->lineEnd;
-            } elseif ($this->parsing === 'LEADER' && preg_match('/^END( # LEADER)?$/i', $line) !== false) {
+            } elseif ($this->parsing === 'LEADER' && preg_match('/^END( # LEADER)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

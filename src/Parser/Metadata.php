@@ -33,12 +33,12 @@ class Metadata extends Parser
                 continue;
             }
 
-            if (preg_match('/^METADATA$/i', $line) !== false) {
+            if (preg_match('/^METADATA$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'METADATA';
-            } elseif ($this->parsing === 'METADATA' && preg_match('/^["\'](.+)["\']\s["\'](.*)["\']$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'METADATA' && preg_match('/^["\'](.+)["\']\s["\'](.*)["\']$/i', $line, $matches) === 1) {
                 $values[$matches[1]] = $matches[2];
-            } elseif ($this->parsing === 'METADATA' && preg_match('/^END( # METADATA)?$/i', $line) !== false) {
+            } elseif ($this->parsing === 'METADATA' && preg_match('/^END( # METADATA)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

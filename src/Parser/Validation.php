@@ -33,14 +33,14 @@ class Validation extends Parser
                 continue;
             }
 
-            if (preg_match('/^VALIDATION$/i', $line) !== false) {
+            if (preg_match('/^VALIDATION$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'VALIDATION';
-            } elseif ($this->parsing === 'VALIDATION' && preg_match('/^["\'](.+)["\']\s+["\'](.+)["\']$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'VALIDATION' && preg_match('/^["\'](.+)["\']\s+["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $values[$matches[1]] = $matches[2];
-            } elseif ($this->parsing === 'VALIDATION' && preg_match('/^\'(.+)\'\s+\'(.+)\'$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'VALIDATION' && preg_match('/^\'(.+)\'\s+\'(.+)\'$/i', $line, $matches) === 1) {
                 $values[$matches[1]] = $matches[2];
-            } elseif ($this->parsing === 'VALIDATION' && preg_match('/^END( # VALIDATION)?$/i', $line) !== false) {
+            } elseif ($this->parsing === 'VALIDATION' && preg_match('/^END( # VALIDATION)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

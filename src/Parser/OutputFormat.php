@@ -30,24 +30,24 @@ class OutputFormat extends Parser
                 continue;
             }
 
-            if (preg_match('/^OUTPUTFORMAT$/i', $line) !== false) {
+            if (preg_match('/^OUTPUTFORMAT$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'OUTPUTFORMAT';
-            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^DRIVER (.+)$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^DRIVER (.+)$/i', $line, $matches) === 1) {
                 $outputformat->driver = $matches[1];
-            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^EXTENSION ["\'](.+)["\']$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^EXTENSION ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $outputformat->extension = $matches[1];
-            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^FORMATOPTION ["\'](.+)["\']$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^FORMATOPTION ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $outputformat->formatoption[] = $matches[1];
-            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^IMAGEMODE (PC256|RGB|RGBA|INT16|FLOAT32|FEATURE)$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^IMAGEMODE (PC256|RGB|RGBA|INT16|FLOAT32|FEATURE)$/i', $line, $matches) === 1) {
                 $outputformat->imagemode = strtoupper($matches[1]);
-            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^MIMETYPE ["\'](.+)["\']$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^MIMETYPE ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $outputformat->mimetype = $matches[1];
-            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^NAME ["\'](.+)["\']$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^NAME ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $outputformat->name = $matches[1];
-            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^TRANSPARENT (ON|OFF)$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^TRANSPARENT (ON|OFF)$/i', $line, $matches) === 1) {
                 $outputformat->transparent = strtoupper($matches[1]);
-            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^END( # OUTPUTFORMAT)?$/i', $line) !== false) {
+            } elseif ($this->parsing === 'OUTPUTFORMAT' && preg_match('/^END( # OUTPUTFORMAT)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

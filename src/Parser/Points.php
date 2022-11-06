@@ -33,15 +33,15 @@ class Points extends Parser
                 continue;
             }
 
-            if (preg_match('/^POINTS$/i', $line) !== false) {
+            if (preg_match('/^POINTS$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'POINTS';
-            } elseif ($this->parsing === 'POINTS' && preg_match('/^([0-9]+(?:\.(?:[0-9]+))?) ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'POINTS' && preg_match('/^([0-9]+(?:\.(?:[0-9]+))?) ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
                 $points[] = [
                     floatval($matches[1]),
                     floatval($matches[2]),
                 ];
-            } elseif ($this->parsing === 'POINTS' && preg_match('/^END( # POINTS)?$/i', $line) !== false) {
+            } elseif ($this->parsing === 'POINTS' && preg_match('/^END( # POINTS)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

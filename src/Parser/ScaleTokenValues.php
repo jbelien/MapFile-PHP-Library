@@ -33,12 +33,12 @@ class ScaleTokenValues extends Parser
                 continue;
             }
 
-            if (preg_match('/^VALUES$/i', $line) !== false) {
+            if (preg_match('/^VALUES$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'VALUES';
-            } elseif ($this->parsing === 'VALUES' && preg_match('/^["\'](.+)["\']\s["\'](.+)["\']$/i', $line, $matches) !== false) {
+            } elseif ($this->parsing === 'VALUES' && preg_match('/^["\'](.+)["\']\s["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $values[$matches[1]] = $matches[2];
-            } elseif ($this->parsing === 'VALUES' && preg_match('/^END( # VALUES)?$/i', $line) !== false) {
+            } elseif ($this->parsing === 'VALUES' && preg_match('/^END( # VALUES)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 
