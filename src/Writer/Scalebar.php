@@ -43,6 +43,7 @@ class Scalebar extends Writer
         $this->text .= self::getTextArray('OFFSET', $scalebar->offset, $indentSize + 1, $indent);
         $this->text .= is_array($scalebar->outlinecolor) ? self::getTextArray('OUTLINECOLOR', $scalebar->outlinecolor, $indentSize + 1, $indent) : self::getTextString('OUTLINECOLOR', $scalebar->outlinecolor, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('POSITION', $scalebar->position, $indentSize + 1, $indent);
+        $this->text .= self::getTextBoolean('POSTLABELCACHE', $scalebar->postlabelcache, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('SIZE', $scalebar->size, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('STATUS', $scalebar->status, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('STYLE', $scalebar->style, $indentSize + 1, $indent);
