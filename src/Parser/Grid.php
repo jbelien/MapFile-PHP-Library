@@ -30,26 +30,26 @@ class Grid extends Parser
                 continue;
             }
 
-            if (preg_match('/^GRID$/i', $line)) {
+            if (preg_match('/^GRID$/i', $line) !== false) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'GRID';
-            } elseif ($this->parsing === 'GRID' && preg_match('/^LABELFORMAT (DD|DDMM|DDMMSS)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'GRID' && preg_match('/^LABELFORMAT (DD|DDMM|DDMMSS)$/i', $line, $matches) !== false) {
                 $grid->labelformat = strtoupper($matches[1]);
-            } elseif ($this->parsing === 'GRID' && preg_match('/^LABELFORMAT ["\'](.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'GRID' && preg_match('/^LABELFORMAT ["\'](.+)["\']$/i', $line, $matches) !== false) {
                 $grid->labelformat = $matches[1];
-            } elseif ($this->parsing === 'GRID' && preg_match('/^MINARCS ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'GRID' && preg_match('/^MINARCS ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) !== false) {
                 $grid->minarcs = floatval($matches[1]);
-            } elseif ($this->parsing === 'GRID' && preg_match('/^MAXARCS ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'GRID' && preg_match('/^MAXARCS ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) !== false) {
                 $grid->maxarcs = floatval($matches[1]);
-            } elseif ($this->parsing === 'GRID' && preg_match('/^MININTERVAL ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'GRID' && preg_match('/^MININTERVAL ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) !== false) {
                 $grid->mininterval = floatval($matches[1]);
-            } elseif ($this->parsing === 'GRID' && preg_match('/^MAXINTERVAL ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'GRID' && preg_match('/^MAXINTERVAL ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) !== false) {
                 $grid->maxinterval = floatval($matches[1]);
-            } elseif ($this->parsing === 'GRID' && preg_match('/^MINSUBDIVIDE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'GRID' && preg_match('/^MINSUBDIVIDE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) !== false) {
                 $grid->minsubdivide = floatval($matches[1]);
-            } elseif ($this->parsing === 'GRID' && preg_match('/^MAXSUBDIVIDE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'GRID' && preg_match('/^MAXSUBDIVIDE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) !== false) {
                 $grid->maxsubdivide = floatval($matches[1]);
-            } elseif ($this->parsing === 'GRID' && preg_match('/^END( # GRID)?$/i', $line)) {
+            } elseif ($this->parsing === 'GRID' && preg_match('/^END( # GRID)?$/i', $line) !== false) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

@@ -30,23 +30,23 @@ class Feature extends Parser
                 continue;
             }
 
-            if (preg_match('/^FEATURE$/i', $line)) {
+            if (preg_match('/^FEATURE$/i', $line) !== false) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'FEATURE';
-            } elseif ($this->parsing === 'FEATURE' && preg_match('/^POINTS$/i', $line)) {
+            } elseif ($this->parsing === 'FEATURE' && preg_match('/^POINTS$/i', $line) !== false) {
                 $pointsParser = new Points($this->file, $this->currentLineIndex - 1);
                 $points = $pointsParser->parse();
 
                 $feature->points[] = $points;
 
                 $this->currentLineIndex = $pointsParser->lineEnd;
-            } elseif ($this->parsing === 'FEATURE' && preg_match('/^ITEMS ["\'](.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'FEATURE' && preg_match('/^ITEMS ["\'](.+)["\']$/i', $line, $matches) !== false) {
                 $feature->items = $matches[1];
-            } elseif ($this->parsing === 'FEATURE' && preg_match('/^TEXT ["\'](.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'FEATURE' && preg_match('/^TEXT ["\'](.+)["\']$/i', $line, $matches) !== false) {
                 $feature->text = $matches[1];
-            } elseif ($this->parsing === 'FEATURE' && preg_match('/^WKT ["\'](.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'FEATURE' && preg_match('/^WKT ["\'](.+)["\']$/i', $line, $matches) !== false) {
                 $feature->wkt[] = $matches[1];
-            } elseif ($this->parsing === 'FEATURE' && preg_match('/^END( # FEATURE)?$/i', $line)) {
+            } elseif ($this->parsing === 'FEATURE' && preg_match('/^END( # FEATURE)?$/i', $line) !== false) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

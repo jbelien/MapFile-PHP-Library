@@ -29,14 +29,14 @@ class Projection extends Parser
                 continue;
             }
 
-            if (preg_match('/^PROJECTION$/i', $line)) {
+            if (preg_match('/^PROJECTION$/i', $line) !== false) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'PROJECTION';
-            } elseif ($this->parsing === 'PROJECTION' && preg_match('/^(AUTO)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'PROJECTION' && preg_match('/^(AUTO)$/i', $line, $matches) !== false) {
                 $projection = $matches[1];
-            } elseif ($this->parsing === 'PROJECTION' && preg_match('/^"init=(.+)"$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'PROJECTION' && preg_match('/^"init=(.+)"$/i', $line, $matches) !== false) {
                 $projection = $matches[1];
-            } elseif ($this->parsing === 'PROJECTION' && preg_match('/^END( # PROJECTION)?$/i', $line)) {
+            } elseif ($this->parsing === 'PROJECTION' && preg_match('/^END( # PROJECTION)?$/i', $line) !== false) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

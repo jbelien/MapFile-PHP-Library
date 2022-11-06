@@ -30,27 +30,27 @@ class QueryMap
                 continue;
             }
 
-            if (preg_match('/^QUERYMAP$/i', $line)) {
+            if (preg_match('/^QUERYMAP$/i', $line) !== false) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'QUERYMAP';
-            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches) !== false) {
                 $querymap->color = [
                     $matches[1],
                     $matches[2],
                     $matches[3],
                 ];
-            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^COLOR ["\'](#.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^COLOR ["\'](#.+)["\']$/i', $line, $matches) !== false) {
                 $querymap->color = $matches[1];
-            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^SIZE ([0-9+]) ([0-9+])$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^SIZE ([0-9+]) ([0-9+])$/i', $line, $matches) !== false) {
                 $querymap->size = [
                     $matches[1],
                     $matches[2],
                 ];
-            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^STATUS (ON|OFF)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^STATUS (ON|OFF)$/i', $line, $matches) !== false) {
                 $querymap->status = strtoupper($matches[1]);
-            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^STYLE (NORMAL|HILITE|SELECTED)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^STYLE (NORMAL|HILITE|SELECTED)$/i', $line, $matches) !== false) {
                 $querymap->style = strtoupper($matches[1]);
-            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^END( # QUERYMAP)?$/i', $line)) {
+            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^END( # QUERYMAP)?$/i', $line) !== false) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 
