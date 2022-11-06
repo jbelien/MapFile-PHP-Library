@@ -115,7 +115,7 @@ class Map extends Parser
 
                 $map->reference = $reference;
 
-                $this->currentLineIndex = $querymapParser->lineEnd;
+                $this->currentLineIndex = $referenceParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^RESOLUTION ([0-9]+)$/i', $line, $matches)) {
                 $map->resolution = intval($matches[1]);
             } elseif ($this->parsing === 'MAP' && preg_match('/^SCALEBAR$/i', $line)) {

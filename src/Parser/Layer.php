@@ -69,14 +69,14 @@ class Layer extends Parser
 
                 $this->parsing = 'DATA';
             } elseif ($this->parsing === 'DATA' && preg_match('/^(.+)"$/i', $line, $matches)) {
-                $data .= $matches[1];
+                $data = $matches[1];
                 $layer->data = $data;
 
                 unset($data);
 
                 $this->parsing = 'LAYER';
             } elseif ($this->parsing === 'DATA' && preg_match('/^(.+)$/i', $line, $matches)) {
-                $data .= $matches[1];
+                $data = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^DEBUG ([0-5]|ON|OFF)$/i', $line, $matches)) {
                 if (strtoupper($matches[1]) === 'OFF') {
                     $layer->debug = 0;

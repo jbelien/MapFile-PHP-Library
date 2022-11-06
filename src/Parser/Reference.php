@@ -14,7 +14,7 @@ namespace MapFile\Parser;
 use MapFile\Exception\UnsupportedException;
 use MapFile\Model\Reference as ReferenceObject;
 
-class Reference
+class Reference extends Parser
 {
     public function parse($content = null): ReferenceObject
     {
