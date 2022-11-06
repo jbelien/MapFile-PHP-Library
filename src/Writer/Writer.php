@@ -50,10 +50,11 @@ abstract class Writer implements WriterInterface
     }
 
     /**
-     * @param string $key
+     * @param string                       $key
      * @param null|array<string|int|float> $value
-     * @param int $indentSize
-     * @param string $indent
+     * @param int                          $indentSize
+     * @param string                       $indent
+     *
      * @return string
      */
     protected static function getTextArray(string $key, ?array $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
