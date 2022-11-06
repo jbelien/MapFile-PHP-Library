@@ -16,9 +16,9 @@ use MapFile\Model\Grid as GridObject;
 
 class Grid extends Parser
 {
-    public function parse($content = null): GridObject
+    public function parse(?array $content = null): GridObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

@@ -16,9 +16,9 @@ use MapFile\Model\Map as MapObject;
 
 class Map extends Parser
 {
-    public function parse($content = null): MapObject
+    public function parse(?array $content = null): MapObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

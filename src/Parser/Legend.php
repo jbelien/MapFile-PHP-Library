@@ -16,9 +16,9 @@ use MapFile\Model\Legend as LegendObject;
 
 class Legend extends Parser
 {
-    public function parse($content = null): LegendObject
+    public function parse(?array $content = null): LegendObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

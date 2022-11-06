@@ -16,9 +16,9 @@ use MapFile\Model\Style as StyleObject;
 
 class Style extends Parser
 {
-    public function parse($content = null): StyleObject
+    public function parse(?array $content = null): StyleObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

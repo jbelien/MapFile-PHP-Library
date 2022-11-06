@@ -15,5 +15,8 @@ interface ParserInterface
 {
     public function getCurrentLine(): string;
 
-    public function parse($content = null);
+    /**
+     * @param null|string[] $content
+     */
+    public function parse(?array $content = null);
 }

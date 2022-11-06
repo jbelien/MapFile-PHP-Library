@@ -15,9 +15,9 @@ use MapFile\Exception\UnsupportedException;
 
 class Points extends Parser
 {
-    public function parse($content = null): array
+    public function parse(?array $content = null): array
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

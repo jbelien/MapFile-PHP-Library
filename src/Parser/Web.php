@@ -16,9 +16,9 @@ use MapFile\Model\Web as WebObject;
 
 class Web extends Parser
 {
-    public function parse($content = null): WebObject
+    public function parse(?array $content = null): WebObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

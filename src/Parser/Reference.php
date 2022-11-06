@@ -16,9 +16,9 @@ use MapFile\Model\Reference as ReferenceObject;
 
 class Reference
 {
-    public function parse($content = null): ReferenceObject
+    public function parse(?array $content = null): ReferenceObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

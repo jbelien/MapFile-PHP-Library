@@ -16,9 +16,9 @@ use MapFile\Model\Join as JoinObject;
 
 class Join extends Parser
 {
-    public function parse($content = null): JoinObject
+    public function parse(?array $content = null): JoinObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

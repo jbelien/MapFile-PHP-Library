@@ -16,9 +16,9 @@ use MapFile\Model\Cluster as ClusterObject;
 
 class Cluster extends Parser
 {
-    public function parse($content = null): ClusterObject
+    public function parse(?array $content = null): ClusterObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

@@ -16,9 +16,9 @@ use MapFile\Model\QueryMap as QueryMapObject;
 
 class QueryMap
 {
-    public function parse($content = null): QueryMapObject
+    public function parse(?array $content = null): QueryMapObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

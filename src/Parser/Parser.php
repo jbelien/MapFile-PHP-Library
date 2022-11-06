@@ -70,5 +70,5 @@ abstract class Parser implements ParserInterface
         return $line;
     }
 
-    abstract public function parse($content = null);
+    abstract public function parse(?array $content = null);
 }

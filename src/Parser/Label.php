@@ -16,9 +16,9 @@ use MapFile\Model\Label as LabelObject;
 
 class Label extends Parser
 {
-    public function parse($content = null): LabelObject
+    public function parse(?array $content = null): LabelObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

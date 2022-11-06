@@ -16,9 +16,9 @@ use MapFile\Model\ScaleToken as ScaleTokenObject;
 
 class ScaleToken extends Parser
 {
-    public function parse($content = null): ScaleTokenObject
+    public function parse(?array $content = null): ScaleTokenObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

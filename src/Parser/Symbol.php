@@ -16,9 +16,9 @@ use MapFile\Model\Symbol as SymbolObject;
 
 class Symbol extends Parser
 {
-    public function parse($content = null): SymbolObject
+    public function parse(?array $content = null): SymbolObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

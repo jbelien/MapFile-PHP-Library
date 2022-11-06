@@ -16,9 +16,9 @@ use MapFile\Model\Feature as FeatureObject;
 
 class Feature extends Parser
 {
-    public function parse($content = null): FeatureObject
+    public function parse(?array $content = null): FeatureObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

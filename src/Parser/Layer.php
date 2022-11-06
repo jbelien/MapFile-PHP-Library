@@ -16,9 +16,9 @@ use MapFile\Model\Layer as LayerObject;
 
 class Layer extends Parser
 {
-    public function parse($content = null): LayerObject
+    public function parse(?array $content = null): LayerObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

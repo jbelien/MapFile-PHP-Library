@@ -16,9 +16,9 @@ use MapFile\Model\Leader as LeaderObject;
 
 class Leader extends Parser
 {
-    public function parse($content = null): LeaderObject
+    public function parse(?array $content = null): LeaderObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 

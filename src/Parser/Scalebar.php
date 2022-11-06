@@ -16,9 +16,9 @@ use MapFile\Model\Scalebar as ScalebarObject;
 
 class Scalebar extends Parser
 {
-    public function parse($content = null): ScalebarObject
+    public function parse(?array $content = null): ScalebarObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 
