@@ -37,7 +37,7 @@ class Feature extends Parser
                 $pointsParser = new Points($this->file, $this->currentLineIndex - 1);
                 $points = $pointsParser->parse();
 
-                $feature->points[] = $points;
+                $feature->points = $points;
 
                 $this->currentLineIndex = $pointsParser->lineEnd;
             } elseif ($this->parsing === 'FEATURE' && preg_match('/^ITEMS ["\'](.+)["\']$/i', $line, $matches) === 1) {

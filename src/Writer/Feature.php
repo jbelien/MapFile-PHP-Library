@@ -33,8 +33,8 @@ class Feature extends Writer
         $this->text .= self::getTextString('ITEMS', $feature->items, $indentSize + 1, $indent);
         $this->text .= self::getTextString('TEXT', $feature->text, $indentSize + 1, $indent);
 
-        foreach ($feature->points as $points) {
-            $this->text .= (new Points())->write($points, $indentSize + 1, $indent);
+        if (count($feature->points) > 0) {
+            $this->text .= (new Points())->write($feature->points, $indentSize + 1, $indent);
         }
 
         foreach ($feature->wkt as $wkt) {
