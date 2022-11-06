@@ -16,7 +16,7 @@ final class CompositeTest extends TestCase
         $parser = new Composite($this->stub);
         $composite = $parser->parse();
 
-        $this->assertEquals(100, $composite->opacity);
-        $this->assertEquals('darken', $composite->compop);
+        $this->assertSame(100, $composite->opacity);
+        $this->assertSame('darken', $composite->compop);
     }
 }

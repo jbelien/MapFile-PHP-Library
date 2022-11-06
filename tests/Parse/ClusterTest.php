@@ -16,8 +16,8 @@ final class ClusterTest extends TestCase
         $parser = new Cluster($this->stub);
         $cluster = $parser->parse();
 
-        $this->assertEquals(0.5, $cluster->buffer);
-        $this->assertEquals(1.5, $cluster->maxdistance);
-        $this->assertEquals('rectangle', $cluster->region);
+        $this->assertSame(0.5, $cluster->buffer);
+        $this->assertSame(1.5, $cluster->maxdistance);
+        $this->assertSame('rectangle', $cluster->region);
     }
 }
