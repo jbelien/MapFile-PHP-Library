@@ -1,0 +1,12 @@
+JOIN
+  CONNECTION "server:user:password:database"
+  CONNECTIONTYPE MYSQL
+  FOOTER "footer.html"
+  FROM "ID"
+  HEADER "header.html"
+  NAME "mysql-join"
+  TABLE "mysql-tablename"
+  TEMPLATE "template.html"
+  TO "mysql-column"
+  TYPE ONE-TO-ONE
+END # JOIN
