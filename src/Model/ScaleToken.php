@@ -20,6 +20,6 @@ class ScaleToken extends MapFileObject
 {
     /** @var string */
     public $name;
-    /** @var string[] */
+    /** @var array<string,string> */
     public $values = [];
 }

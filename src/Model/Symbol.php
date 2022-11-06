@@ -35,7 +35,7 @@ class Symbol extends MapFileObject
     public $image;
     /** @var string Alias for the symbol. */
     public $name;
-    /** @var float[][] Sequence of points that make up a symbol of TYPE vector or that define the x and y radius of a symbol of TYPE ellipse. */
+    /** @var array<array<float>> Sequence of points that make up a symbol of TYPE vector or that define the x and y radius of a symbol of TYPE ellipse. */
     public $points;
     /** @var int Sets a transparent color for the input image for pixmap symbols, or determines whether all shade symbols should have a transparent background. */
     public $transparent;

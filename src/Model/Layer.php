@@ -97,7 +97,7 @@ class Layer extends MapFileObject
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $maxscaledenom;
-    /** @var string[] List of metadata's. */
+    /** @var array<string,string> List of metadata's. */
     public $metadata = [];
     /** @var float Minimum width, in the map’s geographic units, at which this LAYER is drawn. */
     public $mingeowidth;
@@ -168,7 +168,7 @@ class Layer extends MapFileObject
     public $utfdata;
     /** @var string The attribute to use as the ID for the UTFGrid. */
     public $utfitem;
-    /** @var string[] */
+    /** @var array<string,string> */
     public $validation;
 
     /**

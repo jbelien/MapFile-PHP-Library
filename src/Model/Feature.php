@@ -21,7 +21,7 @@ namespace MapFile\Model;
  */
 class Feature extends MapFileObject
 {
-    /** @var array A set of xy pairs. */
+    /** @var array<array<float>> A set of xy pairs. */
     public $points = [];
     /** @var string Semicolon separated list of the feature attributes. */
     public $items;

@@ -57,7 +57,7 @@ class LayerClass extends MapFileObject
     public $template;
     /** @var string Text to label features in this class with. */
     public $text;
-    /** @var string[] */
+    /** @var array<string,string> */
     public $validation;
 
     /**

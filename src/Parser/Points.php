@@ -16,7 +16,7 @@ use MapFile\Exception\UnsupportedException;
 class Points extends Parser
 {
     /**
-     * @return float[][]
+     * @return array<array<float>>
      */
     public function parse(?array $content = null): array
     {
@@ -24,7 +24,7 @@ class Points extends Parser
             $this->content = $content;
         }
 
-        /** @var float[][] */
+        /** @var array<array<float>> */
         $points = [];
 
         while ($this->eof === false) {

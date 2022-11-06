@@ -75,7 +75,7 @@ class Style extends MapFileObject
     public $outlinecolor;
     /** @var float|string Width in pixels for the outline. */
     public $outlinewidth;
-    /** @var float[][] Used to define a dash pattern for line work (lines, polygon outlines, hatch lines, …). */
+    /** @var array<array<float>> Used to define a dash pattern for line work (lines, polygon outlines, hatch lines, …). */
     public $pattern;
     /** @var float[]|string[] Offset given in polar coordinates. */
     public $polaroffset;

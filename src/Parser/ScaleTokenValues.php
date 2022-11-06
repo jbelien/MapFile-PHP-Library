@@ -16,7 +16,7 @@ use MapFile\Exception\UnsupportedException;
 class ScaleTokenValues extends Parser
 {
     /**
-     * @return string[]
+     * @return array<string,string>
      */
     public function parse(?array $content = null): array
     {
@@ -24,7 +24,7 @@ class ScaleTokenValues extends Parser
             $this->content = $content;
         }
 
-        /** @var string[] */
+        /** @var array<string,string> */
         $values = [];
 
         while ($this->eof === false) {

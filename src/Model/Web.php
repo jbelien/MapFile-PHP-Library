@@ -41,7 +41,7 @@ class Web extends MapFileObject
     public $maxscaledenom;
     /** @var string Template to be used if below the minimum scale for the app. */
     public $maxtemplate;
-    /** @var string[] This keyword allows for arbitrary data to be stored as name value pairs. */
+    /** @var array<string,string> This keyword allows for arbitrary data to be stored as name value pairs. */
     public $metadata = [];
     /** @var float Maximum scale at which this interface is valid. */
     public $minscaledenom;
@@ -53,6 +53,6 @@ class Web extends MapFileObject
     public $template;
     /** @var string Path for storing temporary files. */
     public $temppath;
-    /** @var string[] */
+    /** @var array<string,string> */
     public $validation;
 }
