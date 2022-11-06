@@ -15,12 +15,16 @@ use MapFile\Exception\UnsupportedException;
 
 class Pattern extends Parser
 {
+    /**
+     * @return float[][]
+     */
     public function parse(?array $content = null): array
     {
         if (!is_null($content)) {
             $this->content = $content;
         }
 
+        /** @var float[][] */
         $pattern = [];
 
         while ($this->eof === false) {
@@ -34,8 +38,8 @@ class Pattern extends Parser
                 $this->parsing = 'PATTERN';
             } elseif ($this->parsing === 'PATTERN' && preg_match('/^([0-9]+(?:\.(?:[0-9]+))?) ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) !== false) {
                 $pattern[] = [
-                    $matches[1],
-                    $matches[2],
+                    floatval($matches[1]),
+                    floatval($matches[2]),
                 ];
             } elseif ($this->parsing === 'PATTERN' && preg_match('/^END( # PATTERN)?$/i', $line) !== false) {
                 $this->lineEnd = $this->currentLineIndex;

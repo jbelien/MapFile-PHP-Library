@@ -15,12 +15,16 @@ use MapFile\Exception\UnsupportedException;
 
 class Metadata extends Parser
 {
+    /**
+     * @return string[]
+     */
     public function parse(?array $content = null): array
     {
         if (!is_null($content)) {
             $this->content = $content;
         }
 
+        /** @var string[] */
         $values = [];
 
         while ($this->eof === false) {
