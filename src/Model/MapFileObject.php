@@ -11,6 +11,6 @@ declare(strict_types=1);
 
 namespace MapFile\Model;
 
-abstract class MapFileObject {
-
+abstract class MapFileObject
+{
 }

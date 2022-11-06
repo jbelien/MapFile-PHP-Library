@@ -21,8 +21,9 @@ interface WriterInterface
 
     /**
      * @param MapFileObject|string|array<string,string>|array<array<float>> $object
-     * @param int $indentSize
-     * @param string $indent
+     * @param int                                                           $indentSize
+     * @param string                                                        $indent
+     *
      * @return string
      */
     public function write($object, int $indentSize = 0, string $indent = self::WRITER_INDENT): string;
