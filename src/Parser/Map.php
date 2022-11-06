@@ -115,7 +115,7 @@ class Map extends Parser
 
                 $map->reference = $reference;
 
-                $this->currentLineIndex = $querymapParser->lineEnd;
+                $this->currentLineIndex = $referenceParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^RESOLUTION ([0-9]+)$/i', $line, $matches) !== false) {
                 $map->resolution = intval($matches[1]);
             } elseif ($this->parsing === 'MAP' && preg_match('/^SCALEBAR$/i', $line) !== false) {
@@ -126,7 +126,7 @@ class Map extends Parser
 
                 $this->currentLineIndex = $scalebarParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^SCALEDENOM ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) !== false) {
-                $layer->scaledenom = floatval($matches[1]);
+                $map->scaledenom = floatval($matches[1]);
             } elseif ($this->parsing === 'MAP' && preg_match('/^SHAPEPATH ["\'](.+)["\']$/i', $line, $matches) !== false) {
                 $map->shapepath = $matches[1];
             } elseif ($this->parsing === 'MAP' && preg_match('/^SIZE ([0-9]+) ([0-9]+)$/i', $line, $matches) !== false) {
