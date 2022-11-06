@@ -35,7 +35,7 @@ class LayerClass extends Writer
         $this->text .= self::getText('TEXT', $class->text, $indentSize + 1, $indent);
 
         if (!is_null($class->validation)) {
-            $this->text .= (new Validation())->write($layer->validation, $indentSize + 1, $indent);
+            $this->text .= (new Validation())->write($class->validation, $indentSize + 1, $indent);
         }
 
         foreach ($class->label as $label) {
