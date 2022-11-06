@@ -34,7 +34,14 @@ abstract class Writer implements WriterInterface
         return false;
     }
 
-    protected static function getTextRaw(string $key, mixed $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @param int $indentSize
+     * @param string $indent
+     * @return string
+     */
+    protected static function getTextRaw(string $key, $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $text = '';
 
