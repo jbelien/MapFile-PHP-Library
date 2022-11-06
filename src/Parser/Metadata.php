@@ -15,26 +15,30 @@ use MapFile\Exception\UnsupportedException;
 
 class Metadata extends Parser
 {
-    public function parse($content = null): array
+    /**
+     * @return string[]
+     */
+    public function parse(?array $content = null): array
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 
+        /** @var string[] */
         $values = [];
 
         while ($this->eof === false) {
             $line = $this->getCurrentLine();
-            if (empty($line)) {
+            if (strlen($line) === 0) {
                 continue;
             }
 
-            if (preg_match('/^METADATA$/i', $line)) {
+            if (preg_match('/^METADATA$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'METADATA';
-            } elseif ($this->parsing === 'METADATA' && preg_match('/^["\'](.+)["\']\s["\'](.*)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'METADATA' && preg_match('/^["\'](.+)["\']\s["\'](.*)["\']$/i', $line, $matches) === 1) {
                 $values[$matches[1]] = $matches[2];
-            } elseif ($this->parsing === 'METADATA' && preg_match('/^END( # METADATA)?$/i', $line)) {
+            } elseif ($this->parsing === 'METADATA' && preg_match('/^END( # METADATA)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

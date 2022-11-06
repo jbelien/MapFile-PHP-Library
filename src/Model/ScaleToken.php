@@ -16,10 +16,10 @@ namespace MapFile\Model;
  *
  * @author Jonathan Beliën
  */
-class ScaleToken
+class ScaleToken extends MapFileObject
 {
-    /** @var string */
+    /** @var null|string */
     public $name;
-    /** @var string[] */
+    /** @var array<string,string> */
     public $values = [];
 }

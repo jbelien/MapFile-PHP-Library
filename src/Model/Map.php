@@ -21,70 +21,70 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @link https://mapserver.org/mapfile/map.html
  */
-class Map
+class Map extends MapFileObject
 {
-    /** @var float Angle, given in degrees, to rotate the map. */
+    /** @var null|float Angle, given in degrees, to rotate the map. */
     public $angle;
     /** @var string[] This can be used to specify several values at run-time, for both MapServer and GDAL/OGR libraries. */
     public $config = [];
-    /** @var string This defines a regular expression to be applied to requests to change DATA parameters via URL requests (i.e. map.layer[layername]=DATA+…). */
+    /** @var null|string This defines a regular expression to be applied to requests to change DATA parameters via URL requests (i.e. map.layer[layername]=DATA+…). */
     public $datapattern;
-    /** @var int Enables debugging of a layer in the current map. */
+    /** @var null|int Enables debugging of a layer in the current map. */
     public $debug;
-    /** @var int Sets the reference resolution (pixels per inch) used for symbology. */
+    /** @var null|int Sets the reference resolution (pixels per inch) used for symbology. */
     public $defresolution;
-    /** @var float[] Spatial extent. */
+    /** @var null|float[] Spatial extent. */
     public $extent;
-    /** @var string Filename of fontset file to use. */
+    /** @var null|string Filename of fontset file to use. */
     public $fontset;
-    /** @var int[]|string Map background color (RGB Format). */
+    /** @var null|int[]|string Map background color (RGB Format). */
     public $imagecolor;
-    /** @var string Output format (raster or vector) to generate. */
+    /** @var null|string Output format (raster or vector) to generate. */
     public $imagetype;
     /** @var string[] */
     public $include = [];
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var ArrayCollection<int,Layer> */
     public $layer;
-    /** @var \MapFile\Model\Legend */
+    /** @var null|Legend */
     public $legend;
-    /** @var int Sets the maximum size of the map image. */
+    /** @var null|int Sets the maximum size of the map image. */
     public $maxsize;
-    /** @var string MapFile name. */
+    /** @var null|string MapFile name. */
     public $name;
-    /** @var \MapFile\Model\OutputFormat */
+    /** @var null|OutputFormat */
     public $outputformat;
     /**
-     * @var string MapFile EPSG Projection.
+     * @var null|string MapFile EPSG Projection.
      *
      * @link http://epsg.io/
      * @link http://spatialreference.org/ref/epsg/
      */
     public $projection;
-    /** @var \MapFile\Model\QueryMap */
+    /** @var null|QueryMap */
     public $querymap;
-    /** @var \MapFile\Model\Reference */
+    /** @var null|Reference */
     public $reference;
-    /** @var int Sets the pixels per inch for output. */
+    /** @var null|int Sets the pixels per inch for output. */
     public $resolution;
-    /** @var \MapFile\Model\Scalebar */
+    /** @var null|Scalebar */
     public $scalebar;
-    /** @var float Computed scale of the map. */
+    /** @var null|float Computed scale of the map. */
     public $scaledenom;
-    /** @var string Path to the directory holding the shapefiles or tiles. */
+    /** @var null|string Path to the directory holding the shapefiles or tiles. */
     public $shapepath;
-    /** @var int[] Size in pixels of the output image. */
+    /** @var null|int[] Size in pixels of the output image. */
     public $size;
-    /** @var string MapFile Status (Is the map active ?). */
+    /** @var null|string MapFile Status (Is the map active ?). */
     public $status;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var ArrayCollection<int,Symbol> */
     public $symbol;
-    /** @var string Filename of the symbolset to use. */
+    /** @var null|string Filename of the symbolset to use. */
     public $symbolset;
-    /** @var string This defines a regular expression to be applied to requests to change the TEMPLATE parameters via URL requests (i.e. map.layer[layername].template=…). */
+    /** @var null|string This defines a regular expression to be applied to requests to change the TEMPLATE parameters via URL requests (i.e. map.layer[layername].template=…). */
     public $templatepattern;
-    /** @var string Units of the map coordinates. */
+    /** @var null|string Units of the map coordinates. */
     public $units;
-    /** @var \MapFile\Model\Web */
+    /** @var null|Web */
     public $web;
 
     /**

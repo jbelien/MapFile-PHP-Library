@@ -15,29 +15,33 @@ use MapFile\Exception\UnsupportedException;
 
 class Pattern extends Parser
 {
-    public function parse($content = null): array
+    /**
+     * @return array<array<float>>
+     */
+    public function parse(?array $content = null): array
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 
+        /** @var array<array<float>> */
         $pattern = [];
 
         while ($this->eof === false) {
             $line = $this->getCurrentLine();
-            if (empty($line)) {
+            if (strlen($line) === 0) {
                 continue;
             }
 
-            if (preg_match('/^PATTERN$/i', $line)) {
+            if (preg_match('/^PATTERN$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'PATTERN';
-            } elseif ($this->parsing === 'PATTERN' && preg_match('/^([0-9]+(?:\.(?:[0-9]+))?) ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'PATTERN' && preg_match('/^([0-9]+(?:\.(?:[0-9]+))?) ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
                 $pattern[] = [
-                    $matches[1],
-                    $matches[2],
+                    floatval($matches[1]),
+                    floatval($matches[2]),
                 ];
-            } elseif ($this->parsing === 'PATTERN' && preg_match('/^END( # PATTERN)?$/i', $line)) {
+            } elseif ($this->parsing === 'PATTERN' && preg_match('/^END( # PATTERN)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

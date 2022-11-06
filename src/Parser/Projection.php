@@ -15,9 +15,9 @@ use MapFile\Exception\UnsupportedException;
 
 class Projection extends Parser
 {
-    public function parse($content = null): string
+    public function parse(?array $content = null): string
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 
@@ -25,18 +25,18 @@ class Projection extends Parser
 
         while ($this->eof === false) {
             $line = $this->getCurrentLine();
-            if (empty($line)) {
+            if (strlen($line) === 0) {
                 continue;
             }
 
-            if (preg_match('/^PROJECTION$/i', $line)) {
+            if (preg_match('/^PROJECTION$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'PROJECTION';
-            } elseif ($this->parsing === 'PROJECTION' && preg_match('/^(AUTO)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'PROJECTION' && preg_match('/^(AUTO)$/i', $line, $matches) === 1) {
                 $projection = $matches[1];
-            } elseif ($this->parsing === 'PROJECTION' && preg_match('/^"init=(.+)"$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'PROJECTION' && preg_match('/^"init=(.+)"$/i', $line, $matches) === 1) {
                 $projection = $matches[1];
-            } elseif ($this->parsing === 'PROJECTION' && preg_match('/^END( # PROJECTION)?$/i', $line)) {
+            } elseif ($this->parsing === 'PROJECTION' && preg_match('/^END( # PROJECTION)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

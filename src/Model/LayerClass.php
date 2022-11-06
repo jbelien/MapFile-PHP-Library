@@ -21,43 +21,43 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @link https://mapserver.org/mapfile/class.html
  */
-class LayerClass
+class LayerClass extends MapFileObject
 {
-    /** @var string Enables debugging of the class object. */
+    /** @var null|string Enables debugging of the class object. */
     public $debug;
-    /** @var string Defines which class a feature belongs to. */
+    /** @var null|string Defines which class a feature belongs to. */
     public $expression;
-    /** @var string Allows for grouping of classes. */
+    /** @var null|string Allows for grouping of classes. */
     public $group;
-    /** @var string Full filename of the legend image for the CLASS. */
+    /** @var null|string Full filename of the legend image for the CLASS. */
     public $keyimage;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var ArrayCollection<int,Label> */
     public $label;
-    /** @var \MapFile\Model\Leader */
+    /** @var null|Leader */
     public $leader;
     /**
-     * @var float Minimum scale at which this CLASS is drawn.
+     * @var null|float Minimum scale at which this CLASS is drawn.
      *
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $maxscaledenom;
     /**
-     * @var float Maximum scale at which this CLASS is drawn.
+     * @var null|float Maximum scale at which this CLASS is drawn.
      *
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $minscaledenom;
-    /** @var string Name to use in legends for this class. */
+    /** @var null|string Name to use in legends for this class. */
     public $name;
-    /** @var string Sets the current display status of the class. */
+    /** @var null|string Sets the current display status of the class. */
     public $status;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var ArrayCollection<int,Style> */
     public $style;
-    /** @var string Template file or URL to use in presenting query results to the user. */
+    /** @var null|string Template file or URL to use in presenting query results to the user. */
     public $template;
-    /** @var string Text to label features in this class with. */
+    /** @var null|string Text to label features in this class with. */
     public $text;
-    /** @var string[] */
+    /** @var null|array<string,string> */
     public $validation;
 
     /**

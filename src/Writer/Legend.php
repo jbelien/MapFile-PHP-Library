@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Legend as LegendObject;
+
 class Legend extends Writer
 {
     public function write($legend, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$legend instanceof LegendObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Legend", instance of "%s" given.',
+                    gettype($legend) === 'object' ? get_class($legend) : gettype($legend)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'LEGEND'.PHP_EOL;
 

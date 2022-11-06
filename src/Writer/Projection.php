@@ -11,10 +11,21 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+
 class Projection extends Writer
 {
     public function write($projection, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!is_string($projection)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be a string, "%s" given.',
+                    gettype($projection)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'PROJECTION'.PHP_EOL;
 

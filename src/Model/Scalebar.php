@@ -19,34 +19,34 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/scalebar.html
  */
-class Scalebar
+class Scalebar extends MapFileObject
 {
-    /** @var string Defines how the scalebar is aligned within the scalebar image. */
+    /** @var null|string Defines how the scalebar is aligned within the scalebar image. */
     public $align;
-    /** @var int[]|string Color to use for scalebar background, not the image background. */
+    /** @var null|int[]|string Color to use for scalebar background, not the image background. */
     public $backgroundcolor;
-    /** @var int[]|string Color to use for drawing all features if attribute tables are not used. */
+    /** @var null|int[]|string Color to use for drawing all features if attribute tables are not used. */
     public $color;
-    /** @var int[]|string Color to initialize the scalebar with (i.e. background). */
+    /** @var null|int[]|string Color to initialize the scalebar with (i.e. background). */
     public $imagecolor;
-    /** @var int Number of intervals to break the scalebar into. */
+    /** @var null|int Number of intervals to break the scalebar into. */
     public $intervals;
-    /** @var \MapFile\Model\Label */
+    /** @var null|Label */
     public $label;
-    /** @var int[] OFFSET moves the scalebar closer to the center of the map. */
+    /** @var null|int[] OFFSET moves the scalebar closer to the center of the map. */
     public $offset;
-    /** @var int[]|string Color to use for outlining individual intervals. */
+    /** @var null|int[]|string Color to use for outlining individual intervals. */
     public $outlinecolor;
-    /** @var string Where to place an embedded scalebar in the image. */
+    /** @var null|string Where to place an embedded scalebar in the image. */
     public $position;
-    /** @var bool Tells the MapServer to embed the scalebar after all labels in the cache have been drawn. */
+    /** @var null|bool Tells the MapServer to embed the scalebar after all labels in the cache have been drawn. */
     public $postlabelcache;
-    /** @var int[] Size in pixels of the scalebar. */
+    /** @var null|int[] Size in pixels of the scalebar. */
     public $size;
-    /** @var string Is the scalebar image to be created, and if so should it be embedded into the image ? */
+    /** @var null|string Is the scalebar image to be created, and if so should it be embedded into the image ? */
     public $status;
-    /** @var int Chooses the scalebar style. */
+    /** @var null|int Chooses the scalebar style. */
     public $style;
-    /** @var string Output scalebar units. */
+    /** @var null|string Output scalebar units. */
     public $units;
 }

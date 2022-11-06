@@ -11,10 +11,21 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+
 class Pattern extends Writer
 {
     public function write($pattern, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!is_array($pattern)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an array, "%s" given.',
+                    gettype($pattern)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'PATTERN'.PHP_EOL;
 

@@ -8,6 +8,8 @@
         "doctrine/collections": "^1.5"
     },
     "require-dev": {
+        "phpstan/phpstan": "^1.9",
+        "phpstan/phpstan-strict-rules": "^1.4",
         "phpunit/phpunit": "^9.0",
         "squizlabs/php_codesniffer": "^3.3"
     },
@@ -21,12 +23,16 @@
             "/Tests/"
         ]
     },
+    "config": {
+        "sort-packages": true
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "2.x-dev"
         }
     },
     "scripts": {
+        "analyze": "phpstan analyze",
         "cs-check": "phpcs",
         "cs-fix": "phpcbf"
     }
