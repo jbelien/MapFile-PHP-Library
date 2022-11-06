@@ -45,7 +45,7 @@ class Feature extends Parser
             } elseif ($this->parsing === 'FEATURE' && preg_match('/^TEXT ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $feature->text = $matches[1];
             } elseif ($this->parsing === 'FEATURE' && preg_match('/^WKT ["\'](.+)["\']$/i', $line, $matches) === 1) {
-                $feature->wkt[] = $matches[1];
+                $feature->wkt = $matches[1];
             } elseif ($this->parsing === 'FEATURE' && preg_match('/^END( # FEATURE)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;

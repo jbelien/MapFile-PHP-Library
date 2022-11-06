@@ -31,15 +31,13 @@ class Feature extends Writer
         $this->text .= 'FEATURE'.PHP_EOL;
 
         $this->text .= self::getTextString('ITEMS', $feature->items, $indentSize + 1, $indent);
-        $this->text .= self::getTextString('TEXT', $feature->text, $indentSize + 1, $indent);
 
         if (count($feature->points) > 0) {
             $this->text .= (new Points())->write($feature->points, $indentSize + 1, $indent);
         }
 
-        foreach ($feature->wkt as $wkt) {
-            $this->text .= self::getTextString('WKT', $wkt, $indentSize + 1, $indent);
-        }
+        $this->text .= self::getTextString('TEXT', $feature->text, $indentSize + 1, $indent);
+        $this->text .= self::getTextString('WKT', $feature->wkt, $indentSize + 1, $indent);
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # FEATURE'.PHP_EOL;
