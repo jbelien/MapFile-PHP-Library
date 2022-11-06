@@ -18,10 +18,12 @@
     "autoload": {
         "psr-4": {
             "MapFile\\": "src/"
-        },
-        "exclude-from-classmap": [
-            "/Tests/"
-        ]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "config": {
         "sort-packages": true
@@ -34,6 +36,8 @@
     "scripts": {
         "analyze": "phpstan analyze",
         "cs-check": "phpcs",
-        "cs-fix": "phpcbf"
+        "cs-fix": "phpcbf",
+        "test": "phpunit --colors=always",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     }
 }
