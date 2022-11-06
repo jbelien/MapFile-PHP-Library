@@ -10,7 +10,7 @@
     "require-dev": {
         "phpstan/phpstan": "^1.9",
         "phpstan/phpstan-strict-rules": "^1.4",
-        "phpunit/phpunit": "^9.0",
+        "phpunit/phpunit": "^9.5",
         "squizlabs/php_codesniffer": "^3.3"
     },
     "minimum-stability": "dev",
