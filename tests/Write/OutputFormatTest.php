@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Write;
 
 use MapFile\Model\OutputFormat as OutputFormatObject;
-use MapFile\Model\Style;
 use MapFile\Writer\OutputFormat;
 use Tests\WriteTest;
 

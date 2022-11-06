@@ -25,7 +25,7 @@ final class ReferenceTest extends WriteTest
         $reference->maxboxsize = 5;
         $reference->outlinecolor = [0, 0, 255];
         $reference->size = [10, 10];
-        $reference->status ='ON';
+        $reference->status = 'ON';
 
         $writer = new Reference($this->path);
         $writer->write($reference);

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tests\Write;
 
 use MapFile\Model\QueryMap as QueryMapObject;
-use MapFile\Model\Style;
 use MapFile\Writer\QueryMap;
 use Tests\WriteTest;
 
