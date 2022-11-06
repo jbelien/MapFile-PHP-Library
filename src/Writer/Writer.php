@@ -15,8 +15,6 @@ use InvalidArgumentException;
 
 abstract class Writer implements WriterInterface
 {
-    const WRITER_INDENT = '  ';
-
     protected $file;
     protected $text;
 

@@ -13,6 +13,8 @@ namespace MapFile\Writer;
 
 interface WriterInterface
 {
+    const WRITER_INDENT = '  ';
+
     public function save(): bool;
 
     public function write($object, int $indentSize = 0, string $indent = self::WRITER_INDENT);
