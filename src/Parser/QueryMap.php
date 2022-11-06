@@ -14,7 +14,7 @@ namespace MapFile\Parser;
 use MapFile\Exception\UnsupportedException;
 use MapFile\Model\QueryMap as QueryMapObject;
 
-class QueryMap
+class QueryMap extends Parser
 {
     public function parse(?array $content = null): QueryMapObject
     {
