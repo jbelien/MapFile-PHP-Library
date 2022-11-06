@@ -42,7 +42,7 @@ class Label extends Parser
             } elseif ($this->parsing === 'LABEL' && preg_match('/^ANGLE (\[.+\])$/i', $line, $matches) === 1) {
                 $label->angle = $matches[1];
             } elseif ($this->parsing === 'LABEL' && preg_match('/^ANTIALIAS (TRUE|FALSE)$/i', $line, $matches) === 1) {
-                $label->antialias = (strtoupper($matches[1]) === true);
+                $label->antialias = (strtoupper($matches[1]) === 'TRUE');
             } elseif ($this->parsing === 'LABEL' && preg_match('/^BUFFER ([0-9]+)$/i', $line, $matches) === 1) {
                 $label->buffer = intval($matches[1]);
             } elseif ($this->parsing === 'LABEL' && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches) === 1) {
@@ -68,7 +68,7 @@ class Label extends Parser
             } elseif ($this->parsing === 'LABEL' && preg_match('/^FONT (\[.+\])$/i', $line, $matches) === 1) {
                 $label->font = $matches[1];
             } elseif ($this->parsing === 'LABEL' && preg_match('/^FORCE (TRUE|FALSE)$/i', $line, $matches) === 1) {
-                $label->force = (strtoupper($matches[1]) === true);
+                $label->force = (strtoupper($matches[1]) === 'TRUE');
             } elseif ($this->parsing === 'LABEL' && preg_match('/^MAXLENGTH ([0-9]+)$/i', $line, $matches) === 1) {
                 $label->maxlength = intval($matches[1]);
             } elseif ($this->parsing === 'LABEL' && preg_match('/^MAXOVERLAPANGLE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
@@ -105,7 +105,7 @@ class Label extends Parser
             } elseif ($this->parsing === 'LABEL' && preg_match('/^OUTLINEWIDTH ([0-9]+)$/i', $line, $matches) === 1) {
                 $label->outlinewidth = intval($matches[1]);
             } elseif ($this->parsing === 'LABEL' && preg_match('/^PARTIALS (TRUE|FALSE)$/i', $line, $matches) === 1) {
-                $label->partials = (strtoupper($matches[1]) === true);
+                $label->partials = (strtoupper($matches[1]) === 'TRUE');
             } elseif ($this->parsing === 'LABEL' && preg_match('/^POSITION (UL|UC|UR|CL|CC|CR|LL|LC|LR|AUTO)$/i', $line, $matches) === 1) {
                 $label->position = strtoupper($matches[1]);
             } elseif ($this->parsing === 'LABEL' && preg_match('/^PRIORITY ([0-9]+)$/i', $line, $matches) === 1) {

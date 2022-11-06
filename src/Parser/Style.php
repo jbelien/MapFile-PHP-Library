@@ -40,7 +40,7 @@ class Style extends Parser
             } elseif ($this->parsing === 'STYLE' && preg_match('/^ANGLE (AUTO)$/i', $line, $matches) === 1) {
                 $style->angle = strtoupper($matches[1]);
             } elseif ($this->parsing === 'STYLE' && preg_match('/^ANTIALIAS (TRUE|FALSE)$/i', $line, $matches) === 1) {
-                $style->antialias = (strtoupper($matches[1]) === true);
+                $style->antialias = (strtoupper($matches[1]) === 'TRUE');
             } elseif ($this->parsing === 'STYLE' && preg_match('/^COLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches) === 1) {
                 $style->color = [
                     intval($matches[1]),
