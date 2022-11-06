@@ -92,7 +92,7 @@ class Map extends Parser
                 $outputformatParser = new OutputFormat($this->file, $this->currentLineIndex - 1);
                 $outputformat = $outputformatParser->parse($this->content);
 
-                $map->outputformat = $outputformat;
+                $map->outputformat->add($outputformat);
 
                 $this->currentLineIndex = $outputformatParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^PROJECTION$/i', $line)) {

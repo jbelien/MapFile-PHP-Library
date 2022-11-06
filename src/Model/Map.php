@@ -51,7 +51,7 @@ class Map
     public $maxsize;
     /** @var string MapFile name. */
     public $name;
-    /** @var \MapFile\Model\OutputFormat */
+    /** @var \Doctrine\Common\Collections\ArrayCollection */
     public $outputformat;
     /**
      * @var string MapFile EPSG Projection.
@@ -94,5 +94,6 @@ class Map
     {
         $this->layer = new ArrayCollection();
         $this->symbol = new ArrayCollection();
+        $this->outputformat = new ArrayCollection();
     }
 }
