@@ -26,7 +26,7 @@ class Composite extends Parser
 
         while ($this->eof === false) {
             $line = $this->getCurrentLine();
-            if (empty($line)) {
+            if (strlen($line) === 0) {
                 continue;
             }
 

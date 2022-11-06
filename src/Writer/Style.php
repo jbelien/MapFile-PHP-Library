@@ -38,7 +38,7 @@ class Style extends Writer
         $this->text .= is_array($style->outlinecolor) ? self::getTextArray('OUTLINECOLOR', $style->outlinecolor, $indentSize + 1, $indent) : self::getText('OUTLINECOLOR', $style->outlinecolor, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('OUTLINEWIDTH', $style->outlinewidth, $indentSize + 1, $indent);
 
-        if (!empty($style->pattern)) {
+        if (count($style->pattern) > 0) {
             $this->text .= (new Pattern())->write($style->pattern, $indentSize + 1, $indent);
         }
 

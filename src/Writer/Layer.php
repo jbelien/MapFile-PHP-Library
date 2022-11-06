@@ -52,7 +52,7 @@ class Layer extends Writer
         $this->text .= self::getTextRaw('MAXGEOWIDTH', $layer->maxgeowidth, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('MAXSCALEDENOM', $layer->maxscaledenom, $indentSize + 1, $indent);
 
-        if (!empty($layer->metadata)) {
+        if (count($layer->metadata) > 0) {
             $this->text .= (new Metadata())->write($layer->metadata, $indentSize + 1, $indent);
         }
 
