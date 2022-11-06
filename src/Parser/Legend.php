@@ -86,6 +86,6 @@ class Legend extends Parser
             }
         }
 
-        return $legend ?? null;
+        return $legend;
     }
 }
