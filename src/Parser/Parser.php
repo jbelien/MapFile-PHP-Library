@@ -16,12 +16,19 @@ use OutOfBoundsException;
 
 abstract class Parser implements ParserInterface
 {
+    /** @var null|string[] */
     protected $content;
+    /** @var int */
     protected $currentLineIndex;
+    /** @var bool */
     protected $eof = false;
+    /** @var string */
     protected $file;
+    /** @var int */
     protected $lineEnd;
+    /** @var int */
     protected $lineStart;
+    /** @var null|string */
     protected $parsing;
 
     public function __construct(string $file, int $lineNumber = 0)
@@ -49,14 +56,24 @@ abstract class Parser implements ParserInterface
         }
 
         if (is_null($this->content)) {
-            $this->content = file($this->file);
+            $content = file($this->file);
+
+            if ($content === false) {
+                throw new FileException(
+                    sprintf('File "%s" is not parsable.', $this->file)
+                );
+            }
+
+            $this->content = $content;
         }
 
         $line = $this->content[$this->currentLineIndex];
 
         $line = trim($line);
 
+        /** @var string */
         $line = preg_replace('/^#(.+)$/', '', $line);
+        /** @var string */
         $line = preg_replace('/\s*[^"\']#(.+)[^"\']$/', '', $line);
 
         $line = trim($line);
