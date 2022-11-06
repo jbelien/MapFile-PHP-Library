@@ -77,7 +77,7 @@ class Label extends MapFileObject
     public $repeatdistance;
     /** @var int[]|string Color of drop shadow. */
     public $shadowcolor;
-    /** @var array Shadow offset in pixels. */
+    /** @var array<int|string> Shadow offset in pixels. */
     public $shadowsize;
     /** @var string|int Text size. */
     public $size;

@@ -43,7 +43,7 @@ class Map extends MapFileObject
     public $imagetype;
     /** @var string[] */
     public $include = [];
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var \Doctrine\Common\Collections\ArrayCollection<int,Layer> */
     public $layer;
     /** @var \MapFile\Model\Legend */
     public $legend;
@@ -76,7 +76,7 @@ class Map extends MapFileObject
     public $size;
     /** @var string MapFile Status (Is the map active ?). */
     public $status;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var \Doctrine\Common\Collections\ArrayCollection<int,Symbol> */
     public $symbol;
     /** @var string Filename of the symbolset to use. */
     public $symbolset;

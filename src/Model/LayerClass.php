@@ -31,7 +31,7 @@ class LayerClass extends MapFileObject
     public $group;
     /** @var string Full filename of the legend image for the CLASS. */
     public $keyimage;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var \Doctrine\Common\Collections\ArrayCollection<int,Label> */
     public $label;
     /** @var \MapFile\Model\Leader */
     public $leader;
@@ -51,7 +51,7 @@ class LayerClass extends MapFileObject
     public $name;
     /** @var string Sets the current display status of the class. */
     public $status;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var \Doctrine\Common\Collections\ArrayCollection<int,Style> */
     public $style;
     /** @var string Template file or URL to use in presenting query results to the user. */
     public $template;

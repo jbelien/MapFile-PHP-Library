@@ -27,7 +27,7 @@ class Leader extends MapFileObject
     public $gridstep;
     /** @var int Specifies the maximum distance in pixels from the normal label location that a leader line can be drawn. */
     public $maxdistance;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var \Doctrine\Common\Collections\ArrayCollection<int,Style> */
     public $style;
 
     /**

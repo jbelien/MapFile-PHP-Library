@@ -25,13 +25,13 @@ class Layer extends MapFileObject
 {
     /** @var string Specify the class’s group that would be considered at rendering time. */
     public $classgroup;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var \Doctrine\Common\Collections\ArrayCollection<int,LayerClass> */
     public $class;
     /** @var string Item name in attribute table to use for class lookups. */
     public $classitem;
     /** @var \MapFile\Model\Cluster */
     public $cluster;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var \Doctrine\Common\Collections\ArrayCollection<int,Composite> */
     public $composite;
     /** @var string Database connection string to retrieve remote data. */
     public $connection;
@@ -45,7 +45,7 @@ class Layer extends MapFileObject
     public $encoding;
     /** @var float[] Spatial extent. */
     public $extent;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var \Doctrine\Common\Collections\ArrayCollection<int,Feature> */
     public $feature;
     /** @var string Data specific attribute filtering. */
     public $filter;
@@ -65,7 +65,7 @@ class Layer extends MapFileObject
     public $group;
     /** @var string Template to use before a layer’s set of results have been sent. */
     public $header;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var \Doctrine\Common\Collections\ArrayCollection<int,Join> */
     public $join;
     /** @var string Specifies whether labels should be drawn as the features for this layer are drawn, or whether they should be cached and drawn after all layers have been drawn. */
     public $labelcache;
