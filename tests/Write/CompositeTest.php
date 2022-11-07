@@ -20,7 +20,7 @@ final class CompositeTest extends WriteTest
         $writer->write($cluster);
         $result = $writer->save();
 
-        $this->assertTrue($result);
-        $this->assertFileEquals($this->stub, $this->path);
+        self::assertTrue($result);
+        self::assertFileEquals($this->stub, $this->path);
     }
 }

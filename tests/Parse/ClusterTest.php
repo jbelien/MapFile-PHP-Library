@@ -14,8 +14,8 @@ final class ClusterTest extends ParseTest
         $parser = new Cluster($this->stub);
         $cluster = $parser->parse();
 
-        $this->assertSame(0.5, $cluster->buffer);
-        $this->assertSame(1.5, $cluster->maxdistance);
-        $this->assertSame('rectangle', $cluster->region);
+        self::assertSame(0.5, $cluster->buffer);
+        self::assertSame(1.5, $cluster->maxdistance);
+        self::assertSame('rectangle', $cluster->region);
     }
 }

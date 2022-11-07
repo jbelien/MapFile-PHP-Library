@@ -28,7 +28,7 @@ final class JoinTest extends WriteTest
         $writer->write($join);
         $result = $writer->save();
 
-        $this->assertTrue($result);
-        $this->assertFileEquals($this->stub, $this->path);
+        self::assertTrue($result);
+        self::assertFileEquals($this->stub, $this->path);
     }
 }

@@ -28,7 +28,7 @@ final class ReferenceTest extends WriteTest
         $writer->write($reference);
         $result = $writer->save();
 
-        $this->assertTrue($result);
-        $this->assertFileEquals($this->stub, $this->path);
+        self::assertTrue($result);
+        self::assertFileEquals($this->stub, $this->path);
     }
 }

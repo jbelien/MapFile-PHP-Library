@@ -14,7 +14,7 @@ final class ScaleTokenTest extends ParseTest
         $parser = new ScaleToken($this->stub);
         $scaletoken = $parser->parse();
 
-        $this->assertSame('%pri%', $scaletoken->name);
-        $this->assertSame(['0' => '1', '1000' => '2', '10000' => '3'], $scaletoken->values);
+        self::assertSame('%pri%', $scaletoken->name);
+        self::assertSame(['0' => '1', '1000' => '2', '10000' => '3'], $scaletoken->values);
     }
 }

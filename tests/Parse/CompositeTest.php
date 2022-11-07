@@ -14,7 +14,7 @@ final class CompositeTest extends ParseTest
         $parser = new Composite($this->stub);
         $composite = $parser->parse();
 
-        $this->assertSame(100, $composite->opacity);
-        $this->assertSame('darken', $composite->compop);
+        self::assertSame(100, $composite->opacity);
+        self::assertSame('darken', $composite->compop);
     }
 }

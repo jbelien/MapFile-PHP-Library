@@ -22,7 +22,7 @@ final class QueryMapTest extends WriteTest
         $writer->write($querymap);
         $result = $writer->save();
 
-        $this->assertTrue($result);
-        $this->assertFileEquals($this->stub, $this->path);
+        self::assertTrue($result);
+        self::assertFileEquals($this->stub, $this->path);
     }
 }

@@ -14,12 +14,12 @@ final class OutputFormatTest extends ParseTest
         $parser = new OutputFormat($this->stub);
         $outputformat = $parser->parse();
 
-        $this->assertSame('AGG/PNG8', $outputformat->driver);
-        $this->assertSame('png', $outputformat->extension);
-        $this->assertSame(['QUANTIZE_FORCE=on', 'QUANTIZE_COLORS=256', 'GAMMA=0.75'], $outputformat->formatoption);
-        $this->assertSame('RGB', $outputformat->imagemode);
-        $this->assertSame('image/png; mode=8bit', $outputformat->mimetype);
-        $this->assertSame('png8', $outputformat->name);
-        $this->assertSame('ON', $outputformat->transparent);
+        self::assertSame('AGG/PNG8', $outputformat->driver);
+        self::assertSame('png', $outputformat->extension);
+        self::assertSame(['QUANTIZE_FORCE=on', 'QUANTIZE_COLORS=256', 'GAMMA=0.75'], $outputformat->formatoption);
+        self::assertSame('RGB', $outputformat->imagemode);
+        self::assertSame('image/png; mode=8bit', $outputformat->mimetype);
+        self::assertSame('png8', $outputformat->name);
+        self::assertSame('ON', $outputformat->transparent);
     }
 }

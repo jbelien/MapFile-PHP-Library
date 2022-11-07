@@ -14,15 +14,15 @@ final class JoinTest extends ParseTest
         $parser = new Join($this->stub);
         $join = $parser->parse();
 
-        $this->assertSame('server:user:password:database', $join->connection);
-        $this->assertSame('MYSQL', $join->connectiontype);
-        $this->assertSame('footer.html', $join->footer);
-        $this->assertSame('ID', $join->from);
-        $this->assertSame('header.html', $join->header);
-        $this->assertSame('mysql-join', $join->name);
-        $this->assertSame('mysql-tablename', $join->table);
-        $this->assertSame('template.html', $join->template);
-        $this->assertSame('mysql-column', $join->to);
-        $this->assertSame('ONE-TO-ONE', $join->type);
+        self::assertSame('server:user:password:database', $join->connection);
+        self::assertSame('MYSQL', $join->connectiontype);
+        self::assertSame('footer.html', $join->footer);
+        self::assertSame('ID', $join->from);
+        self::assertSame('header.html', $join->header);
+        self::assertSame('mysql-join', $join->name);
+        self::assertSame('mysql-tablename', $join->table);
+        self::assertSame('template.html', $join->template);
+        self::assertSame('mysql-column', $join->to);
+        self::assertSame('ONE-TO-ONE', $join->type);
     }
 }

@@ -14,12 +14,12 @@ final class GridTest extends ParseTest
         $parser = new Grid($this->stub);
         $grid = $parser->parse();
 
-        $this->assertSame('DD', $grid->labelformat);
-        $this->assertSame(1.0, $grid->minarcs);
-        $this->assertSame(2.0, $grid->maxarcs);
-        $this->assertSame(1.0, $grid->mininterval);
-        $this->assertSame(2.0, $grid->maxinterval);
-        $this->assertSame(1.0, $grid->minsubdivide);
-        $this->assertSame(256.0, $grid->maxsubdivide);
+        self::assertSame('DD', $grid->labelformat);
+        self::assertSame(1.0, $grid->minarcs);
+        self::assertSame(2.0, $grid->maxarcs);
+        self::assertSame(1.0, $grid->mininterval);
+        self::assertSame(2.0, $grid->maxinterval);
+        self::assertSame(1.0, $grid->minsubdivide);
+        self::assertSame(256.0, $grid->maxsubdivide);
     }
 }

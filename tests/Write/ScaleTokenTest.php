@@ -21,7 +21,7 @@ final class ScaleTokenTest extends WriteTest
         $writer->write($scaletoken);
         $result = $writer->save();
 
-        $this->assertTrue($result);
-        $this->assertFileEquals($this->stub, $this->path);
+        self::assertTrue($result);
+        self::assertFileEquals($this->stub, $this->path);
     }
 }

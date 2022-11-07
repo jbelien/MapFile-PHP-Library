@@ -14,15 +14,15 @@ final class ReferenceTest extends ParseTest
         $parser = new Reference($this->stub);
         $reference = $parser->parse();
 
-        $this->assertSame([255, 0, 0], $reference->color);
-        $this->assertSame([0.0, 0.0, 100.0, 100.0], $reference->extent);
-        $this->assertSame('image.png', $reference->image);
-        $this->assertSame(0, $reference->marker);
-        $this->assertSame(10, $reference->markersize);
-        $this->assertSame(1, $reference->minboxsize);
-        $this->assertSame(5, $reference->maxboxsize);
-        $this->assertSame([0, 0, 255], $reference->outlinecolor);
-        $this->assertSame([10, 10], $reference->size);
-        $this->assertSame('ON', $reference->status);
+        self::assertSame([255, 0, 0], $reference->color);
+        self::assertSame([0.0, 0.0, 100.0, 100.0], $reference->extent);
+        self::assertSame('image.png', $reference->image);
+        self::assertSame(0, $reference->marker);
+        self::assertSame(10, $reference->markersize);
+        self::assertSame(1, $reference->minboxsize);
+        self::assertSame(5, $reference->maxboxsize);
+        self::assertSame([0, 0, 255], $reference->outlinecolor);
+        self::assertSame([10, 10], $reference->size);
+        self::assertSame('ON', $reference->status);
     }
 }

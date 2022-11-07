@@ -14,9 +14,9 @@ final class QueryMapTest extends ParseTest
         $parser = new QueryMap($this->stub);
         $querymap = $parser->parse();
 
-        $this->assertSame([0, 255, 0], $querymap->color);
-        $this->assertSame([100, 100], $querymap->size);
-        $this->assertSame('ON', $querymap->status);
-        $this->assertSame('HILITE', $querymap->style);
+        self::assertSame([0, 255, 0], $querymap->color);
+        self::assertSame([100, 100], $querymap->size);
+        self::assertSame('ON', $querymap->status);
+        self::assertSame('HILITE', $querymap->style);
     }
 }
