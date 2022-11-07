@@ -52,12 +52,6 @@ $layer->class->add($class);
 $map->layer->add($layer);
 
 $mapfile = (new \MapFile\Writer\Map())->write($map);
-
-// or
-
-$writer = new \MapFile\Writer\Map('my-mapfile.map');
-$writer->write($map);
-$writer->save();
 ```
 
 Have a look at the [source code](https://github.com/jbelien/MapFile-PHP-Library/tree/master/src/Model) to see all the available options.
