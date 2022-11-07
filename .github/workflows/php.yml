@@ -34,6 +34,7 @@ jobs:
       - name: Install dependencies
         if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install --prefer-dist --no-progress --no-suggest
+      - run: composer run-script test
 
   phpcs:
     name: PHP_CodeSniffer

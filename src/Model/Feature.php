@@ -27,6 +27,6 @@ class Feature extends MapFileObject
     public $items;
     /** @var null|string String to use for labeling this feature. */
     public $text;
-    /** @var string[] A geometry expressed in OpenGIS Well Known Text geometry format. */
-    public $wkt = [];
+    /** @var null|string A geometry expressed in OpenGIS Well Known Text geometry format. */
+    public $wkt;
 }

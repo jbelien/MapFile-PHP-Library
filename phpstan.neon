@@ -3,6 +3,7 @@ includes:
 parameters:
     paths:
         - src
+        - tests
     fileExtensions:
         - php
         - dist

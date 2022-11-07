@@ -70,7 +70,7 @@ class Web extends Parser
                 $web->template = $matches[1];
             } elseif ($this->parsing === 'WEB' && preg_match('/^TEMPPATH ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $web->temppath = $matches[1];
-            } elseif ($this->parsing === 'LAYER' && preg_match('/^VALIDATION$/i', $line) === 1) {
+            } elseif ($this->parsing === 'WEB' && preg_match('/^VALIDATION$/i', $line) === 1) {
                 $validationParser = new Validation($this->file, $this->currentLineIndex - 1);
                 $validation = $validationParser->parse();
 

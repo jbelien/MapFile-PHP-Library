@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace MapFile\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * MapFile Generator - Label (LABEL) Class.
  * [MapFile LABEL clause](https://mapserver.org/mapfile/label.html).
@@ -81,7 +83,7 @@ class Label extends MapFileObject
     public $shadowsize;
     /** @var null|string|int Text size. */
     public $size;
-    /** @var null|\MapFile\Model\Style */
+    /** @var ArrayCollection<int,Style> */
     public $style;
     /** @var null|string Text to label features with. */
     public $text;
@@ -89,4 +91,12 @@ class Label extends MapFileObject
     public $type;
     /** @var null|string Character that represents an end-of-line condition in label text, thus resulting in a multi-line label. */
     public $wrap;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->style = new ArrayCollection();
+    }
 }

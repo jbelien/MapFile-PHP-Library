@@ -41,7 +41,7 @@ class QueryMap extends Parser
                 ];
             } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^COLOR ["\'](#.+)["\']$/i', $line, $matches) === 1) {
                 $querymap->color = $matches[1];
-            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^SIZE ([0-9+]) ([0-9+])$/i', $line, $matches) === 1) {
+            } elseif ($this->parsing === 'QUERYMAP' && preg_match('/^SIZE ([0-9]+) ([0-9]+)$/i', $line, $matches) === 1) {
                 $querymap->size = [
                     intval($matches[1]),
                     intval($matches[2]),
