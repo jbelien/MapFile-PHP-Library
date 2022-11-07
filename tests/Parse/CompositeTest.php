@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Tests\Parse;
 
 use MapFile\Parser\Composite;
-use PHPUnit\Framework\TestCase;
+use Tests\ParseTest;
 
-final class CompositeTest extends TestCase
+final class CompositeTest extends ParseTest
 {
-    protected string $stub = 'tests/stubs/COMPOSITE';
-
     public function test(): void
     {
         $parser = new Composite($this->stub);

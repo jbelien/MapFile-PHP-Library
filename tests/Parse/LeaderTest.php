@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Tests\Parse;
 
 use MapFile\Parser\Leader;
-use PHPUnit\Framework\TestCase;
+use Tests\ParseTest;
 
-final class LeaderTest extends TestCase
+final class LeaderTest extends ParseTest
 {
-    protected string $stub = 'tests/stubs/LEADER';
-
     public function test(): void
     {
         $parser = new Leader($this->stub);

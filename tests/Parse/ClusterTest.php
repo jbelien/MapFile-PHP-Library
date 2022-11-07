@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Tests\Parse;
 
 use MapFile\Parser\Cluster;
-use PHPUnit\Framework\TestCase;
+use Tests\ParseTest;
 
-final class ClusterTest extends TestCase
+final class ClusterTest extends ParseTest
 {
-    protected string $stub = 'tests/stubs/CLUSTER';
-
     public function test(): void
     {
         $parser = new Cluster($this->stub);

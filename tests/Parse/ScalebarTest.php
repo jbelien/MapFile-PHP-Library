@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Tests\Parse;
 
 use MapFile\Parser\Scalebar;
-use PHPUnit\Framework\TestCase;
+use Tests\ParseTest;
 
-final class ScalebarTest extends TestCase
+final class ScalebarTest extends ParseTest
 {
-    protected string $stub = 'tests/stubs/SCALEBAR';
-
     public function test(): void
     {
         $parser = new Scalebar($this->stub);

@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Tests\Parse;
 
 use MapFile\Parser\Join;
-use PHPUnit\Framework\TestCase;
+use Tests\ParseTest;
 
-final class JoinTest extends TestCase
+final class JoinTest extends ParseTest
 {
-    protected string $stub = 'tests/stubs/JOIN';
-
     public function test(): void
     {
         $parser = new Join($this->stub);

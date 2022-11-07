@@ -10,9 +10,6 @@ use Tests\WriteTest;
 
 final class GridTest extends WriteTest
 {
-    protected string $path = 'tests/.temp/GRID.test';
-    protected string $stub = 'tests/stubs/GRID';
-
     public function test(): void
     {
         $grid = new GridObject();

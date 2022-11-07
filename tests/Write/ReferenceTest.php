@@ -10,9 +10,6 @@ use Tests\WriteTest;
 
 final class ReferenceTest extends WriteTest
 {
-    protected string $path = 'tests/.temp/REFERENCE.test';
-    protected string $stub = 'tests/stubs/REFERENCE';
-
     public function test(): void
     {
         $reference = new ReferenceObject();

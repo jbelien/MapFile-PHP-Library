@@ -10,9 +10,6 @@ use Tests\WriteTest;
 
 final class JoinTest extends WriteTest
 {
-    protected string $path = 'tests/.temp/JOIN.test';
-    protected string $stub = 'tests/stubs/JOIN';
-
     public function test(): void
     {
         $join = new JoinObject();

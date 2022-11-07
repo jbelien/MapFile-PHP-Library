@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Tests\Parse;
 
 use MapFile\Parser\QueryMap;
-use PHPUnit\Framework\TestCase;
+use Tests\ParseTest;
 
-final class QueryMapTest extends TestCase
+final class QueryMapTest extends ParseTest
 {
-    protected string $stub = 'tests/stubs/QUERYMAP';
-
     public function test(): void
     {
         $parser = new QueryMap($this->stub);

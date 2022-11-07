@@ -10,9 +10,6 @@ use Tests\WriteTest;
 
 final class QueryMapTest extends WriteTest
 {
-    protected string $path = 'tests/.temp/QUERYMAP.test';
-    protected string $stub = 'tests/stubs/QUERYMAP';
-
     public function test(): void
     {
         $querymap = new QueryMapObject();

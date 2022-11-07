@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Tests\Parse;
 
 use MapFile\Parser\Reference;
-use PHPUnit\Framework\TestCase;
+use Tests\ParseTest;
 
-final class ReferenceTest extends TestCase
+final class ReferenceTest extends ParseTest
 {
-    protected string $stub = 'tests/stubs/REFERENCE';
-
     public function test(): void
     {
         $parser = new Reference($this->stub);

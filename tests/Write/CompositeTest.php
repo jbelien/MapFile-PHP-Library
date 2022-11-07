@@ -10,9 +10,6 @@ use Tests\WriteTest;
 
 final class CompositeTest extends WriteTest
 {
-    protected string $path = 'tests/.temp/COMPOSITE.test';
-    protected string $stub = 'tests/stubs/COMPOSITE';
-
     public function test(): void
     {
         $cluster = new CompositeObject();

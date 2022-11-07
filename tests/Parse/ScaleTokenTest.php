@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Tests\Parse;
 
 use MapFile\Parser\ScaleToken;
-use PHPUnit\Framework\TestCase;
+use Tests\ParseTest;
 
-final class ScaleTokenTest extends TestCase
+final class ScaleTokenTest extends ParseTest
 {
-    protected string $stub = 'tests/stubs/SCALETOKEN';
-
     public function test(): void
     {
         $parser = new ScaleToken($this->stub);

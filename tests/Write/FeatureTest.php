@@ -10,9 +10,6 @@ use Tests\WriteTest;
 
 final class FeatureTest extends WriteTest
 {
-    protected string $path = 'tests/.temp/FEATURE.test';
-    protected string $stub = 'tests/stubs/FEATURE';
-
     public function test(): void
     {
         $feature = new FeatureObject();

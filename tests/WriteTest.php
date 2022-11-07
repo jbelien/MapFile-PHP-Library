@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use PHPUnit\Framework\TestCase;
-
-abstract class WriteTest extends TestCase
+abstract class WriteTest extends ParseTest
 {
     protected string $path;
-    protected string $stub;
 
     protected function setUp(): void
     {
+        parent::setUp();
+
+        $this->path = sprintf('tests/.temp/%s.test', strtoupper($this->getClass()));
+
         touch($this->path);
     }
 

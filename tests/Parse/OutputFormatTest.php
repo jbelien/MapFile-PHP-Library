@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Tests\Parse;
 
 use MapFile\Parser\OutputFormat;
-use PHPUnit\Framework\TestCase;
+use Tests\ParseTest;
 
-final class OutputFormatTest extends TestCase
+final class OutputFormatTest extends ParseTest
 {
-    protected string $stub = 'tests/stubs/OUTPUTFORMAT';
-
     public function test(): void
     {
         $parser = new OutputFormat($this->stub);

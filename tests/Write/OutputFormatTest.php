@@ -10,9 +10,6 @@ use Tests\WriteTest;
 
 final class OutputFormatTest extends WriteTest
 {
-    protected string $path = 'tests/.temp/OUTPUTFORMAT.test';
-    protected string $stub = 'tests/stubs/OUTPUTFORMAT';
-
     public function test(): void
     {
         $outputformat = new OutputFormatObject();

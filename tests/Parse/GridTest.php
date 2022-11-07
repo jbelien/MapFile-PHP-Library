@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace Tests\Parse;
 
 use MapFile\Parser\Grid;
-use PHPUnit\Framework\TestCase;
+use Tests\ParseTest;
 
-final class GridTest extends TestCase
+final class GridTest extends ParseTest
 {
-    protected string $stub = 'tests/stubs/GRID';
-
     public function test(): void
     {
         $parser = new Grid($this->stub);

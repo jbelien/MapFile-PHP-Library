@@ -10,9 +10,6 @@ use Tests\WriteTest;
 
 final class ClusterTest extends WriteTest
 {
-    protected string $path = 'tests/.temp/CLUSTER.test';
-    protected string $stub = 'tests/stubs/CLUSTER';
-
     public function test(): void
     {
         $cluster = new ClusterObject();

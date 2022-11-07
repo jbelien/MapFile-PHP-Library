@@ -11,9 +11,6 @@ use Tests\WriteTest;
 
 final class ScaleTokenTest extends WriteTest
 {
-    protected string $path = 'tests/.temp/SCALETOKEN.test';
-    protected string $stub = 'tests/stubs/SCALETOKEN';
-
     public function test(): void
     {
         $scaletoken = new ScaleTokenObject();

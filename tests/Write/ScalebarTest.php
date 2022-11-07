@@ -11,9 +11,6 @@ use Tests\WriteTest;
 
 final class ScalebarTest extends WriteTest
 {
-    protected string $path = 'tests/.temp/SCALEBAR.test';
-    protected string $stub = 'tests/stubs/SCALEBAR';
-
     public function test(): void
     {
         $scalebar = new ScalebarObject();

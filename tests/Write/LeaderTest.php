@@ -11,9 +11,6 @@ use Tests\WriteTest;
 
 final class LeaderTest extends WriteTest
 {
-    protected string $path = 'tests/.temp/LEADER.test';
-    protected string $stub = 'tests/stubs/LEADER';
-
     public function test(): void
     {
         $leader = new LeaderObject();
