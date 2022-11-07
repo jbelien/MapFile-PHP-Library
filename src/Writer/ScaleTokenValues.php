@@ -29,7 +29,7 @@ class ScaleTokenValues extends Writer
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'VALUES'.PHP_EOL;
 
-        /** @var array<string,string> $values */
+        /** @var array<int|string,string> $values */
         foreach ($values as $key => $value) {
             $this->text .= str_repeat($indent, $indentSize + 1);
             $this->text .= '"'.$key.'" "'.$value.'"';

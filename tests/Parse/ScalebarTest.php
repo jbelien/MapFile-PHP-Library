@@ -19,7 +19,7 @@ final class ScalebarTest extends ParseTest
         self::assertSame([0, 0, 0], $scalebar->color);
         self::assertSame([0, 255, 0], $scalebar->imagecolor);
         self::assertSame(4, $scalebar->intervals);
-        self::assertSame([80, 80, 80], $scalebar->label->color);
+        self::assertSame([80, 80, 80], $scalebar->label?->color);
         self::assertSame([5, 5], $scalebar->offset);
         self::assertSame([0, 0, 0], $scalebar->outlinecolor);
         self::assertSame('UR', $scalebar->position);
