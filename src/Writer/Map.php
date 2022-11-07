@@ -61,6 +61,11 @@ class Map extends Writer
             $this->text .= (new Legend())->write($map->legend, $indentSize + 1, $indent);
         }
 
+        foreach ($map->outputformat as $outputformat) {
+            $this->text .= PHP_EOL;
+            $this->text .= (new OutputFormat())->write($outputformat, $indentSize + 1, $indent);
+        }
+
         if (!is_null($map->projection)) {
             $this->text .= PHP_EOL;
             $this->text .= (new Projection())->write($map->projection, $indentSize + 1, $indent);
@@ -84,11 +89,6 @@ class Map extends Writer
         if (!is_null($map->web)) {
             $this->text .= PHP_EOL;
             $this->text .= (new Web())->write($map->web, $indentSize + 1, $indent);
-        }
-
-        foreach ($map->outputformat as $outputformat) {
-            $this->text .= PHP_EOL;
-            $this->text .= (new OutputFormat())->write($outputformat, $indentSize + 1, $indent);
         }
 
         foreach ($map->symbol as $symbol) {
