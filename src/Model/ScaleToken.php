@@ -13,13 +13,16 @@ namespace MapFile\Model;
 
 /**
  * MapFile Generator - ScaleToken (SCALETOKEN) Class.
+ * [MapFile Layer SCALETOKEN clause](https://mapserver.org/mapfile/layer.html#mapfile-layer-scaletoken).
  *
  * @author Jonathan Beliën
+ *
+ * @link https://mapserver.org/mapfile/layer.html#mapfile-layer-scaletoken
  */
 class ScaleToken extends MapFileObject
 {
     /** @var null|string */
     public $name;
-    /** @var array<string,string> */
+    /** @var array<int|string,string> */
     public $values = [];
 }

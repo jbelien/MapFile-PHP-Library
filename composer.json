@@ -10,7 +10,7 @@
     "require-dev": {
         "phpstan/phpstan": "^1.9",
         "phpstan/phpstan-strict-rules": "^1.4",
-        "phpunit/phpunit": "^9.0",
+        "phpunit/phpunit": "^9.5",
         "squizlabs/php_codesniffer": "^3.3"
     },
     "minimum-stability": "dev",
@@ -18,10 +18,12 @@
     "autoload": {
         "psr-4": {
             "MapFile\\": "src/"
-        },
-        "exclude-from-classmap": [
-            "/Tests/"
-        ]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "config": {
         "sort-packages": true
@@ -34,6 +36,8 @@
     "scripts": {
         "analyze": "phpstan analyze",
         "cs-check": "phpcs",
-        "cs-fix": "phpcbf"
+        "cs-fix": "phpcbf",
+        "test": "phpunit --colors=always",
+        "test-coverage": "XDEBUG_MODE=coverage phpunit --colors=always --coverage-text"
     }
 }

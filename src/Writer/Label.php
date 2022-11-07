@@ -57,8 +57,8 @@ class Label extends Writer
         $this->text .= self::getTextArray('SHADOWSIZE', $label->shadowsize, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('SIZE', $label->size, $indentSize + 1, $indent);
 
-        if (!is_null($label->style)) {
-            $this->text .= (new Style())->write($label->style, $indentSize + 1, $indent);
+        foreach ($label->style as $style) {
+            $this->text .= (new Style())->write($style, $indentSize + 1, $indent);
         }
 
         $this->text .= !is_null($label->text) && preg_match('/^\(.+\)$/', $label->text) === 1 ? self::getTextRaw('TEXT', $label->text, $indentSize + 1, $indent) : self::getTextString('TEXT', $label->text, $indentSize + 1, $indent);

@@ -137,7 +137,7 @@ class Label extends Parser
                 $styleParser = new Style($this->file, $this->currentLineIndex - 1);
                 $style = $styleParser->parse();
 
-                $label->style = $style;
+                $label->style->add($style);
 
                 $this->currentLineIndex = $styleParser->lineEnd;
             } elseif ($this->parsing === 'LABEL' && preg_match('/^TEXT ["\'](.+)["\']$/i', $line, $matches) === 1) {
