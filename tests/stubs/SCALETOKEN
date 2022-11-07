@@ -1,0 +1,8 @@
+SCALETOKEN
+  NAME "%pri%"
+  VALUES
+    "0" "1"
+    "1000" "2"
+    "10000" "3"
+  END # VALUES
+END # SCALETOKEN
