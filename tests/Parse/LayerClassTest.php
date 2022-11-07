@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Tests\Parse;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use MapFile\Model\Label;
 use MapFile\Model\Leader;
-use MapFile\Model\Style;
 use MapFile\Parser\LayerClass;
 use Tests\ParseTest;
 
