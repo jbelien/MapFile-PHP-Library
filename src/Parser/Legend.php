@@ -16,9 +16,9 @@ use MapFile\Model\Legend as LegendObject;
 
 class Legend extends Parser
 {
-    public function parse($content = null): LegendObject
+    public function parse(?array $content = null): LegendObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 
@@ -26,55 +26,55 @@ class Legend extends Parser
 
         while ($this->eof === false) {
             $line = $this->getCurrentLine();
-            if (empty($line)) {
+            if (strlen($line) === 0) {
                 continue;
             }
 
-            if (preg_match('/^LEGEND$/i', $line)) {
+            if (preg_match('/^LEGEND$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'LEGEND';
-            } elseif ($this->parsing === 'LEGEND' && preg_match('/^IMAGECOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'LEGEND' && preg_match('/^IMAGECOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches) === 1) {
                 $legend->imagecolor = [
                     intval($matches[1]),
                     intval($matches[2]),
                     intval($matches[3]),
                 ];
-            } elseif ($this->parsing === 'LEGEND' && preg_match('/^IMAGECOLOR ["\'](#.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'LEGEND' && preg_match('/^IMAGECOLOR ["\'](#.+)["\']$/i', $line, $matches) === 1) {
                 $legend->imagecolor = $matches[1];
-            } elseif ($this->parsing === 'LEGEND' && preg_match('/^KEYSIZE ([0-9]+) ([0-9]+)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'LEGEND' && preg_match('/^KEYSIZE ([0-9]+) ([0-9]+)$/i', $line, $matches) === 1) {
                 $legend->keysize = [
                     intval($matches[1]),
                     intval($matches[2]),
                 ];
-            } elseif ($this->parsing === 'LEGEND' && preg_match('/^KEYSPACING ([0-9]+) ([0-9]+)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'LEGEND' && preg_match('/^KEYSPACING ([0-9]+) ([0-9]+)$/i', $line, $matches) === 1) {
                 $legend->keyspacing = [
                     intval($matches[1]),
                     intval($matches[2]),
                 ];
-            } elseif ($this->parsing === 'LEGEND' && preg_match('/^LABEL$/i', $line)) {
+            } elseif ($this->parsing === 'LEGEND' && preg_match('/^LABEL$/i', $line) === 1) {
                 $labelParser = new Label($this->file, $this->currentLineIndex - 1);
                 $label = $labelParser->parse();
 
                 $legend->label = $label;
 
                 $this->currentLineIndex = $labelParser->lineEnd;
-            } elseif ($this->parsing === 'LEGEND' && preg_match('/^OUTLINECOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'LEGEND' && preg_match('/^OUTLINECOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches) === 1) {
                 $legend->outlinecolor = [
                     intval($matches[1]),
                     intval($matches[2]),
                     intval($matches[3]),
                 ];
-            } elseif ($this->parsing === 'LEGEND' && preg_match('/^OUTLINECOLOR ["\'](#.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'LEGEND' && preg_match('/^OUTLINECOLOR ["\'](#.+)["\']$/i', $line, $matches) === 1) {
                 $legend->outlinecolor = $matches[1];
-            } elseif ($this->parsing === 'LEGEND' && preg_match('/^POSITION (UL|UC|UR|LL|LC|LR)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'LEGEND' && preg_match('/^POSITION (UL|UC|UR|LL|LC|LR)$/i', $line, $matches) === 1) {
                 $legend->position = strtoupper($matches[1]);
-            } elseif ($this->parsing === 'LEGEND' && preg_match('/^POSTLABELCACHE (TRUE|FALSE)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'LEGEND' && preg_match('/^POSTLABELCACHE (TRUE|FALSE)$/i', $line, $matches) === 1) {
                 $legend->postlabelcache = (strtoupper($matches[1]) === 'TRUE');
-            } elseif ($this->parsing === 'LEGEND' && preg_match('/^STATUS (ON|OFF|EMBED)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'LEGEND' && preg_match('/^STATUS (ON|OFF|EMBED)$/i', $line, $matches) === 1) {
                 $legend->status = strtoupper($matches[1]);
-            } elseif ($this->parsing === 'LEGEND' && preg_match('/^TEMPLATE ["\'](.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'LEGEND' && preg_match('/^TEMPLATE ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $legend->template = $matches[1];
-            } elseif ($this->parsing === 'LEGEND' && preg_match('/^END( # LEGEND)?$/i', $line)) {
+            } elseif ($this->parsing === 'LEGEND' && preg_match('/^END( # LEGEND)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 
@@ -86,6 +86,6 @@ class Legend extends Parser
             }
         }
 
-        return $legend ?? null;
+        return $legend;
     }
 }

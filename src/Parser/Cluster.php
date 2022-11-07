@@ -16,9 +16,9 @@ use MapFile\Model\Cluster as ClusterObject;
 
 class Cluster extends Parser
 {
-    public function parse($content = null): ClusterObject
+    public function parse(?array $content = null): ClusterObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 
@@ -26,28 +26,28 @@ class Cluster extends Parser
 
         while ($this->eof === false) {
             $line = $this->getCurrentLine();
-            if (empty($line)) {
+            if (strlen($line) === 0) {
                 continue;
             }
 
-            if (preg_match('/^CLUSTER$/i', $line)) {
+            if (preg_match('/^CLUSTER$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'CLUSTER';
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^BUFFER ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^BUFFER ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
                 $cluster->buffer = floatval($matches[1]);
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^FILTER ["\'](.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^FILTER ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $cluster->filter = $matches[1];
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^FILTER (\(.+\))$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^FILTER (\(.+\))$/i', $line, $matches) === 1) {
                 $cluster->filter = $matches[1];
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^GROUP ["\'](.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^GROUP ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $cluster->group = $matches[1];
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^GROUP (\(.+\))$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^GROUP (\(.+\))$/i', $line, $matches) === 1) {
                 $cluster->group = $matches[1];
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^MAXDISTANCE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^MAXDISTANCE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
                 $cluster->maxdistance = floatval($matches[1]);
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^REGION ["\'](.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^REGION ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $cluster->region = $matches[1];
-            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^END( # CLUSTER)?$/i', $line)) {
+            } elseif ($this->parsing === 'CLUSTER' && preg_match('/^END( # CLUSTER)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

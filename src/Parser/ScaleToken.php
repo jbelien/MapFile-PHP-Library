@@ -16,9 +16,9 @@ use MapFile\Model\ScaleToken as ScaleTokenObject;
 
 class ScaleToken extends Parser
 {
-    public function parse($content = null): ScaleTokenObject
+    public function parse(?array $content = null): ScaleTokenObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 
@@ -26,23 +26,23 @@ class ScaleToken extends Parser
 
         while ($this->eof === false) {
             $line = $this->getCurrentLine();
-            if (empty($line)) {
+            if (strlen($line) === 0) {
                 continue;
             }
 
-            if (preg_match('/^SCALETOKEN$/i', $line)) {
+            if (preg_match('/^SCALETOKEN$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'SCALETOKEN';
-            } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^NAME ["\'](.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^NAME ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $scaletoken->name = $matches[1];
-            } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^VALUES$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^VALUES$/i', $line, $matches) === 1) {
                 $scaletokenValuesParser = new ScaleTokenValues($this->file, $this->currentLineIndex - 1);
                 $scaletokenValues = $scaletokenValuesParser->parse();
 
                 $scaletoken->values = $scaletokenValues;
 
                 $this->currentLineIndex = $scaletokenValuesParser->lineEnd;
-            } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^END( # SCALETOKEN)?$/i', $line)) {
+            } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^END( # SCALETOKEN)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

@@ -11,10 +11,21 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+
 class Points extends Writer
 {
     public function write($points, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!is_array($points)) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an array, "%s" given.',
+                    gettype($points)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'POINTS'.PHP_EOL;
 

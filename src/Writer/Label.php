@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Label as LabelObject;
+
 class Label extends Writer
 {
     public function write($label, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$label instanceof LabelObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Label", instance of "%s" given.',
+                    gettype($label) === 'object' ? get_class($label) : gettype($label)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'LABEL'.PHP_EOL;
 
@@ -43,7 +55,7 @@ class Label extends Writer
         $this->text .= self::getTextRaw('REPEATDISTANCE', $label->repeatdistance, $indentSize + 1, $indent);
         $this->text .= is_array($label->shadowcolor) ? self::getTextArray('SHADOWCOLOR', $label->shadowcolor, $indentSize + 1, $indent) : self::getText('SHADOWCOLOR', $label->shadowcolor, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('SHADOWSIZE', $label->shadowsize, $indentSize + 1, $indent);
-        $this->text .= is_array($label->size) ? self::getTextArray('SIZE', $label->size, $indentSize + 1, $indent) : self::getTextRaw('SIZE', $label->size, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('SIZE', $label->size, $indentSize + 1, $indent);
 
         if (!is_null($label->style)) {
             $this->text .= (new Style())->write($label->style, $indentSize + 1, $indent);

@@ -15,29 +15,33 @@ use MapFile\Exception\UnsupportedException;
 
 class Points extends Parser
 {
-    public function parse($content = null): array
+    /**
+     * @return array<array<float>>
+     */
+    public function parse(?array $content = null): array
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 
+        /** @var array<array<float>> */
         $points = [];
 
         while ($this->eof === false) {
             $line = $this->getCurrentLine();
-            if (empty($line)) {
+            if (strlen($line) === 0) {
                 continue;
             }
 
-            if (preg_match('/^POINTS$/i', $line)) {
+            if (preg_match('/^POINTS$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'POINTS';
-            } elseif ($this->parsing === 'POINTS' && preg_match('/^([0-9]+(?:\.(?:[0-9]+))?) ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'POINTS' && preg_match('/^([0-9]+(?:\.(?:[0-9]+))?) ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
                 $points[] = [
-                    $matches[1],
-                    $matches[2],
+                    floatval($matches[1]),
+                    floatval($matches[2]),
                 ];
-            } elseif ($this->parsing === 'POINTS' && preg_match('/^END( # POINTS)?$/i', $line)) {
+            } elseif ($this->parsing === 'POINTS' && preg_match('/^END( # POINTS)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

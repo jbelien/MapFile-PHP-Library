@@ -19,34 +19,24 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/legend.html
  */
-class Legend
+class Legend extends MapFileObject
 {
-    /** @var int[]|string Color to initialize the legend with (i.e. the background). */
+    /** @var null|int[]|string Color to initialize the legend with (i.e. the background). */
     public $imagecolor;
-    /** @var int[] Size of symbol key boxes in pixels. */
+    /** @var null|int[] Size of symbol key boxes in pixels. */
     public $keysize;
-    /** @var int[] Spacing between symbol key boxes ([y]) and labels ([x]) in pixels. */
+    /** @var null|int[] Spacing between symbol key boxes ([y]) and labels ([x]) in pixels. */
     public $keyspacing;
-    /** @var \MapFile\Model\Label */
+    /** @var null|Label */
     public $label;
-    /** @var int[]|string Color to use for outlining symbol key boxes. */
+    /** @var null|int[]|string Color to use for outlining symbol key boxes. */
     public $outlinecolor;
-    /** @var string Where to place an embedded legend in the map. */
+    /** @var null|string Where to place an embedded legend in the map. */
     public $position;
-    /** @var bool Tells MapServer to render this legend after all labels in the cache have been drawn. */
+    /** @var null|bool Tells MapServer to render this legend after all labels in the cache have been drawn. */
     public $postlabelcache;
-    /** @var string Is the legend image to be created ? */
+    /** @var null|string Is the legend image to be created ? */
     public $status;
-    /** @var string HTML legend template file. */
+    /** @var null|string HTML legend template file. */
     public $template;
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        if (is_null($this->label)) {
-            $this->label = new Label();
-        }
-    }
 }

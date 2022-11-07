@@ -21,13 +21,13 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @link https://mapserver.org/mapfile/leader.html
  */
-class Leader
+class Leader extends MapFileObject
 {
-    /** @var int Specifies the number of pixels between positions that are tested for a label line. */
+    /** @var null|int Specifies the number of pixels between positions that are tested for a label line. */
     public $gridstep;
-    /** @var int Specifies the maximum distance in pixels from the normal label location that a leader line can be drawn. */
+    /** @var null|int Specifies the maximum distance in pixels from the normal label location that a leader line can be drawn. */
     public $maxdistance;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var ArrayCollection<int,Style> */
     public $style;
 
     /**

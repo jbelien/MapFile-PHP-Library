@@ -16,9 +16,9 @@ use MapFile\Model\Composite as CompositeObject;
 
 class Composite extends Parser
 {
-    public function parse($content = null): CompositeObject
+    public function parse(?array $content = null): CompositeObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 
@@ -26,18 +26,18 @@ class Composite extends Parser
 
         while ($this->eof === false) {
             $line = $this->getCurrentLine();
-            if (empty($line)) {
+            if (strlen($line) === 0) {
                 continue;
             }
 
-            if (preg_match('/^COMPOSITE$/i', $line)) {
+            if (preg_match('/^COMPOSITE$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'COMPOSITE';
-            } elseif ($this->parsing === 'COMPOSITE' && preg_match('/^OPACITY ([0-9]+)$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'COMPOSITE' && preg_match('/^OPACITY ([0-9]+)$/i', $line, $matches) === 1) {
                 $composite->opacity = intval($matches[1]);
-            } elseif ($this->parsing === 'COMPOSITE' && preg_match('/^COMPOP ["\'](.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'COMPOSITE' && preg_match('/^COMPOP ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $composite->compop = $matches[1];
-            } elseif ($this->parsing === 'COMPOSITE' && preg_match('/^END( # COMPOSITE)?$/i', $line)) {
+            } elseif ($this->parsing === 'COMPOSITE' && preg_match('/^END( # COMPOSITE)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 

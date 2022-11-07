@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Scalebar as ScalebarObject;
+
 class Scalebar extends Writer
 {
     public function write($scalebar, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$scalebar instanceof ScalebarObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Scalebar", instance of "%s" given.',
+                    gettype($scalebar) === 'object' ? get_class($scalebar) : gettype($scalebar)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'SCALEBAR'.PHP_EOL;
 

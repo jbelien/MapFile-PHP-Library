@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Leader as LeaderObject;
+
 class Leader extends Writer
 {
     public function write($leader, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$leader instanceof LeaderObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Leader", instance of "%s" given.',
+                    gettype($leader) === 'object' ? get_class($leader) : gettype($leader)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'LEADER'.PHP_EOL;
 

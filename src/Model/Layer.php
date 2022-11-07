@@ -21,154 +21,154 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @link https://mapserver.org/mapfile/layer.html
  */
-class Layer
+class Layer extends MapFileObject
 {
-    /** @var string Specify the class’s group that would be considered at rendering time. */
+    /** @var null|string Specify the class’s group that would be considered at rendering time. */
     public $classgroup;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var ArrayCollection<int,LayerClass> */
     public $class;
-    /** @var string Item name in attribute table to use for class lookups. */
+    /** @var null|string Item name in attribute table to use for class lookups. */
     public $classitem;
-    /** @var \MapFile\Model\Cluster */
+    /** @var null|Cluster */
     public $cluster;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var ArrayCollection<int,Composite> */
     public $composite;
-    /** @var string Database connection string to retrieve remote data. */
+    /** @var null|string Database connection string to retrieve remote data. */
     public $connection;
-    /** @var string Type of connection. */
+    /** @var null|string Type of connection. */
     public $connectiontype;
-    /** @var string Full filename of the spatial data to process. */
+    /** @var null|string Full filename of the spatial data to process. */
     public $data;
-    /** @var int Enables debugging of a layer in the current map. */
+    /** @var null|int Enables debugging of a layer in the current map. */
     public $debug;
-    /** @var string The encoding used for text in the layer data source. */
+    /** @var null|string The encoding used for text in the layer data source. */
     public $encoding;
-    /** @var float[] Spatial extent. */
+    /** @var null|float[] Spatial extent. */
     public $extent;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var ArrayCollection<int,Feature> */
     public $feature;
-    /** @var string Data specific attribute filtering. */
+    /** @var null|string Data specific attribute filtering. */
     public $filter;
-    /** @var string Item to use with simple FILTER expressions. */
+    /** @var null|string Item to use with simple FILTER expressions. */
     public $filteritem;
-    /** @var string Template to use after a layer’s set of results have been sent. */
+    /** @var null|string Template to use after a layer’s set of results have been sent. */
     public $footer;
     /**
-     * @var string Used to indicate that the current feature will be transformed.
+     * @var null|string Used to indicate that the current feature will be transformed.
      *
      * @see https://mapserver.org/mapfile/geomtransform.html
      */
     public $geomtransform;
-    /** @var \MapFile\Model\Grid */
+    /** @var null|Grid */
     public $grid;
-    /** @var string Name of a group that this layer belongs to. */
+    /** @var null|string Name of a group that this layer belongs to. */
     public $group;
-    /** @var string Template to use before a layer’s set of results have been sent. */
+    /** @var null|string Template to use before a layer’s set of results have been sent. */
     public $header;
-    /** @var \Doctrine\Common\Collections\ArrayCollection */
+    /** @var ArrayCollection<int,Join> */
     public $join;
-    /** @var string Specifies whether labels should be drawn as the features for this layer are drawn, or whether they should be cached and drawn after all layers have been drawn. */
+    /** @var null|string Specifies whether labels should be drawn as the features for this layer are drawn, or whether they should be cached and drawn after all layers have been drawn. */
     public $labelcache;
-    /** @var string Item name in attribute table to use for labeling. */
+    /** @var null|string Item name in attribute table to use for labeling. */
     public $labelitem;
     /**
-     * @var float Minimum scale at which this LAYER is labeled.
+     * @var null|float Minimum scale at which this LAYER is labeled.
      *
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $labelmaxscaledenom;
     /**
-     * @var float Maximum scale at which this LAYER is labeled.
+     * @var null|float Maximum scale at which this LAYER is labeled.
      *
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $labelminscaledenom;
-    /** @var string Sets context for labeling this layer. */
+    /** @var null|string Sets context for labeling this layer. */
     public $labelrequires;
-    /** @var string The data from the current layer will only be rendered where it intersects features from the [layername] layer. */
+    /** @var null|string The data from the current layer will only be rendered where it intersects features from the [layername] layer. */
     public $mask;
-    /** @var int Specifies the number of features that should be drawn for this layer in the CURRENT window. */
+    /** @var null|int Specifies the number of features that should be drawn for this layer in the CURRENT window. */
     public $maxfeatures;
-    /** @var float Maximum width, in the map’s geographic units, at which this LAYER is drawn. */
+    /** @var null|float Maximum width, in the map’s geographic units, at which this LAYER is drawn. */
     public $maxgeowidth;
     /**
-     * @var float Minimum scale denominator.
+     * @var null|float Minimum scale denominator.
      *
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $maxscaledenom;
-    /** @var string[] List of metadata's. */
+    /** @var array<string,string> List of metadata's. */
     public $metadata = [];
-    /** @var float Minimum width, in the map’s geographic units, at which this LAYER is drawn. */
+    /** @var null|float Minimum width, in the map’s geographic units, at which this LAYER is drawn. */
     public $mingeowidth;
     /**
-     * @var float Maximum scale denominator.
+     * @var null|float Maximum scale denominator.
      *
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $minscaledenom;
-    /** @var string Short name for this layer. */
+    /** @var null|string Short name for this layer. */
     public $name;
-    /** @var int[]|string Sets the color index to treat as transparent for raster layers. */
+    /** @var null|int[]|string Sets the color index to treat as transparent for raster layers. */
     public $offsite;
-    /** @var int Opacity. */
+    /** @var null|int Opacity. */
     public $opacity;
-    /** @var string Additional library to load by MapServer, for this layer. */
+    /** @var null|string Additional library to load by MapServer, for this layer. */
     public $plugin;
-    /** @var bool Tells MapServer to render this layer after all labels in the cache have been drawn. */
+    /** @var null|bool Tells MapServer to render this layer after all labels in the cache have been drawn. */
     public $postlabelcache;
     /** @var string[] Passes a processing directive to be used with this layer. */
     public $processing = [];
     /**
-     * @var string MapFile EPSG Projection.
+     * @var null|string MapFile EPSG Projection.
      *
      * @link http://epsg.io/
      * @link http://spatialreference.org/ref/epsg/
      */
     public $projection;
-    /** @var string Sets context for displaying this layer. */
+    /** @var null|string Sets context for displaying this layer. */
     public $requires;
-    /** @var \MapFile\Model\ScaleToken */
+    /** @var null|ScaleToken */
     public $scaletoken;
-    /** @var string Sets the unit of STYLE object SIZE values (default is pixels). */
+    /** @var null|string Sets the unit of STYLE object SIZE values (default is pixels). */
     public $sizeunits;
-    /** @var string Layer Status (Is the layer active ?). */
+    /** @var null|string Layer Status (Is the layer active ?). */
     public $status;
-    /** @var string Styling based on attributes or generated with Javascript. */
+    /** @var null|string Styling based on attributes or generated with Javascript. */
     public $styleitem;
-    /** @var float The scale at which symbols and/or text appear full size. */
+    /** @var null|float The scale at which symbols and/or text appear full size. */
     public $symbolscaledenom;
     /**
-     * @var string Used as a global alternative to CLASS TEMPLATE.
+     * @var null|string Used as a global alternative to CLASS TEMPLATE.
      *
      * @see https://mapserver.org/mapfile/template.html#template
      */
     public $template;
     /**
-     * @var string Name of the tileindex file or layer.
+     * @var null|string Name of the tileindex file or layer.
      *
      * @see https://mapserver.org/optimization/tileindex.html#tileindex
      */
     public $tileindex;
-    /** @var string Item that contains the location of an individual tile. */
+    /** @var null|string Item that contains the location of an individual tile. */
     public $tileitem;
-    /** @var string Name of the attribute that contains the SRS of an individual tile. */
+    /** @var null|string Name of the attribute that contains the SRS of an individual tile. */
     public $tilesrs;
-    /** @var float Sensitivity for point based queries (given in TOLERANCEUNITS). */
+    /** @var null|float Sensitivity for point based queries (given in TOLERANCEUNITS). */
     public $tolerance;
-    /** @var string Units of the TOLERANCE value. */
+    /** @var null|string Units of the TOLERANCE value. */
     public $toleranceunits;
-    /** @var bool|string Tells MapServer whether or not a particular layer needs to be transformed from some coordinate system to image coordinates. */
+    /** @var null|bool|string Tells MapServer whether or not a particular layer needs to be transformed from some coordinate system to image coordinates. */
     public $transform;
-    /** @var string Specifies how the data should be drawn. */
+    /** @var null|string Specifies how the data should be drawn. */
     public $type;
-    /** @var string Units of the layer. */
+    /** @var null|string Units of the layer. */
     public $units;
-    /** @var string A UTFGrid JSON template. */
+    /** @var null|string A UTFGrid JSON template. */
     public $utfdata;
-    /** @var string The attribute to use as the ID for the UTFGrid. */
+    /** @var null|string The attribute to use as the ID for the UTFGrid. */
     public $utfitem;
-    /** @var string[] */
+    /** @var null|array<string,string> */
     public $validation;
 
     /**

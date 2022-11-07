@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Style as StyleObject;
+
 class Style extends Writer
 {
     public function write($style, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$style instanceof StyleObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Style", instance of "%s" given.',
+                    gettype($style) === 'object' ? get_class($style) : gettype($style)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'STYLE'.PHP_EOL;
 
@@ -38,7 +50,7 @@ class Style extends Writer
         $this->text .= is_array($style->outlinecolor) ? self::getTextArray('OUTLINECOLOR', $style->outlinecolor, $indentSize + 1, $indent) : self::getText('OUTLINECOLOR', $style->outlinecolor, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('OUTLINEWIDTH', $style->outlinewidth, $indentSize + 1, $indent);
 
-        if (!empty($style->pattern)) {
+        if (!is_null($style->pattern) && count($style->pattern) > 0) {
             $this->text .= (new Pattern())->write($style->pattern, $indentSize + 1, $indent);
         }
 

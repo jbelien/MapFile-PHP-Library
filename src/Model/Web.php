@@ -19,40 +19,40 @@ namespace MapFile\Model;
  *
  * @link https://mapserver.org/mapfile/web.html
  */
-class Web
+class Web extends MapFileObject
 {
-    /** @var string Format of the interface output, using MapServer CGI. */
+    /** @var null|string Format of the interface output, using MapServer CGI. */
     public $browseformat;
-    /** @var string URL to forward users to if a query fails. */
+    /** @var null|string URL to forward users to if a query fails. */
     public $empty;
-    /** @var string URL to forward users to if an error occurs. */
+    /** @var null|string URL to forward users to if an error occurs. */
     public $error;
-    /** @var string Template to use AFTER anything else is sent. */
+    /** @var null|string Template to use AFTER anything else is sent. */
     public $footer;
-    /** @var string Template to use BEFORE everything else has been sent. */
+    /** @var null|string Template to use BEFORE everything else has been sent. */
     public $header;
-    /** @var string Path to the temporary directory for writing temporary files and images. */
+    /** @var null|string Path to the temporary directory for writing temporary files and images. */
     public $imagepath;
-    /** @var string Base URL for IMAGEPATH. */
+    /** @var null|string Base URL for IMAGEPATH. */
     public $imageurl;
-    /** @var string Format of the legend output, using MapServer CGI. */
+    /** @var null|string Format of the legend output, using MapServer CGI. */
     public $legendformat;
-    /** @var float Minimum scale at which this interface is valid. */
+    /** @var null|float Minimum scale at which this interface is valid. */
     public $maxscaledenom;
-    /** @var string Template to be used if below the minimum scale for the app. */
+    /** @var null|string Template to be used if below the minimum scale for the app. */
     public $maxtemplate;
-    /** @var string[] This keyword allows for arbitrary data to be stored as name value pairs. */
+    /** @var array<string,string> This keyword allows for arbitrary data to be stored as name value pairs. */
     public $metadata = [];
-    /** @var float Maximum scale at which this interface is valid. */
+    /** @var null|float Maximum scale at which this interface is valid. */
     public $minscaledenom;
-    /** @var string Template to be used if above the maximum scale for the app. */
+    /** @var null|string Template to be used if above the maximum scale for the app. */
     public $mintemplate;
-    /** @var string Format of the query output. */
+    /** @var null|string Format of the query output. */
     public $queryformat;
-    /** @var string Template file or URL to use in presenting the results to the user in an interactive mode. */
+    /** @var null|string Template file or URL to use in presenting the results to the user in an interactive mode. */
     public $template;
-    /** @var string Path for storing temporary files. */
+    /** @var null|string Path for storing temporary files. */
     public $temppath;
-    /** @var string[] */
+    /** @var null|array<string,string> */
     public $validation;
 }

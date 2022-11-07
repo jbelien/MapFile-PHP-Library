@@ -11,9 +11,16 @@ declare(strict_types=1);
 
 namespace MapFile\Parser;
 
+use MapFile\Model\MapFileObject;
+
 interface ParserInterface
 {
     public function getCurrentLine(): string;
 
-    public function parse($content = null);
+    /**
+     * @param null|string[] $content
+     *
+     * @return MapFileObject|string|string[]|float[][]
+     */
+    public function parse(?array $content = null);
 }

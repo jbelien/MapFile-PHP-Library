@@ -11,13 +11,11 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
-
 abstract class Writer implements WriterInterface
 {
-    const WRITER_INDENT = '  ';
-
+    /** @var null|string */
     protected $file;
+    /** @var string */
     protected $text;
 
     public function __construct(string $file = null)
@@ -36,7 +34,7 @@ abstract class Writer implements WriterInterface
         return false;
     }
 
-    protected static function getTextRaw(string $key, $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    protected static function getTextRaw(string $key, mixed $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         $text = '';
 
@@ -44,56 +42,37 @@ abstract class Writer implements WriterInterface
             $text = str_repeat($indent, $indentSize);
             $text .= strtoupper($key);
             $text .= ' ';
-            $text .= $value;
+            $text .= (string) $value;
             $text .= PHP_EOL;
         }
 
         return $text;
     }
 
-    protected static function getTextArray(string $key, $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    /**
+     * @param string                       $key
+     * @param null|array<string|int|float> $value
+     * @param int                          $indentSize
+     * @param string                       $indent
+     *
+     * @return string
+     */
+    protected static function getTextArray(string $key, ?array $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
-        if (!is_null($value) && !is_array($value)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The value for "%s" must be an array (or NULL).',
-                    $key
-                )
-            );
-        }
-
         return is_null($value) ? '' : self::getTextRaw($key, implode(' ', $value), $indentSize, $indent);
     }
 
-    protected static function getTextBoolean(string $key, $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    protected static function getTextBoolean(string $key, ?bool $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
-        if (!is_null($value) && !is_bool($value)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The value for "%s" must be a boolean (or NULL).',
-                    $key
-                )
-            );
-        }
-
         return is_null($value) ? '' : self::getTextRaw($key, $value ? 'TRUE' : 'FALSE', $indentSize, $indent);
     }
 
-    protected static function getTextString(string $key, $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    protected static function getTextString(string $key, ?string $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
-        if (!is_null($value) && !is_string($value)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The value for "%s" must be a string (or NULL).',
-                    $key
-                )
-            );
-        }
-
         return is_null($value) ? '' : self::getTextRaw($key, '"'.$value.'"', $indentSize, $indent);
     }
 
-    protected static function getText(string $key, $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    protected static function getText(string $key, mixed $value, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (is_null($value)) {
             return '';
@@ -114,5 +93,5 @@ abstract class Writer implements WriterInterface
         }
     }
 
-    abstract public function write($object, int $indentSize = 0, string $indent = self::WRITER_INDENT);
+    abstract public function write($object, int $indentSize = 0, string $indent = self::WRITER_INDENT): string;
 }

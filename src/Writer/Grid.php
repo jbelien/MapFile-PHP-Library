@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Grid as GridObject;
+
 class Grid extends Writer
 {
     public function write($grid, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$grid instanceof GridObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Grid", instance of "%s" given.',
+                    gettype($grid) === 'object' ? get_class($grid) : gettype($grid)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'GRID'.PHP_EOL;
 

@@ -11,10 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use InvalidArgumentException;
+use MapFile\Model\Layer as LayerObject;
+
 class Layer extends Writer
 {
     public function write($layer, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
+        if (!$layer instanceof LayerObject) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'The first argument must be an instance of "Layer", instance of "%s" given.',
+                    gettype($layer) === 'object' ? get_class($layer) : gettype($layer)
+                )
+            );
+        }
+
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'LAYER'.PHP_EOL;
 
@@ -52,7 +64,7 @@ class Layer extends Writer
         $this->text .= self::getTextRaw('MAXGEOWIDTH', $layer->maxgeowidth, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('MAXSCALEDENOM', $layer->maxscaledenom, $indentSize + 1, $indent);
 
-        if (!empty($layer->metadata)) {
+        if (count($layer->metadata) > 0) {
             $this->text .= (new Metadata())->write($layer->metadata, $indentSize + 1, $indent);
         }
 

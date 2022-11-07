@@ -16,9 +16,9 @@ use MapFile\Model\Feature as FeatureObject;
 
 class Feature extends Parser
 {
-    public function parse($content = null): FeatureObject
+    public function parse(?array $content = null): FeatureObject
     {
-        if (!is_null($content) && is_array($content)) {
+        if (!is_null($content)) {
             $this->content = $content;
         }
 
@@ -26,27 +26,27 @@ class Feature extends Parser
 
         while ($this->eof === false) {
             $line = $this->getCurrentLine();
-            if (empty($line)) {
+            if (strlen($line) === 0) {
                 continue;
             }
 
-            if (preg_match('/^FEATURE$/i', $line)) {
+            if (preg_match('/^FEATURE$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'FEATURE';
-            } elseif ($this->parsing === 'FEATURE' && preg_match('/^POINTS$/i', $line)) {
+            } elseif ($this->parsing === 'FEATURE' && preg_match('/^POINTS$/i', $line) === 1) {
                 $pointsParser = new Points($this->file, $this->currentLineIndex - 1);
                 $points = $pointsParser->parse();
 
-                $feature->points[] = $points;
+                $feature->points = $points;
 
                 $this->currentLineIndex = $pointsParser->lineEnd;
-            } elseif ($this->parsing === 'FEATURE' && preg_match('/^ITEMS ["\'](.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'FEATURE' && preg_match('/^ITEMS ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $feature->items = $matches[1];
-            } elseif ($this->parsing === 'FEATURE' && preg_match('/^TEXT ["\'](.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'FEATURE' && preg_match('/^TEXT ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $feature->text = $matches[1];
-            } elseif ($this->parsing === 'FEATURE' && preg_match('/^WKT ["\'](.+)["\']$/i', $line, $matches)) {
+            } elseif ($this->parsing === 'FEATURE' && preg_match('/^WKT ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $feature->wkt[] = $matches[1];
-            } elseif ($this->parsing === 'FEATURE' && preg_match('/^END( # FEATURE)?$/i', $line)) {
+            } elseif ($this->parsing === 'FEATURE' && preg_match('/^END( # FEATURE)?$/i', $line) === 1) {
                 $this->lineEnd = $this->currentLineIndex;
                 $this->parsing = null;
 
