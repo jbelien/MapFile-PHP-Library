@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Write;
 
-use MapFile\Model\Label;
 use MapFile\Model\ScaleToken as ScaleTokenObject;
 use MapFile\Writer\ScaleToken;
 use Tests\WriteTest;
