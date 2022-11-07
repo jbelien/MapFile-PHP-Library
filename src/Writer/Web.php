@@ -36,6 +36,7 @@ class Web extends Writer
         $this->text .= self::getTextString('FOOTER', $web->footer, $indentSize + 1, $indent);
         $this->text .= self::getTextString('HEADER', $web->header, $indentSize + 1, $indent);
         $this->text .= self::getTextString('IMAGEPATH', $web->imagepath, $indentSize + 1, $indent);
+        $this->text .= self::getTextString('IMAGEURL', $web->imageurl, $indentSize + 1, $indent);
         $this->text .= self::getTextString('LEGENDFORMAT', $web->legendformat, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('MAXSCALEDENOM', $web->maxscaledenom, $indentSize + 1, $indent);
         $this->text .= self::getTextString('MAXTEMPLATE', $web->maxtemplate, $indentSize + 1, $indent);
