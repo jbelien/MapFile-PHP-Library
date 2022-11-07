@@ -1,0 +1,24 @@
+WEB
+  BROWSEFORMAT "text/html"
+  EMPTY "/empty"
+  ERROR "/error"
+  FOOTER "footer.html"
+  HEADER "header.html"
+  IMAGEPATH "/imagepath/"
+  IMAGEURL "localhost"
+  LEGENDFORMAT "text/html"
+  MAXSCALEDENOM 10000
+  MAXTEMPLATE "maxscale"
+  METADATA
+    "labelcache_map_edge_buffer" "10"
+    "ms_enable_modes" "!*"
+  END # METADATA
+  MINSCALEDENOM 1000
+  MINTEMPLATE "minscale"
+  QUERYFORMAT "text/html"
+  TEMPLATE "template.html"
+  TEMPPATH "/temp/"
+  VALIDATION
+    "firstname" "^[a-zA-Z\-]+$"
+  END # VALIDATION
+END # WEB
