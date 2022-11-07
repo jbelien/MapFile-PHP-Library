@@ -28,9 +28,8 @@ final class ScalebarTest extends WriteTest
         $scalebar->style = 0;
         $scalebar->units = 'METERS';
 
-        $label = new Label();
-        $label->color = [80, 80, 80];
-        $scalebar->label = $label;
+        $scalebar->label = new Label();
+        $scalebar->label->color = [80, 80, 80];
 
         $writer = new Scalebar($this->path);
         $writer->write($scalebar);
