@@ -1,0 +1,17 @@
+SYMBOL
+  ANCHORPOINT 5 5
+  ANTIALIAS TRUE
+  CHARACTER "&#10140;"
+  FILLED TRUE
+  FONT "dejavu"
+  IMAGE "image.png"
+  NAME "right-arrow"
+  POINTS
+    1 1
+    50 50
+    1 50
+    1 1
+  END # POINTS
+  TRANSPARENT 0
+  TYPE TRUETYPE
+END # SYMBOL
