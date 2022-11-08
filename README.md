@@ -59,7 +59,7 @@ Have a look at the [source code](https://github.com/jbelien/MapFile-PHP-Library/
 ### Parse MapFile (example)
 
 ```php
-$map = (new \MapFile\Parser\Map('my-mapfile.map'))->parseBlock();
+$map = (new \MapFile\Parser\Map())->parse('my-mapfile.map');
 
 foreach ($map->layer as $layer) {
     echo $layer->name;
