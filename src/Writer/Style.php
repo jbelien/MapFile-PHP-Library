@@ -47,7 +47,6 @@ class Style extends Writer
         }
 
         $this->text .= self::getTextArray('POLAROFFSET', $style->polaroffset, $indentSize + 1, $indent);
-
         $this->text .= self::getTextString('RANGEITEM', $style->rangeitem, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('SIZE', $style->size, $indentSize + 1, $indent);
         $this->text .= is_int($style->symbol) ? self::getTextRaw('SYMBOL', $style->symbol, $indentSize + 1, $indent) : self::getText('SYMBOL', $style->symbol, $indentSize + 1, $indent);
