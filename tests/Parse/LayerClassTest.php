@@ -6,15 +6,14 @@ namespace Tests\Parse;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use MapFile\Model\Leader;
-use MapFile\Parser\LayerClass;
+use MapFile\Parser\LayerClass as Parser;
 use Tests\ParseTest;
 
 final class LayerClassTest extends ParseTest
 {
     public function test(): void
     {
-        $parser = new LayerClass($this->stub);
-        $layerclass = $parser->parseBlock();
+        $layerclass = (new Parser())->parse($this->stub);
 
         self::assertSame('ON', $layerclass->debug);
         self::assertSame('([POPULATION] > 50000 AND \'[LANGUAGE]\' eq \'FRENCH\')', $layerclass->expression);

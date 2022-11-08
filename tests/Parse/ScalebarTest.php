@@ -5,15 +5,14 @@ declare(strict_types=1);
 namespace Tests\Parse;
 
 use MapFile\Model\Label;
-use MapFile\Parser\Scalebar;
+use MapFile\Parser\Scalebar as Parser;
 use Tests\ParseTest;
 
 final class ScalebarTest extends ParseTest
 {
     public function test(): void
     {
-        $parser = new Scalebar($this->stub);
-        $scalebar = $parser->parseBlock();
+        $scalebar = (new Parser())->parse($this->stub);
 
         self::assertSame('CENTER', $scalebar->align);
         self::assertSame([255, 255, 255], $scalebar->backgroundcolor);

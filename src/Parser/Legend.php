@@ -16,11 +16,9 @@ use MapFile\Model\Legend as LegendObject;
 
 class Legend extends Parser
 {
-    public function parseBlock(?array $content = null): LegendObject
+    public function parse(string $filename, int $lineNumber = 0): LegendObject
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         $legend = new LegendObject();
 
@@ -52,10 +50,9 @@ class Legend extends Parser
                     intval($matches[2]),
                 ];
             } elseif ($this->parsing === 'LEGEND' && preg_match('/^LABEL$/i', $line) === 1) {
-                $labelParser = new Label($this->file, $this->currentLineIndex - 1);
-                $label = $labelParser->parseBlock();
+                $labelParser = new Label();
 
-                $legend->label = $label;
+                $legend->label = $labelParser->parse($this->file, $this->currentLineIndex - 1);
 
                 $this->currentLineIndex = $labelParser->lineEnd;
             } elseif ($this->parsing === 'LEGEND' && preg_match('/^OUTLINECOLOR ([0-9]+) ([0-9]+) ([0-9]+)$/i', $line, $matches) === 1) {

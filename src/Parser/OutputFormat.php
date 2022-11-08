@@ -16,11 +16,9 @@ use MapFile\Model\OutputFormat as OutputFormatObject;
 
 class OutputFormat extends Parser
 {
-    public function parseBlock(?array $content = null): OutputFormatObject
+    public function parse(string $filename, int $lineNumber = 0): OutputFormatObject
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         $outputformat = new OutputFormatObject();
 

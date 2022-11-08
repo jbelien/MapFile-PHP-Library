@@ -16,11 +16,9 @@ use MapFile\Model\QueryMap as QueryMapObject;
 
 class QueryMap extends Parser
 {
-    public function parseBlock(?array $content = null): QueryMapObject
+    public function parse(string $filename, int $lineNumber = 0): QueryMapObject
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         $querymap = new QueryMapObject();
 

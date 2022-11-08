@@ -16,11 +16,9 @@ use MapFile\Model\Cluster as ClusterObject;
 
 class Cluster extends Parser
 {
-    public function parseBlock(?array $content = null): ClusterObject
+    public function parse(string $filename, int $lineNumber = 0): ClusterObject
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         $cluster = new ClusterObject();
 

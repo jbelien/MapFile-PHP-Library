@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Parse;
 
-use MapFile\Parser\Symbol;
+use MapFile\Parser\Symbol as Parser;
 use Tests\ParseTest;
 
 final class SymbolTest extends ParseTest
 {
     public function test(): void
     {
-        $parser = new Symbol($this->stub);
-        $symbol = $parser->parseBlock();
+        $symbol = (new Parser())->parse($this->stub);
 
         self::assertSame([5.0, 5.0], $symbol->anchorpoint);
         self::assertSame(true, $symbol->antialias);

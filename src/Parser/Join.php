@@ -16,11 +16,9 @@ use MapFile\Model\Join as JoinObject;
 
 class Join extends Parser
 {
-    public function parseBlock(?array $content = null): JoinObject
+    public function parse(string $filename, int $lineNumber = 0): JoinObject
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         $join = new JoinObject();
 

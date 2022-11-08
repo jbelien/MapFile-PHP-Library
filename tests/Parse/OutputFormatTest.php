@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Parse;
 
-use MapFile\Parser\OutputFormat;
+use MapFile\Parser\OutputFormat as Parser;
 use Tests\ParseTest;
 
 final class OutputFormatTest extends ParseTest
 {
     public function test(): void
     {
-        $parser = new OutputFormat($this->stub);
-        $outputformat = $parser->parseBlock();
+        $outputformat = (new Parser())->parse($this->stub);
 
         self::assertSame('AGG/PNG8', $outputformat->driver);
         self::assertSame('png', $outputformat->extension);
