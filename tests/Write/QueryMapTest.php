@@ -18,9 +18,9 @@ final class QueryMapTest extends WriteTest
         $querymap->status = 'ON';
         $querymap->style = 'HILITE';
 
-        $writer = new QueryMap($this->path);
+        $writer = new QueryMap();
         $writer->writeBlock($querymap);
-        $result = $writer->save();
+        $result = $writer->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

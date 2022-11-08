@@ -22,9 +22,9 @@ final class LeaderTest extends WriteTest
         $style->width = 1;
         $leader->style[] = $style;
 
-        $writer = new Leader($this->path);
+        $writer = new Leader();
         $writer->writeBlock($leader);
-        $result = $writer->save();
+        $result = $writer->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

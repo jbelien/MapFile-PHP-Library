@@ -53,9 +53,9 @@ final class LabelTest extends WriteTest
         $style->geomtransform = 'labelpoly';
         $label->style[] = $style;
 
-        $writer = new Label($this->path);
+        $writer = new Label();
         $writer->writeBlock($label);
-        $result = $writer->save();
+        $result = $writer->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

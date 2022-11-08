@@ -18,9 +18,9 @@ final class FeatureTest extends WriteTest
         $feature->text = 'test';
         $feature->wkt = 'POLYGON((1 1, 50 50, 1 50, 1 1))';
 
-        $writer = new Feature($this->path);
+        $writer = new Feature();
         $writer->writeBlock($feature);
-        $result = $writer->save();
+        $result = $writer->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

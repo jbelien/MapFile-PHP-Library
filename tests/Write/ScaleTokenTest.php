@@ -16,9 +16,9 @@ final class ScaleTokenTest extends WriteTest
         $scaletoken->name = '%pri%';
         $scaletoken->values = ['0' => '1', '1000' => '2', '10000' => '3'];
 
-        $writer = new ScaleToken($this->path);
+        $writer = new ScaleToken();
         $writer->writeBlock($scaletoken);
-        $result = $writer->save();
+        $result = $writer->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

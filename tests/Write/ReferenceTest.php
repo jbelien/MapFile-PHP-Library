@@ -24,9 +24,9 @@ final class ReferenceTest extends WriteTest
         $reference->size = [10, 10];
         $reference->status = 'ON';
 
-        $writer = new Reference($this->path);
+        $writer = new Reference();
         $writer->writeBlock($reference);
-        $result = $writer->save();
+        $result = $writer->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

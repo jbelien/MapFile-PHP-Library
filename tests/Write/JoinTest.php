@@ -24,9 +24,9 @@ final class JoinTest extends WriteTest
         $join->to = 'mysql-column';
         $join->type = 'ONE-TO-ONE';
 
-        $writer = new Join($this->path);
+        $writer = new Join();
         $writer->writeBlock($join);
-        $result = $writer->save();
+        $result = $writer->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

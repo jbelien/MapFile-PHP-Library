@@ -24,9 +24,9 @@ final class SymbolTest extends WriteTest
         $symbol->transparent = 0;
         $symbol->type = 'TRUETYPE';
 
-        $writer = new Symbol($this->path);
+        $writer = new Symbol();
         $writer->writeBlock($symbol);
-        $result = $writer->save();
+        $result = $writer->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

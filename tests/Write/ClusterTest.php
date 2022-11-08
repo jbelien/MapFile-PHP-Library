@@ -17,9 +17,9 @@ final class ClusterTest extends WriteTest
         $cluster->maxdistance = 1.5;
         $cluster->region = 'rectangle';
 
-        $writer = new Cluster($this->path);
+        $writer = new Cluster();
         $writer->writeBlock($cluster);
-        $result = $writer->save();
+        $result = $writer->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

@@ -31,9 +31,9 @@ final class WebTest extends WriteTest
         $web->temppath = '/temp/';
         $web->validation = ['firstname' => '^[a-zA-Z\-]+$'];
 
-        $writer = new Web($this->path);
+        $writer = new Web();
         $writer->writeBlock($web);
-        $result = $writer->save();
+        $result = $writer->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

@@ -39,9 +39,9 @@ final class LayerClassTest extends WriteTest
         $style->color = [80, 80, 80];
         $layerclass->style->add($style);
 
-        $writer = new LayerClass($this->path);
+        $writer = new LayerClass();
         $writer->writeBlock($layerclass);
-        $result = $writer->save();
+        $result = $writer->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

@@ -25,9 +25,9 @@ final class OutputFormatTest extends WriteTest
         $outputformat->name = 'png8';
         $outputformat->transparent = 'ON';
 
-        $writer = new OutputFormat($this->path);
+        $writer = new OutputFormat();
         $writer->writeBlock($outputformat);
-        $result = $writer->save();
+        $result = $writer->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

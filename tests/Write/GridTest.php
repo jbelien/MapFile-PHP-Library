@@ -21,9 +21,9 @@ final class GridTest extends WriteTest
         $grid->minsubdivide = 1;
         $grid->maxsubdivide = 256;
 
-        $writer = new Grid($this->path);
+        $writer = new Grid();
         $writer->writeBlock($grid);
-        $result = $writer->save();
+        $result = $writer->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

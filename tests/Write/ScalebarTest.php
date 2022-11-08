@@ -31,9 +31,9 @@ final class ScalebarTest extends WriteTest
         $scalebar->label = new Label();
         $scalebar->label->color = [80, 80, 80];
 
-        $writer = new Scalebar($this->path);
+        $writer = new Scalebar();
         $writer->writeBlock($scalebar);
-        $result = $writer->save();
+        $result = $writer->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);
