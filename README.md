@@ -51,7 +51,7 @@ $layer->class->add($class);
 
 $map->layer->add($layer);
 
-$mapfile = (new \MapFile\Writer\Map())->writeBlock($map);
+$mapfile = (new \MapFile\Writer\Map($map))->save('my-mapfile.map');
 ```
 
 Have a look at the [source code](https://github.com/jbelien/MapFile-PHP-Library/tree/master/src/Model) to see all the available options.
