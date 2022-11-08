@@ -61,9 +61,9 @@ class Map extends Writer
             $this->text .= (new Legend())->write($map->legend, $indentSize + 1, $indent);
         }
 
-        if (!is_null($map->outputformat)) {
+        foreach ($map->outputformat as $outputformat) {
             $this->text .= PHP_EOL;
-            $this->text .= (new OutputFormat())->write($map->outputformat, $indentSize + 1, $indent);
+            $this->text .= (new OutputFormat())->write($outputformat, $indentSize + 1, $indent);
         }
 
         if (!is_null($map->projection)) {

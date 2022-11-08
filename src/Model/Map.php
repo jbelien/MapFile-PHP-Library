@@ -51,7 +51,7 @@ class Map extends MapFileObject
     public $maxsize;
     /** @var null|string MapFile name. */
     public $name;
-    /** @var null|OutputFormat */
+    /** @var ArrayCollection<int,OutputFormat> */
     public $outputformat;
     /**
      * @var null|string MapFile EPSG Projection.
@@ -94,5 +94,6 @@ class Map extends MapFileObject
     {
         $this->layer = new ArrayCollection();
         $this->symbol = new ArrayCollection();
+        $this->outputformat = new ArrayCollection();
     }
 }
