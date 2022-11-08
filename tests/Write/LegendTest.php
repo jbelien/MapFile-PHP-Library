@@ -27,7 +27,7 @@ final class LegendTest extends WriteTest
         $legend->label->color = [80, 80, 80];
 
         $writer = new Legend($this->path);
-        $writer->write($legend);
+        $writer->writeBlock($legend);
         $result = $writer->save();
 
         self::assertTrue($result);

@@ -22,7 +22,7 @@ final class GridTest extends WriteTest
         $grid->maxsubdivide = 256;
 
         $writer = new Grid($this->path);
-        $writer->write($grid);
+        $writer->writeBlock($grid);
         $result = $writer->save();
 
         self::assertTrue($result);

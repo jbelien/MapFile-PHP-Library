@@ -16,7 +16,7 @@ use MapFile\Model\Symbol as SymbolObject;
 
 class Symbol extends Writer
 {
-    public function write($symbol, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($symbol, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$symbol instanceof SymbolObject) {
             throw new InvalidArgumentException(
@@ -39,7 +39,7 @@ class Symbol extends Writer
         $this->text .= self::getTextString('NAME', $symbol->name, $indentSize + 1, $indent);
 
         if (!is_null($symbol->points)) {
-            $this->text .= (new Points())->write($symbol->points, $indentSize + 1, $indent);
+            $this->text .= (new Points())->writeBlock($symbol->points, $indentSize + 1, $indent);
         }
 
         $this->text .= self::getTextRaw('TRANSPARENT', $symbol->transparent, $indentSize + 1, $indent);

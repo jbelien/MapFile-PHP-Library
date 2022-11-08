@@ -16,7 +16,7 @@ use MapFile\Model\LayerClass as LayerClassObject;
 
 class LayerClass extends Writer
 {
-    public function write($class, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($class, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$class instanceof LayerClassObject) {
             throw new InvalidArgumentException(
@@ -36,11 +36,11 @@ class LayerClass extends Writer
         $this->text .= self::getTextString('KEYIMAGE', $class->keyimage, $indentSize + 1, $indent);
 
         foreach ($class->label as $label) {
-            $this->text .= (new Label())->write($label, $indentSize + 1, $indent);
+            $this->text .= (new Label())->writeBlock($label, $indentSize + 1, $indent);
         }
 
         if (!is_null($class->leader)) {
-            $this->text .= (new Leader())->write($class->leader, $indentSize + 1, $indent);
+            $this->text .= (new Leader())->writeBlock($class->leader, $indentSize + 1, $indent);
         }
 
         $this->text .= self::getTextRaw('MAXSCALEDENOM', $class->maxscaledenom, $indentSize + 1, $indent);
@@ -49,14 +49,14 @@ class LayerClass extends Writer
         $this->text .= self::getTextRaw('STATUS', $class->status, $indentSize + 1, $indent);
 
         foreach ($class->style as $style) {
-            $this->text .= (new Style())->write($style, $indentSize + 1, $indent);
+            $this->text .= (new Style())->writeBlock($style, $indentSize + 1, $indent);
         }
 
         $this->text .= self::getTextString('TEMPLATE', $class->template, $indentSize + 1, $indent);
         $this->text .= self::getTextString('TEXT', $class->text, $indentSize + 1, $indent);
 
         if (!is_null($class->validation)) {
-            $this->text .= (new Validation())->write($class->validation, $indentSize + 1, $indent);
+            $this->text .= (new Validation())->writeBlock($class->validation, $indentSize + 1, $indent);
         }
 
         $this->text .= str_repeat($indent, $indentSize);

@@ -16,7 +16,7 @@ use MapFile\Model\Label as LabelObject;
 
 class Label extends Writer
 {
-    public function write($label, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($label, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$label instanceof LabelObject) {
             throw new InvalidArgumentException(
@@ -58,7 +58,7 @@ class Label extends Writer
         $this->text .= self::getTextRaw('SIZE', $label->size, $indentSize + 1, $indent);
 
         foreach ($label->style as $style) {
-            $this->text .= (new Style())->write($style, $indentSize + 1, $indent);
+            $this->text .= (new Style())->writeBlock($style, $indentSize + 1, $indent);
         }
 
         $this->text .= !is_null($label->text) && preg_match('/^\(.+\)$/', $label->text) === 1 ? self::getTextRaw('TEXT', $label->text, $indentSize + 1, $indent) : self::getTextString('TEXT', $label->text, $indentSize + 1, $indent);

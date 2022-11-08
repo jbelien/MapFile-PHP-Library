@@ -16,7 +16,7 @@ use MapFile\Model\Web as WebObject;
 
 class Web extends Writer
 {
-    public function write($web, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($web, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$web instanceof WebObject) {
             throw new InvalidArgumentException(
@@ -42,7 +42,7 @@ class Web extends Writer
         $this->text .= self::getTextString('MAXTEMPLATE', $web->maxtemplate, $indentSize + 1, $indent);
 
         if (count($web->metadata) > 0) {
-            $this->text .= (new Metadata())->write($web->metadata, $indentSize + 1, $indent);
+            $this->text .= (new Metadata())->writeBlock($web->metadata, $indentSize + 1, $indent);
         }
 
         $this->text .= self::getTextRaw('MINSCALEDENOM', $web->minscaledenom, $indentSize + 1, $indent);
@@ -52,7 +52,7 @@ class Web extends Writer
         $this->text .= self::getTextString('TEMPPATH', $web->temppath, $indentSize + 1, $indent);
 
         if (!is_null($web->validation)) {
-            $this->text .= (new Validation())->write($web->validation, $indentSize + 1, $indent);
+            $this->text .= (new Validation())->writeBlock($web->validation, $indentSize + 1, $indent);
         }
 
         $this->text .= str_repeat($indent, $indentSize);

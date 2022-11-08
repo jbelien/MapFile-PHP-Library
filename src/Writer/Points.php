@@ -15,7 +15,7 @@ use InvalidArgumentException;
 
 class Points extends Writer
 {
-    public function write($points, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($points, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!is_array($points)) {
             throw new InvalidArgumentException(

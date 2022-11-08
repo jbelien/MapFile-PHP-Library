@@ -25,7 +25,7 @@ final class JoinTest extends WriteTest
         $join->type = 'ONE-TO-ONE';
 
         $writer = new Join($this->path);
-        $writer->write($join);
+        $writer->writeBlock($join);
         $result = $writer->save();
 
         self::assertTrue($result);

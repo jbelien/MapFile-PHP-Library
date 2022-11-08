@@ -16,7 +16,7 @@ use MapFile\Model\OutputFormat as OutputFormatObject;
 
 class OutputFormat extends Writer
 {
-    public function write($outputformat, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($outputformat, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$outputformat instanceof OutputFormatObject) {
             throw new InvalidArgumentException(

@@ -15,7 +15,7 @@ use InvalidArgumentException;
 
 class Metadata extends Writer
 {
-    public function write($metadata, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($metadata, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!is_array($metadata) || $metadata !== array_filter($metadata, fn ($value, $key) => is_string($key) && is_string($value), ARRAY_FILTER_USE_BOTH)) {
             throw new InvalidArgumentException(

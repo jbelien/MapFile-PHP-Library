@@ -15,7 +15,7 @@ use InvalidArgumentException;
 
 class Projection extends Writer
 {
-    public function write($projection, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($projection, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!is_string($projection)) {
             throw new InvalidArgumentException(

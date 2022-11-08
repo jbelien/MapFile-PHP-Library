@@ -16,7 +16,7 @@ use MapFile\Model\Reference as ReferenceObject;
 
 class Reference extends Writer
 {
-    public function write($reference, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($reference, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$reference instanceof ReferenceObject) {
             throw new InvalidArgumentException(

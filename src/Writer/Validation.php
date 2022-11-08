@@ -15,7 +15,7 @@ use InvalidArgumentException;
 
 class Validation extends Writer
 {
-    public function write($validation, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($validation, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!is_array($validation) || $validation !== array_filter($validation, fn ($value, $key) => is_string($key) && is_string($value), ARRAY_FILTER_USE_BOTH)) {
             throw new InvalidArgumentException(

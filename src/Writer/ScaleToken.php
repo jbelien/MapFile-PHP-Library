@@ -16,7 +16,7 @@ use MapFile\Model\ScaleToken as ScaleTokenObject;
 
 class ScaleToken extends Writer
 {
-    public function write($scaletoken, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($scaletoken, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$scaletoken instanceof ScaleTokenObject) {
             throw new InvalidArgumentException(
@@ -33,7 +33,7 @@ class ScaleToken extends Writer
         $this->text .= self::getTextString('NAME', $scaletoken->name, $indentSize + 1, $indent);
 
         if (count($scaletoken->values) > 0) {
-            $this->text .= (new ScaleTokenValues())->write($scaletoken->values, $indentSize + 1, $indent);
+            $this->text .= (new ScaleTokenValues())->writeBlock($scaletoken->values, $indentSize + 1, $indent);
         }
 
         $this->text .= str_repeat($indent, $indentSize);

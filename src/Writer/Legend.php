@@ -16,7 +16,7 @@ use MapFile\Model\Legend as LegendObject;
 
 class Legend extends Writer
 {
-    public function write($legend, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($legend, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$legend instanceof LegendObject) {
             throw new InvalidArgumentException(
@@ -35,7 +35,7 @@ class Legend extends Writer
         $this->text .= self::getTextArray('KEYSPACING', $legend->keyspacing, $indentSize + 1, $indent);
 
         if (!is_null($legend->label)) {
-            $this->text .= (new Label())->write($legend->label, $indentSize + 1, $indent);
+            $this->text .= (new Label())->writeBlock($legend->label, $indentSize + 1, $indent);
         }
 
         $this->text .= is_array($legend->outlinecolor) ? self::getTextArray('OUTLINECOLOR', $legend->outlinecolor, $indentSize + 1, $indent) : self::getTextString('OUTLINECOLOR', $legend->outlinecolor, $indentSize + 1, $indent);

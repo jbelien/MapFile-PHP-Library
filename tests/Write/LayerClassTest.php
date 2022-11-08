@@ -40,7 +40,7 @@ final class LayerClassTest extends WriteTest
         $layerclass->style->add($style);
 
         $writer = new LayerClass($this->path);
-        $writer->write($layerclass);
+        $writer->writeBlock($layerclass);
         $result = $writer->save();
 
         self::assertTrue($result);

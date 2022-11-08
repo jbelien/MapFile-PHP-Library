@@ -16,7 +16,7 @@ use MapFile\Model\Leader as LeaderObject;
 
 class Leader extends Writer
 {
-    public function write($leader, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($leader, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$leader instanceof LeaderObject) {
             throw new InvalidArgumentException(
@@ -34,7 +34,7 @@ class Leader extends Writer
         $this->text .= self::getTextRaw('MAXDISTANCE', $leader->maxdistance, $indentSize + 1, $indent);
 
         foreach ($leader->style as $style) {
-            $this->text .= (new Style())->write($style, $indentSize + 1, $indent);
+            $this->text .= (new Style())->writeBlock($style, $indentSize + 1, $indent);
         }
 
         $this->text .= str_repeat($indent, $indentSize);

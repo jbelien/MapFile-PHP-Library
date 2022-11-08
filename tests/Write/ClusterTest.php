@@ -18,7 +18,7 @@ final class ClusterTest extends WriteTest
         $cluster->region = 'rectangle';
 
         $writer = new Cluster($this->path);
-        $writer->write($cluster);
+        $writer->writeBlock($cluster);
         $result = $writer->save();
 
         self::assertTrue($result);

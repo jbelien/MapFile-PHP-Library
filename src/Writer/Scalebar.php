@@ -16,7 +16,7 @@ use MapFile\Model\Scalebar as ScalebarObject;
 
 class Scalebar extends Writer
 {
-    public function write($scalebar, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($scalebar, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$scalebar instanceof ScalebarObject) {
             throw new InvalidArgumentException(
@@ -37,7 +37,7 @@ class Scalebar extends Writer
         $this->text .= self::getTextRaw('INTERVALS', $scalebar->intervals, $indentSize + 1, $indent);
 
         if (!is_null($scalebar->label)) {
-            $this->text .= (new Label())->write($scalebar->label, $indentSize + 1, $indent);
+            $this->text .= (new Label())->writeBlock($scalebar->label, $indentSize + 1, $indent);
         }
 
         $this->text .= self::getTextArray('OFFSET', $scalebar->offset, $indentSize + 1, $indent);

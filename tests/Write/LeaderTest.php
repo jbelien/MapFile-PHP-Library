@@ -23,7 +23,7 @@ final class LeaderTest extends WriteTest
         $leader->style[] = $style;
 
         $writer = new Leader($this->path);
-        $writer->write($leader);
+        $writer->writeBlock($leader);
         $result = $writer->save();
 
         self::assertTrue($result);

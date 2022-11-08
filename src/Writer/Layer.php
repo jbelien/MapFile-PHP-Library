@@ -16,7 +16,7 @@ use MapFile\Model\Layer as LayerObject;
 
 class Layer extends Writer
 {
-    public function write($layer, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($layer, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$layer instanceof LayerObject) {
             throw new InvalidArgumentException(
@@ -34,7 +34,7 @@ class Layer extends Writer
         $this->text .= self::getTextString('CLASSITEM', $layer->classitem, $indentSize + 1, $indent);
 
         if (!is_null($layer->cluster)) {
-            $this->text .= (new Cluster())->write($layer->cluster, $indentSize + 1, $indent);
+            $this->text .= (new Cluster())->writeBlock($layer->cluster, $indentSize + 1, $indent);
         }
 
         $this->text .= self::getTextString('CONNECTION', $layer->connection, $indentSize + 1, $indent);
@@ -49,7 +49,7 @@ class Layer extends Writer
         $this->text .= self::getText('GEOMTRANSFORM', $layer->geomtransform, $indentSize + 1, $indent);
 
         if (!is_null($layer->grid)) {
-            $this->text .= (new Grid())->write($layer->grid, $indentSize + 1, $indent);
+            $this->text .= (new Grid())->writeBlock($layer->grid, $indentSize + 1, $indent);
         }
 
         $this->text .= self::getTextString('GROUP', $layer->group, $indentSize + 1, $indent);
@@ -65,7 +65,7 @@ class Layer extends Writer
         $this->text .= self::getTextRaw('MAXSCALEDENOM', $layer->maxscaledenom, $indentSize + 1, $indent);
 
         if (count($layer->metadata) > 0) {
-            $this->text .= (new Metadata())->write($layer->metadata, $indentSize + 1, $indent);
+            $this->text .= (new Metadata())->writeBlock($layer->metadata, $indentSize + 1, $indent);
         }
 
         $this->text .= self::getTextRaw('MINGEOWIDTH', $layer->mingeowidth, $indentSize + 1, $indent);
@@ -81,13 +81,13 @@ class Layer extends Writer
         }
 
         if (!is_null($layer->projection)) {
-            $this->text .= (new Projection())->write($layer->projection, $indentSize + 1, $indent);
+            $this->text .= (new Projection())->writeBlock($layer->projection, $indentSize + 1, $indent);
         }
 
         $this->text .= self::getTextString('REQUIRES', $layer->requires, $indentSize + 1, $indent);
 
         if (!is_null($layer->scaletoken)) {
-            $this->text .= (new ScaleToken())->write($layer->scaletoken, $indentSize + 1, $indent);
+            $this->text .= (new ScaleToken())->writeBlock($layer->scaletoken, $indentSize + 1, $indent);
         }
 
         $this->text .= self::getTextRaw('SIZEUNITS', $layer->sizeunits, $indentSize + 1, $indent);
@@ -107,27 +107,27 @@ class Layer extends Writer
         $this->text .= self::getTextString('UTFITEM', $layer->utfitem, $indentSize + 1, $indent);
 
         if (!is_null($layer->validation)) {
-            $this->text .= (new Validation())->write($layer->validation, $indentSize + 1, $indent);
+            $this->text .= (new Validation())->writeBlock($layer->validation, $indentSize + 1, $indent);
         }
 
         foreach ($layer->class as $class) {
             $this->text .= PHP_EOL;
-            $this->text .= (new LayerClass())->write($class, $indentSize + 1, $indent);
+            $this->text .= (new LayerClass())->writeBlock($class, $indentSize + 1, $indent);
         }
 
         foreach ($layer->composite as $composite) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Composite())->write($composite, $indentSize + 1, $indent);
+            $this->text .= (new Composite())->writeBlock($composite, $indentSize + 1, $indent);
         }
 
         foreach ($layer->feature as $feature) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Feature())->write($feature, $indentSize + 1, $indent);
+            $this->text .= (new Feature())->writeBlock($feature, $indentSize + 1, $indent);
         }
 
         foreach ($layer->join as $join) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Join())->write($join, $indentSize + 1, $indent);
+            $this->text .= (new Join())->writeBlock($join, $indentSize + 1, $indent);
         }
 
         $this->text .= str_repeat($indent, $indentSize);

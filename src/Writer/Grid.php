@@ -16,7 +16,7 @@ use MapFile\Model\Grid as GridObject;
 
 class Grid extends Writer
 {
-    public function write($grid, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($grid, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$grid instanceof GridObject) {
             throw new InvalidArgumentException(

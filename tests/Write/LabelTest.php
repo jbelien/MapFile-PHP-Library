@@ -54,7 +54,7 @@ final class LabelTest extends WriteTest
         $label->style[] = $style;
 
         $writer = new Label($this->path);
-        $writer->write($label);
+        $writer->writeBlock($label);
         $result = $writer->save();
 
         self::assertTrue($result);

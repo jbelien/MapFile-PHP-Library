@@ -16,7 +16,7 @@ use MapFile\Model\Map as MapObject;
 
 class Map extends Writer
 {
-    public function write($map, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($map, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$map instanceof MapObject) {
             throw new InvalidArgumentException(
@@ -58,47 +58,47 @@ class Map extends Writer
 
         if (!is_null($map->legend)) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Legend())->write($map->legend, $indentSize + 1, $indent);
+            $this->text .= (new Legend())->writeBlock($map->legend, $indentSize + 1, $indent);
         }
 
         foreach ($map->outputformat as $outputformat) {
             $this->text .= PHP_EOL;
-            $this->text .= (new OutputFormat())->write($outputformat, $indentSize + 1, $indent);
+            $this->text .= (new OutputFormat())->writeBlock($outputformat, $indentSize + 1, $indent);
         }
 
         if (!is_null($map->projection)) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Projection())->write($map->projection, $indentSize + 1, $indent);
+            $this->text .= (new Projection())->writeBlock($map->projection, $indentSize + 1, $indent);
         }
 
         if (!is_null($map->querymap)) {
             $this->text .= PHP_EOL;
-            $this->text .= (new QueryMap())->write($map->querymap, $indentSize + 1, $indent);
+            $this->text .= (new QueryMap())->writeBlock($map->querymap, $indentSize + 1, $indent);
         }
 
         if (!is_null($map->reference)) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Reference())->write($map->reference, $indentSize + 1, $indent);
+            $this->text .= (new Reference())->writeBlock($map->reference, $indentSize + 1, $indent);
         }
 
         if (!is_null($map->scalebar)) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Scalebar())->write($map->scalebar, $indentSize + 1, $indent);
+            $this->text .= (new Scalebar())->writeBlock($map->scalebar, $indentSize + 1, $indent);
         }
 
         if (!is_null($map->web)) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Web())->write($map->web, $indentSize + 1, $indent);
+            $this->text .= (new Web())->writeBlock($map->web, $indentSize + 1, $indent);
         }
 
         foreach ($map->symbol as $symbol) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Symbol())->write($symbol, $indentSize + 1, $indent);
+            $this->text .= (new Symbol())->writeBlock($symbol, $indentSize + 1, $indent);
         }
 
         foreach ($map->layer as $layer) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Layer())->write($layer, $indentSize + 1, $indent);
+            $this->text .= (new Layer())->writeBlock($layer, $indentSize + 1, $indent);
         }
 
         $this->text .= PHP_EOL;

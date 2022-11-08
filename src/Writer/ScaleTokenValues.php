@@ -15,7 +15,7 @@ use InvalidArgumentException;
 
 class ScaleTokenValues extends Writer
 {
-    public function write($values, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($values, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!is_array($values) || $values !== array_filter($values, fn ($value, $key) => is_string($value), ARRAY_FILTER_USE_BOTH)) {
             throw new InvalidArgumentException(

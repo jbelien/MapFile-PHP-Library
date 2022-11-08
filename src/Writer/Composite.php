@@ -16,7 +16,7 @@ use MapFile\Model\Composite as CompositeObject;
 
 class Composite extends Writer
 {
-    public function write($composite, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($composite, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$composite instanceof CompositeObject) {
             throw new InvalidArgumentException(

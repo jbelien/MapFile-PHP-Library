@@ -16,7 +16,7 @@ use MapFile\Model\QueryMap as QueryMapObject;
 
 class QueryMap extends Writer
 {
-    public function write($querymap, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($querymap, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$querymap instanceof QueryMapObject) {
             throw new InvalidArgumentException(

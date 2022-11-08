@@ -19,7 +19,7 @@ final class QueryMapTest extends WriteTest
         $querymap->style = 'HILITE';
 
         $writer = new QueryMap($this->path);
-        $writer->write($querymap);
+        $writer->writeBlock($querymap);
         $result = $writer->save();
 
         self::assertTrue($result);

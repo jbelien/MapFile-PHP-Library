@@ -16,7 +16,7 @@ use MapFile\Model\Cluster as ClusterObject;
 
 class Cluster extends Writer
 {
-    public function write($cluster, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($cluster, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$cluster instanceof ClusterObject) {
             throw new InvalidArgumentException(

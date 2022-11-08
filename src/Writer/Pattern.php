@@ -15,7 +15,7 @@ use InvalidArgumentException;
 
 class Pattern extends Writer
 {
-    public function write($pattern, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($pattern, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!is_array($pattern)) {
             throw new InvalidArgumentException(

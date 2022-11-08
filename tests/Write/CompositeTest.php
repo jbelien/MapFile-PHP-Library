@@ -17,7 +17,7 @@ final class CompositeTest extends WriteTest
         $cluster->compop = 'darken';
 
         $writer = new Composite($this->path);
-        $writer->write($cluster);
+        $writer->writeBlock($cluster);
         $result = $writer->save();
 
         self::assertTrue($result);

@@ -25,7 +25,7 @@ final class ReferenceTest extends WriteTest
         $reference->status = 'ON';
 
         $writer = new Reference($this->path);
-        $writer->write($reference);
+        $writer->writeBlock($reference);
         $result = $writer->save();
 
         self::assertTrue($result);

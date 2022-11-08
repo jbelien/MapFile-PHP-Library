@@ -32,7 +32,7 @@ final class WebTest extends WriteTest
         $web->validation = ['firstname' => '^[a-zA-Z\-]+$'];
 
         $writer = new Web($this->path);
-        $writer->write($web);
+        $writer->writeBlock($web);
         $result = $writer->save();
 
         self::assertTrue($result);

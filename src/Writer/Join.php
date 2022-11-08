@@ -16,7 +16,7 @@ use MapFile\Model\Join as JoinObject;
 
 class Join extends Writer
 {
-    public function write($join, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($join, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$join instanceof JoinObject) {
             throw new InvalidArgumentException(

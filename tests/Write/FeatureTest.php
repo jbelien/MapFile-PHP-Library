@@ -19,7 +19,7 @@ final class FeatureTest extends WriteTest
         $feature->wkt = 'POLYGON((1 1, 50 50, 1 50, 1 1))';
 
         $writer = new Feature($this->path);
-        $writer->write($feature);
+        $writer->writeBlock($feature);
         $result = $writer->save();
 
         self::assertTrue($result);

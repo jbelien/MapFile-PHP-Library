@@ -26,7 +26,7 @@ final class OutputFormatTest extends WriteTest
         $outputformat->transparent = 'ON';
 
         $writer = new OutputFormat($this->path);
-        $writer->write($outputformat);
+        $writer->writeBlock($outputformat);
         $result = $writer->save();
 
         self::assertTrue($result);

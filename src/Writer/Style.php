@@ -16,7 +16,7 @@ use MapFile\Model\Style as StyleObject;
 
 class Style extends Writer
 {
-    public function write($style, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function writeBlock($style, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
     {
         if (!$style instanceof StyleObject) {
             throw new InvalidArgumentException(
@@ -51,7 +51,7 @@ class Style extends Writer
         $this->text .= self::getTextRaw('OUTLINEWIDTH', $style->outlinewidth, $indentSize + 1, $indent);
 
         if (!is_null($style->pattern) && count($style->pattern) > 0) {
-            $this->text .= (new Pattern())->write($style->pattern, $indentSize + 1, $indent);
+            $this->text .= (new Pattern())->writeBlock($style->pattern, $indentSize + 1, $indent);
         }
 
         $this->text .= self::getTextRaw('RANGEITEM', $style->rangeitem, $indentSize + 1, $indent);
