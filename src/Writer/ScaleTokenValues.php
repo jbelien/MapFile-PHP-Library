@@ -15,8 +15,9 @@ class ScaleTokenValues extends Writer
 {
     /**
      * @param array<int|string,string> $values
-     * @param int $indentSize
-     * @param string $indent
+     * @param int                      $indentSize
+     * @param string                   $indent
+     *
      * @return void
      */
     public function __construct(array $values, int $indentSize = 0, string $indent = self::WRITER_INDENT)

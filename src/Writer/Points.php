@@ -15,8 +15,9 @@ class Points extends Writer
 {
     /**
      * @param array<array<float>> $points
-     * @param int $indentSize
-     * @param string $indent
+     * @param int                 $indentSize
+     * @param string              $indent
+     *
      * @return void
      */
     public function __construct(array $points, int $indentSize = 0, string $indent = self::WRITER_INDENT)

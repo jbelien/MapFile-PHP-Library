@@ -33,9 +33,11 @@ abstract class Parser
 
     /**
      * @param string $filename
-     * @param int $lineNumber
-     * @return void
+     * @param int    $lineNumber
+     *
      * @throws FileException
+     *
+     * @return void
      */
     public function parse(string $filename, int $lineNumber = 0)
     {

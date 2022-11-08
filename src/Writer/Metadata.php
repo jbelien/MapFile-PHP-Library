@@ -15,8 +15,9 @@ class Metadata extends Writer
 {
     /**
      * @param array<string,string> $metadata
-     * @param int $indentSize
-     * @param string $indent
+     * @param int                  $indentSize
+     * @param string               $indent
+     *
      * @return void
      */
     public function __construct(array $metadata, int $indentSize = 0, string $indent = self::WRITER_INDENT)

@@ -15,8 +15,9 @@ class Pattern extends Writer
 {
     /**
      * @param array<array<float>> $pattern
-     * @param int $indentSize
-     * @param string $indent
+     * @param int                 $indentSize
+     * @param string              $indent
+     *
      * @return void
      */
     public function __construct(array $pattern, int $indentSize = 0, string $indent = self::WRITER_INDENT)

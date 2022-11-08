@@ -15,8 +15,9 @@ class Validation extends Writer
 {
     /**
      * @param array<string,string> $validation
-     * @param int $indentSize
-     * @param string $indent
+     * @param int                  $indentSize
+     * @param string               $indent
+     *
      * @return void
      */
     public function __construct(array $validation, int $indentSize = 0, string $indent = self::WRITER_INDENT)
