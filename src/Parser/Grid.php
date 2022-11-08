@@ -16,11 +16,9 @@ use MapFile\Model\Grid as GridObject;
 
 class Grid extends Parser
 {
-    public function parse(?array $content = null): GridObject
+    public function parse(string $filename, int $lineNumber = 0): GridObject
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         $grid = new GridObject();
 

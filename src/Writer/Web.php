@@ -11,22 +11,12 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
 use MapFile\Model\Web as WebObject;
 
 class Web extends Writer
 {
-    public function write($web, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function __construct(WebObject $web, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!$web instanceof WebObject) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an instance of "Web", instance of "%s" given.',
-                    gettype($web) === 'object' ? get_class($web) : gettype($web)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'WEB'.PHP_EOL;
 
@@ -42,7 +32,7 @@ class Web extends Writer
         $this->text .= self::getTextString('MAXTEMPLATE', $web->maxtemplate, $indentSize + 1, $indent);
 
         if (count($web->metadata) > 0) {
-            $this->text .= (new Metadata())->write($web->metadata, $indentSize + 1, $indent);
+            $this->text .= (new Metadata($web->metadata, $indentSize + 1, $indent))->text;
         }
 
         $this->text .= self::getTextRaw('MINSCALEDENOM', $web->minscaledenom, $indentSize + 1, $indent);
@@ -52,12 +42,10 @@ class Web extends Writer
         $this->text .= self::getTextString('TEMPPATH', $web->temppath, $indentSize + 1, $indent);
 
         if (!is_null($web->validation)) {
-            $this->text .= (new Validation())->write($web->validation, $indentSize + 1, $indent);
+            $this->text .= (new Validation($web->validation, $indentSize + 1, $indent))->text;
         }
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # WEB'.PHP_EOL;
-
-        return $this->text;
     }
 }

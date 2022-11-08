@@ -16,11 +16,9 @@ use MapFile\Model\Feature as FeatureObject;
 
 class Feature extends Parser
 {
-    public function parse(?array $content = null): FeatureObject
+    public function parse(string $filename, int $lineNumber = 0): FeatureObject
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         $feature = new FeatureObject();
 
@@ -34,10 +32,9 @@ class Feature extends Parser
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'FEATURE';
             } elseif ($this->parsing === 'FEATURE' && preg_match('/^POINTS$/i', $line) === 1) {
-                $pointsParser = new Points($this->file, $this->currentLineIndex - 1);
-                $points = $pointsParser->parse();
+                $pointsParser = new Points();
 
-                $feature->points = $points;
+                $feature->points = $pointsParser->parse($this->file, $this->currentLineIndex - 1);
 
                 $this->currentLineIndex = $pointsParser->lineEnd;
             } elseif ($this->parsing === 'FEATURE' && preg_match('/^ITEMS ["\'](.+)["\']$/i', $line, $matches) === 1) {

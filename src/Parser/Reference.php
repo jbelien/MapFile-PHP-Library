@@ -16,11 +16,9 @@ use MapFile\Model\Reference as ReferenceObject;
 
 class Reference extends Parser
 {
-    public function parse(?array $content = null): ReferenceObject
+    public function parse(string $filename, int $lineNumber = 0): ReferenceObject
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         $reference = new ReferenceObject();
 

@@ -11,22 +11,12 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
 use MapFile\Model\OutputFormat as OutputFormatObject;
 
 class OutputFormat extends Writer
 {
-    public function write($outputformat, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function __construct(OutputFormatObject $outputformat, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!$outputformat instanceof OutputFormatObject) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an instance of "OutputFormat", instance of "%s" given.',
-                    gettype($outputformat) === 'object' ? get_class($outputformat) : gettype($outputformat)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'OUTPUTFORMAT'.PHP_EOL;
 
@@ -44,7 +34,5 @@ class OutputFormat extends Writer
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # OUTPUTFORMAT'.PHP_EOL;
-
-        return $this->text;
     }
 }

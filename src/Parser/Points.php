@@ -18,11 +18,9 @@ class Points extends Parser
     /**
      * @return array<array<float>>
      */
-    public function parse(?array $content = null): array
+    public function parse(string $filename, int $lineNumber = 0): array
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         /** @var array<array<float>> */
         $points = [];

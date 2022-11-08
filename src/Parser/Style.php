@@ -16,11 +16,9 @@ use MapFile\Model\Style as StyleObject;
 
 class Style extends Parser
 {
-    public function parse(?array $content = null): StyleObject
+    public function parse(string $filename, int $lineNumber = 0): StyleObject
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         $style = new StyleObject();
 
@@ -116,10 +114,9 @@ class Style extends Parser
             } elseif ($this->parsing === 'STYLE' && preg_match('/^OUTLINEWIDTH (\[.+\])$/i', $line, $matches) === 1) {
                 $style->outlinewidth = $matches[1];
             } elseif ($this->parsing === 'STYLE' && preg_match('/^PATTERN$/i', $line) === 1) {
-                $patternParser = new Pattern($this->file, $this->currentLineIndex - 1);
-                $pattern = $patternParser->parse();
+                $patternParser = new Pattern();
 
-                $style->pattern = $pattern;
+                $style->pattern = $patternParser->parse($this->file, $this->currentLineIndex - 1);
 
                 $this->currentLineIndex = $patternParser->lineEnd;
             } elseif ($this->parsing === 'STYLE' && preg_match('/^POLAROFFSET ([0-9]+(?:\.(?:[0-9]+))?) ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {

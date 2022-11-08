@@ -4,21 +4,19 @@ declare(strict_types=1);
 
 namespace Tests\Write;
 
-use MapFile\Model\Composite as CompositeObject;
-use MapFile\Writer\Composite;
+use MapFile\Model\Composite;
+use MapFile\Writer\Composite as Writer;
 use Tests\WriteTest;
 
 final class CompositeTest extends WriteTest
 {
     public function test(): void
     {
-        $cluster = new CompositeObject();
-        $cluster->opacity = 100;
-        $cluster->compop = 'darken';
+        $composite = new Composite();
+        $composite->opacity = 100;
+        $composite->compop = 'darken';
 
-        $writer = new Composite($this->path);
-        $writer->write($cluster);
-        $result = $writer->save();
+        $result = (new Writer($composite))->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

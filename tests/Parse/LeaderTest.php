@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Parse;
 
-use MapFile\Parser\Leader;
+use MapFile\Parser\Leader as Parser;
 use Tests\ParseTest;
 
 final class LeaderTest extends ParseTest
 {
     public function test(): void
     {
-        $parser = new Leader($this->stub);
-        $leader = $parser->parse();
+        $leader = (new Parser())->parse($this->stub);
 
         self::assertSame(5, $leader->gridstep);
         self::assertSame(30, $leader->maxdistance);

@@ -11,22 +11,12 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
 use MapFile\Model\Symbol as SymbolObject;
 
 class Symbol extends Writer
 {
-    public function write($symbol, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function __construct(SymbolObject $symbol, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!$symbol instanceof SymbolObject) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an instance of "Symbol", instance of "%s" given.',
-                    gettype($symbol) === 'object' ? get_class($symbol) : gettype($symbol)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'SYMBOL'.PHP_EOL;
 
@@ -39,7 +29,7 @@ class Symbol extends Writer
         $this->text .= self::getTextString('NAME', $symbol->name, $indentSize + 1, $indent);
 
         if (!is_null($symbol->points)) {
-            $this->text .= (new Points())->write($symbol->points, $indentSize + 1, $indent);
+            $this->text .= (new Points($symbol->points, $indentSize + 1, $indent))->text;
         }
 
         $this->text .= self::getTextRaw('TRANSPARENT', $symbol->transparent, $indentSize + 1, $indent);
@@ -47,7 +37,5 @@ class Symbol extends Writer
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # SYMBOL'.PHP_EOL;
-
-        return $this->text;
     }
 }

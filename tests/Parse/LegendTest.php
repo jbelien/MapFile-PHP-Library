@@ -5,15 +5,14 @@ declare(strict_types=1);
 namespace Tests\Parse;
 
 use MapFile\Model\Label;
-use MapFile\Parser\Legend;
+use MapFile\Parser\Legend as Parser;
 use Tests\ParseTest;
 
 final class LegendTest extends ParseTest
 {
     public function test(): void
     {
-        $parser = new Legend($this->stub);
-        $legend = $parser->parse();
+        $legend = (new Parser())->parse($this->stub);
 
         self::assertSame([255, 0, 0], $legend->imagecolor);
         self::assertSame([20, 10], $legend->keysize);

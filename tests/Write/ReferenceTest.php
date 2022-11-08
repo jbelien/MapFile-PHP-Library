@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Tests\Write;
 
-use MapFile\Model\Reference as ReferenceObject;
-use MapFile\Writer\Reference;
+use MapFile\Model\Reference;
+use MapFile\Writer\Reference as Writer;
 use Tests\WriteTest;
 
 final class ReferenceTest extends WriteTest
 {
     public function test(): void
     {
-        $reference = new ReferenceObject();
+        $reference = new Reference();
         $reference->color = [255, 0, 0];
         $reference->extent = [0, 0, 100, 100];
         $reference->image = 'image.png';
@@ -24,9 +24,7 @@ final class ReferenceTest extends WriteTest
         $reference->size = [10, 10];
         $reference->status = 'ON';
 
-        $writer = new Reference($this->path);
-        $writer->write($reference);
-        $result = $writer->save();
+        $result = (new Writer($reference))->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

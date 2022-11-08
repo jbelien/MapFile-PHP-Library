@@ -16,11 +16,9 @@ use MapFile\Model\Composite as CompositeObject;
 
 class Composite extends Parser
 {
-    public function parse(?array $content = null): CompositeObject
+    public function parse(string $filename, int $lineNumber = 0): CompositeObject
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         $composite = new CompositeObject();
 

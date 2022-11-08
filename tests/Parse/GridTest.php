@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Parse;
 
-use MapFile\Parser\Grid;
+use MapFile\Parser\Grid as Parser;
 use Tests\ParseTest;
 
 final class GridTest extends ParseTest
 {
     public function test(): void
     {
-        $parser = new Grid($this->stub);
-        $grid = $parser->parse();
+        $grid = (new Parser())->parse($this->stub);
 
         self::assertSame('DD', $grid->labelformat);
         self::assertSame(1.0, $grid->minarcs);

@@ -16,11 +16,9 @@ use MapFile\Model\Symbol as SymbolObject;
 
 class Symbol extends Parser
 {
-    public function parse(?array $content = null): SymbolObject
+    public function parse(string $filename, int $lineNumber = 0): SymbolObject
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         $symbol = new SymbolObject();
 
@@ -51,10 +49,9 @@ class Symbol extends Parser
             } elseif ($this->parsing === 'SYMBOL' && preg_match('/^NAME ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $symbol->name = $matches[1];
             } elseif ($this->parsing === 'SYMBOL' && preg_match('/^POINTS$/i', $line) === 1) {
-                $pointsParser = new Points($this->file, $this->currentLineIndex - 1);
-                $points = $pointsParser->parse();
+                $pointsParser = new Points();
 
-                $symbol->points = $points;
+                $symbol->points = $pointsParser->parse($this->file, $this->currentLineIndex - 1);
 
                 $this->currentLineIndex = $pointsParser->lineEnd;
             } elseif ($this->parsing === 'SYMBOL' && preg_match('/^TRANSPARENT ([0-9]+)$/i', $line, $matches) === 1) {

@@ -11,27 +11,18 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-abstract class Writer implements WriterInterface
+abstract class Writer
 {
-    /** @var null|string */
-    protected $file;
+    const WRITER_INDENT = '  ';
+
     /** @var string */
     protected $text;
 
-    public function __construct(string $file = null)
+    public function save(string $filename): bool
     {
-        $this->file = $file;
-    }
+        $result = file_put_contents($filename, $this->text);
 
-    public function save(): bool
-    {
-        if (!is_null($this->file) && file_exists($this->file) && is_writable($this->file)) {
-            $result = file_put_contents($this->file, $this->text);
-
-            return false !== $result;
-        }
-
-        return false;
+        return false !== $result;
     }
 
     /**
@@ -108,6 +99,4 @@ abstract class Writer implements WriterInterface
             return self::getTextString($key, $value, $indentSize, $indent);
         }
     }
-
-    abstract public function write($object, int $indentSize = 0, string $indent = self::WRITER_INDENT): string;
 }

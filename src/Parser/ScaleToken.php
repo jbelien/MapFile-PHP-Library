@@ -16,11 +16,9 @@ use MapFile\Model\ScaleToken as ScaleTokenObject;
 
 class ScaleToken extends Parser
 {
-    public function parse(?array $content = null): ScaleTokenObject
+    public function parse(string $filename, int $lineNumber = 0): ScaleTokenObject
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         $scaletoken = new ScaleTokenObject();
 
@@ -36,10 +34,9 @@ class ScaleToken extends Parser
             } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^NAME ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $scaletoken->name = $matches[1];
             } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^VALUES$/i', $line, $matches) === 1) {
-                $scaletokenValuesParser = new ScaleTokenValues($this->file, $this->currentLineIndex - 1);
-                $scaletokenValues = $scaletokenValuesParser->parse();
+                $scaletokenValuesParser = new ScaleTokenValues();
 
-                $scaletoken->values = $scaletokenValues;
+                $scaletoken->values = $scaletokenValuesParser->parse($this->file, $this->currentLineIndex - 1);
 
                 $this->currentLineIndex = $scaletokenValuesParser->lineEnd;
             } elseif ($this->parsing === 'SCALETOKEN' && preg_match('/^END( # SCALETOKEN)?$/i', $line) === 1) {

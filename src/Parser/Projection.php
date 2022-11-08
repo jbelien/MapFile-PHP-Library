@@ -15,11 +15,9 @@ use MapFile\Exception\UnsupportedException;
 
 class Projection extends Parser
 {
-    public function parse(?array $content = null): string
+    public function parse(string $filename, int $lineNumber = 0): string
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         $projection = '';
 

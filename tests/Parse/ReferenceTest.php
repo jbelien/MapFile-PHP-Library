@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Parse;
 
-use MapFile\Parser\Reference;
+use MapFile\Parser\Reference as Parser;
 use Tests\ParseTest;
 
 final class ReferenceTest extends ParseTest
 {
     public function test(): void
     {
-        $parser = new Reference($this->stub);
-        $reference = $parser->parse();
+        $reference = (new Parser())->parse($this->stub);
 
         self::assertSame([255, 0, 0], $reference->color);
         self::assertSame([0.0, 0.0, 100.0, 100.0], $reference->extent);

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Tests\Write;
 
-use MapFile\Model\Symbol as SymbolObject;
-use MapFile\Writer\Symbol;
+use MapFile\Model\Symbol;
+use MapFile\Writer\Symbol as Writer;
 use Tests\WriteTest;
 
 final class SymbolTest extends WriteTest
 {
     public function test(): void
     {
-        $symbol = new SymbolObject();
+        $symbol = new Symbol();
         $symbol->anchorpoint = [5, 5];
         $symbol->antialias = true;
         $symbol->character = '&#10140;';
@@ -24,9 +24,7 @@ final class SymbolTest extends WriteTest
         $symbol->transparent = 0;
         $symbol->type = 'TRUETYPE';
 
-        $writer = new Symbol($this->path);
-        $writer->write($symbol);
-        $result = $writer->save();
+        $result = (new Writer($symbol))->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

@@ -14,9 +14,9 @@ namespace MapFile\Parser;
 use MapFile\Exception\FileException;
 use OutOfBoundsException;
 
-abstract class Parser implements ParserInterface
+abstract class Parser
 {
-    /** @var null|string[] */
+    /** @var array<int,string> */
     protected $content;
     /** @var int */
     protected $currentLineIndex;
@@ -31,40 +31,46 @@ abstract class Parser implements ParserInterface
     /** @var null|string */
     protected $parsing;
 
-    public function __construct(string $file, int $lineNumber = 0)
+    /**
+     * @param string $filename
+     * @param int    $lineNumber
+     *
+     * @throws FileException
+     *
+     * @return void
+     */
+    public function parse(string $filename, int $lineNumber = 0)
     {
-        if (!file_exists($file)) {
+        if (!file_exists($filename)) {
             throw new FileException(
-                sprintf('File "%s" does not exist.', $file)
+                sprintf('File "%s" does not exist.', $filename)
             );
         }
-        if (!is_readable($file)) {
+        if (!is_readable($filename)) {
             throw new FileException(
-                sprintf('File "%s" is not readable.', $file)
+                sprintf('File "%s" is not readable.', $filename)
             );
         }
 
+        $this->file = $filename;
         $this->currentLineIndex = $lineNumber;
-        $this->file = $file;
         $this->lineStart = $lineNumber;
+
+        $content = file($this->file);
+
+        if ($content === false) {
+            throw new FileException(
+                sprintf('File "%s" is not parsable.', $this->file)
+            );
+        }
+
+        $this->content = $content;
     }
 
-    public function getCurrentLine(): string
+    protected function getCurrentLine(): string
     {
         if ($this->eof === true) {
             throw new OutOfBoundsException();
-        }
-
-        if (is_null($this->content)) {
-            $content = file($this->file);
-
-            if ($content === false) {
-                throw new FileException(
-                    sprintf('File "%s" is not parsable.', $this->file)
-                );
-            }
-
-            $this->content = $content;
         }
 
         $line = $this->content[$this->currentLineIndex];
@@ -86,6 +92,4 @@ abstract class Parser implements ParserInterface
 
         return $line;
     }
-
-    abstract public function parse(?array $content = null);
 }

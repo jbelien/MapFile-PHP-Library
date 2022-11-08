@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Parse;
 
-use MapFile\Parser\Join;
+use MapFile\Parser\Join as Parser;
 use Tests\ParseTest;
 
 final class JoinTest extends ParseTest
 {
     public function test(): void
     {
-        $parser = new Join($this->stub);
-        $join = $parser->parse();
+        $join = (new Parser())->parse($this->stub);
 
         self::assertSame('server:user:password:database', $join->connection);
         self::assertSame('MYSQL', $join->connectiontype);

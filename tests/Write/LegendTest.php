@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Tests\Write;
 
 use MapFile\Model\Label;
-use MapFile\Model\Legend as LegendObject;
-use MapFile\Writer\Legend;
+use MapFile\Model\Legend;
+use MapFile\Writer\Legend as Writer;
 use Tests\WriteTest;
 
 final class LegendTest extends WriteTest
 {
     public function test(): void
     {
-        $legend = new LegendObject();
+        $legend = new Legend();
         $legend->imagecolor = [255, 0, 0];
         $legend->keysize = [20, 10];
         $legend->keyspacing = [5, 5];
@@ -26,9 +26,7 @@ final class LegendTest extends WriteTest
         $legend->label = new Label();
         $legend->label->color = [80, 80, 80];
 
-        $writer = new Legend($this->path);
-        $writer->write($legend);
-        $result = $writer->save();
+        $result = (new Writer($legend))->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

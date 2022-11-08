@@ -16,11 +16,9 @@ use MapFile\Model\Web as WebObject;
 
 class Web extends Parser
 {
-    public function parse(?array $content = null): WebObject
+    public function parse(string $filename, int $lineNumber = 0): WebObject
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         $web = new WebObject();
 
@@ -54,10 +52,9 @@ class Web extends Parser
             } elseif ($this->parsing === 'WEB' && preg_match('/^MAXTEMPLATE ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $web->maxtemplate = $matches[1];
             } elseif ($this->parsing === 'WEB' && preg_match('/^METADATA$/i', $line) === 1) {
-                $metadataParser = new Metadata($this->file, $this->currentLineIndex - 1);
-                $metadata = $metadataParser->parse();
+                $metadataParser = new Metadata();
 
-                $web->metadata = $metadata;
+                $web->metadata = $metadataParser->parse($this->file, $this->currentLineIndex - 1);
 
                 $this->currentLineIndex = $metadataParser->lineEnd;
             } elseif ($this->parsing === 'WEB' && preg_match('/^MINSCALEDENOM ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
@@ -71,10 +68,9 @@ class Web extends Parser
             } elseif ($this->parsing === 'WEB' && preg_match('/^TEMPPATH ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $web->temppath = $matches[1];
             } elseif ($this->parsing === 'WEB' && preg_match('/^VALIDATION$/i', $line) === 1) {
-                $validationParser = new Validation($this->file, $this->currentLineIndex - 1);
-                $validation = $validationParser->parse();
+                $validationParser = new Validation();
 
-                $web->validation = $validation;
+                $web->validation = $validationParser->parse($this->file, $this->currentLineIndex - 1);
 
                 $this->currentLineIndex = $validationParser->lineEnd;
             } elseif ($this->parsing === 'WEB' && preg_match('/^END( # WEB)?$/i', $line) === 1) {

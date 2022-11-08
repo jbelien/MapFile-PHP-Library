@@ -11,25 +11,20 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
-
 class Validation extends Writer
 {
-    public function write($validation, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    /**
+     * @param array<string,string> $validation
+     * @param int                  $indentSize
+     * @param string               $indent
+     *
+     * @return void
+     */
+    public function __construct(array $validation, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!is_array($validation) || $validation !== array_filter($validation, fn ($value, $key) => is_string($key) && is_string($value), ARRAY_FILTER_USE_BOTH)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an associative array (key/value), "%s" given.',
-                    gettype($validation)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'VALIDATION'.PHP_EOL;
 
-        /** @var array<string,string> $validation */
         foreach ($validation as $key => $value) {
             $this->text .= str_repeat($indent, $indentSize + 1);
             $this->text .= '"'.$key.'" "'.$value.'"';
@@ -38,7 +33,5 @@ class Validation extends Writer
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # VALIDATION'.PHP_EOL;
-
-        return $this->text;
     }
 }

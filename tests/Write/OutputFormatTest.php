@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Tests\Write;
 
-use MapFile\Model\OutputFormat as OutputFormatObject;
-use MapFile\Writer\OutputFormat;
+use MapFile\Model\OutputFormat;
+use MapFile\Writer\OutputFormat as Writer;
 use Tests\WriteTest;
 
 final class OutputFormatTest extends WriteTest
 {
     public function test(): void
     {
-        $outputformat = new OutputFormatObject();
+        $outputformat = new OutputFormat();
         $outputformat->driver = 'AGG/PNG8';
         $outputformat->extension = 'png';
         $outputformat->formatoption = [
@@ -25,9 +25,7 @@ final class OutputFormatTest extends WriteTest
         $outputformat->name = 'png8';
         $outputformat->transparent = 'ON';
 
-        $writer = new OutputFormat($this->path);
-        $writer->write($outputformat);
-        $result = $writer->save();
+        $result = (new Writer($outputformat))->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

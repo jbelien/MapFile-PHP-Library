@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Parse;
 
-use MapFile\Parser\Web;
+use MapFile\Parser\Web as Parser;
 use Tests\ParseTest;
 
 final class WebTest extends ParseTest
 {
     public function test(): void
     {
-        $parser = new Web($this->stub);
-        $web = $parser->parse();
+        $web = (new Parser())->parse($this->stub);
 
         self::assertSame('text/html', $web->browseformat);
         self::assertSame('/empty', $web->empty);

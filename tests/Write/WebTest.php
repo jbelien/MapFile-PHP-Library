@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Tests\Write;
 
-use MapFile\Model\Web as WebObject;
-use MapFile\Writer\Web;
+use MapFile\Model\Web;
+use MapFile\Writer\Web as Writer;
 use Tests\WriteTest;
 
 final class WebTest extends WriteTest
 {
     public function test(): void
     {
-        $web = new WebObject();
+        $web = new Web();
         $web->browseformat = 'text/html';
         $web->empty = '/empty';
         $web->error = '/error';
@@ -31,9 +31,7 @@ final class WebTest extends WriteTest
         $web->temppath = '/temp/';
         $web->validation = ['firstname' => '^[a-zA-Z\-]+$'];
 
-        $writer = new Web($this->path);
-        $writer->write($web);
-        $result = $writer->save();
+        $result = (new Writer($web))->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

@@ -18,11 +18,9 @@ class Metadata extends Parser
     /**
      * @return string[]
      */
-    public function parse(?array $content = null): array
+    public function parse(string $filename, int $lineNumber = 0): array
     {
-        if (!is_null($content)) {
-            $this->content = $content;
-        }
+        parent::parse($filename, $lineNumber);
 
         /** @var string[] */
         $values = [];

@@ -5,15 +5,14 @@ declare(strict_types=1);
 namespace Tests\Parse;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use MapFile\Parser\Label;
+use MapFile\Parser\Label as Parser;
 use Tests\ParseTest;
 
 final class LabelTest extends ParseTest
 {
     public function test(): void
     {
-        $parser = new Label($this->stub);
-        $label = $parser->parse();
+        $label = (new Parser())->parse($this->stub);
 
         self::assertSame('CENTER', $label->align);
         self::assertSame('AUTO', $label->angle);

@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Tests\Write;
 
-use MapFile\Model\Label as LabelObject;
+use MapFile\Model\Label;
 use MapFile\Model\Style;
-use MapFile\Writer\Label;
+use MapFile\Writer\Label as Writer;
 use Tests\WriteTest;
 
 final class LabelTest extends WriteTest
 {
     public function test(): void
     {
-        $label = new LabelObject();
+        $label = new Label();
         $label->align = 'CENTER';
         $label->angle = 'AUTO';
         $label->buffer = 10;
@@ -53,9 +53,7 @@ final class LabelTest extends WriteTest
         $style->geomtransform = 'labelpoly';
         $label->style[] = $style;
 
-        $writer = new Label($this->path);
-        $writer->write($label);
-        $result = $writer->save();
+        $result = (new Writer($label))->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

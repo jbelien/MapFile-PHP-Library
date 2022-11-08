@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Parse;
 
-use MapFile\Parser\QueryMap;
+use MapFile\Parser\QueryMap as Parser;
 use Tests\ParseTest;
 
 final class QueryMapTest extends ParseTest
 {
     public function test(): void
     {
-        $parser = new QueryMap($this->stub);
-        $querymap = $parser->parse();
+        $querymap = (new Parser())->parse($this->stub);
 
         self::assertSame([0, 255, 0], $querymap->color);
         self::assertSame([100, 100], $querymap->size);
