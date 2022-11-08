@@ -11,7 +11,7 @@ This library is based on [MapServer 7.2.0 documentation](https://mapserver.org/m
 
 ## Installation
 
-```
+```cmd
 composer require jbelien/mapfile-php-library:2.x-dev
 ```
 
@@ -51,7 +51,7 @@ $layer->class->add($class);
 
 $map->layer->add($layer);
 
-$mapfile = (new \MapFile\Writer\Map($map))->save('my-mapfile.map');
+(new \MapFile\Writer\Map($map))->save('my-mapfile.map');
 ```
 
 Have a look at the [source code](https://github.com/jbelien/MapFile-PHP-Library/tree/master/src/Model) to see all the available options.
