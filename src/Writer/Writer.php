@@ -15,25 +15,14 @@ abstract class Writer
 {
     const WRITER_INDENT = '  ';
 
-    /** @var null|string */
-    protected $file;
     /** @var string */
     protected $text;
 
-    public function __construct(string $file = null)
+    public function save(string $filename): bool
     {
-        $this->file = $file;
-    }
+        $result = file_put_contents($filename, $this->text);
 
-    public function save(): bool
-    {
-        if (!is_null($this->file) && file_exists($this->file) && is_writable($this->file)) {
-            $result = file_put_contents($this->file, $this->text);
-
-            return false !== $result;
-        }
-
-        return false;
+        return false !== $result;
     }
 
     /**
