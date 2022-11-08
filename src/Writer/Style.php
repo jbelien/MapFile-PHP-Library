@@ -33,8 +33,10 @@ class Style extends Writer
         $this->text .= self::getTextRaw('LINEJOINMAXSIZE', $style->linejoinmaxsize, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('MAXSCALEDENOM', $style->maxscaledenom, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('MAXSIZE', $style->maxsize, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MAXWIDTH', $style->maxwidth, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('MINSCALEDENOM', $style->minscaledenom, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('MINSIZE', $style->minsize, $indentSize + 1, $indent);
+        $this->text .= self::getTextRaw('MINWIDTH', $style->minwidth, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('OFFSET', $style->offset, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('OPACITY', $style->opacity, $indentSize + 1, $indent);
         $this->text .= is_array($style->outlinecolor) ? self::getTextArray('OUTLINECOLOR', $style->outlinecolor, $indentSize + 1, $indent) : self::getText('OUTLINECOLOR', $style->outlinecolor, $indentSize + 1, $indent);
@@ -44,7 +46,8 @@ class Style extends Writer
             $this->text .= (new Pattern($style->pattern, $indentSize + 1, $indent))->text;
         }
 
-        $this->text .= self::getTextRaw('RANGEITEM', $style->rangeitem, $indentSize + 1, $indent);
+        $this->text .= self::getTextArray('POLAROFFSET', $style->polaroffset, $indentSize + 1, $indent);
+        $this->text .= self::getTextString('RANGEITEM', $style->rangeitem, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('SIZE', $style->size, $indentSize + 1, $indent);
         $this->text .= is_int($style->symbol) ? self::getTextRaw('SYMBOL', $style->symbol, $indentSize + 1, $indent) : self::getText('SYMBOL', $style->symbol, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('WIDTH', $style->width, $indentSize + 1, $indent);

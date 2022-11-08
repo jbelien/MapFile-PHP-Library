@@ -66,7 +66,7 @@ class Style extends Parser
             } elseif ($this->parsing === 'STYLE' && preg_match('/^DATARANGE ([0-9]+(?:\.(?:[0-9]+))?) ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
                 $style->datarange = [
                     floatval($matches[1]),
-                    floatval($matches[1]),
+                    floatval($matches[2]),
                 ];
             } elseif ($this->parsing === 'STYLE' && preg_match('/^GAP ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
                 $style->gap = floatval($matches[1]);
@@ -86,10 +86,14 @@ class Style extends Parser
                 $style->maxscaledenom = floatval($matches[1]);
             } elseif ($this->parsing === 'STYLE' && preg_match('/^MAXSIZE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
                 $style->maxsize = floatval($matches[1]);
+            } elseif ($this->parsing === 'STYLE' && preg_match('/^MAXWIDTH ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
+                $style->maxwidth = floatval($matches[1]);
             } elseif ($this->parsing === 'STYLE' && preg_match('/^MINSCALEDENOM ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
                 $style->minscaledenom = floatval($matches[1]);
             } elseif ($this->parsing === 'STYLE' && preg_match('/^MINSIZE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
                 $style->minsize = floatval($matches[1]);
+            } elseif ($this->parsing === 'STYLE' && preg_match('/^MINWIDTH ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
+                $style->minwidth = floatval($matches[1]);
             } elseif ($this->parsing === 'STYLE' && preg_match('/^OFFSET ([0-9]+) ([0-9]+)$/i', $line, $matches) === 1) {
                 $style->offset = [
                     intval($matches[1]),
@@ -129,7 +133,7 @@ class Style extends Parser
                     $matches[1],
                     $matches[2],
                 ];
-            } elseif ($this->parsing === 'STYLE' && preg_match('/^RANGEITEM (\[.+\])$/i', $line, $matches) === 1) {
+            } elseif ($this->parsing === 'STYLE' && preg_match('/^RANGEITEM ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $style->rangeitem = $matches[1];
             } elseif ($this->parsing === 'STYLE' && preg_match('/^SIZE ([0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
                 $style->size = floatval($matches[1]);
