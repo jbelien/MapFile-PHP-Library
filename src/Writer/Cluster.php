@@ -11,22 +11,12 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
 use MapFile\Model\Cluster as ClusterObject;
 
 class Cluster extends Writer
 {
-    public function writeBlock($cluster, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function __construct(ClusterObject $cluster, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!$cluster instanceof ClusterObject) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an instance of "Cluster", instance of "%s" given.',
-                    gettype($cluster) === 'object' ? get_class($cluster) : gettype($cluster)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'CLUSTER'.PHP_EOL;
 
@@ -38,7 +28,5 @@ class Cluster extends Writer
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # CLUSTER'.PHP_EOL;
-
-        return $this->text;
     }
 }

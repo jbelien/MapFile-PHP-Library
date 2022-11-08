@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace Tests\Write;
 
 use MapFile\Model\Label;
-use MapFile\Model\LayerClass as LayerClassObject;
+use MapFile\Model\LayerClass;
 use MapFile\Model\Leader;
 use MapFile\Model\Style;
-use MapFile\Writer\LayerClass;
+use MapFile\Writer\LayerClass as Writer;
 use Tests\WriteTest;
 
 final class LayerClassTest extends WriteTest
 {
     public function test(): void
     {
-        $layerclass = new LayerClassObject();
+        $layerclass = new LayerClass();
         $layerclass->debug = 'ON';
         $layerclass->expression = '([POPULATION] > 50000 AND \'[LANGUAGE]\' eq \'FRENCH\')';
         $layerclass->group = 'group1';
@@ -39,9 +39,7 @@ final class LayerClassTest extends WriteTest
         $style->color = [80, 80, 80];
         $layerclass->style->add($style);
 
-        $writer = new LayerClass();
-        $writer->writeBlock($layerclass);
-        $result = $writer->save($this->path);
+        $result = (new Writer($layerclass))->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

@@ -11,22 +11,12 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
 use MapFile\Model\Map as MapObject;
 
 class Map extends Writer
 {
-    public function writeBlock($map, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function __construct(MapObject $map, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!$map instanceof MapObject) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an instance of "Map", instance of "%s" given.',
-                    gettype($map) === 'object' ? get_class($map) : gettype($map)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'MAP'.PHP_EOL;
 
@@ -58,47 +48,47 @@ class Map extends Writer
 
         if (!is_null($map->legend)) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Legend())->writeBlock($map->legend, $indentSize + 1, $indent);
+            $this->text .= (new Legend($map->legend, $indentSize + 1, $indent))->text;
         }
 
         foreach ($map->outputformat as $outputformat) {
             $this->text .= PHP_EOL;
-            $this->text .= (new OutputFormat())->writeBlock($outputformat, $indentSize + 1, $indent);
+            $this->text .= (new OutputFormat($outputformat, $indentSize + 1, $indent))->text;
         }
 
         if (!is_null($map->projection)) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Projection())->writeBlock($map->projection, $indentSize + 1, $indent);
+            $this->text .= (new Projection($map->projection, $indentSize + 1, $indent))->text;
         }
 
         if (!is_null($map->querymap)) {
             $this->text .= PHP_EOL;
-            $this->text .= (new QueryMap())->writeBlock($map->querymap, $indentSize + 1, $indent);
+            $this->text .= (new QueryMap($map->querymap, $indentSize + 1, $indent))->text;
         }
 
         if (!is_null($map->reference)) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Reference())->writeBlock($map->reference, $indentSize + 1, $indent);
+            $this->text .= (new Reference($map->reference, $indentSize + 1, $indent))->text;
         }
 
         if (!is_null($map->scalebar)) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Scalebar())->writeBlock($map->scalebar, $indentSize + 1, $indent);
+            $this->text .= (new Scalebar($map->scalebar, $indentSize + 1, $indent))->text;
         }
 
         if (!is_null($map->web)) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Web())->writeBlock($map->web, $indentSize + 1, $indent);
+            $this->text .= (new Web($map->web, $indentSize + 1, $indent))->text;
         }
 
         foreach ($map->symbol as $symbol) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Symbol())->writeBlock($symbol, $indentSize + 1, $indent);
+            $this->text .= (new Symbol($symbol, $indentSize + 1, $indent))->text;
         }
 
         foreach ($map->layer as $layer) {
             $this->text .= PHP_EOL;
-            $this->text .= (new Layer())->writeBlock($layer, $indentSize + 1, $indent);
+            $this->text .= (new Layer($layer, $indentSize + 1, $indent))->text;
         }
 
         $this->text .= PHP_EOL;
@@ -108,7 +98,5 @@ class Map extends Writer
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # MAP'.PHP_EOL;
-
-        return $this->text;
     }
 }

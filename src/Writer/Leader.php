@@ -11,22 +11,12 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
 use MapFile\Model\Leader as LeaderObject;
 
 class Leader extends Writer
 {
-    public function writeBlock($leader, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function __construct(LeaderObject $leader, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!$leader instanceof LeaderObject) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an instance of "Leader", instance of "%s" given.',
-                    gettype($leader) === 'object' ? get_class($leader) : gettype($leader)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'LEADER'.PHP_EOL;
 
@@ -34,12 +24,10 @@ class Leader extends Writer
         $this->text .= self::getTextRaw('MAXDISTANCE', $leader->maxdistance, $indentSize + 1, $indent);
 
         foreach ($leader->style as $style) {
-            $this->text .= (new Style())->writeBlock($style, $indentSize + 1, $indent);
+            $this->text .= (new Style($style, $indentSize + 1, $indent))->text;
         }
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # LEADER'.PHP_EOL;
-
-        return $this->text;
     }
 }

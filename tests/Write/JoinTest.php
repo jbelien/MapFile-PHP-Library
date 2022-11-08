@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Tests\Write;
 
-use MapFile\Model\Join as JoinObject;
-use MapFile\Writer\Join;
+use MapFile\Model\Join;
+use MapFile\Writer\Join as Writer;
 use Tests\WriteTest;
 
 final class JoinTest extends WriteTest
 {
     public function test(): void
     {
-        $join = new JoinObject();
+        $join = new Join();
         $join->connection = 'server:user:password:database';
         $join->connectiontype = 'MYSQL';
         $join->footer = 'footer.html';
@@ -24,9 +24,7 @@ final class JoinTest extends WriteTest
         $join->to = 'mysql-column';
         $join->type = 'ONE-TO-ONE';
 
-        $writer = new Join();
-        $writer->writeBlock($join);
-        $result = $writer->save($this->path);
+        $result = (new Writer($join))->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

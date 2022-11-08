@@ -11,22 +11,12 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
 use MapFile\Model\Legend as LegendObject;
 
 class Legend extends Writer
 {
-    public function writeBlock($legend, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function __construct(LegendObject $legend, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!$legend instanceof LegendObject) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an instance of "Legend", instance of "%s" given.',
-                    gettype($legend) === 'object' ? get_class($legend) : gettype($legend)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'LEGEND'.PHP_EOL;
 
@@ -35,7 +25,7 @@ class Legend extends Writer
         $this->text .= self::getTextArray('KEYSPACING', $legend->keyspacing, $indentSize + 1, $indent);
 
         if (!is_null($legend->label)) {
-            $this->text .= (new Label())->writeBlock($legend->label, $indentSize + 1, $indent);
+            $this->text .= (new Label($legend->label, $indentSize + 1, $indent))->text;
         }
 
         $this->text .= is_array($legend->outlinecolor) ? self::getTextArray('OUTLINECOLOR', $legend->outlinecolor, $indentSize + 1, $indent) : self::getTextString('OUTLINECOLOR', $legend->outlinecolor, $indentSize + 1, $indent);
@@ -46,7 +36,5 @@ class Legend extends Writer
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # LEGEND'.PHP_EOL;
-
-        return $this->text;
     }
 }

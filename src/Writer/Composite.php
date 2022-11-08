@@ -11,22 +11,12 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
 use MapFile\Model\Composite as CompositeObject;
 
 class Composite extends Writer
 {
-    public function writeBlock($composite, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function __construct(CompositeObject $composite, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!$composite instanceof CompositeObject) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an instance of "Composite", instance of "%s" given.',
-                    gettype($composite) === 'object' ? get_class($composite) : gettype($composite)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'COMPOSITE'.PHP_EOL;
 
@@ -35,7 +25,5 @@ class Composite extends Writer
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # COMPOSITE'.PHP_EOL;
-
-        return $this->text;
     }
 }

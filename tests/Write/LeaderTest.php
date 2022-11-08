@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Tests\Write;
 
-use MapFile\Model\Leader as LeaderObject;
+use MapFile\Model\Leader;
 use MapFile\Model\Style;
-use MapFile\Writer\Leader;
+use MapFile\Writer\Leader as Writer;
 use Tests\WriteTest;
 
 final class LeaderTest extends WriteTest
 {
     public function test(): void
     {
-        $leader = new LeaderObject();
+        $leader = new Leader();
         $leader->gridstep = 5;
         $leader->maxdistance = 30;
 
@@ -22,9 +22,7 @@ final class LeaderTest extends WriteTest
         $style->width = 1;
         $leader->style[] = $style;
 
-        $writer = new Leader();
-        $writer->writeBlock($leader);
-        $result = $writer->save($this->path);
+        $result = (new Writer($leader))->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

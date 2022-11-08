@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Tests\Write;
 
-use MapFile\Model\Grid as GridObject;
-use MapFile\Writer\Grid;
+use MapFile\Model\Grid;
+use MapFile\Writer\Grid as Writer;
 use Tests\WriteTest;
 
 final class GridTest extends WriteTest
 {
     public function test(): void
     {
-        $grid = new GridObject();
+        $grid = new Grid();
         $grid->labelformat = 'DD';
         $grid->minarcs = 1;
         $grid->maxarcs = 2;
@@ -21,9 +21,7 @@ final class GridTest extends WriteTest
         $grid->minsubdivide = 1;
         $grid->maxsubdivide = 256;
 
-        $writer = new Grid();
-        $writer->writeBlock($grid);
-        $result = $writer->save($this->path);
+        $result = (new Writer($grid))->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

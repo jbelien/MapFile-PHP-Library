@@ -11,25 +11,19 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
-
 class Metadata extends Writer
 {
-    public function writeBlock($metadata, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    /**
+     * @param array<string,string> $metadata
+     * @param int $indentSize
+     * @param string $indent
+     * @return void
+     */
+    public function __construct(array $metadata, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!is_array($metadata) || $metadata !== array_filter($metadata, fn ($value, $key) => is_string($key) && is_string($value), ARRAY_FILTER_USE_BOTH)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an associative array (key/value), "%s" given.',
-                    gettype($metadata)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'METADATA'.PHP_EOL;
 
-        /** @var array<string,string> $metadata */
         foreach ($metadata as $key => $value) {
             $this->text .= str_repeat($indent, $indentSize + 1);
             $this->text .= '"'.$key.'" "'.$value.'"';
@@ -38,7 +32,5 @@ class Metadata extends Writer
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # METADATA'.PHP_EOL;
-
-        return $this->text;
     }
 }

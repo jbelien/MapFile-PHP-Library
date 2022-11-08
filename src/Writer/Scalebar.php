@@ -11,22 +11,12 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
 use MapFile\Model\Scalebar as ScalebarObject;
 
 class Scalebar extends Writer
 {
-    public function writeBlock($scalebar, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function __construct(ScalebarObject $scalebar, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!$scalebar instanceof ScalebarObject) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an instance of "Scalebar", instance of "%s" given.',
-                    gettype($scalebar) === 'object' ? get_class($scalebar) : gettype($scalebar)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'SCALEBAR'.PHP_EOL;
 
@@ -37,7 +27,7 @@ class Scalebar extends Writer
         $this->text .= self::getTextRaw('INTERVALS', $scalebar->intervals, $indentSize + 1, $indent);
 
         if (!is_null($scalebar->label)) {
-            $this->text .= (new Label())->writeBlock($scalebar->label, $indentSize + 1, $indent);
+            $this->text .= (new Label($scalebar->label, $indentSize + 1, $indent))->text;
         }
 
         $this->text .= self::getTextArray('OFFSET', $scalebar->offset, $indentSize + 1, $indent);
@@ -51,7 +41,5 @@ class Scalebar extends Writer
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # SCALEBAR'.PHP_EOL;
-
-        return $this->text;
     }
 }

@@ -11,22 +11,12 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
 use MapFile\Model\Label as LabelObject;
 
 class Label extends Writer
 {
-    public function writeBlock($label, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function __construct(LabelObject $label, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!$label instanceof LabelObject) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an instance of "Label", instance of "%s" given.',
-                    gettype($label) === 'object' ? get_class($label) : gettype($label)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'LABEL'.PHP_EOL;
 
@@ -58,7 +48,7 @@ class Label extends Writer
         $this->text .= self::getTextRaw('SIZE', $label->size, $indentSize + 1, $indent);
 
         foreach ($label->style as $style) {
-            $this->text .= (new Style())->writeBlock($style, $indentSize + 1, $indent);
+            $this->text .= (new Style($style, $indentSize + 1, $indent))->text;
         }
 
         $this->text .= !is_null($label->text) && preg_match('/^\(.+\)$/', $label->text) === 1 ? self::getTextRaw('TEXT', $label->text, $indentSize + 1, $indent) : self::getTextString('TEXT', $label->text, $indentSize + 1, $indent);
@@ -67,7 +57,5 @@ class Label extends Writer
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # LABEL'.PHP_EOL;
-
-        return $this->text;
     }
 }

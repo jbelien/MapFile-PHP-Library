@@ -11,22 +11,12 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
 use MapFile\Model\QueryMap as QueryMapObject;
 
 class QueryMap extends Writer
 {
-    public function writeBlock($querymap, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function __construct(QueryMapObject $querymap, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!$querymap instanceof QueryMapObject) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an instance of "QueryMap", instance of "%s" given.',
-                    gettype($querymap) === 'object' ? get_class($querymap) : gettype($querymap)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'QUERYMAP'.PHP_EOL;
 
@@ -37,7 +27,5 @@ class QueryMap extends Writer
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # QUERYMAP'.PHP_EOL;
-
-        return $this->text;
     }
 }

@@ -11,21 +11,16 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
-
 class Points extends Writer
 {
-    public function writeBlock($points, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    /**
+     * @param array<array<float>> $points
+     * @param int $indentSize
+     * @param string $indent
+     * @return void
+     */
+    public function __construct(array $points, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!is_array($points)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an array, "%s" given.',
-                    gettype($points)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'POINTS'.PHP_EOL;
 
@@ -37,7 +32,5 @@ class Points extends Writer
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # POINTS'.PHP_EOL;
-
-        return $this->text;
     }
 }

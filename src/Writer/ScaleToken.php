@@ -11,34 +11,22 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
-use InvalidArgumentException;
 use MapFile\Model\ScaleToken as ScaleTokenObject;
 
 class ScaleToken extends Writer
 {
-    public function writeBlock($scaletoken, int $indentSize = 0, string $indent = self::WRITER_INDENT): string
+    public function __construct(ScaleTokenObject $scaletoken, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
-        if (!$scaletoken instanceof ScaleTokenObject) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The first argument must be an instance of "ScaleToken", instance of "%s" given.',
-                    gettype($scaletoken) === 'object' ? get_class($scaletoken) : gettype($scaletoken)
-                )
-            );
-        }
-
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'SCALETOKEN'.PHP_EOL;
 
         $this->text .= self::getTextString('NAME', $scaletoken->name, $indentSize + 1, $indent);
 
         if (count($scaletoken->values) > 0) {
-            $this->text .= (new ScaleTokenValues())->writeBlock($scaletoken->values, $indentSize + 1, $indent);
+            $this->text .= (new ScaleTokenValues($scaletoken->values, $indentSize + 1, $indent))->text;
         }
 
         $this->text .= str_repeat($indent, $indentSize);
         $this->text .= 'END # SCALETOKEN'.PHP_EOL;
-
-        return $this->text;
     }
 }

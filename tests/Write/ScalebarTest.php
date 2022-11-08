@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace Tests\Write;
 
 use MapFile\Model\Label;
-use MapFile\Model\Scalebar as ScalebarObject;
-use MapFile\Writer\Scalebar;
+use MapFile\Model\Scalebar;
+use MapFile\Writer\Scalebar as Writer;
 use Tests\WriteTest;
 
 final class ScalebarTest extends WriteTest
 {
     public function test(): void
     {
-        $scalebar = new ScalebarObject();
+        $scalebar = new Scalebar();
         $scalebar->align = 'CENTER';
         $scalebar->backgroundcolor = [255, 255, 255];
         $scalebar->color = [0, 0, 0];
@@ -31,9 +31,7 @@ final class ScalebarTest extends WriteTest
         $scalebar->label = new Label();
         $scalebar->label->color = [80, 80, 80];
 
-        $writer = new Scalebar();
-        $writer->writeBlock($scalebar);
-        $result = $writer->save($this->path);
+        $result = (new Writer($scalebar))->save($this->path);
 
         self::assertTrue($result);
         self::assertFileEquals($this->stub, $this->path);

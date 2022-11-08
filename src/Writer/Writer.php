@@ -101,13 +101,4 @@ abstract class Writer
             return self::getTextString($key, $value, $indentSize, $indent);
         }
     }
-
-    /**
-     * @param MapFileObject|string|array<string,string>|array<array<float>> $object
-     * @param int                                                           $indentSize
-     * @param string                                                        $indent
-     *
-     * @return string
-     */
-    abstract public function writeBlock($object, int $indentSize = 0, string $indent = self::WRITER_INDENT): string;
 }
