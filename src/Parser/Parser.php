@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace MapFile\Parser;
 
 use MapFile\Exception\FileException;
+use MapFile\Model\MapFileObject;
 use OutOfBoundsException;
 
 abstract class Parser

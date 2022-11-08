@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace MapFile\Writer;
 
+use MapFile\Model\MapFileObject;
+
 abstract class Writer
 {
     const WRITER_INDENT = '  ';
