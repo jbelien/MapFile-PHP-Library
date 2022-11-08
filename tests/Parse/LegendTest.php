@@ -13,7 +13,7 @@ final class LegendTest extends ParseTest
     public function test(): void
     {
         $parser = new Legend($this->stub);
-        $legend = $parser->parse();
+        $legend = $parser->parseBlock();
 
         self::assertSame([255, 0, 0], $legend->imagecolor);
         self::assertSame([20, 10], $legend->keysize);

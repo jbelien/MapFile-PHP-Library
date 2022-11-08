@@ -16,7 +16,7 @@ use MapFile\Model\Symbol as SymbolObject;
 
 class Symbol extends Parser
 {
-    public function parse(?array $content = null): SymbolObject
+    public function parseBlock(?array $content = null): SymbolObject
     {
         if (!is_null($content)) {
             $this->content = $content;
@@ -52,7 +52,7 @@ class Symbol extends Parser
                 $symbol->name = $matches[1];
             } elseif ($this->parsing === 'SYMBOL' && preg_match('/^POINTS$/i', $line) === 1) {
                 $pointsParser = new Points($this->file, $this->currentLineIndex - 1);
-                $points = $pointsParser->parse();
+                $points = $pointsParser->parseBlock();
 
                 $symbol->points = $points;
 

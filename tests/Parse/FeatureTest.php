@@ -12,7 +12,7 @@ final class FeatureTest extends ParseTest
     public function test(): void
     {
         $parser = new Feature($this->stub);
-        $feature = $parser->parse();
+        $feature = $parser->parseBlock();
 
         self::assertSame('value1;value2;value3', $feature->items);
         self::assertSame([[1.0, 1.0], [50.0, 50.0], [1.0, 50.0], [1.0, 1.0]], $feature->points);

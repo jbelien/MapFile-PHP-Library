@@ -12,7 +12,7 @@ final class SymbolTest extends ParseTest
     public function test(): void
     {
         $parser = new Symbol($this->stub);
-        $symbol = $parser->parse();
+        $symbol = $parser->parseBlock();
 
         self::assertSame([5.0, 5.0], $symbol->anchorpoint);
         self::assertSame(true, $symbol->antialias);

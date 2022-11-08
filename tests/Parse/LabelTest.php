@@ -13,7 +13,7 @@ final class LabelTest extends ParseTest
     public function test(): void
     {
         $parser = new Label($this->stub);
-        $label = $parser->parse();
+        $label = $parser->parseBlock();
 
         self::assertSame('CENTER', $label->align);
         self::assertSame('AUTO', $label->angle);

@@ -14,7 +14,7 @@ namespace MapFile\Parser;
 use MapFile\Exception\FileException;
 use OutOfBoundsException;
 
-abstract class Parser implements ParserInterface
+abstract class Parser
 {
     /** @var null|string[] */
     protected $content;
@@ -87,5 +87,10 @@ abstract class Parser implements ParserInterface
         return $line;
     }
 
-    abstract public function parse(?array $content = null);
+    /**
+     * @param null|string[] $content
+     *
+     * @return MapFileObject|string|string[]|float[][]
+     */
+    abstract public function parseBlock(?array $content = null);
 }

@@ -18,7 +18,7 @@ class ScaleTokenValues extends Parser
     /**
      * @return array<string,string>
      */
-    public function parse(?array $content = null): array
+    public function parseBlock(?array $content = null): array
     {
         if (!is_null($content)) {
             $this->content = $content;

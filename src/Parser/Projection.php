@@ -15,7 +15,7 @@ use MapFile\Exception\UnsupportedException;
 
 class Projection extends Parser
 {
-    public function parse(?array $content = null): string
+    public function parseBlock(?array $content = null): string
     {
         if (!is_null($content)) {
             $this->content = $content;

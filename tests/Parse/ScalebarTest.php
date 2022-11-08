@@ -13,7 +13,7 @@ final class ScalebarTest extends ParseTest
     public function test(): void
     {
         $parser = new Scalebar($this->stub);
-        $scalebar = $parser->parse();
+        $scalebar = $parser->parseBlock();
 
         self::assertSame('CENTER', $scalebar->align);
         self::assertSame([255, 255, 255], $scalebar->backgroundcolor);

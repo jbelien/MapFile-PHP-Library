@@ -16,7 +16,7 @@ use MapFile\Model\Web as WebObject;
 
 class Web extends Parser
 {
-    public function parse(?array $content = null): WebObject
+    public function parseBlock(?array $content = null): WebObject
     {
         if (!is_null($content)) {
             $this->content = $content;
@@ -55,7 +55,7 @@ class Web extends Parser
                 $web->maxtemplate = $matches[1];
             } elseif ($this->parsing === 'WEB' && preg_match('/^METADATA$/i', $line) === 1) {
                 $metadataParser = new Metadata($this->file, $this->currentLineIndex - 1);
-                $metadata = $metadataParser->parse();
+                $metadata = $metadataParser->parseBlock();
 
                 $web->metadata = $metadata;
 
@@ -72,7 +72,7 @@ class Web extends Parser
                 $web->temppath = $matches[1];
             } elseif ($this->parsing === 'WEB' && preg_match('/^VALIDATION$/i', $line) === 1) {
                 $validationParser = new Validation($this->file, $this->currentLineIndex - 1);
-                $validation = $validationParser->parse();
+                $validation = $validationParser->parseBlock();
 
                 $web->validation = $validation;
 

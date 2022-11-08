@@ -16,7 +16,7 @@ use MapFile\Model\Label as LabelObject;
 
 class Label extends Parser
 {
-    public function parse(?array $content = null): LabelObject
+    public function parseBlock(?array $content = null): LabelObject
     {
         if (!is_null($content)) {
             $this->content = $content;
@@ -135,7 +135,7 @@ class Label extends Parser
                 $label->size = $matches[1];
             } elseif ($this->parsing === 'LABEL' && preg_match('/^STYLE$/i', $line) === 1) {
                 $styleParser = new Style($this->file, $this->currentLineIndex - 1);
-                $style = $styleParser->parse();
+                $style = $styleParser->parseBlock();
 
                 $label->style->add($style);
 

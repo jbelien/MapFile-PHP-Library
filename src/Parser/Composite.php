@@ -16,7 +16,7 @@ use MapFile\Model\Composite as CompositeObject;
 
 class Composite extends Parser
 {
-    public function parse(?array $content = null): CompositeObject
+    public function parseBlock(?array $content = null): CompositeObject
     {
         if (!is_null($content)) {
             $this->content = $content;

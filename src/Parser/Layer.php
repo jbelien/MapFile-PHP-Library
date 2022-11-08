@@ -16,7 +16,7 @@ use MapFile\Model\Layer as LayerObject;
 
 class Layer extends Parser
 {
-    public function parse(?array $content = null): LayerObject
+    public function parseBlock(?array $content = null): LayerObject
     {
         if (!is_null($content)) {
             $this->content = $content;
@@ -35,7 +35,7 @@ class Layer extends Parser
                 $this->parsing = 'LAYER';
             } elseif ($this->parsing === 'LAYER' && preg_match('/^CLASS$/i', $line) === 1) {
                 $classParser = new LayerClass($this->file, $this->currentLineIndex - 1);
-                $class = $classParser->parse();
+                $class = $classParser->parseBlock();
 
                 $layer->class->add($class);
 
@@ -46,14 +46,14 @@ class Layer extends Parser
                 $layer->classitem = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^CLUSTER$/i', $line) === 1) {
                 $clusterParser = new Cluster($this->file, $this->currentLineIndex - 1);
-                $cluster = $clusterParser->parse();
+                $cluster = $clusterParser->parseBlock();
 
                 $layer->cluster = $cluster;
 
                 $this->currentLineIndex = $clusterParser->lineEnd;
             } elseif ($this->parsing === 'LAYER' && preg_match('/^COMPOSITE$/i', $line) === 1) {
                 $compositeParser = new Composite($this->file, $this->currentLineIndex - 1);
-                $composite = $compositeParser->parse();
+                $composite = $compositeParser->parseBlock();
 
                 $layer->composite->add($composite);
 
@@ -96,7 +96,7 @@ class Layer extends Parser
                 ];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^FEATURE$/i', $line) === 1) {
                 $featureParser = new Feature($this->file, $this->currentLineIndex - 1);
-                $feature = $featureParser->parse();
+                $feature = $featureParser->parseBlock();
 
                 $layer->feature->add($feature);
 
@@ -115,7 +115,7 @@ class Layer extends Parser
                 $layer->geomtransform = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^GRID$/i', $line) === 1) {
                 $gridParser = new Grid($this->file, $this->currentLineIndex - 1);
-                $grid = $gridParser->parse();
+                $grid = $gridParser->parseBlock();
 
                 $layer->grid = $grid;
 
@@ -126,7 +126,7 @@ class Layer extends Parser
                 $layer->header = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^JOIN$/i', $line) === 1) {
                 $joinParser = new Join($this->file, $this->currentLineIndex - 1);
-                $join = $joinParser->parse();
+                $join = $joinParser->parseBlock();
 
                 $layer->join->add($join);
 
@@ -151,7 +151,7 @@ class Layer extends Parser
                 $layer->maxscaledenom = floatval($matches[1]);
             } elseif ($this->parsing === 'LAYER' && preg_match('/^METADATA$/i', $line) === 1) {
                 $metadataParser = new Metadata($this->file, $this->currentLineIndex - 1);
-                $metadata = $metadataParser->parse();
+                $metadata = $metadataParser->parseBlock();
 
                 $layer->metadata = $metadata;
 
@@ -180,7 +180,7 @@ class Layer extends Parser
                 $layer->processing[] = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^PROJECTION$/i', $line) === 1) {
                 $projectionParser = new Projection($this->file, $this->currentLineIndex - 1);
-                $projection = $projectionParser->parse();
+                $projection = $projectionParser->parseBlock();
 
                 $layer->projection = $projection;
 
@@ -189,7 +189,7 @@ class Layer extends Parser
                 $layer->requires = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^SCALETOKEN$/i', $line) === 1) {
                 $scaletokenParser = new ScaleToken($this->file, $this->currentLineIndex - 1);
-                $scaletoken = $scaletokenParser->parse();
+                $scaletoken = $scaletokenParser->parseBlock();
 
                 $layer->scaletoken = $scaletoken;
 
@@ -228,7 +228,7 @@ class Layer extends Parser
                 $layer->utfitem = $matches[1];
             } elseif ($this->parsing === 'LAYER' && preg_match('/^VALIDATION$/i', $line) === 1) {
                 $validationParser = new Validation($this->file, $this->currentLineIndex - 1);
-                $validation = $validationParser->parse();
+                $validation = $validationParser->parseBlock();
 
                 $layer->validation = $validation;
 

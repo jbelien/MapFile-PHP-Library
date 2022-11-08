@@ -16,7 +16,7 @@ use MapFile\Model\LayerClass as LayerClassObject;
 
 class LayerClass extends Parser
 {
-    public function parse(?array $content = null): LayerClassObject
+    public function parseBlock(?array $content = null): LayerClassObject
     {
         if (!is_null($content)) {
             $this->content = $content;
@@ -49,14 +49,14 @@ class LayerClass extends Parser
                 $class->keyimage = $matches[1];
             } elseif ($this->parsing === 'CLASS' && preg_match('/^LABEL$/i', $line) === 1) {
                 $labelParser = new Label($this->file, $this->currentLineIndex - 1);
-                $label = $labelParser->parse();
+                $label = $labelParser->parseBlock();
 
                 $class->label->add($label);
 
                 $this->currentLineIndex = $labelParser->lineEnd;
             } elseif ($this->parsing === 'CLASS' && preg_match('/^LEADER$/i', $line) === 1) {
                 $leaderParser = new Leader($this->file, $this->currentLineIndex - 1);
-                $leader = $leaderParser->parse();
+                $leader = $leaderParser->parseBlock();
 
                 $class->leader = $leader;
 
@@ -71,7 +71,7 @@ class LayerClass extends Parser
                 $class->status = strtoupper($matches[1]);
             } elseif ($this->parsing === 'CLASS' && preg_match('/^STYLE$/i', $line) === 1) {
                 $styleParser = new Style($this->file, $this->currentLineIndex - 1);
-                $style = $styleParser->parse();
+                $style = $styleParser->parseBlock();
 
                 $class->style->add($style);
 
@@ -84,7 +84,7 @@ class LayerClass extends Parser
                 $class->text = $matches[1];
             } elseif ($this->parsing === 'CLASS' && preg_match('/^VALIDATION$/i', $line) === 1) {
                 $validationParser = new Validation($this->file, $this->currentLineIndex - 1);
-                $validation = $validationParser->parse();
+                $validation = $validationParser->parseBlock();
 
                 $class->validation = $validation;
 

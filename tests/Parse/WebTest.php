@@ -12,7 +12,7 @@ final class WebTest extends ParseTest
     public function test(): void
     {
         $parser = new Web($this->stub);
-        $web = $parser->parse();
+        $web = $parser->parseBlock();
 
         self::assertSame('text/html', $web->browseformat);
         self::assertSame('/empty', $web->empty);

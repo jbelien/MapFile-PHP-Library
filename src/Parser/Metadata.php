@@ -18,7 +18,7 @@ class Metadata extends Parser
     /**
      * @return string[]
      */
-    public function parse(?array $content = null): array
+    public function parseBlock(?array $content = null): array
     {
         if (!is_null($content)) {
             $this->content = $content;

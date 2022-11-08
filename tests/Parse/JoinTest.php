@@ -12,7 +12,7 @@ final class JoinTest extends ParseTest
     public function test(): void
     {
         $parser = new Join($this->stub);
-        $join = $parser->parse();
+        $join = $parser->parseBlock();
 
         self::assertSame('server:user:password:database', $join->connection);
         self::assertSame('MYSQL', $join->connectiontype);

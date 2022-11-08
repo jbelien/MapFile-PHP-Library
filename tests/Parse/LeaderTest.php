@@ -12,7 +12,7 @@ final class LeaderTest extends ParseTest
     public function test(): void
     {
         $parser = new Leader($this->stub);
-        $leader = $parser->parse();
+        $leader = $parser->parseBlock();
 
         self::assertSame(5, $leader->gridstep);
         self::assertSame(30, $leader->maxdistance);

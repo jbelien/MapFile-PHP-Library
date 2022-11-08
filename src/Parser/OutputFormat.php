@@ -16,7 +16,7 @@ use MapFile\Model\OutputFormat as OutputFormatObject;
 
 class OutputFormat extends Parser
 {
-    public function parse(?array $content = null): OutputFormatObject
+    public function parseBlock(?array $content = null): OutputFormatObject
     {
         if (!is_null($content)) {
             $this->content = $content;

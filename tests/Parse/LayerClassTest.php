@@ -14,7 +14,7 @@ final class LayerClassTest extends ParseTest
     public function test(): void
     {
         $parser = new LayerClass($this->stub);
-        $layerclass = $parser->parse();
+        $layerclass = $parser->parseBlock();
 
         self::assertSame('ON', $layerclass->debug);
         self::assertSame('([POPULATION] > 50000 AND \'[LANGUAGE]\' eq \'FRENCH\')', $layerclass->expression);

@@ -12,7 +12,7 @@ final class ReferenceTest extends ParseTest
     public function test(): void
     {
         $parser = new Reference($this->stub);
-        $reference = $parser->parse();
+        $reference = $parser->parseBlock();
 
         self::assertSame([255, 0, 0], $reference->color);
         self::assertSame([0.0, 0.0, 100.0, 100.0], $reference->extent);

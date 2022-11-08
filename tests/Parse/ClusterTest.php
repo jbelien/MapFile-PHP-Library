@@ -12,7 +12,7 @@ final class ClusterTest extends ParseTest
     public function test(): void
     {
         $parser = new Cluster($this->stub);
-        $cluster = $parser->parse();
+        $cluster = $parser->parseBlock();
 
         self::assertSame(0.5, $cluster->buffer);
         self::assertSame(1.5, $cluster->maxdistance);

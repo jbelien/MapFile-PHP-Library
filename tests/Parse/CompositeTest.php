@@ -12,7 +12,7 @@ final class CompositeTest extends ParseTest
     public function test(): void
     {
         $parser = new Composite($this->stub);
-        $composite = $parser->parse();
+        $composite = $parser->parseBlock();
 
         self::assertSame(100, $composite->opacity);
         self::assertSame('darken', $composite->compop);

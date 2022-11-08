@@ -16,7 +16,7 @@ use MapFile\Model\Legend as LegendObject;
 
 class Legend extends Parser
 {
-    public function parse(?array $content = null): LegendObject
+    public function parseBlock(?array $content = null): LegendObject
     {
         if (!is_null($content)) {
             $this->content = $content;
@@ -53,7 +53,7 @@ class Legend extends Parser
                 ];
             } elseif ($this->parsing === 'LEGEND' && preg_match('/^LABEL$/i', $line) === 1) {
                 $labelParser = new Label($this->file, $this->currentLineIndex - 1);
-                $label = $labelParser->parse();
+                $label = $labelParser->parseBlock();
 
                 $legend->label = $label;
 

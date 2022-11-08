@@ -16,7 +16,7 @@ use MapFile\Model\Reference as ReferenceObject;
 
 class Reference extends Parser
 {
-    public function parse(?array $content = null): ReferenceObject
+    public function parseBlock(?array $content = null): ReferenceObject
     {
         if (!is_null($content)) {
             $this->content = $content;

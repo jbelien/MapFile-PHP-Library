@@ -12,7 +12,7 @@ final class OutputFormatTest extends ParseTest
     public function test(): void
     {
         $parser = new OutputFormat($this->stub);
-        $outputformat = $parser->parse();
+        $outputformat = $parser->parseBlock();
 
         self::assertSame('AGG/PNG8', $outputformat->driver);
         self::assertSame('png', $outputformat->extension);

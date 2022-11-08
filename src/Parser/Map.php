@@ -16,7 +16,7 @@ use MapFile\Model\Map as MapObject;
 
 class Map extends Parser
 {
-    public function parse(?array $content = null): MapObject
+    public function parseBlock(?array $content = null): MapObject
     {
         if (!is_null($content)) {
             $this->content = $content;
@@ -72,14 +72,14 @@ class Map extends Parser
                 $map->include[] = $matches[1];
             } elseif ($this->parsing === 'MAP' && preg_match('/^LAYER$/i', $line) === 1) {
                 $layerParser = new Layer($this->file, $this->currentLineIndex - 1);
-                $layer = $layerParser->parse($this->content);
+                $layer = $layerParser->parseBlock($this->content);
 
                 $map->layer->add($layer);
 
                 $this->currentLineIndex = $layerParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^LEGEND$/i', $line) === 1) {
                 $legendParser = new Legend($this->file, $this->currentLineIndex - 1);
-                $legend = $legendParser->parse($this->content);
+                $legend = $legendParser->parseBlock($this->content);
 
                 $map->legend = $legend;
 
@@ -90,28 +90,28 @@ class Map extends Parser
                 $map->name = $matches[1];
             } elseif ($this->parsing === 'MAP' && preg_match('/^OUTPUTFORMAT$/i', $line) === 1) {
                 $outputformatParser = new OutputFormat($this->file, $this->currentLineIndex - 1);
-                $outputformat = $outputformatParser->parse($this->content);
+                $outputformat = $outputformatParser->parseBlock($this->content);
 
                 $map->outputformat->add($outputformat);
 
                 $this->currentLineIndex = $outputformatParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^PROJECTION$/i', $line) === 1) {
                 $projectionParser = new Projection($this->file, $this->currentLineIndex - 1);
-                $projection = $projectionParser->parse($this->content);
+                $projection = $projectionParser->parseBlock($this->content);
 
                 $map->projection = $projection;
 
                 $this->currentLineIndex = $projectionParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^QUERYMAP$/i', $line) === 1) {
                 $querymapParser = new QueryMap($this->file, $this->currentLineIndex - 1);
-                $querymap = $querymapParser->parse($this->content);
+                $querymap = $querymapParser->parseBlock($this->content);
 
                 $map->querymap = $querymap;
 
                 $this->currentLineIndex = $querymapParser->lineEnd;
             } elseif ($this->parsing === 'MAP' && preg_match('/^REFERENCE$/i', $line) === 1) {
                 $referenceParser = new Reference($this->file, $this->currentLineIndex - 1);
-                $reference = $referenceParser->parse($this->content);
+                $reference = $referenceParser->parseBlock($this->content);
 
                 $map->reference = $reference;
 
@@ -120,7 +120,7 @@ class Map extends Parser
                 $map->resolution = intval($matches[1]);
             } elseif ($this->parsing === 'MAP' && preg_match('/^SCALEBAR$/i', $line) === 1) {
                 $scalebarParser = new Scalebar($this->file, $this->currentLineIndex - 1);
-                $scalebar = $scalebarParser->parse($this->content);
+                $scalebar = $scalebarParser->parseBlock($this->content);
 
                 $map->scalebar = $scalebar;
 
@@ -138,7 +138,7 @@ class Map extends Parser
                 $map->status = strtoupper($matches[1]);
             } elseif ($this->parsing === 'MAP' && preg_match('/^SYMBOL$/i', $line) === 1) {
                 $symbolParser = new Symbol($this->file, $this->currentLineIndex - 1);
-                $symbol = $symbolParser->parse($this->content);
+                $symbol = $symbolParser->parseBlock($this->content);
 
                 $map->symbol->add($symbol);
 
@@ -151,7 +151,7 @@ class Map extends Parser
                 $map->units = strtoupper($matches[1]);
             } elseif ($this->parsing === 'MAP' && preg_match('/^WEB$/i', $line) === 1) {
                 $webParser = new Web($this->file, $this->currentLineIndex - 1);
-                $web = $webParser->parse($this->content);
+                $web = $webParser->parseBlock($this->content);
 
                 $map->web = $web;
 

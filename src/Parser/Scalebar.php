@@ -16,7 +16,7 @@ use MapFile\Model\Scalebar as ScalebarObject;
 
 class Scalebar extends Parser
 {
-    public function parse(?array $content = null): ScalebarObject
+    public function parseBlock(?array $content = null): ScalebarObject
     {
         if (!is_null($content)) {
             $this->content = $content;
@@ -63,7 +63,7 @@ class Scalebar extends Parser
                 $scalebar->intervals = intval($matches[1]);
             } elseif ($this->parsing === 'SCALEBAR' && preg_match('/^LABEL$/i', $line) === 1) {
                 $labelParser = new Label($this->file, $this->currentLineIndex - 1);
-                $label = $labelParser->parse();
+                $label = $labelParser->parseBlock();
 
                 $scalebar->label = $label;
 

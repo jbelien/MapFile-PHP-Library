@@ -16,7 +16,7 @@ use MapFile\Model\Leader as LeaderObject;
 
 class Leader extends Parser
 {
-    public function parse(?array $content = null): LeaderObject
+    public function parseBlock(?array $content = null): LeaderObject
     {
         if (!is_null($content)) {
             $this->content = $content;
@@ -39,7 +39,7 @@ class Leader extends Parser
                 $leader->maxdistance = intval($matches[1]);
             } elseif ($this->parsing === 'LEADER' && preg_match('/^STYLE$/i', $line) === 1) {
                 $styleParser = new Style($this->file, $this->currentLineIndex - 1);
-                $style = $styleParser->parse();
+                $style = $styleParser->parseBlock();
 
                 $leader->style->add($style);
 
