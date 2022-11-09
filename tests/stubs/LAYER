@@ -1,0 +1,91 @@
+LAYER
+  CLASS
+    GROUP "group1"
+    NAME "name1"
+  END # CLASS
+  CLASSGROUP "group1"
+  CLASSITEM "column1"
+  CLUSTER
+    MAXDISTANCE 20
+    REGION "ellipse"
+  END # CLUSTER
+  COMPOSITE
+    OPACITY 70
+  END # COMPOSITE
+  CONNECTION "lakes.db"
+  CONNECTIONTYPE OGR
+  DATA "lakes"
+  DEBUG 0
+  ENCODING "UTF-8"
+  EXTENT 0 0 150000 150000
+  FEATURE
+    WKT "POINT(2000 2500)"
+  END # FEATURE
+  FILTER ("[type]"='road' and [size]<2)
+  FILTERITEM "column1"
+  FOOTER "footer.html"
+  GEOMTRANSFORM (simplify((centerline([shape])), 10000))
+  GRID
+    LABELFORMAT "DD"
+  END # GRID
+  GROUP "group"
+  HEADER "header.html"
+  JOIN
+    FROM "ID"
+    NAME "test"
+    TABLE "../data/lookup.dbf"
+    TO "IDENT"
+    TYPE ONE-TO-ONE
+  END # JOIN
+  LABELCACHE ON
+  LABELITEM "label"
+  LABELMAXSCALEDENOM 10000
+  LABELMINSCALEDENOM 0
+  LABELREQUIRES "![orthoquads]"
+  MASK "parcels"
+  MAXFEATURES 10
+  MAXGEOWIDTH 500
+  MAXSCALEDENOM 10000
+  METADATA
+    "title" "My layer title"
+  END # METADATA
+  MINFEATURESIZE 50
+  MINGEOWIDTH 50
+  MINSCALEDENOM 1000
+  NAME "my-layer"
+  OFFSITE 0 0 0
+  PLUGIN "C:/ms4w/msplugins/mssql/msplugin_mssql2008.dll"
+  POSTLABELCACHE FALSE
+  PROCESSING "CLOSE_CONNECTION=DEFER"
+  PROCESSING "CONTOUR_INTERVAL=5"
+  PROJECTION
+    "init=epsg:4326"
+  END # PROJECTION
+  REQUIRES "![modis]"
+  SCALETOKEN
+    NAME "%pri%"
+    VALUES
+      "0" "1"
+      "1000" "2"
+      "10000" "3"
+    END # VALUES
+  END # SCALETOKEN
+  SIZEUNITS METERS
+  STATUS ON
+  STYLEITEM "style"
+  SYMBOLSCALEDENOM 24000
+  TEMPLATE "template.html"
+  TILEINDEX "imagery.shp"
+  TILEITEM "LOCATION"
+  TILESRS "src_srs"
+  TOLERANCE 10
+  TOLERANCEUNITS PIXELS
+  TRANSFORM TRUE
+  TYPE LINE
+  UNITS DD
+  UTFDATA "{\"id\":\"[fid]\", \"name\":\"[name]\", \"area\":\"[area]\"}"
+  UTFITEM "fid"
+  VALIDATION
+    "firstname" "^[a-zA-Z\-]+$"
+  END # VALIDATION
+END # LAYER
