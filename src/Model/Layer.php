@@ -23,10 +23,12 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Layer extends MapFileObject
 {
-    /** @var null|string Specify the class’s group that would be considered at rendering time. */
-    public $classgroup;
+    /** @var array<string,string> Bind variables in SQL statements. */
+    public $bindvals;
     /** @var ArrayCollection<int,LayerClass> */
     public $class;
+    /** @var null|string Specify the class’s group that would be considered at rendering time. */
+    public $classgroup;
     /** @var null|string Item name in attribute table to use for class lookups. */
     public $classitem;
     /** @var null|Cluster */
@@ -99,6 +101,8 @@ class Layer extends MapFileObject
     public $maxscaledenom;
     /** @var array<string,string> List of metadata's. */
     public $metadata = [];
+    /** @var null|int Minimum feature size (in pixels) for shapes in the layer. */
+    public $minfeaturesize;
     /** @var null|float Minimum width, in the map’s geographic units, at which this LAYER is drawn. */
     public $mingeowidth;
     /**

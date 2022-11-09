@@ -20,11 +20,19 @@ class Layer extends Writer
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'LAYER'.PHP_EOL;
 
+        foreach ($layer->class as $class) {
+            $this->text .= (new LayerClass($class, $indentSize + 1, $indent))->text;
+        }
+
         $this->text .= self::getTextString('CLASSGROUP', $layer->classgroup, $indentSize + 1, $indent);
         $this->text .= self::getTextString('CLASSITEM', $layer->classitem, $indentSize + 1, $indent);
 
         if (!is_null($layer->cluster)) {
             $this->text .= (new Cluster($layer->cluster, $indentSize + 1, $indent))->text;
+        }
+
+        foreach ($layer->composite as $composite) {
+            $this->text .= (new Composite($composite, $indentSize + 1, $indent))->text;
         }
 
         $this->text .= self::getTextString('CONNECTION', $layer->connection, $indentSize + 1, $indent);
@@ -33,6 +41,11 @@ class Layer extends Writer
         $this->text .= self::getTextRaw('DEBUG', $layer->debug, $indentSize + 1, $indent);
         $this->text .= self::getTextString('ENCODING', $layer->encoding, $indentSize + 1, $indent);
         $this->text .= self::getTextArray('EXTENT', $layer->extent, $indentSize + 1, $indent);
+
+        foreach ($layer->feature as $feature) {
+            $this->text .= (new Feature($feature, $indentSize + 1, $indent))->text;
+        }
+
         $this->text .= self::getText('FILTER', $layer->filter, $indentSize + 1, $indent);
         $this->text .= self::getTextString('FILTERITEM', $layer->filteritem, $indentSize + 1, $indent);
         $this->text .= self::getTextString('FOOTER', $layer->footer, $indentSize + 1, $indent);
@@ -44,6 +57,11 @@ class Layer extends Writer
 
         $this->text .= self::getTextString('GROUP', $layer->group, $indentSize + 1, $indent);
         $this->text .= self::getTextString('HEADER', $layer->header, $indentSize + 1, $indent);
+
+        foreach ($layer->join as $join) {
+            $this->text .= (new Join($join, $indentSize + 1, $indent))->text;
+        }
+
         $this->text .= self::getTextRaw('LABELCACHE', $layer->labelcache, $indentSize + 1, $indent);
         $this->text .= self::getTextString('LABELITEM', $layer->labelitem, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('LABELMAXSCALEDENOM', $layer->labelmaxscaledenom, $indentSize + 1, $indent);
@@ -58,6 +76,7 @@ class Layer extends Writer
             $this->text .= (new Metadata($layer->metadata, $indentSize + 1, $indent))->text;
         }
 
+        $this->text .= self::getTextRaw('MINFEATURESIZE', $layer->minfeaturesize, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('MINGEOWIDTH', $layer->mingeowidth, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('MINSCALEDENOM', $layer->minscaledenom, $indentSize + 1, $indent);
         $this->text .= self::getTextString('NAME', $layer->name, $indentSize + 1, $indent);
@@ -98,26 +117,6 @@ class Layer extends Writer
 
         if (!is_null($layer->validation)) {
             $this->text .= (new Validation($layer->validation, $indentSize + 1, $indent))->text;
-        }
-
-        foreach ($layer->class as $class) {
-            $this->text .= PHP_EOL;
-            $this->text .= (new LayerClass($class, $indentSize + 1, $indent))->text;
-        }
-
-        foreach ($layer->composite as $composite) {
-            $this->text .= PHP_EOL;
-            $this->text .= (new Composite($composite, $indentSize + 1, $indent))->text;
-        }
-
-        foreach ($layer->feature as $feature) {
-            $this->text .= PHP_EOL;
-            $this->text .= (new Feature($feature, $indentSize + 1, $indent))->text;
-        }
-
-        foreach ($layer->join as $join) {
-            $this->text .= PHP_EOL;
-            $this->text .= (new Join($join, $indentSize + 1, $indent))->text;
         }
 
         $this->text .= str_repeat($indent, $indentSize);
