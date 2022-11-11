@@ -46,7 +46,7 @@ class Map extends Parser
                     $map->debug = intval($matches[1]);
                 }
             } elseif ($this->parsing === 'MAP' && preg_match('/^DEFRESOLUTION ([0-9]+)$/i', $line, $matches) === 1) {
-                $map->angle = intval($matches[1]);
+                $map->defresolution = intval($matches[1]);
             } elseif ($this->parsing === 'MAP' && preg_match('/^EXTENT (-?[0-9]+(?:\.(?:[0-9]+))?) (-?[0-9]+(?:\.(?:[0-9]+))?) (-?[0-9]+(?:\.(?:[0-9]+))?) (-?[0-9]+(?:\.(?:[0-9]+))?)$/i', $line, $matches) === 1) {
                 $map->extent = [
                     floatval($matches[1]),
