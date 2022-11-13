@@ -14,18 +14,18 @@ namespace MapFile\Writer;
 class BindVals extends Writer
 {
     /**
-     * @param array<string,string> $metadata
+     * @param array<int|string,string> $bindvals
      * @param int                  $indentSize
      * @param string               $indent
      *
      * @return void
      */
-    public function __construct(array $metadata, int $indentSize = 0, string $indent = self::WRITER_INDENT)
+    public function __construct(array $bindvals, int $indentSize = 0, string $indent = self::WRITER_INDENT)
     {
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'BINDVALS'.PHP_EOL;
 
-        foreach ($metadata as $key => $value) {
+        foreach ($bindvals as $key => $value) {
             $this->text .= str_repeat($indent, $indentSize + 1);
             $this->text .= '"'.$key.'" "'.$value.'"';
             $this->text .= PHP_EOL;

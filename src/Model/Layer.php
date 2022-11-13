@@ -24,7 +24,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Layer extends MapFileObject
 {
     /**
-     * @var array<string,string> Bind variables in SQL statements.
+     * @var array<int|string,string> Bind variables in SQL statements.
      *
      * @version 6.0
      */
