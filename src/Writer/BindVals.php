@@ -15,8 +15,8 @@ class BindVals extends Writer
 {
     /**
      * @param array<int|string,string> $bindvals
-     * @param int                  $indentSize
-     * @param string               $indent
+     * @param int                      $indentSize
+     * @param string                   $indent
      *
      * @return void
      */
