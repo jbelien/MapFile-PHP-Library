@@ -21,7 +21,10 @@ namespace MapFile\Model;
  */
 class Scalebar extends MapFileObject
 {
-    /** @var null|string Defines how the scalebar is aligned within the scalebar image. */
+    /**
+     * @var null|string Defines how the scalebar is aligned within the scalebar image.
+     * @version 5.2
+     */
     public $align;
     /** @var null|int[]|string Color to use for scalebar background, not the image background. */
     public $backgroundcolor;
@@ -33,7 +36,10 @@ class Scalebar extends MapFileObject
     public $intervals;
     /** @var null|Label */
     public $label;
-    /** @var null|int[] OFFSET moves the scalebar closer to the center of the map. */
+    /**
+     * @var null|int[] OFFSET moves the scalebar closer to the center of the map.
+     * @version 7.2
+     */
     public $offset;
     /** @var null|int[]|string Color to use for outlining individual intervals. */
     public $outlinecolor;
