@@ -23,11 +23,13 @@ class Symbol extends MapFileObject
 {
     /**
      * @var null|float[] Used to specify the location (within the symbol) that is to be used as an anchorpoint when rotating the symbol and placing the symbol on a map.
+     *
      * @version 6.2
      */
     public $anchorpoint;
     /**
      * @var null|bool Should TrueType fonts be antialiased.
+     *
      * @deprecated 7.0
      */
     public $antialias;
@@ -45,6 +47,7 @@ class Symbol extends MapFileObject
     public $points;
     /**
      * @var null|int Sets a transparent color for the input image for pixmap symbols, or determines whether all shade symbols should have a transparent background.
+     *
      * @deprecated 7.0
      */
     public $transparent;

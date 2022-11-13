@@ -11,8 +11,6 @@ declare(strict_types=1);
 
 namespace MapFile\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * MapFile Generator - Composite (COMPOSITE) Class.
  * [MapFile COMPOSITE clause](https://mapserver.org/mapfile/composite.html).
@@ -25,6 +23,7 @@ class Composite extends MapFileObject
 {
     /**
      * @var string[] Name of the compositing filter.
+     *
      * @version 7.2
      */
     public $compfilter = [];

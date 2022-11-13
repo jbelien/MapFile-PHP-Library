@@ -25,6 +25,7 @@ class Label extends MapFileObject
 {
     /**
      * @var null|string Text alignment for multiline labels.
+     *
      * @version 5.4
      */
     public $align;
@@ -32,6 +33,7 @@ class Label extends MapFileObject
     public $angle;
     /**
      * @var null|bool Should text be antialiased ?
+     *
      * @deprecated 7.0
      */
     public $antialias;
@@ -41,6 +43,7 @@ class Label extends MapFileObject
     public $color;
     /**
      * @var null|string Expression that determines when the LABEL is to be applied.
+     *
      * @version 6.2
      */
     public $expression;
@@ -50,6 +53,7 @@ class Label extends MapFileObject
     public $force;
     /**
      * @var null|int This keyword interacts with the WRAP keyword so that line breaks only occur after the defined number of characters.
+     *
      * @version 5.4
      */
     public $maxlength;
@@ -57,7 +61,9 @@ class Label extends MapFileObject
     public $maxoverlapangle;
     /**
      * @var null|float Maximum scale denominator.
+     *
      * @version 5.4
+     *
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $maxscaledenom;
@@ -69,7 +75,9 @@ class Label extends MapFileObject
     public $minfeaturesize;
     /**
      * @var null|float Minimum scale denominator.
+     *
      * @version 5.4
+     *
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $minscaledenom;
@@ -87,11 +95,13 @@ class Label extends MapFileObject
     public $position;
     /**
      * @var null|string|int The priority parameter takes an integer value between 1 (lowest) and 10 (highest).
+     *
      * @version 5.0
      */
     public $priority;
     /**
      * @var null|int The label will be repeated on every line of a multiline shape and will be repeated multiple times along a given line at an interval of REPEATDISTANCE pixels.
+     *
      * @version 5.0
      */
     public $repeatdistance;
@@ -105,6 +115,7 @@ class Label extends MapFileObject
     public $style;
     /**
      * @var null|string Text to label features with.
+     *
      * @version 6.0
      */
     public $text;

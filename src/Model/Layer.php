@@ -25,6 +25,7 @@ class Layer extends MapFileObject
 {
     /**
      * @var array<string,string> Bind variables in SQL statements.
+     *
      * @version 6.0
      */
     public $bindvals = [];
@@ -42,6 +43,7 @@ class Layer extends MapFileObject
     public $connection;
     /**
      * @var string[] This keyword allows to define connection options expressed as key / value pairs.
+     *
      * @version 7.6
      */
     public $connectionoptions = [];
@@ -53,6 +55,7 @@ class Layer extends MapFileObject
     public $debug;
     /**
      * @var null|string The encoding used for text in the layer data source.
+     *
      * @version 7.0
      */
     public $encoding;
@@ -68,7 +71,9 @@ class Layer extends MapFileObject
     public $footer;
     /**
      * @var null|string Used to indicate that the current feature will be transformed.
+     *
      * @version 6.4
+     *
      * @see https://mapserver.org/mapfile/geomtransform.html
      */
     public $geomtransform;
@@ -104,12 +109,15 @@ class Layer extends MapFileObject
     public $maxfeatures;
     /**
      * @var null|float Maximum width, in the map’s geographic units, at which this LAYER is drawn.
+     *
      * @version 5.4
      */
     public $maxgeowidth;
     /**
      * @var null|float Minimum scale denominator.
+     *
      * @version 5.0
+     *
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $maxscaledenom;
@@ -119,12 +127,15 @@ class Layer extends MapFileObject
     public $minfeaturesize;
     /**
      * @var null|float Minimum width, in the map’s geographic units, at which this LAYER is drawn.
+     *
      * @version 5.4
      */
     public $mingeowidth;
     /**
      * @var null|float Maximum scale denominator.
+     *
      * @version 7.6
+     *
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $minscaledenom;
@@ -134,6 +145,7 @@ class Layer extends MapFileObject
     public $offsite;
     /**
      * @var null|int Opacity.
+     *
      * @deprecated 8.0 Use a COMPOSITE block instead.
      */
     public $opacity;
@@ -154,6 +166,7 @@ class Layer extends MapFileObject
     public $requires;
     /**
      * @var null|ScaleToken
+     *
      * @version 6.4
      */
     public $scaletoken;
@@ -193,11 +206,13 @@ class Layer extends MapFileObject
     public $units;
     /**
      * @var null|string A UTFGrid JSON template.
+     *
      * @version 7.0
      */
     public $utfdata;
     /**
      * @var null|string The attribute to use as the ID for the UTFGrid.
+     *
      * @version 7.0
      */
     public $utfitem;

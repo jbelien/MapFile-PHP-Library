@@ -23,6 +23,7 @@ class Scalebar extends MapFileObject
 {
     /**
      * @var null|string Defines how the scalebar is aligned within the scalebar image.
+     *
      * @version 5.2
      */
     public $align;
@@ -38,6 +39,7 @@ class Scalebar extends MapFileObject
     public $label;
     /**
      * @var null|int[] OFFSET moves the scalebar closer to the center of the map.
+     *
      * @version 7.2
      */
     public $offset;

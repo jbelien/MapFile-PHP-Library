@@ -29,6 +29,7 @@ class Map extends MapFileObject
     public $config = [];
     /**
      * @var null|string This defines a regular expression to be applied to requests to change DATA parameters via URL requests (i.e. map.layer[layername]=DATA+…).
+     *
      * @deprecated 8.0 See VALIDATION instead.
      */
     public $datapattern;
@@ -36,6 +37,7 @@ class Map extends MapFileObject
     public $debug;
     /**
      * @var null|int Sets the reference resolution (pixels per inch) used for symbology.
+     *
      * @version 5.6
      */
     public $defresolution;
@@ -88,6 +90,7 @@ class Map extends MapFileObject
     public $symbolset;
     /**
      * @var null|string This defines a regular expression to be applied to requests to change the TEMPLATE parameters via URL requests (i.e. map.layer[layername].template=…).
+     *
      * @deprecated 8.0 See VALIDATION instead.
      */
     public $templatepattern;

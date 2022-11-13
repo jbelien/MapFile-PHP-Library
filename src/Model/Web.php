@@ -53,6 +53,7 @@ class Web extends MapFileObject
     public $template;
     /**
      * @var null|string Path for storing temporary files.
+     *
      * @version 6.0
      */
     public $temppath;

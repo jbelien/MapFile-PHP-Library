@@ -35,6 +35,7 @@ class LayerClass extends MapFileObject
     public $label;
     /**
      * @var null|Leader
+     *
      * @version 6.2
      */
     public $leader;
