@@ -23,29 +23,41 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Label extends MapFileObject
 {
-    /** @var null|string Text alignment for multiline labels. */
+    /**
+     * @var null|string Text alignment for multiline labels.
+     * @version 5.4
+     */
     public $align;
     /** @var null|float|string */
     public $angle;
-    /** @var null|bool Should text be antialiased ? */
+    /**
+     * @var null|bool Should text be antialiased ?
+     * @deprecated 7.0
+     */
     public $antialias;
     /** @var null|int Padding, in pixels, around labels. */
     public $buffer;
     /** @var null|int[]|string Color to draw text with. */
     public $color;
-    /** @var null|string Expression that determines when the LABEL is to be applied. */
+    /**
+     * @var null|string Expression that determines when the LABEL is to be applied.
+     * @version 6.2
+     */
     public $expression;
     /** @var null|string */
     public $font;
     /** @var null|bool Forces labels for a particular class on, regardless of collisions. */
     public $force;
-    /** @var null|int This keyword interacts with the WRAP keyword so that line breaks only occur after the defined number of characters. */
+    /**
+     * @var null|int This keyword interacts with the WRAP keyword so that line breaks only occur after the defined number of characters.
+     * @version 5.4
+     */
     public $maxlength;
     /** @var null|float Angle threshold to use in filtering out ANGLE FOLLOW labels in which characters overlap (floating point value in degrees). */
     public $maxoverlapangle;
     /**
      * @var null|float Maximum scale denominator.
-     *
+     * @version 5.4
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $maxscaledenom;
@@ -57,7 +69,7 @@ class Label extends MapFileObject
     public $minfeaturesize;
     /**
      * @var null|float Minimum scale denominator.
-     *
+     * @version 5.4
      * @see http://geography.about.com/cs/maps/a/mapscale.htm
      */
     public $minscaledenom;
@@ -73,9 +85,15 @@ class Label extends MapFileObject
     public $partials;
     /** @var null|string Position of the label relative to the labeling point. */
     public $position;
-    /** @var null|string|int The priority parameter takes an integer value between 1 (lowest) and 10 (highest). */
+    /**
+     * @var null|string|int The priority parameter takes an integer value between 1 (lowest) and 10 (highest).
+     * @version 5.0
+     */
     public $priority;
-    /** @var null|int The label will be repeated on every line of a multiline shape and will be repeated multiple times along a given line at an interval of REPEATDISTANCE pixels. */
+    /**
+     * @var null|int The label will be repeated on every line of a multiline shape and will be repeated multiple times along a given line at an interval of REPEATDISTANCE pixels.
+     * @version 5.0
+     */
     public $repeatdistance;
     /** @var null|int[]|string Color of drop shadow. */
     public $shadowcolor;
@@ -85,7 +103,10 @@ class Label extends MapFileObject
     public $size;
     /** @var ArrayCollection<int,Style> */
     public $style;
-    /** @var null|string Text to label features with. */
+    /**
+     * @var null|string Text to label features with.
+     * @version 6.0
+     */
     public $text;
     /** @var null|string Type of font to use. */
     public $type;
