@@ -21,6 +21,7 @@ final class LayerTest extends ParseTest
     {
         $layer = (new Parser())->parse($this->stub);
 
+        self::assertSame(['1' => 'Nova Scotia'], $layer->bindvals);
         self::assertInstanceOf(ArrayCollection::class, $layer->class);
         self::assertCount(1, $layer->class);
         self::assertInstanceOf(LayerClass::class, $layer->class[0]);
@@ -36,6 +37,7 @@ final class LayerTest extends ParseTest
         self::assertSame(70, $layer->composite[0]->opacity);
         self::assertSame('column1', $layer->classitem);
         self::assertSame('lakes.db', $layer->connection);
+        self::assertSame(['FLATTEN_NESTED_ATTRIBUTES' => 'YES'], $layer->connectionoptions);
         self::assertSame('OGR', $layer->connectiontype);
         self::assertSame('lakes', $layer->data);
         self::assertSame(0, $layer->debug);

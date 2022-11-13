@@ -20,6 +20,10 @@ class Layer extends Writer
         $this->text = str_repeat($indent, $indentSize);
         $this->text .= 'LAYER'.PHP_EOL;
 
+        if (count($layer->bindvals) > 0) {
+            $this->text .= (new BindVals($layer->bindvals, $indentSize + 1, $indent))->text;
+        }
+
         foreach ($layer->class as $class) {
             $this->text .= (new LayerClass($class, $indentSize + 1, $indent))->text;
         }
@@ -36,6 +40,11 @@ class Layer extends Writer
         }
 
         $this->text .= self::getTextString('CONNECTION', $layer->connection, $indentSize + 1, $indent);
+
+        if (count($layer->connectionoptions) > 0) {
+            $this->text .= (new ConnectionOptions($layer->connectionoptions, $indentSize + 1, $indent))->text;
+        }
+
         $this->text .= self::getTextRaw('CONNECTIONTYPE', $layer->connectiontype, $indentSize + 1, $indent);
         $this->text .= self::getTextString('DATA', $layer->data, $indentSize + 1, $indent);
         $this->text .= self::getTextRaw('DEBUG', $layer->debug, $indentSize + 1, $indent);

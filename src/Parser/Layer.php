@@ -31,6 +31,12 @@ class Layer extends Parser
             if (preg_match('/^LAYER$/i', $line) === 1) {
                 $this->lineStart = $this->currentLineIndex;
                 $this->parsing = 'LAYER';
+            } elseif ($this->parsing === 'LAYER' && preg_match('/^BINDVALS$/i', $line) === 1) {
+                $bindvalsParser = new BindVals();
+
+                $layer->bindvals = $bindvalsParser->parse($this->file, $this->currentLineIndex - 1);
+
+                $this->currentLineIndex = $bindvalsParser->lineEnd;
             } elseif ($this->parsing === 'LAYER' && preg_match('/^CLASS$/i', $line) === 1) {
                 $classParser = new LayerClass();
 
@@ -55,6 +61,12 @@ class Layer extends Parser
                 $this->currentLineIndex = $compositeParser->lineEnd;
             } elseif ($this->parsing === 'LAYER' && preg_match('/^CONNECTION ["\'](.+)["\']$/i', $line, $matches) === 1) {
                 $layer->connection = $matches[1];
+            } elseif ($this->parsing === 'LAYER' && preg_match('/^CONNECTIONOPTIONS$/i', $line) === 1) {
+                $connectionoptionsParser = new ConnectionOptions();
+
+                $layer->connectionoptions = $connectionoptionsParser->parse($this->file, $this->currentLineIndex - 1);
+
+                $this->currentLineIndex = $connectionoptionsParser->lineEnd;
             } elseif ($this->parsing === 'LAYER' && preg_match('/^CONNECTIONTYPE (CONTOUR|KERNELDENSITY|LOCAL|OGR|ORACLESPATIAL|PLUGIN|POSTGIS|SDE|UNION|UVRASTER|WFS|WMS)$/i', $line, $matches) === 1) {
                 $layer->connectiontype = strtoupper($matches[1]);
             } elseif ($this->parsing === 'LAYER' && preg_match('/^DATA ["\'](.+)["\']$/i', $line, $matches) === 1) {
