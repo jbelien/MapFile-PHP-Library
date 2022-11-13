@@ -21,9 +21,17 @@ namespace MapFile\Model;
  */
 class Symbol extends MapFileObject
 {
-    /** @var null|float[] Used to specify the location (within the symbol) that is to be used as an anchorpoint when rotating the symbol and placing the symbol on a map. */
+    /**
+     * @var null|float[] Used to specify the location (within the symbol) that is to be used as an anchorpoint when rotating the symbol and placing the symbol on a map.
+     *
+     * @version 6.2
+     */
     public $anchorpoint;
-    /** @var null|bool Should TrueType fonts be antialiased. */
+    /**
+     * @var null|bool Should TrueType fonts be antialiased.
+     *
+     * @deprecated 7.0
+     */
     public $antialias;
     /** @var null|string Character used to reference a particular TrueType font character. */
     public $character;
@@ -37,7 +45,11 @@ class Symbol extends MapFileObject
     public $name;
     /** @var null|array<array<float>> Sequence of points that make up a symbol of TYPE vector or that define the x and y radius of a symbol of TYPE ellipse. */
     public $points;
-    /** @var null|int Sets a transparent color for the input image for pixmap symbols, or determines whether all shade symbols should have a transparent background. */
+    /**
+     * @var null|int Sets a transparent color for the input image for pixmap symbols, or determines whether all shade symbols should have a transparent background.
+     *
+     * @deprecated 7.0
+     */
     public $transparent;
     /** @var null|string */
     public $type;

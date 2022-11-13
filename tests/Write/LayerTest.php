@@ -20,9 +20,11 @@ final class LayerTest extends WriteTest
     public function test(): void
     {
         $layer = new Layer();
+        $layer->bindvals = ['1' => 'Nova Scotia'];
         $layer->classgroup = 'group1';
         $layer->classitem = 'column1';
         $layer->connection = 'lakes.db';
+        $layer->connectionoptions = ['FLATTEN_NESTED_ATTRIBUTES' => 'YES'];
         $layer->connectiontype = 'OGR';
         $layer->data = 'lakes';
         $layer->debug = 0;

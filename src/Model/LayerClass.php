@@ -33,7 +33,11 @@ class LayerClass extends MapFileObject
     public $keyimage;
     /** @var ArrayCollection<int,Label> */
     public $label;
-    /** @var null|Leader */
+    /**
+     * @var null|Leader
+     *
+     * @version 6.2
+     */
     public $leader;
     /**
      * @var null|float Minimum scale at which this CLASS is drawn.

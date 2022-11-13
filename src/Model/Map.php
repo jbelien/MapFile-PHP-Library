@@ -27,11 +27,19 @@ class Map extends MapFileObject
     public $angle;
     /** @var string[] This can be used to specify several values at run-time, for both MapServer and GDAL/OGR libraries. */
     public $config = [];
-    /** @var null|string This defines a regular expression to be applied to requests to change DATA parameters via URL requests (i.e. map.layer[layername]=DATA+…). */
+    /**
+     * @var null|string This defines a regular expression to be applied to requests to change DATA parameters via URL requests (i.e. map.layer[layername]=DATA+…).
+     *
+     * @deprecated 8.0 See VALIDATION instead.
+     */
     public $datapattern;
     /** @var null|int Enables debugging of a layer in the current map. */
     public $debug;
-    /** @var null|int Sets the reference resolution (pixels per inch) used for symbology. */
+    /**
+     * @var null|int Sets the reference resolution (pixels per inch) used for symbology.
+     *
+     * @version 5.6
+     */
     public $defresolution;
     /** @var null|float[] Spatial extent. */
     public $extent;
@@ -80,7 +88,11 @@ class Map extends MapFileObject
     public $symbol;
     /** @var null|string Filename of the symbolset to use. */
     public $symbolset;
-    /** @var null|string This defines a regular expression to be applied to requests to change the TEMPLATE parameters via URL requests (i.e. map.layer[layername].template=…). */
+    /**
+     * @var null|string This defines a regular expression to be applied to requests to change the TEMPLATE parameters via URL requests (i.e. map.layer[layername].template=…).
+     *
+     * @deprecated 8.0 See VALIDATION instead.
+     */
     public $templatepattern;
     /** @var null|string Units of the map coordinates. */
     public $units;

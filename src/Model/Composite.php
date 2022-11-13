@@ -21,8 +21,14 @@ namespace MapFile\Model;
  */
 class Composite extends MapFileObject
 {
-    /** @var null|int Sets the opacity level (or the inability to see through the layer) of all classed pixels for a given layer. */
-    public $opacity;
+    /**
+     * @var string[] Name of the compositing filter.
+     *
+     * @version 7.2
+     */
+    public $compfilter = [];
     /** @var null|string Name of the compositing operator to use when blending the temporary image onto the main map image. */
     public $compop;
+    /** @var null|int Sets the opacity level (or the inability to see through the layer) of all classed pixels for a given layer. */
+    public $opacity;
 }

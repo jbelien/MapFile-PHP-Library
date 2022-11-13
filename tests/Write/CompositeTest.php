@@ -13,8 +13,9 @@ final class CompositeTest extends WriteTest
     public function test(): void
     {
         $composite = new Composite();
-        $composite->opacity = 100;
+        $composite->compfilter = ['grayscale'];
         $composite->compop = 'darken';
+        $composite->opacity = 100;
 
         $result = (new Writer($composite))->save($this->path);
 

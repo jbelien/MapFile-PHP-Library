@@ -51,7 +51,11 @@ class Web extends MapFileObject
     public $queryformat;
     /** @var null|string Template file or URL to use in presenting the results to the user in an interactive mode. */
     public $template;
-    /** @var null|string Path for storing temporary files. */
+    /**
+     * @var null|string Path for storing temporary files.
+     *
+     * @version 6.0
+     */
     public $temppath;
     /** @var null|array<string,string> */
     public $validation;
